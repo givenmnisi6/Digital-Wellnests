@@ -362,10 +362,10 @@ func _on_b_menu_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
 
-	#get_parent().call("returnToMain")
-	var mainInstance = preload("res://Scenes/Main.tscn").instantiate()
+	get_parent().call("returnToMain")
+	#var mainInstance = preload("res://Scenes/Main.tscn").instantiate()
 	#var mainInstance = Main.instantiate()
-	get_tree().root.add_child(mainInstance)
+	#get_tree().root.add_child(mainInstance)
 	queue_free()
 
 

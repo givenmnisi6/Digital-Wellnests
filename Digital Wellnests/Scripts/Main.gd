@@ -307,3 +307,9 @@ func _on_settings_mouse_entered():
 
 func _on_settings_mouse_exited():
 	settings.scale = Vector2(1, 1)
+
+
+func _on_back_button_down():
+	get_node("Effects").stream = load("res://Audio/Effects/click.wav")
+	get_node("Effects").play()
+	get_node("SettingsPage").hide()
