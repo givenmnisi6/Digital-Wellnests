@@ -1,0 +1,176 @@
+[gd_scene load_steps=17 format=3 uid="uid://2ppevsslqkff"]
+
+[ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="1_7gu07"]
+[ext_resource type="Texture2D" uid="uid://qun5h17dbf24" path="res://Images/QuizBG2.png" id="2_vfwh2"]
+[ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="3_yfu1u"]
+[ext_resource type="Texture2D" uid="uid://b6xedlty8o5ve" path="res://Images/WD0.png" id="4_46u01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07xxi"]
+bg_color = Color(0.00392157, 0.196078, 0.12549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8wg6"]
+bg_color = Color(0.00392157, 0.231373, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmnbe"]
+bg_color = Color(0.00392157, 0.231373, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5f10v"]
+bg_color = Color(0.301961, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk8y0"]
+bg_color = Color(0.372549, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1yug"]
+bg_color = Color(0.372549, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk3i2"]
+bg_color = Color(0.0823529, 0.176471, 0.266667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xy468"]
+bg_color = Color(0.117647, 0.235294, 0.34902, 0.980392)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdlwj"]
+bg_color = Color(0.117647, 0.235294, 0.34902, 0.980392)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1brh2"]
+bg_color = Color(0.231373, 0.152941, 0.0392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia7d2"]
+bg_color = Color(0.352941, 0.223529, 0.0196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsr0c"]
+bg_color = Color(0.352941, 0.223529, 0.0196078, 1)
+
+[node name="Quiz" type="TextureRect"]
+offset_right = 720.0
+offset_bottom = 480.0
+texture = ExtResource("1_7gu07")
+expand_mode = 1
+
+[node name="Screen" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 480.0
+texture = ExtResource("2_vfwh2")
+
+[node name="qPlay" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bYes" type="Button" parent="qPlay"]
+modulate = Color(0, 1, 0.203922, 1)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 206.0
+offset_right = 350.0
+offset_bottom = 469.0
+scale = Vector2(1, 1e-05)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_yfu1u")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/normal = SubResource("StyleBoxFlat_07xxi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l8wg6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nmnbe")
+text = "Yes"
+
+[node name="bNo" type="Button" parent="qPlay"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 370.0
+offset_top = 207.0
+offset_right = 710.0
+offset_bottom = 470.0
+scale = Vector2(1, 1e-05)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_yfu1u")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/normal = SubResource("StyleBoxFlat_5f10v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dk8y0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r1yug")
+text = "No"
+
+[node name="Question" type="RichTextLabel" parent="qPlay"]
+layout_mode = 0
+offset_top = 107.0
+offset_right = 720.0
+offset_bottom = 183.0
+bbcode_enabled = true
+text = "[center][/center]"
+metadata/_edit_lock_ = true
+
+[node name="QTitle" type="RichTextLabel" parent="qPlay"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 21.0
+offset_right = 711.0
+offset_bottom = 94.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_yfu1u")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]AAAAA[/center]"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="Message" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 210.0
+offset_right = 1.0
+offset_bottom = 210.0
+texture = ExtResource("4_46u01")
+expand_mode = 1
+
+[node name="SafetyTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Continue" type="Button" parent="."]
+self_modulate = Color(0, 0.541176, 1, 1)
+layout_mode = 0
+offset_left = 300.0
+offset_top = 345.0
+offset_right = 706.0
+offset_bottom = 455.0
+scale = Vector2(1e-05, 1)
+theme_override_fonts/font = ExtResource("3_yfu1u")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_wk3i2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xy468")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rdlwj")
+text = "Continue"
+
+[node name="TryAgain" type="Button" parent="."]
+self_modulate = Color(1, 0.607843, 0, 1)
+layout_mode = 0
+offset_left = 300.0
+offset_top = 210.0
+offset_right = 706.0
+offset_bottom = 320.0
+scale = Vector2(1e-05, 1)
+theme_override_fonts/font = ExtResource("3_yfu1u")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/normal = SubResource("StyleBoxFlat_1brh2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ia7d2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fsr0c")
+text = "Try Again"
+
+[node name="rwTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="rwIndicator" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 189.0
+offset_top = 92.0
+offset_right = 538.0
+offset_bottom = 418.0
+stretch_mode = 5
+
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+volume_db = 10.0
+pitch_scale = 1.1
