@@ -137,12 +137,12 @@ func _on_rw_timer_timeout():
 			$Effects.stream = load("res://Audio/Voice/NT0.wav")
 			$Effects.play()
 		if points == 2:
-			var i = rnd.randi_range(0, 5)
+			var i = rnd.randi_range(0, 2)
 			msg.texture = load("res://Images/WD" + str(i) + ".png")
 			$Effects.stream = load("res://Audio/Voice/WD" + str(i) + ".wav")
 			$Effects.play()
 		if points >= 3:
-			var i = rnd.randi_range(0, 1)
+			var i = rnd.randi_range(0, 2)
 			msg.texture = load("res://Images/WWD" + str(i) + ".png")
 			get_node("Effects").stream = load("res://Audio/Voice/WWD" + str(i) + ".wav")
 			get_node("Effects").play()
