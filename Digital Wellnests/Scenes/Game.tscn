@@ -2998,7 +2998,8 @@ scale = Vector2(1, 0.6)
 curve = SubResource("Curve2D_kb7ug")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-0.129, 0)
+position = Vector2(0, -5)
+rotation = 0.00278163
 
 [node name="EnvelopeTimer" type="Timer" parent="."]
 
