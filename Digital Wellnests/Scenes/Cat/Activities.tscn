@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://cln8y7rifqruh"]
+
+[ext_resource type="Texture2D" uid="uid://7fffhg1qv40r" path="res://Animations/Activities/gold_1.png" id="1_fxsx2"]
+[ext_resource type="Texture2D" uid="uid://cpwodypvahsl2" path="res://Animations/Activities/gold_2.png" id="2_7jew7"]
+[ext_resource type="Texture2D" uid="uid://dnv4jynaepkp" path="res://Animations/Activities/gold_3.png" id="3_e21pq"]
+[ext_resource type="Texture2D" uid="uid://b846chuna4061" path="res://Animations/Buffy/Bully0.0020.png" id="4_eaf62"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkpux"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fxsx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7jew7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e21pq")
+}],
+"loop": true,
+"name": &"Coin",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_eaf62")
+}],
+"loop": true,
+"name": &"Monster",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj6ek"]
+size = Vector2(57, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gljf0"]
+size = Vector2(56, 55)
+
+[node name="Activities" type="RigidBody2D"]
+metadata/_edit_lock_ = true
+
+[node name="ActivitiesAnim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lkpux")
+animation = &"Coin"
+frame = 2
+frame_progress = 0.156732
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 18)
+shape = SubResource("RectangleShape2D_sj6ek")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17.5)
+shape = SubResource("RectangleShape2D_gljf0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1, 37)
+scale = Vector2(2.9, 1)
+
+[node name="Effects" type="AudioStreamPlayer2D" parent="."]
