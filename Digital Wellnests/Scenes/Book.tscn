@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=3 uid="uid://bs33tlhecdxmf"]
+[gd_scene load_steps=58 format=3 uid="uid://bs33tlhecdxmf"]
 
 [ext_resource type="Texture2D" uid="uid://dxqb4twfqssgq" path="res://Images/OpenPages.png" id="1_lm8je"]
 [ext_resource type="PackedScene" uid="uid://y1ct72dyugt1" path="res://Scenes/AnimatedSprite.tscn" id="1_mn54y"]
+[ext_resource type="Script" path="res://Scripts/Book.gd" id="1_mtdgk"]
 [ext_resource type="Texture2D" uid="uid://dg878qg65qs2l" path="res://Images/AnimBackground.png" id="2_ssflf"]
 [ext_resource type="Texture2D" uid="uid://c6oq1hgp8k2nj" path="res://Images/PagesR.png" id="4_ot65k"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="5_dlc86"]
@@ -215,6 +216,7 @@ animations = [{
 offset_right = 720.0
 offset_bottom = 480.0
 color = Color(0.392157, 0.231373, 0.027451, 1)
+script = ExtResource("1_mtdgk")
 
 [node name="Book" type="TextureRect" parent="."]
 layout_mode = 0
@@ -239,12 +241,14 @@ modulate = Color(0, 0, 0, 0.376471)
 position = Vector2(179, 285)
 scale = Vector2(0.85, 0.85)
 animation = &"Wolf1"
+speed_scale = 5.0
 
 [node name="Animation" parent="." instance=ExtResource("1_mn54y")]
 visible = false
 position = Vector2(179, 285)
 scale = Vector2(0.8, 0.8)
 animation = &"Snail0"
+speed_scale = 5.0
 
 [node name="Book2" type="TextureRect" parent="."]
 modulate = Color(0.85098, 0.819608, 0.780392, 1)
@@ -326,3 +330,8 @@ volume_db = 1.2
 pitch_scale = 1.1
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="animation_finished" from="PageTurn" to="." method="_on_page_turn_animation_finished"]
+[connection signal="frame_changed" from="PageTurn" to="." method="_on_page_turn_frame_changed"]
+[connection signal="timeout" from="WordTimer" to="." method="_on_word_timer_timeout"]

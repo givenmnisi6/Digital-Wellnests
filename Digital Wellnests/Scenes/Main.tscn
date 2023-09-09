@@ -1,9 +1,13 @@
-[gd_scene load_steps=504 format=3 uid="uid://co30kjpyleecq"]
+[gd_scene load_steps=508 format=3 uid="uid://co30kjpyleecq"]
 
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_4lqdl"]
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="1_brrms"]
+[ext_resource type="PackedScene" uid="uid://bs33tlhecdxmf" path="res://Scenes/Book.tscn" id="2_2rn36"]
 [ext_resource type="Texture2D" uid="uid://dg878qg65qs2l" path="res://Images/AnimBackground.png" id="2_m4tll"]
+[ext_resource type="PackedScene" uid="uid://cugtttre47j1d" path="res://Scenes/Game.tscn" id="3_5ftom"]
 [ext_resource type="Texture2D" uid="uid://ve0gbahmpf3a" path="res://Images/ArrowR.png" id="3_8tw56"]
 [ext_resource type="Texture2D" uid="uid://dplhw613qxxcl" path="res://Images/ArrowL.png" id="4_pio4i"]
+[ext_resource type="PackedScene" uid="uid://2ppevsslqkff" path="res://Scenes/Quiz.tscn" id="4_up86e"]
 [ext_resource type="Texture2D" uid="uid://b8qsapis6xg8m" path="res://Images/Settings.png" id="5_8cwgu"]
 [ext_resource type="Texture2D" uid="uid://cjqricwjoko0x" path="res://Animations/Slak1/Slak1Animation1.0000.png" id="5_31fny"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="6_jmfn1"]
@@ -1998,6 +2002,10 @@ bg_color = Color(0.290196, 0, 0.223529, 1)
 offset_right = 720.0
 offset_bottom = 480.0
 color = Color(0.447059, 0.447059, 0.447059, 1)
+script = ExtResource("1_4lqdl")
+Book = ExtResource("2_2rn36")
+Game = ExtResource("3_5ftom")
+Quiz = ExtResource("4_up86e")
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
@@ -2072,10 +2080,9 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Hippo/hArea"]
 position = Vector2(-5, 17.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_xn67k")
 
-[node name="sButton" type="Button" parent="Control/Hippo"]
+[node name="hButton" type="Button" parent="Control/Hippo"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -212.0
 offset_top = -87.0
@@ -2094,7 +2101,7 @@ speed_scale = 5.0
 position = Vector2(2, -2)
 shape = SubResource("RectangleShape2D_pbdw0")
 
-[node name="Button" type="Button" parent="Control/Wolf"]
+[node name="wButton" type="Button" parent="Control/Wolf"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -164.0
 offset_top = -102.0
@@ -2113,7 +2120,6 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Cat/cArea"]
 position = Vector2(0, 5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_rm80g")
 
 [node name="cButton" type="Button" parent="Control/Cat"]
@@ -2268,3 +2274,17 @@ autoplay = true
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 
 [node name="TransitionTimer" type="Timer" parent="."]
+
+[connection signal="gui_input" from="Control/ArrowRight" to="." method="_on_arrow_right_gui_input"]
+[connection signal="gui_input" from="Control/ArrowLeft" to="." method="_on_arrow_left_gui_input"]
+[connection signal="pressed" from="Control/Snail/sButton" to="." method="_on_s_button_pressed"]
+[connection signal="pressed" from="Control/Hippo/hButton" to="." method="_on_h_button_pressed"]
+[connection signal="pressed" from="Control/Wolf/wButton" to="." method="_on_w_button_pressed"]
+[connection signal="pressed" from="Control/Cat/cButton" to="." method="_on_c_button_pressed"]
+[connection signal="button_down" from="Control/Settings" to="." method="_on_settings_button_down"]
+[connection signal="mouse_entered" from="Control/Settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Settings" to="." method="_on_settings_mouse_exited"]
+[connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
+[connection signal="changed" from="SettingsPage/HSlider" to="." method="_on_h_slider_changed"]
+[connection signal="value_changed" from="SettingsPage/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
