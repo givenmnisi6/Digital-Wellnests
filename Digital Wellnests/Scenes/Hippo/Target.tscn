@@ -1,6 +1,7 @@
-[gd_scene load_steps=101 format=3 uid="uid://celr1t2vxkewx"]
+[gd_scene load_steps=102 format=3 uid="uid://celr1t2vxkewx"]
 
 [ext_resource type="Texture2D" uid="uid://0k5jt5oo42c3" path="res://Animations/Buffy/Bully0.0000.png" id="1_7lese"]
+[ext_resource type="Script" path="res://Scripts/Target.gd" id="1_ora2o"]
 [ext_resource type="Texture2D" uid="uid://cj40xb5praged" path="res://Animations/Buffy/Bully0.0001.png" id="2_2b6w8"]
 [ext_resource type="Texture2D" uid="uid://d2xhceekd0djf" path="res://Animations/Buffy/Bully0.0002.png" id="3_2l11a"]
 [ext_resource type="Texture2D" uid="uid://rkdwfb3umnqg" path="res://Animations/Buffy/Bully0.0003.png" id="4_27q8y"]
@@ -420,6 +421,7 @@ animations = [{
 size = Vector2(186, 150)
 
 [node name="Target" type="Area2D"]
+script = ExtResource("1_ora2o")
 metadata/_edit_lock_ = true
 
 [node name="TargetFace" type="AnimatedSprite2D" parent="."]
@@ -451,4 +453,8 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="TargetTimer" to="." method="_on_target_timer_timeout"]
+[connection signal="timeout" from="DispTimer" to="." method="_on_disp_timer_timeout"]

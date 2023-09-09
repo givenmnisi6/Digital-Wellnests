@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://2ppevsslqkff"]
+[gd_scene load_steps=18 format=3 uid="uid://2ppevsslqkff"]
 
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="1_7gu07"]
+[ext_resource type="Script" path="res://Scripts/Quiz.gd" id="2_ujyak"]
 [ext_resource type="Texture2D" uid="uid://qun5h17dbf24" path="res://Images/QuizBG2.png" id="2_vfwh2"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="3_yfu1u"]
 [ext_resource type="Texture2D" uid="uid://b6xedlty8o5ve" path="res://Images/WD0.png" id="4_46u01"]
@@ -46,6 +47,7 @@ offset_right = 720.0
 offset_bottom = 480.0
 texture = ExtResource("1_7gu07")
 expand_mode = 1
+script = ExtResource("2_ujyak")
 
 [node name="Screen" type="TextureRect" parent="."]
 layout_mode = 0
@@ -97,6 +99,12 @@ layout_mode = 0
 offset_top = 107.0
 offset_right = 720.0
 offset_bottom = 183.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/line_separation = 0
+theme_override_constants/outline_size = 0
+theme_override_fonts/normal_font = ExtResource("3_yfu1u")
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center][/center]"
 metadata/_edit_lock_ = true
@@ -125,6 +133,7 @@ offset_right = 1.0
 offset_bottom = 210.0
 texture = ExtResource("4_46u01")
 expand_mode = 1
+stretch_mode = 4
 
 [node name="SafetyTimer" type="Timer" parent="."]
 one_shot = true
@@ -174,3 +183,12 @@ stretch_mode = 5
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 volume_db = 10.0
 pitch_scale = 1.1
+
+[connection signal="button_down" from="qPlay/bYes" to="." method="_on_b_yes_button_down"]
+[connection signal="button_down" from="qPlay/bNo" to="." method="_on_b_no_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SafetyTimer" to="." method="_on_safety_timer_timeout"]
+[connection signal="button_down" from="Continue" to="." method="_on_continue_button_down"]
+[connection signal="button_down" from="TryAgain" to="." method="_on_try_again_button_down"]
+[connection signal="timeout" from="rwTimer" to="." method="_on_rw_timer_timeout"]
+[connection signal="finished" from="Effects" to="." method="_on_effects_finished"]

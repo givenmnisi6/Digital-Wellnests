@@ -1,6 +1,7 @@
-[gd_scene load_steps=53 format=3 uid="uid://4wkohyfjs3fn"]
+[gd_scene load_steps=54 format=3 uid="uid://4wkohyfjs3fn"]
 
 [ext_resource type="Texture2D" uid="uid://cv0riss5tfsjw" path="res://Animations/EnvelopeShrink/EnvelopeShrink.0000.png" id="1_5ml44"]
+[ext_resource type="Script" path="res://Scripts/Envelope.gd" id="1_oafya"]
 [ext_resource type="Texture2D" uid="uid://giuc5p1lrl6y" path="res://Animations/EnvelopeShrink/EnvelopeShrink.0001.png" id="2_7vn86"]
 [ext_resource type="Texture2D" uid="uid://cab7ewhqjei4i" path="res://Animations/EnvelopeShrink/EnvelopeShrink.0002.png" id="3_45sh1"]
 [ext_resource type="Texture2D" uid="uid://bdjptarigrbkr" path="res://Animations/EnvelopeShrink/EnvelopeShrink.0003.png" id="4_2nqk3"]
@@ -218,6 +219,7 @@ animations = [{
 size = Vector2(80.0189, 300.044)
 
 [node name="Envelope" type="Area2D"]
+script = ExtResource("1_oafya")
 metadata/_edit_lock_ = true
 
 [node name="EnvelopeAnim" type="AnimatedSprite2D" parent="."]
@@ -239,3 +241,7 @@ scale = Vector2(3.951, 3.706)
 position = Vector2(1, 2)
 scale = Vector2(1.004, -0.229)
 shape = SubResource("RectangleShape2D_30rqp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
