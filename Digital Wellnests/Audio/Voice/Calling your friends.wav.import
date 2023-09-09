@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://diosmov3n0iy5"
+path="res://.godot/imported/Calling your friends.wav-354eaa6460548659d4747692df9b7c6b.sample"
+
+[deps]
+
+source_file="res://Audio/Voice/Calling your friends.wav"
+dest_files=["res://.godot/imported/Calling your friends.wav-354eaa6460548659d4747692df9b7c6b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

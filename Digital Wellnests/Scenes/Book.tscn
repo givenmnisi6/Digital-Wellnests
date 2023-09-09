@@ -1,0 +1,328 @@
+[gd_scene load_steps=57 format=3 uid="uid://bs33tlhecdxmf"]
+
+[ext_resource type="Texture2D" uid="uid://dxqb4twfqssgq" path="res://Images/OpenPages.png" id="1_lm8je"]
+[ext_resource type="PackedScene" uid="uid://y1ct72dyugt1" path="res://Scenes/AnimatedSprite.tscn" id="1_mn54y"]
+[ext_resource type="Texture2D" uid="uid://dg878qg65qs2l" path="res://Images/AnimBackground.png" id="2_ssflf"]
+[ext_resource type="Texture2D" uid="uid://c6oq1hgp8k2nj" path="res://Images/PagesR.png" id="4_ot65k"]
+[ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="5_dlc86"]
+[ext_resource type="Texture2D" uid="uid://daylkijgws37" path="res://Animations/PageTurn/PageTurn.0000.png" id="6_fht13"]
+[ext_resource type="Texture2D" uid="uid://b5wiug4pab3ji" path="res://Animations/PageTurn/PageTurn.0001.png" id="7_che7d"]
+[ext_resource type="Texture2D" uid="uid://m2fvvy5x3n73" path="res://Animations/PageTurn/PageTurn.0002.png" id="8_tbmby"]
+[ext_resource type="Texture2D" uid="uid://bhxjlqmoojqgv" path="res://Animations/PageTurn/PageTurn.0003.png" id="9_e3fy0"]
+[ext_resource type="Texture2D" uid="uid://bg6k3ggl1rwru" path="res://Animations/PageTurn/PageTurn.0004.png" id="10_fb3bt"]
+[ext_resource type="Texture2D" uid="uid://dq1op3h126ywc" path="res://Animations/PageTurn/PageTurn.0005.png" id="11_xmphj"]
+[ext_resource type="Texture2D" uid="uid://c3i23cgrfqcu6" path="res://Animations/PageTurn/PageTurn.0006.png" id="12_hdk2u"]
+[ext_resource type="Texture2D" uid="uid://dw2rsubgxnjaj" path="res://Animations/PageTurn/PageTurn.0007.png" id="13_qo64w"]
+[ext_resource type="Texture2D" uid="uid://qkr30mlndd38" path="res://Animations/PageTurn/PageTurn.0008.png" id="14_v6apw"]
+[ext_resource type="Texture2D" uid="uid://xnmfe64fpuqb" path="res://Animations/PageTurn/PageTurn.0009.png" id="15_5n8hf"]
+[ext_resource type="Texture2D" uid="uid://lyieyjbpqs50" path="res://Animations/PageTurn/PageTurn.0010.png" id="16_di85d"]
+[ext_resource type="Texture2D" uid="uid://ca3xkcsk0tive" path="res://Animations/PageTurn/PageTurn.0011.png" id="17_utw77"]
+[ext_resource type="Texture2D" uid="uid://dilh44d3p3a1b" path="res://Animations/PageTurn/PageTurn.0012.png" id="18_ulu6u"]
+[ext_resource type="Texture2D" uid="uid://dkhmru35xpvml" path="res://Animations/PageTurn/PageTurn.0013.png" id="19_tmh5r"]
+[ext_resource type="Texture2D" uid="uid://bqjbh5jhaib0v" path="res://Animations/PageTurn/PageTurn.0014.png" id="20_0whj1"]
+[ext_resource type="Texture2D" uid="uid://dh1b8y3r372p1" path="res://Animations/PageTurn/PageTurn.0015.png" id="21_m6tao"]
+[ext_resource type="Texture2D" uid="uid://b5godqigbiv82" path="res://Animations/PageTurn/PageTurn.0016.png" id="22_kxj6k"]
+[ext_resource type="Texture2D" uid="uid://b5p7na43iau22" path="res://Animations/PageTurn/PageTurn.0017.png" id="23_cukt4"]
+[ext_resource type="Texture2D" uid="uid://cixnxncl7ocl3" path="res://Animations/PageTurn/PageTurn.0018.png" id="24_fs4pd"]
+[ext_resource type="Texture2D" uid="uid://b7b6f62mx7ven" path="res://Animations/PageTurn/PageTurn.0019.png" id="25_u7alk"]
+[ext_resource type="Texture2D" uid="uid://bejww87pf14li" path="res://Animations/PageTurn/PageTurn.0020.png" id="26_sh7ff"]
+[ext_resource type="Texture2D" uid="uid://cpy7emywirqpq" path="res://Animations/PageTurn/PageTurn.0021.png" id="27_jt0ee"]
+[ext_resource type="Texture2D" uid="uid://c822jxeonprf7" path="res://Animations/PageTurn/PageTurn.0022.png" id="28_ijfvx"]
+[ext_resource type="Texture2D" uid="uid://bbt5b3hlp28j3" path="res://Animations/PageTurn/PageTurn.0023.png" id="29_0uyov"]
+[ext_resource type="Texture2D" uid="uid://bxb5p0xdufiqn" path="res://Animations/PageTurn/PageTurn.0024.png" id="30_kmhqv"]
+[ext_resource type="Texture2D" uid="uid://bubrsn0mjxavx" path="res://Animations/PageTurn/PageTurn.0025.png" id="31_2pdhj"]
+[ext_resource type="Texture2D" uid="uid://d1w1vx0u2y2uf" path="res://Animations/PageTurn/PageTurn.0026.png" id="32_tf8bg"]
+[ext_resource type="Texture2D" uid="uid://bbc3j1r05fm0l" path="res://Animations/PageTurn/PageTurn.0027.png" id="33_hfxns"]
+[ext_resource type="Texture2D" uid="uid://chsqvkf414rn0" path="res://Animations/PageTurn/PageTurn.0028.png" id="34_lbt0j"]
+[ext_resource type="Texture2D" uid="uid://df56hjrslfd7w" path="res://Animations/PageTurn/PageTurn.0029.png" id="35_dmpvu"]
+[ext_resource type="Texture2D" uid="uid://b3pdxenv3e1tr" path="res://Animations/PageTurn/PageTurn.0030.png" id="36_1magq"]
+[ext_resource type="Texture2D" uid="uid://cbhkgbv6emhl4" path="res://Animations/PageTurn/PageTurn.0031.png" id="37_53hov"]
+[ext_resource type="Texture2D" uid="uid://bxm3lcj7bfqb4" path="res://Animations/PageTurn/PageTurn.0032.png" id="38_08owy"]
+[ext_resource type="Texture2D" uid="uid://dnntgra6hym2t" path="res://Animations/PageTurn/PageTurn.0033.png" id="39_2jv78"]
+[ext_resource type="Texture2D" uid="uid://ct4parhbmedf4" path="res://Animations/PageTurn/PageTurn.0034.png" id="40_tj33x"]
+[ext_resource type="Texture2D" uid="uid://ludguosu6g1r" path="res://Animations/PageTurn/PageTurn.0035.png" id="41_m3w25"]
+[ext_resource type="Texture2D" uid="uid://bykenr5k04vl5" path="res://Animations/PageTurn/PageTurn.0036.png" id="42_yhspk"]
+[ext_resource type="Texture2D" uid="uid://dqnu63x4syffg" path="res://Animations/PageTurn/PageTurn.0037.png" id="43_43nx5"]
+[ext_resource type="Texture2D" uid="uid://c0olfcxc51pb1" path="res://Animations/PageTurn/PageTurn.0038.png" id="44_qq18l"]
+[ext_resource type="Texture2D" uid="uid://dwmk4emnwfnay" path="res://Animations/PageTurn/PageTurn.0039.png" id="45_38coj"]
+[ext_resource type="Texture2D" uid="uid://do2myeyabgk3g" path="res://Animations/PageTurn/PageTurn.0040.png" id="46_0k1no"]
+[ext_resource type="Texture2D" uid="uid://dcmt7kv6nov2t" path="res://Animations/PageTurn/PageTurn.0041.png" id="47_oexgp"]
+[ext_resource type="Texture2D" uid="uid://b5pvhervfug85" path="res://Animations/PageTurn/PageTurn.0042.png" id="48_sgyc1"]
+[ext_resource type="Texture2D" uid="uid://ds6t1dpqkn0u8" path="res://Animations/PageTurn/PageTurn.0043.png" id="49_tfups"]
+[ext_resource type="Texture2D" uid="uid://bad0j8w62o3ta" path="res://Animations/PageTurn/PageTurn.0044.png" id="50_nq10i"]
+[ext_resource type="Texture2D" uid="uid://1vc61akq8vrd" path="res://Animations/PageTurn/PageTurn.0045.png" id="51_iqkou"]
+[ext_resource type="Texture2D" uid="uid://5e5fbsrshcg" path="res://Animations/PageTurn/PageTurn.0046.png" id="52_48mgh"]
+[ext_resource type="Texture2D" uid="uid://dmmk6utea1qgj" path="res://Animations/PageTurn/PageTurn.0047.png" id="53_ghc0u"]
+[ext_resource type="Texture2D" uid="uid://c2d5caxno0f72" path="res://Animations/PageTurn/PageTurn.0048.png" id="54_tp5nj"]
+[ext_resource type="AudioStream" uid="uid://ca3d87cl8hcl" path="res://Audio/Voice/Snail1.wav" id="55_knx8m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w6th1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_fht13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_che7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tbmby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_e3fy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fb3bt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xmphj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_hdk2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_qo64w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_v6apw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5n8hf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_di85d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_utw77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ulu6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_tmh5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_0whj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_m6tao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_kxj6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_cukt4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_fs4pd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_u7alk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_sh7ff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_jt0ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_ijfvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_0uyov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_kmhqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_2pdhj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_tf8bg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_hfxns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_lbt0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_dmpvu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_1magq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_53hov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_08owy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_2jv78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_tj33x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_m3w25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_yhspk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_43nx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_qq18l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_38coj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_0k1no")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_oexgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_sgyc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_tfups")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_nq10i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_iqkou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_48mgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_ghc0u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_tp5nj")
+}],
+"loop": false,
+"name": &"Turn",
+"speed": 5.0
+}]
+
+[node name="Pages" type="ColorRect"]
+offset_right = 720.0
+offset_bottom = 480.0
+color = Color(0.392157, 0.231373, 0.027451, 1)
+
+[node name="Book" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 480.0
+texture = ExtResource("1_lm8je")
+expand_mode = 2
+flip_v = true
+
+[node name="BackLight" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -25.0
+offset_top = 126.0
+offset_right = 407.0
+offset_bottom = 423.0
+texture = ExtResource("2_ssflf")
+expand_mode = 1
+
+[node name="AnimationShadow" parent="." instance=ExtResource("1_mn54y")]
+visible = false
+modulate = Color(0, 0, 0, 0.376471)
+position = Vector2(179, 285)
+scale = Vector2(0.85, 0.85)
+animation = &"Wolf1"
+
+[node name="Animation" parent="." instance=ExtResource("1_mn54y")]
+visible = false
+position = Vector2(179, 285)
+scale = Vector2(0.8, 0.8)
+animation = &"Snail0"
+
+[node name="Book2" type="TextureRect" parent="."]
+modulate = Color(0.85098, 0.819608, 0.780392, 1)
+layout_mode = 0
+offset_left = 359.0
+offset_right = 719.0
+offset_bottom = 480.0
+texture = ExtResource("4_ot65k")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 71.0
+offset_right = 345.0
+offset_bottom = 87.0
+color = Color(0.0509804, 0.282353, 0.505882, 1)
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 365.0
+offset_bottom = 128.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.0509804, 0.282353, 0.505882, 1)
+theme_override_colors/font_outline_color = Color(0.0509804, 0.282353, 0.505882, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("5_dlc86")
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "Safety snail's emails"
+
+[node name="Text2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 60.0
+offset_right = 703.0
+offset_bottom = 444.0
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 20.0
+offset_right = 711.0
+offset_bottom = 472.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_dlc86")
+theme_override_font_sizes/normal_font_size = 20
+text = "Jenny the Snail has just received mail
+But this was not a normal letter
+It’s on the screen in an envelope with black script
+And she thought: “This is even better!”
+
+One day Jenny visited her e-mail
+And saw a letter from a stranger,
+It was written in characters of hearts and cabbage
+And because she didn’t know the person, she suspected danger.
+
+Instead of clicking to read, she decided to delete the e-mail
+So Jenny selected the icon with the dustbin
+And although she is a very curious snail
+Jenny knows today she did win"
+
+[node name="PageTurn" type="AnimatedSprite2D" parent="."]
+position = Vector2(360, 240.5)
+scale = Vector2(1, 0.99375)
+sprite_frames = SubResource("SpriteFrames_w6th1")
+animation = &"Turn"
+frame = 48
+speed_scale = 10.0
+
+[node name="WordTimer" type="Timer" parent="."]
+wait_time = 0.01
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("55_knx8m")
+volume_db = 1.2
+pitch_scale = 1.1
+
+[node name="Effects" type="AudioStreamPlayer" parent="."]
