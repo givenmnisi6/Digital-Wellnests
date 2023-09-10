@@ -56,13 +56,13 @@ func swap():
 		psTween.tween_property(snail, "position", Vector2(305,210),0.35)
 		phTween.tween_property(hippo, "position", Vector2(622, 410), 0.35)
 		pcTween.tween_property(wolf, "position", Vector2(355, 415), 0.35)
-		pwTween.tween_property(cat, "position", Vector2(85, 410), 0.35)
+		pwTween.tween_property(cat, "position", Vector2(115 , 410), 0.35)
 		
 		
 		ssTween.tween_property(snail, "scale", Vector2(1,1), 0.3)
 		shTween.tween_property(hippo, "scale", Vector2(0.4,0.4), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.5,0.5), 0.3)
-		scTween.tween_property(cat, "scale", Vector2(0.4,0.4), 0.3)
+		scTween.tween_property(cat, "scale", Vector2(0.47,0.47), 0.3)
 		
 		snail.play()
 		wolf.stop()
@@ -83,7 +83,7 @@ func swap():
 		ssTween.tween_property(snail, "scale", Vector2(0.6,0.6), 0.3)
 		shTween.tween_property(hippo, "scale", Vector2(0.8,0.8), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.5,0.5), 0.3)
-		scTween.tween_property(cat, "scale", Vector2(0.4,0.4), 0.3)
+		scTween.tween_property(cat, "scale", Vector2(0.5,0.5), 0.3)
 		
 		snail.stop()
 		wolf.stop()
@@ -101,7 +101,7 @@ func swap():
 		ssTween.tween_property(snail, "scale", Vector2(0.6,0.6), 0.3)
 		shTween.tween_property(hippo, "scale", Vector2(0.4,0.4), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(1,1), 0.3)
-		scTween.tween_property(cat, "scale", Vector2(0.4,0.4), 0.3)
+		scTween.tween_property(cat, "scale", Vector2(0.47,0.47), 0.3)
 		
 		snail.stop()
 		wolf.play()
@@ -115,12 +115,12 @@ func swap():
 		#phTween.tween_property(hippo, "position", Vector2(100, 400), 0.3)
 		phTween.tween_property(hippo, "position",Vector2(345, 423), 0.35)
 		pwTween.tween_property(wolf, "position", Vector2(78, 400), 0.35)
-		pcTween.tween_property(cat, "position", Vector2(410,239), 0.35)
+		pcTween.tween_property(cat, "position", Vector2(400,239), 0.35)
 		
 		ssTween.tween_property(snail, "scale", Vector2(0.6,0.6), 0.3)
 		shTween.tween_property(hippo, "scale", Vector2(0.4,0.4), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.4,0.4), 0.3)
-		scTween.tween_property(cat, "scale", Vector2(1,1), 0.3)
+		scTween.tween_property(cat, "scale", Vector2(0.9,0.9), 0.3)
 		
 		snail.stop()
 		wolf.stop()
