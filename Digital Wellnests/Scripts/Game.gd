@@ -30,7 +30,7 @@ var matchs: int
 var prev: Array
 var grid: Array
 
-#var prevObj: Tile
+var prevObj
 
 func _ready():
 	#Playing the voices for each game
@@ -123,13 +123,13 @@ func startGame():
 			grid.append(row)
 			
 		spawnTiles(x, y)
-		
-		get_node("Hud/Lives").hide()
+
+		$Hud/Lives.hide()
 		$Pause.hide()
 	else:
 		var catInstance = Cat.instantiate()
 		add_child(catInstance)
-		$Hud.get_node("Lives").texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 		$ActivitiesTimer.start()
 
 #Generates parameters for the conveyor belts
@@ -281,12 +281,10 @@ func spawnEnvelope(type: int, lane: int):
 
 func updateScore(punt: bool):
 	if not gameOver:
-		#var hud = $Hud
 		$Hud/Score2.show()
 		if punt:
 			print("Score++")
 			score += 1
-			#hud.get_node("Score2").text = str(score) + ""
 			$Hud/Score2.text = str(score) + " "
 			if score >= goal:
 				gameEnd(true)
@@ -356,16 +354,14 @@ func _on_b_level_button_down():
 	get_parent().call("startGame")
 	queue_free()
 
-
-
 func _on_b_menu_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
 
-	#get_parent().call("returnToMain")
-	var mainInstance = preload("res://Scenes/Main.tscn").instantiate()
-	#var mainInstance = Main.instantiate()
-	get_tree().root.add_child(mainInstance)
+	get_parent().call("returnToMain")
+	#var mainInstance = preload("res://Scenes/Main.tscn").instantiate()
+	#var mainInstance = Main.instantiate() 
+	#get_tree().root.add_child(mainInstance)
 	queue_free()
 
 
@@ -530,7 +526,7 @@ func spawnTiles(maxx: int, maxy: int) -> void:
 #		prevObj = null
 
 
-func pauseG() -> void:
+func pauseG():
 	bpaused = true
 	var ig = get_node("inGame") 
 
@@ -560,8 +556,7 @@ func pauseG() -> void:
 				#catInstance.get_node("Sprite2D").stop
 				#catInstance.paused = true
 
-
-func playG() -> void:
+func playG():
 	bpaused = false
 	var ig = get_node("inGame") as Control
 

@@ -19,10 +19,12 @@ func _on_disp_timer_timeout():
 func _on_button_pressed():
 	hit = false
 	$DispTimer.stop()
-	get_node("TargetFace").animation = get_node("TargetFace").animation + "1"
+	$TargetFace.animation = $TargetFace.animation + "1"
 	hit = true
+	
 	$TargetTimer.start()
 	var ap = $Effects
+	#var ap = get_parent().get_parent().get_node("Effects") 
 	if bully:
 		ap.stream = load("res://Audio/Effects/aRight2.wav")
 	else:
