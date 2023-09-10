@@ -313,12 +313,14 @@ position = Vector2(51, 50.5)
 scale = Vector2(1.02, 1.01)
 sprite_frames = SubResource("SpriteFrames_4yqlg")
 animation = &"Flip"
+frame = 46
+frame_progress = 1.0
 speed_scale = 20.0
 
 [node name="Image" type="AnimatedSprite2D" parent="."]
 position = Vector2(48.999, 47.218)
 sprite_frames = SubResource("SpriteFrames_anxon")
-animation = &"T0"
+animation = &"T1"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

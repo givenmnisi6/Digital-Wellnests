@@ -1,4 +1,5 @@
 extends TextureRect
+class_name Tile
 
 @export var Conveyor: PackedScene
 @export var Envelope: PackedScene
@@ -28,9 +29,10 @@ var prevy: int
 var matchs: int
 
 var prev: Array
-var grid: Array
+#var grid: Array
+var grid : Array = []
 
-var prevObj
+var prevObj: Tile
 
 func _ready():
 	#Playing the voices for each game
@@ -43,7 +45,7 @@ func _ready():
 	#randomize()
 
 func _on_play_button_button_down():
-	level = int($StartGame.get_node("HSlider").value)
+	level = int($StartGame/HSlider.value)
 	print(level)
 	$Hud/Score2.show()
 	$Pause.show()
@@ -60,10 +62,10 @@ func startGame():
 	lives = 3
 	score = 0 
 
-	#Loading the first game
+	#Safety Snail game
 	if gameIndex == 0:
 		#Displaying the 3 hearts
-		$Hud.get_node("Lives").texture = ResourceLoader.load("res://Images/Heart3.png")
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
 		var conSize = (level + 1) / 2 + 5
 		calcConveyor(conSize) 
 		
@@ -90,12 +92,12 @@ func startGame():
 #		spawnEnvelope(tp, ln)
 		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
 		$EnvelopeTimer.start()
+	#Happy Hippo game
 	elif gameIndex == 1:
-		$Hud.get_node("Lives").texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 
 		$BullyTimer.wait_time = (18 - level) * 0.06
 		$BullyTimer.start()
-
 		prev = [[0, 0], [0, 0]]
 #		var element = prev[1][0] # Accesses the element at row 1, column 0 (value: 0)
 #		for i in range(2):
@@ -108,25 +110,24 @@ func startGame():
 		var y = 2
 		
 		for i in range (1,(level + 1) / 2):
-			if x % 2 == 1 or x == y:
+			if (x % 2 == 1 || x == y):
 				x += 1
 			else:
 				y += 1
-			
 		print(str(x) + " " + str(y))
 		grid = []
 		
 		for i in range (x):
-			var row = []
+			#var row = []
+			var row : Array = []
 			for j in range(y):
 				row.append(0)
 			grid.append(row)
-			
 		spawnTiles(x, y)
 
 		$Hud/Lives.hide()
 		$Pause.hide()
-	else:
+	elif gameIndex == 3:
 		var catInstance = Cat.instantiate()
 		add_child(catInstance)
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
@@ -436,7 +437,7 @@ func calcHit(bully: bool):
 	updateScore(bully)
 
 
-func spawnTiles(maxx: int, maxy: int) -> void:
+func spawnTiles(maxx: int, maxy: int):
 	var uneven = false
 	var imageA = 2
 	var numImages = maxx * maxy / 2
@@ -460,14 +461,27 @@ func spawnTiles(maxx: int, maxy: int) -> void:
 #			value = 2
 #		tiles.append([rnd, value])
 
-		while true:
+#		while true:
+#			fnd = false
+#			rnd = rand.randi() % 10
+#			for j in range(i):
+#				if tiles[j][0] == rnd:
+#					fnd = true
+#			if not fnd:
+#				break
+#		tiles[i][0] = rnd
+#		var value = imageA
+#		if i == numImages - 1 and uneven:
+#			tiles[i][1] = 2
+#		else:
+#			tiles[i][1] = imageA
+		while not fnd:
 			fnd = false
-			rnd = rand.randi() % 10
+			#rnd = rand.randi() % 10
+			rnd = randi_range(0, 9)
 			for j in range(i):
 				if tiles[j][0] == rnd:
 					fnd = true
-			if not fnd:
-				break
 		tiles[i][0] = rnd
 		var value = imageA
 		if i == numImages - 1 and uneven:
@@ -480,6 +494,7 @@ func spawnTiles(maxx: int, maxy: int) -> void:
 
 		var offy = int((480 - 100 * scale * maxy) / 2)
 		var offx = int((720 - 100 * scale * maxx) / 2)
+		print(offy)
 
 		if offx < 0:
 			scale = 7.0 / maxx
@@ -491,11 +506,19 @@ func spawnTiles(maxx: int, maxy: int) -> void:
 			for x in range(maxx):
 				var tileInstance = Tile.instantiate() 
 				add_child(tileInstance)
-				var index
+				var index: int
 				
-				index = rand.randi() % numImages
-				while tiles[index][1] <= 0:
+#				index = rand.randi() % numImages
+#				while tiles[index][1] <= 0:
+#					index = rand.randi() % numImages
+#				tiles[index][1] -= 1
+#				val = tiles[index][0]
+				
+				while true:
+					index = randi() % numImages
 					index = rand.randi() % numImages
+					if tiles[index][1] > 0:
+						break
 				tiles[index][1] -= 1
 				val = tiles[index][0]
 				
@@ -505,25 +528,25 @@ func spawnTiles(maxx: int, maxy: int) -> void:
 				tileInstance.scale = Vector2(scale, scale)
 	
 	
-#func tileClick(obj: Tile):
-#	if prevObj == null:
-#		prevObj = obj
-#	else:
-#		var ap = $Effects
-#		if prevObj.value != obj.value:
-#			prevObj.get_node("Timer").start()
-#			obj.get_node("Timer").start()
-#			ap.stream = load("res://Audio/Effects/aWrong.wav")
-#			ap.play()
-#		else:
-#			ap.stream = load("res://Audio/Effects/aRight2.wav")
-#			ap.play()
-#			matchs -= 1
-#			prevObj.get_node("Tile").modulate = Color(0.7, 1, 0.6, 1)
-#			obj.get_node("Tile").modulate = Color(0.7, 1, 0.6, 1)
-#			if matchs == 0:
-#				gameEnd(true)
-#		prevObj = null
+func tileClick(obj: Tile):
+	if prevObj == null:
+		prevObj = obj
+	else:
+		var ap = $Effects
+		if prevObj.value != obj.value:
+			prevObj.get_node("Timer").start()
+			obj.get_node("Timer").start()
+			ap.stream = load("res://Audio/Effects/aWrong.wav")
+			ap.play()
+		else:
+			ap.stream = load("res://Audio/Effects/aRight2.wav")
+			ap.play()
+			matchs -= 1
+			prevObj.get_node("Tile").modulate = Color(0.7, 1, 0.6, 1)
+			obj.get_node("Tile").modulate = Color(0.7, 1, 0.6, 1)
+			if matchs == 0:
+				gameEnd(true)
+		prevObj = null
 
 
 func pauseG():

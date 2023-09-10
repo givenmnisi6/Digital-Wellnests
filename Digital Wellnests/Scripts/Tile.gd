@@ -12,7 +12,7 @@ func _ready():
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and InputEventScreenTouch:
-		if event.pressed and not tapped:
+		if event.pressed and !tapped:
 			$Tile.play()
 			tapped = true
 			get_parent().call("tileClick", self)
@@ -21,7 +21,7 @@ func _on_tile_animation_finished():
 	$Tile.stop()
 	$Tile.frame = 0
 	
-	if not tapped:
+	if !tapped:
 		$Image.animation = "T-1"
 	else:
 		$Image.animation = "T" + str(value)
@@ -34,4 +34,4 @@ func reset():
 	tile.play("Flip", true)
 
 func _on_timer_timeout():
-	queue_free()
+	reset()
