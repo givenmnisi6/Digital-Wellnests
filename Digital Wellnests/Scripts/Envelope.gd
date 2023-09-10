@@ -9,21 +9,17 @@ var hold: bool
 var hit: bool
 var _screenSize: Vector2
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	_screenSize = get_viewport().size
 	hit = false
 	
-	var envAnim = $EnvelopeAnim
-	envAnim.animation = "Wiggle"
+	$EnvelopeAnim.animation = "Wiggle"
 	
 	print("Start")
 	hold = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var envAnim = get_node("EnvelopeAnim")
+	var envAnim = $EnvelopeAnim
 	
 	if hold:
 		position = get_global_mouse_position()
@@ -41,7 +37,6 @@ func _process(delta):
 		if envAnim.animation == "Wiggle":
 			envAnim.stop()
 
-
 func _on_button_gui_input(event):
 	if event is InputEventMouseButton and InputEventScreenTouch and not hit:
 		if event.pressed:
@@ -50,9 +45,8 @@ func _on_button_gui_input(event):
 		else:
 			hold = false
 
-
 func _on_body_entered(body):
-	var envAnim = get_node("EnvelopeAnim")
+	var envAnim = $EnvelopeAnim
 	hide()
 	emit_signal("Hit")
 	get_node("CollisionShape2D").set_deferred("disabled", true)

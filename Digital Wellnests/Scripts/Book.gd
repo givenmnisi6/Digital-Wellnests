@@ -116,11 +116,6 @@ func _input(event: InputEvent):
 					var anim2 = $AnimationShadow
 					anim2.position = Vector2(180+25, 285)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_word_timer_timeout():
 	var poemText = $Text
 	var text = poemText.text

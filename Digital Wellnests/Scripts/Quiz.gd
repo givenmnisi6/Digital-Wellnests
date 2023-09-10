@@ -68,9 +68,6 @@ func _ready():
 	$Effects.stream = load("res://Audio/Voice/Question" + str(iStory) + ".wav")
 	$Effects.play()
 
-func _process(delta):
-	pass
-
 func _on_effects_finished():
 	if fq:
 		popQ()
@@ -172,7 +169,6 @@ func spawnRes(i: int) -> void:
 	var sz: float = (720 - (10 * 5)) / 4
 
 	imgIns.texture = load("res://Images/QuizR" + str(iStory) + ".png")
-
 	imgIns.expand = true
 	imgIns.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 
@@ -180,10 +176,7 @@ func spawnRes(i: int) -> void:
 	timerCount += 1
 	twn.tween_property(imgIns, "size", Vector2(sz,sz), 0.1)
 	twn.tween_property(imgIns, "position", Vector2(i*(sz+4.5)+12.7+(sz/30),15+(sz/45)),0.1)
-	#twn.tween_property(imgIns, "position", Vector2(i*(sz+5)+15+(sz/20),20+(sz/20)),0.1)
-	
-	var timer = $Timer
-	timer.start()
+	$Timer.start()
 
 func _on_timer_timeout():
 	if timerCount < points:
@@ -192,25 +185,21 @@ func _on_timer_timeout():
 		#print("a") 
 		var msg = $Message
 		var twn = get_tree().create_tween()
-		
 		timerCount += 1
-		
 		#To scale the Message node
 		twn.tween_property(msg, "size", Vector2(298, 258), 0.05)
 		timerCount += 1
+		$Timer.start()
 	else:
 		var cnt = $Continue
 		var ta = $TryAgain
-		
 		var twn = get_tree().create_tween()
-		
 		twn.tween_property(ta, "scale", Vector2(1, 1), 0.5) 
 		twn.tween_property(cnt, "scale", Vector2(1, 1), 0.5)
 
 
 func _on_safety_timer_timeout():
 	var twn = get_tree().create_tween()
-	
 	var y = $qPlay/bYes
 	var n = $qPlay/bNo
 	
