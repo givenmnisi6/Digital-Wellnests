@@ -248,7 +248,6 @@ visible = false
 position = Vector2(183, 277)
 scale = Vector2(0.8, 0.8)
 animation = &"Cat0"
-frame_progress = 0.0
 
 [node name="Book2" type="TextureRect" parent="."]
 modulate = Color(0.85098, 0.819608, 0.780392, 1)
@@ -294,9 +293,9 @@ offset_bottom = 443.0
 [node name="Text" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 365.0
-offset_top = 8.0
-offset_right = 711.0
-offset_bottom = 475.0
+offset_top = 20.0
+offset_right = 717.0
+offset_bottom = 472.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_1i4o4")
 theme_override_font_sizes/normal_font_size = 20

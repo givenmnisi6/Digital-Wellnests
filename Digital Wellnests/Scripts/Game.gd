@@ -1,5 +1,4 @@
 extends TextureRect
-class_name Tile
 
 @export var Conveyor: PackedScene
 @export var Envelope: PackedScene
@@ -26,13 +25,12 @@ var unitSize: float
 
 var prevx: int
 var prevy: int
-var matchs: int
+var matches: int
 
 var prev: Array
-#var grid: Array
-var grid : Array = []
+var grid: Array
 
-var prevObj: Tile
+var prevObj
 
 func _ready():
 	#Playing the voices for each game
@@ -105,33 +103,140 @@ func startGame():
 #			for j in range(2):
 #				row.append(0)
 #			prev.append(row)
+	#Wolf game
 	elif gameIndex == 2:
-		var x = 3
-		var y = 2
+		var x: int = 3
+		var y: int = 2
 		
-		for i in range (1,(level + 1) / 2):
-			if (x % 2 == 1 || x == y):
+		#Checks whether x is odd or is equals to y
+		for i in range (1, (level + 1)/2):
+			if x % 2 == 1 or x == y:
 				x += 1
 			else:
 				y += 1
-		print(str(x) + " " + str(y))
-		grid = []
 		
-		for i in range (x):
-			#var row = []
-			var row : Array = []
-			for j in range(y):
-				row.append(0)
-			grid.append(row)
-		spawnTiles(x, y)
-
+		print("Issues " + str(x) + " " + str(y))
+		#grid = [x][y]
+		
+		grid = createGrid(x, y)
+#		for i in range(x):
+#			var row: Array = []
+#			#grid.append([])
+#			for j in range(y):
+#				row.append(0)
+#			grid.append(row)
+		
+		spawnTiles(x,y)
+		print("Grid works")
 		$Hud/Lives.hide()
 		$Pause.hide()
+		
 	elif gameIndex == 3:
 		var catInstance = Cat.instantiate()
 		add_child(catInstance)
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 		$ActivitiesTimer.start()
+
+
+#Generate tiles 
+func spawnTiles(maxx: int, maxy:int):
+	var uneven: bool = false
+	var imageA: int = 2
+	var numImages: int =  maxx * maxy / 2
+	var rand = RandomNumberGenerator.new()
+	
+	var tiles: Array = []
+	for i in range(numImages):
+		tiles.append([0,0])
+	
+#	tiles.resize(numImages)
+#	for i in range(numImages):
+#		tiles[i] = [0,0]
+
+	#Generates random numbers and check for duplicates, and populates the tiles accordingly
+	for i in range(numImages):
+		var rnd
+		var fnd = false
+		while true:
+			fnd = false
+			rnd = randf_range(0, 9)
+			for j in range(i):
+				if tiles[j][0] == rnd:
+					fnd = true
+			if !fnd:
+				break
+		tiles[i][0] = rnd
+		if i == numImages-2 and uneven:
+			tiles[i][1] = 2
+		else:
+			tiles[i][1] = imageA
+	
+	var val: int
+	var scale = 4.5 / maxy
+	var offy = int((480 - 100 * scale * maxy) / 2)
+	var offx = int((720 - 100 * scale * maxx) / 2)
+	
+	if offx < 0:
+		scale = 7.0 / maxx
+		offx = int((720 - 100 * scale * maxx) / 2)
+		offy = int((480 - 100 * scale * maxy) / 2)
+	
+	matches = maxx * maxy / 2
+	
+	for y in range (maxy):
+		for x in range (maxx):
+			var tileInstance = Tile.instantiate()
+			add_child(tileInstance)
+			var index
+			
+#			while true:
+#				index = randi() % numImages
+#				if tiles[index][1] > 0:
+#					break
+			index = randi() % numImages
+			while tiles[index][1] <= 0:
+				index = randi() % numImages
+			
+			tiles[index][1] -= 1
+			val = tiles[index][0]
+			
+			print("x: ", x, " y: ", y)
+			grid[x][y] = val
+			print("Hello World")
+			tileInstance.set("value", val)
+			tileInstance.position = Vector2(x * 100 * scale + offx, y * 100 * scale + offy)
+			tileInstance.scale = Vector2(scale, scale)
+
+
+func tileClick(obj):
+	if prevObj == null:
+		prevObj = obj
+	else:
+		var ap = $Effects
+		if prevObj.value != obj.value:
+			prevObj.get_node("Timer").start()
+			obj.get_node("Timer").start()
+			ap.stream = load("res://Audio/Effects/aWrong.wav")
+			ap.play()
+		else:
+			ap.stream = load("res://Audio/Effects/aRight2.wav")
+			ap.play()
+			matches -= 1
+			prevObj.get_node("Tile").modulate = Color(0.7, 1, 0.6, 1)
+			obj.get_node("Tile").modulate = Color(0.7, 1, 0.6, 1)
+			if matches == 0:
+				gameEnd(true)
+		prevObj = null
+
+func createGrid(x: int, y: int) -> Array:
+	var grid : Array = []
+	
+	for i in range(x):
+		var row : Array = []
+		for j in range(y):
+			row.append(0)
+		grid.append(row)
+	return grid
 
 #Generates parameters for the conveyor belts
 func calcConveyor(conSize: int):
@@ -349,8 +454,6 @@ func gameEnd(win: bool):
 func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
-#	hud.get_node("EndAnim").visible = false
-#	hud.get_node("Message").visible = false
 
 	get_parent().call("startGame")
 	queue_free()
@@ -435,118 +538,6 @@ func _on_bully_timer_timeout():
 
 func calcHit(bully: bool):
 	updateScore(bully)
-
-
-func spawnTiles(maxx: int, maxy: int):
-	var uneven = false
-	var imageA = 2
-	var numImages = maxx * maxy / 2
-	var rand = RandomNumberGenerator.new()
-	
-	var tiles: Array = []
-	for i in range(numImages):
-		tiles.append([0, 0])
-	
-	for i in range(numImages):
-		var rnd
-		var fnd = false
-#		while !fnd:
-#			fnd = false
-#			rnd = rand.randi() % 10
-#			for j in range(i):
-#				if tiles[j][0] == rnd:
-#					fnd = true
-#		var value = imageA
-#		if i == numImages - 1 and uneven:
-#			value = 2
-#		tiles.append([rnd, value])
-
-#		while true:
-#			fnd = false
-#			rnd = rand.randi() % 10
-#			for j in range(i):
-#				if tiles[j][0] == rnd:
-#					fnd = true
-#			if not fnd:
-#				break
-#		tiles[i][0] = rnd
-#		var value = imageA
-#		if i == numImages - 1 and uneven:
-#			tiles[i][1] = 2
-#		else:
-#			tiles[i][1] = imageA
-		while not fnd:
-			fnd = false
-			#rnd = rand.randi() % 10
-			rnd = randi_range(0, 9)
-			for j in range(i):
-				if tiles[j][0] == rnd:
-					fnd = true
-		tiles[i][0] = rnd
-		var value = imageA
-		if i == numImages - 1 and uneven:
-			tiles[i][1] = 2
-		else:
-			tiles[i][1] = imageA
-
-		var val: int
-		var scale: float = 4.5 / maxy
-
-		var offy = int((480 - 100 * scale * maxy) / 2)
-		var offx = int((720 - 100 * scale * maxx) / 2)
-		print(offy)
-
-		if offx < 0:
-			scale = 7.0 / maxx
-			offx = int((720 - 100 * scale * maxx) / 2)
-			offy = int((480 - 100 * scale * maxy) / 2)
-		matchs = maxx * maxy / 2
-
-		for y in range(maxy):
-			for x in range(maxx):
-				var tileInstance = Tile.instantiate() 
-				add_child(tileInstance)
-				var index: int
-				
-#				index = rand.randi() % numImages
-#				while tiles[index][1] <= 0:
-#					index = rand.randi() % numImages
-#				tiles[index][1] -= 1
-#				val = tiles[index][0]
-				
-				while true:
-					index = randi() % numImages
-					index = rand.randi() % numImages
-					if tiles[index][1] > 0:
-						break
-				tiles[index][1] -= 1
-				val = tiles[index][0]
-				
-				grid[x][y] = val
-				tileInstance.set("value", val)
-				tileInstance.position = Vector2(x * 100 * scale + offx, y * 100 * scale + offy)
-				tileInstance.scale = Vector2(scale, scale)
-	
-	
-func tileClick(obj: Tile):
-	if prevObj == null:
-		prevObj = obj
-	else:
-		var ap = $Effects
-		if prevObj.value != obj.value:
-			prevObj.get_node("Timer").start()
-			obj.get_node("Timer").start()
-			ap.stream = load("res://Audio/Effects/aWrong.wav")
-			ap.play()
-		else:
-			ap.stream = load("res://Audio/Effects/aRight2.wav")
-			ap.play()
-			matchs -= 1
-			prevObj.get_node("Tile").modulate = Color(0.7, 1, 0.6, 1)
-			obj.get_node("Tile").modulate = Color(0.7, 1, 0.6, 1)
-			if matchs == 0:
-				gameEnd(true)
-		prevObj = null
 
 
 func pauseG():
