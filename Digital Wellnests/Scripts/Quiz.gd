@@ -99,7 +99,7 @@ func popQ():
 func answered (ans: bool):
 	#For the ticks
 	var ap = $Effects
-	print("I: ", ans, "  A: ", questions[questions.keys()[chosen]])
+	#print("I: ", ans, "  A: ", questions[questions.keys()[chosen]])
 	if ans == questions[questions.keys()[chosen]]:
 		points += 1
 		ap.stream = load("res://Audio/Effects/aRight2.wav")

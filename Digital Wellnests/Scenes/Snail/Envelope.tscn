@@ -223,8 +223,10 @@ script = ExtResource("1_oafya")
 metadata/_edit_lock_ = true
 
 [node name="EnvelopeAnim" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_65o2p")
 animation = &"Shrink"
+speed_scale = 5.0
 
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)

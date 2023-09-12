@@ -105,6 +105,7 @@ func startGame():
 #			prev.append(row)
 	#Wolf game
 	elif gameIndex == 2:
+		$Hud/Score2.hide()
 		var x: int = 3
 		var y: int = 2
 		
@@ -114,20 +115,17 @@ func startGame():
 				x += 1
 			else:
 				y += 1
-		
-		print("Issues " + str(x) + " " + str(y))
 		#grid = [x][y]
 		
-		grid = createGrid(x, y)
-#		for i in range(x):
-#			var row: Array = []
-#			#grid.append([])
-#			for j in range(y):
-#				row.append(0)
-#			grid.append(row)
+		#grid = createGrid(x, y)
+		for i in range(x):
+			var row: Array = []
+			#grid.append([])
+			for j in range(y):
+				row.append(0)
+			grid.append(row)
 		
 		spawnTiles(x,y)
-		print("Grid works")
 		$Hud/Lives.hide()
 		$Pause.hide()
 		
@@ -200,13 +198,10 @@ func spawnTiles(maxx: int, maxy:int):
 			tiles[index][1] -= 1
 			val = tiles[index][0]
 			
-			print("x: ", x, " y: ", y)
 			grid[x][y] = val
-			print("Hello World")
 			tileInstance.set("value", val)
 			tileInstance.position = Vector2(x * 100 * scale + offx, y * 100 * scale + offy)
 			tileInstance.scale = Vector2(scale, scale)
-
 
 func tileClick(obj):
 	if prevObj == null:
@@ -228,27 +223,27 @@ func tileClick(obj):
 				gameEnd(true)
 		prevObj = null
 
-func createGrid(x: int, y: int) -> Array:
-	var grid : Array = []
-	
-	for i in range(x):
-		var row : Array = []
-		for j in range(y):
-			row.append(0)
-		grid.append(row)
-	return grid
+#func createGrid(x: int, y: int) -> Array:
+#	var grid : Array = []
+#
+#	for i in range(x):
+#		var row : Array = []
+#		for j in range(y):
+#			row.append(0)
+#		grid.append(row)
+#	return grid
 
 #Generates parameters for the conveyor belts
 func calcConveyor(conSize: int):
 	var prev  = -1
 	var tmp = []
 	#Calculates the number of lanes based on the level
-	var conCount = level
+	var conCount: int = level
 	if conCount == 1:
 		conCount += 1
 	
 	#Size of each conveyor section
-	var size = (conSize) / conCount
+	var size: float = (conSize) / conCount
 	var random = RandomNumberGenerator.new()
 	var containsAll: bool
 	
@@ -335,6 +330,7 @@ func calcConveyor(conSize: int):
 					containsAll = false
 					
 
+#Color of the conveyor
 func createConveyor(pos: Vector2, size: int, i:int):
 	var convInstance = Conveyor.instantiate()
 	$inGame.add_child(convInstance)
@@ -342,7 +338,8 @@ func createConveyor(pos: Vector2, size: int, i:int):
 	var random = RandomNumberGenerator.new()
 	convInstance.position = pos
 	
-	convInstance.frame = random.randi_range(0, 119)
+	#convInstance.frame = random.randi_range(0, 119)
+	convInstance.frame = random.randi() % 120
 	convInstance.speed_scale = 3.1 * speed
 	convInstance.animation = "Move" + str(size)
 	
