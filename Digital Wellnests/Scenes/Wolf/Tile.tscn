@@ -213,7 +213,10 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_anxon"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
 "loop": true,
 "name": &"T-1",
 "speed": 5.0

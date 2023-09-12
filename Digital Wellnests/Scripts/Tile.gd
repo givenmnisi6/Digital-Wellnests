@@ -15,9 +15,9 @@ func _on_tile_animation_finished():
 	$Tile.stop()
 	$Tile.frame = 0
 	
-	if not tapped:
+	if tapped == false:
 		$Image.animation = "T-1"
-	else:
+	elif tapped == true:
 		$Image.animation = "T" + str(value)
 
 func reset():
