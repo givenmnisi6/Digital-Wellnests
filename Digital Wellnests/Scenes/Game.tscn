@@ -1,4 +1,4 @@
-[gd_scene load_steps=991 format=3 uid="uid://cugtttre47j1d"]
+[gd_scene load_steps=992 format=3 uid="uid://cugtttre47j1d"]
 
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="1_klf3e"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="2_4gpnb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cxdq8lruwp1wy" path="res://Animations/Slak2/Slak1Animation2.0003.png" id="5_6okpy"]
 [ext_resource type="PackedScene" uid="uid://celr1t2vxkewx" path="res://Scenes/Hippo/Target.tscn" id="5_71drt"]
 [ext_resource type="Texture2D" uid="uid://c27w2dcsup72a" path="res://Animations/Slak2/Slak1Animation2.0004.png" id="6_36w84"]
+[ext_resource type="PackedScene" uid="uid://drfcovfeg6hec" path="res://Scenes/Wolf/Tile.tscn" id="6_wweqw"]
 [ext_resource type="PackedScene" uid="uid://cln8y7rifqruh" path="res://Scenes/Cat/Activities.tscn" id="7_aiwu6"]
 [ext_resource type="Texture2D" uid="uid://cvo2snxjalmy1" path="res://Animations/Slak2/Slak1Animation2.0005.png" id="7_c24sm"]
 [ext_resource type="Texture2D" uid="uid://d3liy6bldeo1h" path="res://Animations/Slak2/Slak1Animation2.0006.png" id="8_4mbno"]
@@ -3971,6 +3972,7 @@ script = ExtResource("2_4gpnb")
 Conveyor = ExtResource("3_y5ogc")
 Envelope = ExtResource("4_tvbar")
 Target = ExtResource("5_71drt")
+Tile = ExtResource("6_wweqw")
 Activities = ExtResource("7_aiwu6")
 Cat = ExtResource("8_yf710")
 metadata/_edit_lock_ = true
