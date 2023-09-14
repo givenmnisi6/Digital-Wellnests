@@ -431,6 +431,7 @@ func gameEnd(win: bool):
 		ap.stream = ResourceLoader.load("res://Audio/Effects/aWin.wav")
 		$Hud/Message.text = "You WIN"
 		$Hud/EndAnim.animation = "Victory" + str(gameIndex)
+
 	else:
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
@@ -445,7 +446,6 @@ func gameEnd(win: bool):
 	var control = get_node("EndGame") 
 	control.show()
 	control.z_index = get_child_count() - 1
-
 	#control.raise()
 
 func _on_b_level_button_down():
@@ -459,7 +459,8 @@ func _on_b_menu_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
 
-	get_parent().call("returnToMain")
+	#get_parent().call("returnToMain")
+	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
 	#var mainInstance = preload("res://Scenes/Main.tscn").instantiate()
 	#var mainInstance = Main.instantiate() 
 	#get_tree().root.add_child(mainInstance)
@@ -560,12 +561,14 @@ func pauseG():
 				tar.get_node("DispTimer").paused = true
 	elif gameIndex == 3:
 		$ActivitiesTimer.paused = true
+		GD.isNotAllowed = false
 		for act in ig.get_children():
 			if act == Activities:
 				act.get_node("ActivitiesTimer").paused = true
-				var catInstance = Cat.instantiate()
-				#catInstance.get_node("Sprite2D").stop
-				#catInstance.paused = true
+#				var catInstance = Cat.instantiate()
+#				catInstance.get_node("AnimationPlayer").stop()
+#				catInstance.get_node("AnimationPlayer").get_global_mouse_position().paused = true
+			
 
 func playG():
 	bpaused = false
@@ -591,10 +594,10 @@ func playG():
 
 	elif gameIndex == 3:
 		$ActivitiesTimer.paused = false
+		GD.isNotAllowed = true
 		for act in ig.get_children():
 			if act == Activities:
 				act.get_node("ActivitiesTimer").paused = false
-				
 
 #func _on_pause_button_down():
 #	if bpaused:

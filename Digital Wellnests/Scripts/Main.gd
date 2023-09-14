@@ -206,7 +206,7 @@ func startBook():
 	var tween = get_tree().create_tween()
 	var audioS = get_node("AudioStreamPlayer") as AudioStreamPlayer
 	
-	tween.tween_property(audioS,"volume", -30, 1)
+	tween.tween_property(audioS,"volume", -45, 1)
 	
 	var bookInstance = Book.instantiate() as ColorRect
 
@@ -249,8 +249,8 @@ func startGame():
 	#get_node("NameLabel").show()
 	
 
-func returnToMain() -> void:
-	$Control.scale = Vector2(1, 1)
+#func returnToMain():
+#	$Control.scale = Vector2(1, 1) 
 
 func _on_intro_timer_timeout():
 	var intro = $IntroRect/Intro

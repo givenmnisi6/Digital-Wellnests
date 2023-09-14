@@ -12,9 +12,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var catAnim = $CatAnim/AnimationPlayer
-	if hold:
-		position.x = get_global_mouse_position().x
-		catAnim.play("fly")
+#	if hold:
+#		position.x = get_global_mouse_position().x
+#		catAnim.play("fly")
+	if GD.isNotAllowed == true:
+		if hold:
+			position.x = get_global_mouse_position().x
+			catAnim.play("fly")
+		
 
 	#Limit the character's movements to the screen
 	position.x = clamp(position.x, 0, _screenSize.x)

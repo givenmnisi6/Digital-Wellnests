@@ -2284,9 +2284,11 @@ Music: \"Jungle Jumpin'\" by Scott Elliott"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("374_gndrn")
+volume_db = -10.0
 autoplay = true
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0
 
 [node name="TransitionTimer" type="Timer" parent="."]
 

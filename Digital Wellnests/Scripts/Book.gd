@@ -86,8 +86,8 @@ func _input(event: InputEvent):
 				pageLock = true
 			else:
 				$AudioStreamPlayer.stop()
-				$Effects.stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
-				$Effects.play()
+				get_parent().get_node("Effects").stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
+				get_parent().get_node("Effects").play()
 
 				var pageTurn = get_node("PageTurn")
 				pageTurn.play()

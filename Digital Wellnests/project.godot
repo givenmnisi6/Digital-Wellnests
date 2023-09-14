@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Digital Wellnests"
+run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GD="*res://Scripts/Cat/CatVariables.gd"
 
 [display]
 
