@@ -128,12 +128,11 @@ func startGame():
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
 		$Pause.hide()
-		
 	elif gameIndex == 3:
-		var catInstance = Cat.instantiate()
-		add_child(catInstance)
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$CatTimer.start()
 		$ActivitiesTimer.start()
+		
 
 
 #Generate tiles 
@@ -424,29 +423,30 @@ func _on_envelope_stop_area_entered(area):
 func gameEnd(win: bool):
 	var ap = $Effects
 	gameOver = true
+	$CatTimer.stop()
 	$BullyTimer.stop()
+	$ActivitiesTimer.stop()
 
 	var hud = $Hud
 	if win:
 		ap.stream = ResourceLoader.load("res://Audio/Effects/aWin.wav")
 		$Hud/Message.text = "You WIN"
 		$Hud/EndAnim.animation = "Victory" + str(gameIndex)
-
 	else:
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
-
 	ap.play()
-
+	
 	$Hud/EndAnim.visible = true
 	$Hud/EndAnim.play()
 	$Hud/Message.visible = true
 	grab_click_focus()
-	var control = get_node("EndGame") 
+	var control = $EndGame
 	control.show()
 	control.z_index = get_child_count() - 1
 	#control.raise()
+	
 
 func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false
@@ -469,7 +469,6 @@ func _on_b_menu_button_down():
 
 func _on_h_slider_value_changed(value):
 	$StartGame/LevelIndicator.text = "Level " + str(value)
-
 
 func _on_envelope_timer_timeout():
 	thread = Thread.new()
@@ -565,10 +564,6 @@ func pauseG():
 		for act in ig.get_children():
 			if act == Activities:
 				act.get_node("ActivitiesTimer").paused = true
-#				var catInstance = Cat.instantiate()
-#				catInstance.get_node("AnimationPlayer").stop()
-#				catInstance.get_node("AnimationPlayer").get_global_mouse_position().paused = true
-			
 
 func playG():
 	bpaused = false
@@ -647,3 +642,8 @@ func _on_activities_timer_timeout():
 
 func calculateHit(coin: bool):
 	updateScore(coin)
+
+
+func _on_cat_timer_timeout():
+	var catInstance = Cat.instantiate()
+	add_child(catInstance)

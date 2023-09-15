@@ -821,5 +821,5 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 position = Vector2(0, 5.045)
 sprite_frames = SubResource("SpriteFrames_0vv48")
-animation = &"Move3a"
+animation = &"Move1"
 speed_scale = 5.0
