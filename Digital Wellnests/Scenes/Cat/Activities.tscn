@@ -44,8 +44,6 @@ metadata/_edit_lock_ = true
 [node name="ActivitiesAnim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lkpux")
 animation = &"Coin"
-frame = 2
-frame_progress = 0.156732
 
 [node name="Area2D" type="Area2D" parent="."]
 

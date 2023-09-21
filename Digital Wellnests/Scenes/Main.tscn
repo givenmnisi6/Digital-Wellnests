@@ -1,4 +1,4 @@
-[gd_scene load_steps=508 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=509 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="2_3icno"]
@@ -1998,6 +1998,9 @@ size = Vector2(487.801, 248.75)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_040ov"]
 bg_color = Color(0.352941, 0, 0.27451, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eldfo"]
+bg_color = Color(0.411765, 0, 0.321569, 1)
+
 [node name="ColorRect" type="ColorRect"]
 offset_right = 720.0
 offset_bottom = 480.0
@@ -2243,6 +2246,7 @@ offset_bottom = 448.568
 theme_override_fonts/font = ExtResource("370_q2sss")
 theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_040ov")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eldfo")
 text = "Back"
 
 [node name="TextureRect" type="TextureRect" parent="SettingsPage"]

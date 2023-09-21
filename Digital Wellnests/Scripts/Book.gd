@@ -61,7 +61,7 @@ func storyStart():
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
-		print("Click")
+		#print("Click")
 
 		if !pageLock:
 			#If the paragraphs are less than 3
@@ -155,7 +155,7 @@ func loadStory(num: int):
 		totalVerse = int(poem.substr(0, poem.find("-")))
 	poem = poem.substr(poem.find("-") + 1)
 	
-	print("Total number of paragraphs or verses: " + str(totalVerse))
+	#print("Total number of paragraphs or verses: " + str(totalVerse))
 	
 	poemTitle.text = poem.substr(0, poem.find("\n\n"))
 	poemTitle.bbcode_text = "[center]" + poem.substr(0, poem.find("\n")) + "[/center]"

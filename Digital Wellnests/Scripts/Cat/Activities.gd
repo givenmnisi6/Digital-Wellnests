@@ -30,6 +30,5 @@ func _on_area_2d_area_entered(area):
 			coinHit()
 		else:
 			bullHit()
-		#audio.playing = true
 		await audio.finished
 		queue_free()

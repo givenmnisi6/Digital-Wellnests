@@ -6,6 +6,7 @@ extends TextureRect
 @export var Tile: PackedScene
 @export var Activities: PackedScene
 @export var Cat:PackedScene
+@onready var catInstance = Cat.instantiate()
 
 var _screenSize: Vector2
 var speed: float
@@ -32,6 +33,7 @@ var grid: Array
 
 var prevObj
 
+
 func _ready():
 	#Playing the voices for each game
 	$Effects.stream = ResourceLoader.load("res://Audio/Voice/GameEx" + str(gameIndex) + ".wav")
@@ -44,7 +46,7 @@ func _ready():
 
 func _on_play_button_button_down():
 	level = int($StartGame/HSlider.value)
-	print(level)
+	#print(level)
 	$Hud/Score2.show()
 	$Pause.show()
 	#Remove the instructions
@@ -344,7 +346,7 @@ func createConveyor(pos: Vector2, size: int, i:int):
 	
 	convInstance.scale = Vector2(unitSize / 100 * 1, convInstance.scale.y)
 	
-	print("group length:", group.size())
+	#print("group length:", group.size())
 	if i < group.size():
 		if group[i] == 0:
 			#grayish color
@@ -385,13 +387,13 @@ func updateScore(punt: bool):
 	if not gameOver:
 		$Hud/Score2.show()
 		if punt:
-			print("Score++")
+			#print("Score++")
 			score += 1
 			$Hud/Score2.text = str(score) + " "
 			if score >= goal:
 				gameEnd(true)
 		else:
-			print("Lives--")
+			#print("Lives--")
 			lives -= 1
 			$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart" + str(lives) + ".png")
 			#$Hud/Lives.rect_min_size = Vector2(40 * lives, 35)
@@ -429,10 +431,12 @@ func gameEnd(win: bool):
 
 	var hud = $Hud
 	if win:
+		catInstance.queue_free()
 		ap.stream = ResourceLoader.load("res://Audio/Effects/aWin.wav")
 		$Hud/Message.text = "You WIN"
 		$Hud/EndAnim.animation = "Victory" + str(gameIndex)
 	else:
+		catInstance.queue_free()
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
@@ -643,7 +647,5 @@ func _on_activities_timer_timeout():
 func calculateHit(coin: bool):
 	updateScore(coin)
 
-
 func _on_cat_timer_timeout():
-	var catInstance = Cat.instantiate()
 	add_child(catInstance)

@@ -4086,7 +4086,10 @@ expand_mode = 1
 wait_time = 0.5
 
 [node name="ActivitiesTimer" type="Timer" parent="."]
+
+[node name="CatTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [node name="inGame" type="Control" parent="."]
 anchors_preset = 0
@@ -4142,17 +4145,13 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_e8c2u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4i0ma")
 text = "Play Again"
 
-[node name="CatTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [connection signal="timeout" from="EnvelopeTimer" to="." method="_on_envelope_timer_timeout"]
 [connection signal="area_entered" from="EnvelopeStop" to="." method="_on_envelope_stop_area_entered"]
 [connection signal="value_changed" from="StartGame/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="button_down" from="StartGame/playButton" to="." method="_on_play_button_button_down"]
 [connection signal="timeout" from="BullyTimer" to="." method="_on_bully_timer_timeout"]
 [connection signal="timeout" from="ActivitiesTimer" to="." method="_on_activities_timer_timeout"]
+[connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
 [connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
 [connection signal="button_down" from="EndGame/bMenu" to="." method="_on_b_menu_button_down"]
 [connection signal="button_down" from="EndGame/bLevel" to="." method="_on_b_level_button_down"]
-[connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
