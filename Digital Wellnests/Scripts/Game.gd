@@ -638,7 +638,7 @@ func _on_activities_timer_timeout():
 	if randi() % 4 == 3:
 		actInstance.set("Monster", false)
 		actInstance.get_node("ActivitiesAnim").animation = "Monster"
-		actInstance.get_node("ActivitiesAnim").scale = Vector2(0.5,0.5)
+		actInstance.get_node("ActivitiesAnim").scale = Vector2(0.45,0.45)
 	else:
 		actInstance.set("coin", true)
 		actInstance.get_node("ActivitiesAnim").animation = "Coin"

@@ -298,7 +298,7 @@ offset_right = 717.0
 offset_bottom = 472.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_1i4o4")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 19
 text = "Ron the Rhino has many friends in his class.
 He plays with them at break time and they share lunch on the grass.
 As they laughed and talked about websites that are cool,

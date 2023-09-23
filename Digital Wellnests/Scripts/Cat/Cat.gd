@@ -17,10 +17,10 @@ func _process(delta):
 		if hold:
 			position.x = get_global_mouse_position().x
 			catAnim.play("fly")
-			if get_global_mouse_position() > get_viewport_rect().get_center():
-				catSprite.flip_h = false
-			elif get_global_mouse_position() < get_viewport_rect().get_center():
-				catSprite.flip_h = true
+#			if get_global_mouse_position() > get_viewport_rect().get_center():
+#				catSprite.flip_h = false
+#			elif get_global_mouse_position() < get_viewport_rect().get_center():
+#				catSprite.flip_h = true
 
 	#Limit the character's movements to the screen
 	position.x = clamp(position.x, 0, _screenSize.x)

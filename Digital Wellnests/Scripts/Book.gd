@@ -123,13 +123,18 @@ func _on_word_timer_timeout():
 	#For revealing the words of the Poem
 	if (charCount + 1 < text.length() && (text[charCount] != '\n' || text[charCount + 1] != '\n') || charCount + 1 == text.length()):
 		#if text[charCount] != '\n':
-		$Text.visible_characters+=1
+		$Text.visible_characters = $Text.visible_characters + 1
 		charCount += 1
 		$WordTimer.start()
 	else:
 		pageLock = false
 		charCount += 1
-
+	$Text.visible_characters = charCount
+	
+#	print("charCount:", charCount)
+#	#print("pageLock:", pageLock)
+#	print("Visible Characters:", $Text.visible_characters)
+#	print("Current Character:", text[charCount])
 
 func _on_page_turn_animation_finished():
 	pageLock = false
