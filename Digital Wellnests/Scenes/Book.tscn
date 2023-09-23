@@ -298,7 +298,7 @@ offset_right = 717.0
 offset_bottom = 472.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_1i4o4")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 19
 text = "Ron the Rhino has many friends in his class.
 He plays with them at break time and they share lunch on the grass.
 As they laughed and talked about websites that are cool,
@@ -329,10 +329,8 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("56_vgmqd")
-volume_db = 1.2
+volume_db = 12.0
 pitch_scale = 1.1
-
-[node name="Effects" type="AudioStreamPlayer" parent="."]
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="animation_finished" from="PageTurn" to="." method="_on_page_turn_animation_finished"]

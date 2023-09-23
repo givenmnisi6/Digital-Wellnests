@@ -822,6 +822,4 @@ animations = [{
 position = Vector2(0, 5.045)
 sprite_frames = SubResource("SpriteFrames_0vv48")
 animation = &"Move1"
-frame = 66
-frame_progress = 0.00358368
 speed_scale = 5.0

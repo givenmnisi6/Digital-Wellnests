@@ -6,6 +6,7 @@ extends TextureRect
 @export var Tile: PackedScene
 @export var Activities: PackedScene
 @export var Cat:PackedScene
+@onready var catInstance = Cat.instantiate()
 
 var _screenSize: Vector2
 var speed: float
@@ -32,6 +33,7 @@ var grid: Array
 
 var prevObj
 
+
 func _ready():
 	#Playing the voices for each game
 	$Effects.stream = ResourceLoader.load("res://Audio/Voice/GameEx" + str(gameIndex) + ".wav")
@@ -44,7 +46,7 @@ func _ready():
 
 func _on_play_button_button_down():
 	level = int($StartGame/HSlider.value)
-	print(level)
+	#print(level)
 	$Hud/Score2.show()
 	$Pause.show()
 	#Remove the instructions
@@ -128,12 +130,11 @@ func startGame():
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
 		$Pause.hide()
-		
 	elif gameIndex == 3:
-		var catInstance = Cat.instantiate()
-		add_child(catInstance)
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$CatTimer.start()
 		$ActivitiesTimer.start()
+		
 
 
 #Generate tiles 
@@ -345,7 +346,7 @@ func createConveyor(pos: Vector2, size: int, i:int):
 	
 	convInstance.scale = Vector2(unitSize / 100 * 1, convInstance.scale.y)
 	
-	print("group length:", group.size())
+	#print("group length:", group.size())
 	if i < group.size():
 		if group[i] == 0:
 			#grayish color
@@ -386,13 +387,13 @@ func updateScore(punt: bool):
 	if not gameOver:
 		$Hud/Score2.show()
 		if punt:
-			print("Score++")
+			#print("Score++")
 			score += 1
 			$Hud/Score2.text = str(score) + " "
 			if score >= goal:
 				gameEnd(true)
 		else:
-			print("Lives--")
+			#print("Lives--")
 			lives -= 1
 			$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart" + str(lives) + ".png")
 			#$Hud/Lives.rect_min_size = Vector2(40 * lives, 35)
@@ -424,29 +425,32 @@ func _on_envelope_stop_area_entered(area):
 func gameEnd(win: bool):
 	var ap = $Effects
 	gameOver = true
+	$CatTimer.stop()
 	$BullyTimer.stop()
+	$ActivitiesTimer.stop()
 
 	var hud = $Hud
 	if win:
+		catInstance.queue_free()
 		ap.stream = ResourceLoader.load("res://Audio/Effects/aWin.wav")
 		$Hud/Message.text = "You WIN"
 		$Hud/EndAnim.animation = "Victory" + str(gameIndex)
 	else:
+		catInstance.queue_free()
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
-
 	ap.play()
-
+	
 	$Hud/EndAnim.visible = true
 	$Hud/EndAnim.play()
 	$Hud/Message.visible = true
 	grab_click_focus()
-	var control = get_node("EndGame") 
+	var control = $EndGame
 	control.show()
 	control.z_index = get_child_count() - 1
-
 	#control.raise()
+	
 
 func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false
@@ -459,7 +463,8 @@ func _on_b_menu_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
 
-	get_parent().call("returnToMain")
+	#get_parent().call("returnToMain")
+	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
 	#var mainInstance = preload("res://Scenes/Main.tscn").instantiate()
 	#var mainInstance = Main.instantiate() 
 	#get_tree().root.add_child(mainInstance)
@@ -468,7 +473,6 @@ func _on_b_menu_button_down():
 
 func _on_h_slider_value_changed(value):
 	$StartGame/LevelIndicator.text = "Level " + str(value)
-
 
 func _on_envelope_timer_timeout():
 	thread = Thread.new()
@@ -560,12 +564,10 @@ func pauseG():
 				tar.get_node("DispTimer").paused = true
 	elif gameIndex == 3:
 		$ActivitiesTimer.paused = true
+		GD.isNotAllowed = false
 		for act in ig.get_children():
 			if act == Activities:
 				act.get_node("ActivitiesTimer").paused = true
-				var catInstance = Cat.instantiate()
-				#catInstance.get_node("Sprite2D").stop
-				#catInstance.paused = true
 
 func playG():
 	bpaused = false
@@ -591,10 +593,10 @@ func playG():
 
 	elif gameIndex == 3:
 		$ActivitiesTimer.paused = false
+		GD.isNotAllowed = true
 		for act in ig.get_children():
 			if act == Activities:
 				act.get_node("ActivitiesTimer").paused = false
-				
 
 #func _on_pause_button_down():
 #	if bpaused:
@@ -636,7 +638,7 @@ func _on_activities_timer_timeout():
 	if randi() % 4 == 3:
 		actInstance.set("Monster", false)
 		actInstance.get_node("ActivitiesAnim").animation = "Monster"
-		actInstance.get_node("ActivitiesAnim").scale = Vector2(0.5,0.5)
+		actInstance.get_node("ActivitiesAnim").scale = Vector2(0.45,0.45)
 	else:
 		actInstance.set("coin", true)
 		actInstance.get_node("ActivitiesAnim").animation = "Coin"
@@ -644,3 +646,6 @@ func _on_activities_timer_timeout():
 
 func calculateHit(coin: bool):
 	updateScore(coin)
+
+func _on_cat_timer_timeout():
+	add_child(catInstance)

@@ -24,7 +24,7 @@ func _ready():
 	name = ""
 	#Initial volume
 	vol = 10
-	#$IntroRect.show()
+	$IntroRect.show()
 	firstScreen = 0
 	speed = 0.4
 	iCount = 0
@@ -57,7 +57,6 @@ func swap():
 		phTween.tween_property(hippo, "position", Vector2(622, 410), 0.35)
 		pcTween.tween_property(wolf, "position", Vector2(355, 415), 0.35)
 		pwTween.tween_property(cat, "position", Vector2(115 , 410), 0.35)
-		
 		
 		ssTween.tween_property(snail, "scale", Vector2(1,1), 0.3)
 		shTween.tween_property(hippo, "scale", Vector2(0.4,0.4), 0.3)
@@ -115,7 +114,7 @@ func swap():
 		#phTween.tween_property(hippo, "position", Vector2(100, 400), 0.3)
 		phTween.tween_property(hippo, "position",Vector2(345, 423), 0.35)
 		pwTween.tween_property(wolf, "position", Vector2(78, 400), 0.35)
-		pcTween.tween_property(cat, "position", Vector2(400,239), 0.35)
+		pcTween.tween_property(cat, "position", Vector2(400,250), 0.35)
 		
 		ssTween.tween_property(snail, "scale", Vector2(0.6,0.6), 0.3)
 		shTween.tween_property(hippo, "scale", Vector2(0.4,0.4), 0.3)
@@ -206,7 +205,7 @@ func startBook():
 	var tween = get_tree().create_tween()
 	var audioS = get_node("AudioStreamPlayer") as AudioStreamPlayer
 	
-	tween.tween_property(audioS,"volume", -30, 1)
+	tween.tween_property(audioS,"volume", -45, 1)
 	
 	var bookInstance = Book.instantiate() as ColorRect
 
@@ -249,8 +248,8 @@ func startGame():
 	#get_node("NameLabel").show()
 	
 
-func returnToMain() -> void:
-	$Control.scale = Vector2(1, 1)
+#func returnToMain():
+#	$Control.scale = Vector2(1, 1) 
 
 func _on_intro_timer_timeout():
 	var intro = $IntroRect/Intro
@@ -293,7 +292,6 @@ func _on_settings_button_down():
 func _on_h_slider_value_changed(volu: float):
 	vol = volu
 	var ans = -80 * pow(0.646, vol) + 1
-	print("vol: " + str(ans))
 	get_node("AudioStreamPlayer").volume_db = ans
 	get_node("Effects").volume_db = ans
 	get_node("Effects").stream = load("res://Audio/Effects/aRight2.wav")
