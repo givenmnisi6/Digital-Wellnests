@@ -124,25 +124,41 @@ func _on_rw_timer_timeout():
 		$Screen.texture = load("res://Images/QuizBG2.png")
 		var rnd := RandomNumberGenerator.new()
 		
-		if points == 0:
-			msg.texture = load("res://Images/NT1.png")
-			var ta: Button = $TryAgain
-			var twn = get_tree().create_tween()
-			twn.tween_property(ta, "scale", Vector2(1, 1), 0.5)
-		if points == 1:
-			msg.texture = load("res://Images/NT0.png")
-			$Effects.stream = load("res://Audio/Voice/NT0.wav")
-			$Effects.play()
-		if points == 2:
-			var i = rnd.randi_range(0, 2)
-			msg.texture = load("res://Images/WD" + str(i) + ".png")
+#		if points == 0:
+#			msg.texture = load("res://Images/NT1.png")
+#			var ta: Button = $TryAgain
+#			var twn = get_tree().create_tween()
+#			twn.tween_property(ta, "scale", Vector2(1, 1), 0.5)
+#		if points == 1:
+#			msg.texture = load("res://Images/NT0.png")
+#			$Effects.stream = load("res://Audio/Voice/NT0.wav")
+#			$Effects.play()
+#		if points == 2:
+#			var i = rnd.randi_range(0, 2)
+#			msg.texture = load("res://Images/WD" + str(i) + ".png")
+#			$Effects.stream = load("res://Audio/Voice/WD" + str(i) + ".wav")
+#			$Effects.play()
+#		if points >= 3:
+#			var i = rnd.randi_range(0, 2)
+#			msg.texture = load("res://Images/WWD" + str(i) + ".png")
+#			get_node("Effects").stream = load("res://Audio/Voice/WWD" + str(i) + ".wav")
+#			get_node("Effects").play()
+		
+		if points > 2:
+			var i = randi() % 6
+			msg.texture = load("res://Images/WD"+ str(i) +".png")
 			$Effects.stream = load("res://Audio/Voice/WD" + str(i) + ".wav")
 			$Effects.play()
-		if points >= 3:
-			var i = rnd.randi_range(0, 2)
-			msg.texture = load("res://Images/WWD" + str(i) + ".png")
-			get_node("Effects").stream = load("res://Audio/Voice/WWD" + str(i) + ".wav")
-			get_node("Effects").play()
+		else:
+			var i = rnd.randi_range(0, 1)
+			msg.texture = load("res://Images/NT"+ str(i)+".png")
+			$Effects.stream = load("res://Audio/Voice/NT" + str(i) + ".wav")
+			$Effects.play()
+			var ta: Button = $TryAgain
+			var cnt: Button = $Continue
+			var twn = get_tree().create_tween()
+			twn.tween_property(ta, "scale", Vector2(1, 1), 0.5)
+			twn.tween_property(cnt, "scale", Vector2(1, 1), 0.5)
 			
 		for i in range(4):
 			var imgIns = TextureRect.new()
