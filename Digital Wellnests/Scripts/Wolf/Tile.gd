@@ -1,4 +1,5 @@
 extends Area2D
+class_name Tile
 
 var tapped: bool
 var found: bool
@@ -9,13 +10,6 @@ func _ready():
 	$Image.animation = "T-1"
 	value = 0 
 	tapped = false
-
-func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and InputEventScreenTouch:
-		if event.pressed and not tapped:
-			$Tile.play()
-			tapped = true
-			get_parent().call("tileClick", self)
 
 func _on_tile_animation_finished():
 	$Tile.stop()
@@ -28,10 +22,17 @@ func _on_tile_animation_finished():
 
 func reset():
 	$Image.animation = "T-1"
-	var tile = $Tile
 	tapped = false
-	tile.frame = 0
-	tile.play("Flip", true)
+	$Tile.frame = 0
+	$Tile.play("Flip", true)
 
 func _on_timer_timeout():
-	queue_free()
+	reset()
+
+
+func _on_button_gui_input(event):
+	if event is InputEventMouseButton and InputEventScreenTouch:
+		if event.pressed and !tapped:
+			$Tile.play()
+			tapped = true
+			get_parent().call("tileClick", self)

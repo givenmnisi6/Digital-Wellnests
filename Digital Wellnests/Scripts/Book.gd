@@ -61,7 +61,7 @@ func storyStart():
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
-		print("Click")
+		#print("Click")
 
 		if !pageLock:
 			#If the paragraphs are less than 3
@@ -86,8 +86,8 @@ func _input(event: InputEvent):
 				pageLock = true
 			else:
 				$AudioStreamPlayer.stop()
-				$Effects.stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
-				$Effects.play()
+				get_parent().get_node("Effects").stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
+				get_parent().get_node("Effects").play()
 
 				var pageTurn = get_node("PageTurn")
 				pageTurn.play()
@@ -123,13 +123,18 @@ func _on_word_timer_timeout():
 	#For revealing the words of the Poem
 	if (charCount + 1 < text.length() && (text[charCount] != '\n' || text[charCount + 1] != '\n') || charCount + 1 == text.length()):
 		#if text[charCount] != '\n':
-		$Text.visible_characters+=1
+		$Text.visible_characters = $Text.visible_characters + 1
 		charCount += 1
 		$WordTimer.start()
 	else:
 		pageLock = false
 		charCount += 1
-
+	$Text.visible_characters = charCount
+	
+#	print("charCount:", charCount)
+#	#print("pageLock:", pageLock)
+#	print("Visible Characters:", $Text.visible_characters)
+#	print("Current Character:", text[charCount])
 
 func _on_page_turn_animation_finished():
 	pageLock = false
@@ -155,7 +160,7 @@ func loadStory(num: int):
 		totalVerse = int(poem.substr(0, poem.find("-")))
 	poem = poem.substr(poem.find("-") + 1)
 	
-	print("Total number of paragraphs or verses: " + str(totalVerse))
+	#print("Total number of paragraphs or verses: " + str(totalVerse))
 	
 	poemTitle.text = poem.substr(0, poem.find("\n\n"))
 	poemTitle.bbcode_text = "[center]" + poem.substr(0, poem.find("\n")) + "[/center]"

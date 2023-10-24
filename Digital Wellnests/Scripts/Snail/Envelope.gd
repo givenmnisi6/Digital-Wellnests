@@ -12,9 +12,7 @@ var _screenSize: Vector2
 func _ready():
 	_screenSize = get_viewport().size
 	hit = false
-	
 	$EnvelopeAnim.animation = "Wiggle"
-	
 	print("Start")
 	hold = false
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=62 format=3 uid="uid://drfcovfeg6hec"]
 
-[ext_resource type="Script" path="res://Scripts/Tile.gd" id="1_0dh0p"]
+[ext_resource type="Script" path="res://Scripts/Wolf/Tile.gd" id="1_0dh0p"]
 [ext_resource type="Texture2D" uid="uid://b6aop4a7a2jnw" path="res://Animations/TileFlip/TileFlip.0000.png" id="1_pcus7"]
 [ext_resource type="Texture2D" uid="uid://cr4tumeial5nj" path="res://Animations/TileFlip/TileFlip.0001.png" id="2_nqy4e"]
 [ext_resource type="Texture2D" uid="uid://eemcr5pjp33r" path="res://Animations/TileFlip/TileFlip.0002.png" id="3_o6exh"]
@@ -60,7 +60,7 @@
 [ext_resource type="Texture2D" uid="uid://0qsv1smmltg2" path="res://Images/SingleBubble.png" id="57_6kosv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yc0xv"]
-size = Vector2(80, 79)
+size = Vector2(74, 79)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4yqlg"]
 animations = [{
@@ -213,7 +213,10 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_anxon"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
 "loop": true,
 "name": &"T-1",
 "speed": 5.0
@@ -304,25 +307,35 @@ script = ExtResource("1_0dh0p")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(51, 50.5)
+position = Vector2(51, 51)
 shape = SubResource("RectangleShape2D_yc0xv")
 
 [node name="Tile" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.956863, 0.603922, 0.360784, 0.956863)
-position = Vector2(51, 50.5)
-scale = Vector2(1.02, 1.01)
+modulate = Color(0.964706, 0.635294, 0.411765, 0.956863)
+position = Vector2(51, 51)
+scale = Vector2(1.01, 1)
 sprite_frames = SubResource("SpriteFrames_4yqlg")
 animation = &"Flip"
+frame = 46
+frame_progress = 1.0
 speed_scale = 20.0
 
 [node name="Image" type="AnimatedSprite2D" parent="."]
 position = Vector2(48.999, 47.218)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_anxon")
-animation = &"T0"
+animation = &"T-1"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 14.0
+offset_top = 11.0
+offset_right = 88.0
+offset_bottom = 91.0
+
 [connection signal="animation_finished" from="Tile" to="." method="_on_tile_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]

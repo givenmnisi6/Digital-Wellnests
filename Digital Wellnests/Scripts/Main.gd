@@ -24,7 +24,7 @@ func _ready():
 	name = ""
 	#Initial volume
 	vol = 10
-	#$IntroRect.show()
+	$IntroRect.show()
 	firstScreen = 0
 	speed = 0.4
 	iCount = 0
