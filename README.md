@@ -1,7 +1,13 @@
 # Digital Wellnests Game
 
-## To-Do
+## Overview
+
+Digital Wellnests is an interactive game inspired by the book "Digital Wellnests: Let Us Play it Safe Nests!" (2016) by Fischer and Von Solms. The game is freely accessible for download through ACEIE’s open-access library, aligning with the book's mission to cultivate a culture of cybersecurity among children.
+
+## To-Do List
 
 - [ ] **Fix Intro Scene**
-- [ ] **Fix Safety Snails game**
+  - The intro scene currently has issues.
+- [ ] **Fix Safety Snails Game**
+  - Address any issues and make improvements to enhance the Safety Snails game.
 
