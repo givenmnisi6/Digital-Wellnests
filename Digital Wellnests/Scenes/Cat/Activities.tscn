@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cln8y7rifqruh"]
+[gd_scene load_steps=9 format=3 uid="uid://cln8y7rifqruh"]
 
+[ext_resource type="Script" path="res://Scripts/Cat/Activities.gd" id="1_5b5aa"]
 [ext_resource type="Texture2D" uid="uid://7fffhg1qv40r" path="res://Animations/Activities/gold_1.png" id="1_fxsx2"]
 [ext_resource type="Texture2D" uid="uid://cpwodypvahsl2" path="res://Animations/Activities/gold_2.png" id="2_7jew7"]
 [ext_resource type="Texture2D" uid="uid://dnv4jynaepkp" path="res://Animations/Activities/gold_3.png" id="3_e21pq"]
@@ -37,13 +38,12 @@ size = Vector2(57, 56)
 size = Vector2(56, 55)
 
 [node name="Activities" type="RigidBody2D"]
+script = ExtResource("1_5b5aa")
 metadata/_edit_lock_ = true
 
 [node name="ActivitiesAnim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lkpux")
 animation = &"Coin"
-frame = 2
-frame_progress = 0.156732
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -60,4 +60,6 @@ shape = SubResource("RectangleShape2D_gljf0")
 position = Vector2(1, 37)
 scale = Vector2(2.9, 1)
 
-[node name="Effects" type="AudioStreamPlayer2D" parent="."]
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

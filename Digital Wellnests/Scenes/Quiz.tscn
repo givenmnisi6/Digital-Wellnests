@@ -1,57 +1,59 @@
-[gd_scene load_steps=17 format=3 uid="uid://2ppevsslqkff"]
+[gd_scene load_steps=17 format=3 uid="uid://djnw1bayii00g"]
 
-[ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="1_7gu07"]
-[ext_resource type="Texture2D" uid="uid://qun5h17dbf24" path="res://Images/QuizBG2.png" id="2_vfwh2"]
-[ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="3_yfu1u"]
-[ext_resource type="Texture2D" uid="uid://b6xedlty8o5ve" path="res://Images/WD0.png" id="4_46u01"]
+[ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="1_ek7kq"]
+[ext_resource type="Script" path="res://Scripts/Quiz.gd" id="2_bu452"]
+[ext_resource type="Texture2D" uid="uid://qun5h17dbf24" path="res://Images/QuizBG2.png" id="3_e2d6s"]
+[ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="4_xhj3h"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07xxi"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eijid"]
 bg_color = Color(0.00392157, 0.196078, 0.12549, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8wg6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x1h4"]
 bg_color = Color(0.00392157, 0.231373, 0.14902, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmnbe"]
-bg_color = Color(0.00392157, 0.231373, 0.14902, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnf6e"]
+bg_color = Color(0.00392157, 0.196078, 0.12549, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5f10v"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48e1s"]
 bg_color = Color(0.301961, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk8y0"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k71yg"]
 bg_color = Color(0.372549, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1yug"]
-bg_color = Color(0.372549, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuh50"]
+bg_color = Color(0.301961, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wk3i2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kb0b6"]
 bg_color = Color(0.0823529, 0.176471, 0.266667, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xy468"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0ast"]
 bg_color = Color(0.117647, 0.235294, 0.34902, 0.980392)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdlwj"]
-bg_color = Color(0.117647, 0.235294, 0.34902, 0.980392)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebcfb"]
+bg_color = Color(0.0823529, 0.176471, 0.266667, 0.964706)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1brh2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_441xg"]
 bg_color = Color(0.231373, 0.152941, 0.0392157, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia7d2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kejxk"]
 bg_color = Color(0.352941, 0.223529, 0.0196078, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fsr0c"]
-bg_color = Color(0.352941, 0.223529, 0.0196078, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xf0o"]
+bg_color = Color(0.486275, 0.278431, 0, 1)
 
 [node name="Quiz" type="TextureRect"]
 offset_right = 720.0
 offset_bottom = 480.0
-texture = ExtResource("1_7gu07")
+texture = ExtResource("1_ek7kq")
 expand_mode = 1
+script = ExtResource("2_bu452")
 
 [node name="Screen" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 720.0
-offset_bottom = 480.0
-texture = ExtResource("2_vfwh2")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_e2d6s")
+metadata/_edit_lock_ = true
 
 [node name="qPlay" type="Control" parent="."]
 anchors_preset = 0
@@ -68,11 +70,11 @@ offset_bottom = 469.0
 scale = Vector2(1, 1e-05)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_yfu1u")
+theme_override_fonts/font = ExtResource("4_xhj3h")
 theme_override_font_sizes/font_size = 200
-theme_override_styles/normal = SubResource("StyleBoxFlat_07xxi")
-theme_override_styles/hover = SubResource("StyleBoxFlat_l8wg6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_nmnbe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eijid")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1x1h4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xnf6e")
 text = "Yes"
 
 [node name="bNo" type="Button" parent="qPlay"]
@@ -85,18 +87,25 @@ offset_bottom = 470.0
 scale = Vector2(1, 1e-05)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_yfu1u")
+theme_override_fonts/font = ExtResource("4_xhj3h")
 theme_override_font_sizes/font_size = 200
-theme_override_styles/normal = SubResource("StyleBoxFlat_5f10v")
-theme_override_styles/hover = SubResource("StyleBoxFlat_dk8y0")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_r1yug")
+theme_override_styles/normal = SubResource("StyleBoxFlat_48e1s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k71yg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yuh50")
 text = "No"
 
 [node name="Question" type="RichTextLabel" parent="qPlay"]
 layout_mode = 0
-offset_top = 107.0
+offset_top = 106.465
 offset_right = 720.0
-offset_bottom = 183.0
+offset_bottom = 182.465
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/line_separation = 0
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("4_xhj3h")
+theme_override_fonts/mono_font = ExtResource("4_xhj3h")
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "[center][/center]"
 metadata/_edit_lock_ = true
@@ -109,10 +118,11 @@ offset_right = 711.0
 offset_bottom = 94.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/normal_font = ExtResource("3_yfu1u")
+theme_override_fonts/normal_font = ExtResource("4_xhj3h")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[center]AAAAA[/center]"
+text = "[center]AAAAA[/center]
+"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
@@ -123,8 +133,17 @@ offset_left = 1.0
 offset_top = 210.0
 offset_right = 1.0
 offset_bottom = 210.0
-texture = ExtResource("4_46u01")
 expand_mode = 1
+stretch_mode = 4
+
+[node name="txtMessage" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 21.22
+offset_top = 23.48
+offset_right = 478.22
+offset_bottom = 233.48
+metadata/_edit_lock_ = true
 
 [node name="SafetyTimer" type="Timer" parent="."]
 one_shot = true
@@ -135,14 +154,14 @@ self_modulate = Color(0, 0.541176, 1, 1)
 layout_mode = 0
 offset_left = 300.0
 offset_top = 345.0
-offset_right = 706.0
+offset_right = 710.0
 offset_bottom = 455.0
 scale = Vector2(1e-05, 1)
-theme_override_fonts/font = ExtResource("3_yfu1u")
+theme_override_fonts/font = ExtResource("4_xhj3h")
 theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_wk3i2")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xy468")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rdlwj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kb0b6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c0ast")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ebcfb")
 text = "Continue"
 
 [node name="TryAgain" type="Button" parent="."]
@@ -150,27 +169,38 @@ self_modulate = Color(1, 0.607843, 0, 1)
 layout_mode = 0
 offset_left = 300.0
 offset_top = 210.0
-offset_right = 706.0
+offset_right = 710.0
 offset_bottom = 320.0
 scale = Vector2(1e-05, 1)
-theme_override_fonts/font = ExtResource("3_yfu1u")
+theme_override_fonts/font = ExtResource("4_xhj3h")
 theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_1brh2")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ia7d2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fsr0c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_441xg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kejxk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0xf0o")
 text = "Try Again"
 
 [node name="rwTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="rwIndicator" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(349, 326)
 layout_mode = 0
 offset_left = 189.0
 offset_top = 92.0
-offset_right = 538.0
-offset_bottom = 418.0
+offset_right = 229.0
+offset_bottom = 132.0
 stretch_mode = 5
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 volume_db = 10.0
 pitch_scale = 1.1
+
+[connection signal="button_down" from="qPlay/bYes" to="." method="_on_b_yes_button_down"]
+[connection signal="button_down" from="qPlay/bNo" to="." method="_on_b_no_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SafetyTimer" to="." method="_on_safety_timer_timeout"]
+[connection signal="button_down" from="Continue" to="." method="_on_continue_button_down"]
+[connection signal="button_down" from="TryAgain" to="." method="_on_try_again_button_down"]
+[connection signal="timeout" from="rwTimer" to="." method="_on_rw_timer_timeout"]
+[connection signal="finished" from="Effects" to="." method="_on_effects_finished"]
