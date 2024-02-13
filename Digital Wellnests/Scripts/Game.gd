@@ -54,24 +54,29 @@ func _on_play_button_button_down():
 	startGame()
 
 func startGame():
-	#Score 20 to finish 
+	# At the start, all games have 3 lives and to win you need to have 20 points
+	# Initially it is 0
 	goal = 20
-	gameOver = false
-	
-	#Initial there are 3 lives and the score is 0
 	lives = 3
 	score = 0 
-
-	#Safety Snail game
+	gameOver = false
+	
+	# Safety Snail game
+	# This set up the initial state of the game, by creating belts for each level
+	# and starts a time to spawn the envelopes
 	if gameIndex == 0:
 		#Displaying the 3 hearts
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
+		
+		# Calculate the conveyor size based on the level
 		var conSize: int = (level + 1) / 2 + 5
 		calcConveyor(conSize) 
 		
-		speed = level * 0.2 + 1
-		_screenSize = Vector2(720, 480)
+		# Calculate the conveyor size based on the level
+		speed = level * 0.2 + 1             # Calculate the speed based on the level
+		_screenSize = get_viewport().size   # Set the screen size
 		
+		# Initialize variables for looping through the layout (lay)
 		var items: int = lay.size()
 		var posCount: int = 0
 		var num: int = 0
@@ -80,26 +85,23 @@ func startGame():
 			num += lay[j]
 			
 		unitSize = _screenSize.x / num
-		
+
+		# Loop through the layout and create conveyers
 		for i in range (items):
 			createConveyor(Vector2(unitSize * posCount + (unitSize * lay[i] / 2), _screenSize.y / 2 - 2), lay[i], i)
 			posCount += lay[i]
 
 		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
 		$EnvelopeTimer.start()
-	#Happy Hippo game
+
+	# Happy Hippo game
 	elif gameIndex == 1:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 
 		$BullyTimer.wait_time = (18 - level) * 0.06
 		$BullyTimer.start()
 		prev = [[0, 0], [0, 0]]
-#		var element = prev[1][0] # Accesses the element at row 1, column 0 (value: 0)
-#		for i in range(2):
-#			var row: Array = []
-#			for j in range(2):
-#				row.append(0)
-#			prev.append(row)
+
 	#Wolf game
 	elif gameIndex == 2:
 		$Hud/Score2.hide()
@@ -114,10 +116,8 @@ func startGame():
 				y += 1
 		#grid = [x][y]
 		
-		#grid = createGrid(x, y)
 		for i in range(x):
 			var row: Array = []
-			#grid.append([])
 			for j in range(y):
 				row.append(0)
 			grid.append(row)
@@ -220,10 +220,12 @@ func tileClick(obj):
 
 #Generates parameters for the conveyor belts
 func calcConveyor(conSize: int):
-	var prev  = -1
+	var prev: int = -1
+	#Temp array for conveyor sizes
 	var tmp = []
 	#Calculates the number of lanes based on the level
-	var conCount = level
+	var conCount: int = level
+	#Ensure Conveyor count is atleast 2
 	if conCount == 1:
 		conCount += 1
 	
@@ -239,13 +241,15 @@ func calcConveyor(conSize: int):
 		colCount = 3
 	else:
 		colCount = 4
+	print("Initial column count: ", colCount)
 
 	#Distribution of sizes of conveyor sections depending on the level
-	if level == 1:
+	if level == 1 or level == 10:
 		lay = []
 		for i in range(conCount):
 			lay.append(int(size))
-	#consists of three columns, and the sizes of each columnn for level 2
+	#In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively.
+	#The column count will be 3
 	elif level == 2:
 		lay = [2, 3, 2]
 		conCount = 3
@@ -274,7 +278,9 @@ func calcConveyor(conSize: int):
 			k += 1
 			conCount += 1
 	
-		lay = []
+		#lay = []
+		#lay = []
+		lay.resize(conCount)
 		for i in range(conCount):
 			lay.append(tmp[i])
 			
@@ -511,7 +517,7 @@ func _on_envelope_stop_area_entered(area):
 		
 		var ap = $Effects
 		#Check if the entered area's type matches the conveyor's group
-		if int(area.get("type")) == group[convIndex]:
+		if int(area.type) == group[convIndex]:
 			ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
 		else:
 			ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
