@@ -114,8 +114,7 @@ func startGame():
 				x += 1
 			else:
 				y += 1
-		#grid = [x][y]
-		
+
 		for i in range(x):
 			var row: Array = []
 			for j in range(y):
@@ -141,10 +140,6 @@ func spawnTiles(maxx: int, maxy:int):
 	var tiles: Array = []
 	for i in range(numImages):
 		tiles.append([0,0])
-	
-#	tiles.resize(numImages)
-#	for i in range(numImages):
-#		tiles[i] = [0,0]
 
 	#Generates random numbers and check for duplicates, and populates the tiles accordingly
 	for i in range(numImages):
@@ -181,11 +176,7 @@ func spawnTiles(maxx: int, maxy:int):
 			var tileInstance = Tile.instantiate()
 			add_child(tileInstance)
 			var index
-			
-#			while true:
-#				index = randi() % numImages
-#				if tiles[index][1] > 0:
-#					break
+
 			index = randi() % numImages
 			while tiles[index][1] <= 0:
 				index = randi() % numImages
@@ -218,92 +209,64 @@ func tileClick(obj):
 				gameEnd(true)
 		prevObj = null
 
-#Generates parameters for the conveyor belts
+# Generates a conveyor layout for the game, assigning different columns
 func calcConveyor(conSize: int):
-	var prev: int = -1
-	#Temp array for conveyor sizes
-	var tmp = []
-	#Calculates the number of lanes based on the level
-	var conCount: int = level
-	#Ensure Conveyor count is atleast 2
-	if conCount == 1:
+	var prev: int = -1               # Initialize previous group number
+	var tmp: Array = []              # Temp array for conveyor sizes
+	var conCount: int = level        # Initialize number of conveyor belt objects
+
+	if conCount == 1:                # Ensure Conveyor count is atleast 2
 		conCount += 1
 	
-	#Size of each conveyor section
-	var size = (conSize) / conCount
+	var size = (conSize) / conCount  # Calculate size of each conveyor belt object
 	var random = RandomNumberGenerator.new()
 	var containsAll: bool
 	
-	#Column count based on the number of levels
+	# Set the number of columns based on the current level
 	if level <= 3:
 		colCount = 2
 	elif level <= 6:
 		colCount = 3
 	else:
 		colCount = 4
-	print("Initial column count: ", colCount)
 
 	#Distribution of sizes of conveyor sections depending on the level
 	if level == 1 or level == 10:
 		lay = []
 		for i in range(conCount):
 			lay.append(int(size))
-	#In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively.
-	#The column count will be 3
-	elif level == 2:
+	elif level == 2:     # In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively, the column count will be 3
 		lay = [2, 3, 2]
 		conCount = 3
 	else:
 	#Min and Max sizes of sections
 		var minimum = 1
 		var maximum = 3
-		
 		var k = 0
 		conCount = 0
 		var tot = 0
 		
-		#int[] tmp = new int[conSize]
+		# Generate the sizes of the conveyor belt objects
 		while tot < conSize:
 			if (conSize - tot < 3):
-				#tmp[k] = conSize - tot
-				tmp.append([conSize - tot])
+				tmp.append(conSize - tot)
 				tot = conSize
 			else:
 				var rnd = random.randi_range(minimum, maximum)
 				if rnd == 3:
 					maximum -= 1
-				#tmp[k] = rnd
 				tmp.append(rnd)
 				tot += rnd
 			k += 1
 			conCount += 1
 	
 		#lay = []
-		#lay = []
 		lay.resize(conCount)
 		for i in range(conCount):
 			lay.append(tmp[i])
 			
+		# Calculate conveyor group
 		group = [conCount]
-		
-#		for i in range(conCount):
-#			group.append(0)
-
-		#containsAll = false
-#		while (!containsAll):
-#			containsAll = true
-#			for i in range(conCount):
-#				var rnd: int
-#				while true:
-#					rnd = randi() % colCount
-#					if rnd != prev:
-#						break
-#				prev = rnd
-#				group.append(rnd)
-#			for j in range(colCount):
-#				if not group.has(j):
-#					containsAll = false
-					
 		while (!containsAll):
 			containsAll = true
 			for i in range(conCount):
@@ -312,14 +275,12 @@ func calcConveyor(conSize: int):
 				while rnd == prev:
 					rnd = randi() % colCount
 				prev = rnd
-				#group[i] = rnd
 				group.append(rnd)
 				
 			for j in range(colCount):
 				if !group.find(j) != -1:
 				#if !group.has(j):
 					containsAll = false
-					
 
 func createConveyor(pos: Vector2, size: int, i:int):
 	var convInstance = Conveyor.instantiate()
@@ -333,8 +294,7 @@ func createConveyor(pos: Vector2, size: int, i:int):
 	convInstance.animation = "Move" + str(size)
 	
 	convInstance.scale = Vector2(unitSize / 100 * 1, convInstance.scale.y)
-	
-	print("group length:", group.size())
+
 	if i < group.size():
 		if group[i] == 0:
 			#grayish color
@@ -345,126 +305,7 @@ func createConveyor(pos: Vector2, size: int, i:int):
 		elif group[i] == 3:
 			#greenish color
 			convInstance.modulate = Color(0.09, 0.62, 0.14, 1)
-
 	convInstance.play()
-
-#Generates parameters for the converyor belts
-#func calcConveyor(conSize: int):
-#	var prev: int = -1
-#	#Temp array for conveyor sizes
-#	var tmp: Array[int] = []
-#	#Number of lanes based on the level
-#	var conCount: int = level
-#	#Ensure Conveyor count is atleast 2
-#	if conCount == 1:
-#		conCount += 1
-#
-#	#Size of each conveyor
-#	var size: float = float(conSize)/conCount
-#	var random = RandomNumberGenerator.new()
-#	var containsAll: bool
-#
-#	if level <= 3:
-#		colCount = 2
-#	elif level <= 6:
-#		colCount = 3
-#	else:
-#		colCount = 4
-#	print("Initial column count: ", colCount)
-#
-#	if level == 1 or level == 10:
-#		lay = []
-#		for i in range (conCount):
-#			lay.append(int(size))
-#	#In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively.
-#	#The column count will be 3
-#	elif level == 2:
-#		lay = [2, 3, 2]
-#		conCount = 3
-#
-#	else:
-#		#Minimum sizes of the conveyors
-#		var min = 1
-#		var max = 3
-#
-#		var k = 0
-#		conCount = 0
-#		var tot = 0
-#
-#		while tot < conSize:
-#			if conSize - tot < 3:
-#				#tmp[k] = conSize - tot
-#				tmp.append(conSize - tot)
-#				tot = conSize
-#			else:
-#				var rnd : int = random.randf_range(min, max)
-#				if rnd == 3:
-#					max -= 1
-#				tmp.append(rnd)
-#				tot += rnd
-#			k += 1
-#			conCount += 1
-#
-#		lay = [conCount]
-#		#lay.resize(conCount)
-#		for i in range (conCount):
-#			lay.append(tmp[i])
-#		group = [conCount]
-#		while true:
-#			containsAll = true
-#			for i in range (conCount):
-#				var rnd = -1
-#				while rnd == -1 or rnd == prev:
-#					rnd =  randi()% colCount
-#				prev = rnd
-#				#group.append(rnd)
-#				group.insert(i, rnd)
-#
-#
-#				group[i] = rnd
-#			if containsAll:
-#				break
-#
-##Color of the conveyor
-#func createConveyor(pos: Vector2, size: int, i:int):
-#	print("Value of i:", i)  # Add this line to check the value of i
-#	var convInstance = Conveyor.instantiate()
-#	$inGame.add_child(convInstance)
-#	var random = RandomNumberGenerator.new()
-#	convInstance.position = pos
-#	convInstance.frame = random.randi() % 120
-#	convInstance.speed_scale = 3.1 * speed
-#	convInstance.animation = "Move" + str(size)
-#
-#	convInstance.scale = Vector2(unitSize / 100 * 1, convInstance.scale.y)
-#
-#	print("Value of group:", group)
-#
-##	if i < group.size():
-##		if group[i] == 0:
-##			#grayish color
-##			convInstance.modulate = Color(0.15, 0.15, 0.15, 1)
-##		elif group[i] == 2:
-##			#bluish color
-##			convInstance.modulate = Color(0.05, 0.3, 0.8, 1)
-##		elif group[i] == 3:
-##			#greenish color
-##			convInstance.modulate = Color(0.09, 0.62, 0.14, 1)
-##	else:
-##		print("Index out of bounds:", i)
-#
-#
-##	if group[i] == 0:
-##		convInstance.modulate = Color(0.15, 0.15, 0.15, 1)
-##	elif group[i] == 2:
-##		convInstance.modulate = Color(0.05, 0.3, 0.8, 1)
-##	elif group[i] == 3:
-##		convInstance.modulate = Color(0.09, 0.62, 0.14, 1)
-##	else:
-##		print("Index out of bounds:", i)
-#
-#
-#	convInstance.play()
 
 func spawnEnvelope(type: int, lane: int):
 	if !gameOver:
