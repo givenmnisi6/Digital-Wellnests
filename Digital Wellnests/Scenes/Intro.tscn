@@ -12,14 +12,12 @@ Main = ExtResource("2_5bst5")
 wait_time = 3.0
 autostart = true
 
-[node name="Transition" type="AnimationPlayer" parent="."]
-
-[node name="IntroRect" type="ColorRect" parent="Transition"]
+[node name="IntroRect" type="ColorRect" parent="."]
 visible = false
 offset_right = 720.0
 offset_bottom = 480.0
 
-[node name="Intro" type="TextureRect" parent="Transition/IntroRect"]
+[node name="Intro" type="TextureRect" parent="IntroRect"]
 layout_mode = 0
 offset_right = 720.0
 offset_bottom = 489.0
