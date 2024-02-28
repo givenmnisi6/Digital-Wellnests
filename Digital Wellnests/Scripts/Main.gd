@@ -23,9 +23,9 @@ var positions = []
 func _ready():
 	name = ""
 	#Initial volume
-	vol = 10
-	$IntroRect.show()
-	firstScreen = 0
+	#vol = 10
+	#$IntroRect.show()
+	#firstScreen = 0
 	speed = 0.4
 	iCount = 0
 	
@@ -252,37 +252,37 @@ func startGame():
 func returnToMain() -> void:
 	$Control.scale = Vector2(1, 1)
 
-func _on_intro_timer_timeout():
-	var intro = $IntroRect/Intro
-	
-	if firstScreen == 0:
-		$IntroTimer.wait_time = 1
-		$IntroTimer.start()
-		
-		var tween = get_tree().create_tween()
-		tween.tween_property(intro, "modulate",Color(1,1,1,0), 0.5)
-		
-	elif firstScreen == 1:
-		$IntroTimer.wait_time = 3
-		$IntroTimer.start()
-		
-		intro.texture = load("res://Images/NWU.png")
-		var tween = get_tree().create_tween()
-		tween.tween_property(intro, "modulate",Color(1,1,1,1), 1)
-		
-	elif firstScreen == 2:
-		$IntroTimer.wait_time = 0.5
-		$IntroTimer.start()
-		
-		var intro_rectS = get_node("IntroRect")
-		var tween = get_tree().create_tween()
-		
-		tween.tween_property(intro_rectS, "modulate",Color(1,1,1,0), 0.5)
-		
-	else:
-		$IntroTimer.stop()
-		$IntroRect.queue_free()
-	firstScreen += 1
+#func _on_intro_timer_timeout():
+	#var intro = $IntroRect/Intro
+	#
+	#if firstScreen == 0:
+		#$IntroTimer.wait_time = 1
+		#$IntroTimer.start()
+		#
+		#var tween = get_tree().create_tween()
+		#tween.tween_property(intro, "modulate",Color(1,1,1,0), 0.5)
+		#
+	#elif firstScreen == 1:
+		#$IntroTimer.wait_time = 3
+		#$IntroTimer.start()
+		#
+		#intro.texture = load("res://Images/NWU.png")
+		#var tween = get_tree().create_tween()
+		#tween.tween_property(intro, "modulate",Color(1,1,1,1), 1)
+		#
+	#elif firstScreen == 2:
+		#$IntroTimer.wait_time = 0.5
+		#$IntroTimer.start()
+		#
+		#var intro_rectS = get_node("IntroRect")
+		#var tween = get_tree().create_tween()
+		#
+		#tween.tween_property(intro_rectS, "modulate",Color(1,1,1,0), 0.5)
+		#
+	#else:
+		#$IntroTimer.stop()
+		#$IntroRect.queue_free()
+	#firstScreen += 1
 
 
 func _on_settings_button_down():

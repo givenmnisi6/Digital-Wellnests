@@ -54,24 +54,29 @@ func _on_play_button_button_down():
 	startGame()
 
 func startGame():
-	#Score 20 to finish 
+	# At the start, all games have 3 lives and to win you need to have 20 points
+	# Initially it is 0
 	goal = 20
-	gameOver = false
-	
-	#Initial there are 3 lives and the score is 0
 	lives = 3
 	score = 0 
-
-	#Safety Snail game
+	gameOver = false
+	
+	# Safety Snail game
+	# This set up the initial state of the game, by creating belts for each level
+	# and starts a time to spawn the envelopes
 	if gameIndex == 0:
 		#Displaying the 3 hearts
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
+		
+		# Calculate the conveyor size based on the level
 		var conSize: int = (level + 1) / 2 + 5
 		calcConveyor(conSize) 
 		
-		speed = level * 0.2 + 1
-		_screenSize = Vector2(720, 480)
+		# Calculate the conveyor size based on the level
+		speed = level * 0.2 + 1             # Calculate the speed based on the level
+		_screenSize = get_viewport().size   # Set the screen size
 		
+		# Initialize variables for looping through the layout (lay)
 		var items: int = lay.size()
 		var posCount: int = 0
 		var num: int = 0
@@ -80,26 +85,23 @@ func startGame():
 			num += lay[j]
 			
 		unitSize = _screenSize.x / num
-		
+
+		# Loop through the layout and create conveyers
 		for i in range (items):
 			createConveyor(Vector2(unitSize * posCount + (unitSize * lay[i] / 2), _screenSize.y / 2 - 2), lay[i], i)
 			posCount += lay[i]
 
 		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
 		$EnvelopeTimer.start()
-	#Happy Hippo game
+
+	# Happy Hippo game
 	elif gameIndex == 1:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 
 		$BullyTimer.wait_time = (18 - level) * 0.06
 		$BullyTimer.start()
 		prev = [[0, 0], [0, 0]]
-#		var element = prev[1][0] # Accesses the element at row 1, column 0 (value: 0)
-#		for i in range(2):
-#			var row: Array = []
-#			for j in range(2):
-#				row.append(0)
-#			prev.append(row)
+
 	#Wolf game
 	elif gameIndex == 2:
 		$Hud/Score2.hide()
@@ -112,12 +114,9 @@ func startGame():
 				x += 1
 			else:
 				y += 1
-		#grid = [x][y]
-		
-		#grid = createGrid(x, y)
+
 		for i in range(x):
 			var row: Array = []
-			#grid.append([])
 			for j in range(y):
 				row.append(0)
 			grid.append(row)
@@ -141,10 +140,6 @@ func spawnTiles(maxx: int, maxy:int):
 	var tiles: Array = []
 	for i in range(numImages):
 		tiles.append([0,0])
-	
-#	tiles.resize(numImages)
-#	for i in range(numImages):
-#		tiles[i] = [0,0]
 
 	#Generates random numbers and check for duplicates, and populates the tiles accordingly
 	for i in range(numImages):
@@ -181,11 +176,7 @@ func spawnTiles(maxx: int, maxy:int):
 			var tileInstance = Tile.instantiate()
 			add_child(tileInstance)
 			var index
-			
-#			while true:
-#				index = randi() % numImages
-#				if tiles[index][1] > 0:
-#					break
+
 			index = randi() % numImages
 			while tiles[index][1] <= 0:
 				index = randi() % numImages
@@ -218,21 +209,20 @@ func tileClick(obj):
 				gameEnd(true)
 		prevObj = null
 
-#Generates parameters for the conveyor belts
+# Generates a conveyor layout for the game, assigning different columns
 func calcConveyor(conSize: int):
-	var prev  = -1
-	var tmp = []
-	#Calculates the number of lanes based on the level
-	var conCount = level
-	if conCount == 1:
+	var prev: int = -1               # Initialize previous group number
+	var tmp: Array = []              # Temp array for conveyor sizes
+	var conCount: int = level        # Initialize number of conveyor belt objects
+
+	if conCount == 1:                # Ensure Conveyor count is atleast 2
 		conCount += 1
 	
-	#Size of each conveyor section
-	var size = (conSize) / conCount
+	var size = (conSize) / conCount  # Calculate size of each conveyor belt object
 	var random = RandomNumberGenerator.new()
 	var containsAll: bool
 	
-	#Column count based on the number of levels
+	# Set the number of columns based on the current level
 	if level <= 3:
 		colCount = 2
 	elif level <= 6:
@@ -241,63 +231,42 @@ func calcConveyor(conSize: int):
 		colCount = 4
 
 	#Distribution of sizes of conveyor sections depending on the level
-	if level == 1:
+	if level == 1 or level == 10:
 		lay = []
 		for i in range(conCount):
 			lay.append(int(size))
-	#consists of three columns, and the sizes of each columnn for level 2
-	elif level == 2:
+	elif level == 2:     # In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively, the column count will be 3
 		lay = [2, 3, 2]
 		conCount = 3
 	else:
 	#Min and Max sizes of sections
 		var minimum = 1
 		var maximum = 3
-		
 		var k = 0
 		conCount = 0
 		var tot = 0
 		
-		#int[] tmp = new int[conSize]
+		# Generate the sizes of the conveyor belt objects
 		while tot < conSize:
 			if (conSize - tot < 3):
-				#tmp[k] = conSize - tot
-				tmp.append([conSize - tot])
+				tmp.append(conSize - tot)
 				tot = conSize
 			else:
 				var rnd = random.randi_range(minimum, maximum)
 				if rnd == 3:
 					maximum -= 1
-				#tmp[k] = rnd
 				tmp.append(rnd)
 				tot += rnd
 			k += 1
 			conCount += 1
 	
-		lay = []
+		#lay = []
+		lay.resize(conCount)
 		for i in range(conCount):
 			lay.append(tmp[i])
 			
+		# Calculate conveyor group
 		group = [conCount]
-		
-#		for i in range(conCount):
-#			group.append(0)
-
-		#containsAll = false
-#		while (!containsAll):
-#			containsAll = true
-#			for i in range(conCount):
-#				var rnd: int
-#				while true:
-#					rnd = randi() % colCount
-#					if rnd != prev:
-#						break
-#				prev = rnd
-#				group.append(rnd)
-#			for j in range(colCount):
-#				if not group.has(j):
-#					containsAll = false
-					
 		while (!containsAll):
 			containsAll = true
 			for i in range(conCount):
@@ -306,14 +275,12 @@ func calcConveyor(conSize: int):
 				while rnd == prev:
 					rnd = randi() % colCount
 				prev = rnd
-				#group[i] = rnd
 				group.append(rnd)
 				
 			for j in range(colCount):
 				if !group.find(j) != -1:
 				#if !group.has(j):
 					containsAll = false
-					
 
 func createConveyor(pos: Vector2, size: int, i:int):
 	var convInstance = Conveyor.instantiate()
@@ -327,8 +294,7 @@ func createConveyor(pos: Vector2, size: int, i:int):
 	convInstance.animation = "Move" + str(size)
 	
 	convInstance.scale = Vector2(unitSize / 100 * 1, convInstance.scale.y)
-	
-	print("group length:", group.size())
+
 	if i < group.size():
 		if group[i] == 0:
 			#grayish color
@@ -339,126 +305,7 @@ func createConveyor(pos: Vector2, size: int, i:int):
 		elif group[i] == 3:
 			#greenish color
 			convInstance.modulate = Color(0.09, 0.62, 0.14, 1)
-
 	convInstance.play()
-
-#Generates parameters for the converyor belts
-#func calcConveyor(conSize: int):
-#	var prev: int = -1
-#	#Temp array for conveyor sizes
-#	var tmp: Array[int] = []
-#	#Number of lanes based on the level
-#	var conCount: int = level
-#	#Ensure Conveyor count is atleast 2
-#	if conCount == 1:
-#		conCount += 1
-#
-#	#Size of each conveyor
-#	var size: float = float(conSize)/conCount
-#	var random = RandomNumberGenerator.new()
-#	var containsAll: bool
-#
-#	if level <= 3:
-#		colCount = 2
-#	elif level <= 6:
-#		colCount = 3
-#	else:
-#		colCount = 4
-#	print("Initial column count: ", colCount)
-#
-#	if level == 1 or level == 10:
-#		lay = []
-#		for i in range (conCount):
-#			lay.append(int(size))
-#	#In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively.
-#	#The column count will be 3
-#	elif level == 2:
-#		lay = [2, 3, 2]
-#		conCount = 3
-#
-#	else:
-#		#Minimum sizes of the conveyors
-#		var min = 1
-#		var max = 3
-#
-#		var k = 0
-#		conCount = 0
-#		var tot = 0
-#
-#		while tot < conSize:
-#			if conSize - tot < 3:
-#				#tmp[k] = conSize - tot
-#				tmp.append(conSize - tot)
-#				tot = conSize
-#			else:
-#				var rnd : int = random.randf_range(min, max)
-#				if rnd == 3:
-#					max -= 1
-#				tmp.append(rnd)
-#				tot += rnd
-#			k += 1
-#			conCount += 1
-#
-#		lay = [conCount]
-#		#lay.resize(conCount)
-#		for i in range (conCount):
-#			lay.append(tmp[i])
-#		group = [conCount]
-#		while true:
-#			containsAll = true
-#			for i in range (conCount):
-#				var rnd = -1
-#				while rnd == -1 or rnd == prev:
-#					rnd =  randi()% colCount
-#				prev = rnd
-#				#group.append(rnd)
-#				group.insert(i, rnd)
-#
-#
-#				group[i] = rnd
-#			if containsAll:
-#				break
-#
-##Color of the conveyor
-#func createConveyor(pos: Vector2, size: int, i:int):
-#	print("Value of i:", i)  # Add this line to check the value of i
-#	var convInstance = Conveyor.instantiate()
-#	$inGame.add_child(convInstance)
-#	var random = RandomNumberGenerator.new()
-#	convInstance.position = pos
-#	convInstance.frame = random.randi() % 120
-#	convInstance.speed_scale = 3.1 * speed
-#	convInstance.animation = "Move" + str(size)
-#
-#	convInstance.scale = Vector2(unitSize / 100 * 1, convInstance.scale.y)
-#
-#	print("Value of group:", group)
-#
-##	if i < group.size():
-##		if group[i] == 0:
-##			#grayish color
-##			convInstance.modulate = Color(0.15, 0.15, 0.15, 1)
-##		elif group[i] == 2:
-##			#bluish color
-##			convInstance.modulate = Color(0.05, 0.3, 0.8, 1)
-##		elif group[i] == 3:
-##			#greenish color
-##			convInstance.modulate = Color(0.09, 0.62, 0.14, 1)
-##	else:
-##		print("Index out of bounds:", i)
-#
-#
-##	if group[i] == 0:
-##		convInstance.modulate = Color(0.15, 0.15, 0.15, 1)
-##	elif group[i] == 2:
-##		convInstance.modulate = Color(0.05, 0.3, 0.8, 1)
-##	elif group[i] == 3:
-##		convInstance.modulate = Color(0.09, 0.62, 0.14, 1)
-##	else:
-##		print("Index out of bounds:", i)
-#
-#
-#	convInstance.play()
 
 func spawnEnvelope(type: int, lane: int):
 	if !gameOver:
@@ -481,7 +328,6 @@ func spawnEnvelope(type: int, lane: int):
 
 		var random = RandomNumberGenerator.new()
 		envInstance.rotation_degrees = random.randi_range(0, 89) - 45
-
 
 func updateScore(punt: bool):
 	if not gameOver:
@@ -511,7 +357,7 @@ func _on_envelope_stop_area_entered(area):
 		
 		var ap = $Effects
 		#Check if the entered area's type matches the conveyor's group
-		if int(area.get("type")) == group[convIndex]:
+		if int(area.type) == group[convIndex]:
 			ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
 		else:
 			ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
@@ -548,8 +394,7 @@ func gameEnd(win: bool):
 	var control = $EndGame
 	control.show()
 	control.z_index = get_child_count() - 1
-	#control.raise()
-	
+
 
 func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false

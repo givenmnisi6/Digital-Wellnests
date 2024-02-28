@@ -10,6 +10,7 @@ var ctrl1: Control
 var fq: bool 
 
 func _ready():
+	Music.increaseVolume()
 	fq = true
 	timerCount = 0
 	ctrl1 = $qPlay
