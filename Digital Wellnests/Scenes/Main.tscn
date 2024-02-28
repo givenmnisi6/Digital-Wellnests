@@ -2270,6 +2270,7 @@ Music: \"Jungle Jumpin'\" by Scott Elliott"
 autoplay = true
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
+volume_db = 12.0
 
 [node name="TransitionTimer" type="Timer" parent="."]
 
