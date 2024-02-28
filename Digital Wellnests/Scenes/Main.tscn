@@ -1,4 +1,4 @@
-[gd_scene load_steps=507 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=506 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="2_3icno"]
@@ -373,7 +373,6 @@
 [ext_resource type="Texture2D" uid="uid://dd82c82ciyrfw" path="res://Animations/Wolf1/Wolf0.0120.png" id="368_uk84c"]
 [ext_resource type="Texture2D" uid="uid://b8qsapis6xg8m" path="res://Images/Settings.png" id="369_6kui3"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="370_q2sss"]
-[ext_resource type="Texture2D" uid="uid://cnwa03gd3ab1v" path="res://Images/Intro.jpg" id="371_em6n3"]
 [ext_resource type="Texture2D" uid="uid://m5argv0q5nbo" path="res://Animations/Cat0/Cat0.0000.png" id="372_4b06e"]
 [ext_resource type="Texture2D" uid="uid://qun5h17dbf24" path="res://Images/QuizBG2.png" id="372_48jvv"]
 [ext_resource type="Texture2D" uid="uid://c0vxuiqb6rrhm" path="res://Images/Audio.png" id="373_38ewv"]
@@ -2183,20 +2182,6 @@ theme_override_fonts/normal_font = ExtResource("370_q2sss")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]Select a story[/center]"
-
-[node name="IntroRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 720.0
-offset_bottom = 480.0
-
-[node name="Intro" type="TextureRect" parent="IntroRect"]
-layout_mode = 0
-offset_right = 720.0
-offset_bottom = 480.0
-texture = ExtResource("371_em6n3")
-expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="SettingsPage" type="TextureRect" parent="."]
 visible = false

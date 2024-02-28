@@ -6,8 +6,6 @@ Digital Wellnests is an interactive game inspired by the book "Digital Wellnests
 
 ## To-Do List
 
-- [ ] **Fix Intro Scene**
-  - The intro scene currently has issues.
 - [ ] **Fix Safety Snails Game**
   - Address any issues and make improvements to enhance the Safety Snails game.
 

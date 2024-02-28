@@ -1,11 +1,12 @@
 extends Node2D
 
+#Load the music
 var intro = load("res://Audio/Effects/Jungle.wav")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass 
 
+#Play, stop and increase the Music functions
 func playMusic():
 	$AudioStreamPlayer.stream = intro
 	$AudioStreamPlayer.play()
@@ -14,4 +15,4 @@ func stopMusic():
 	$AudioStreamPlayer.volume_db = -32
 	
 func increaseVolume():
-	$AudioStreamPlayer.volume_db = 4
+	$AudioStreamPlayer.volume_db = 1

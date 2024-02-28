@@ -22,10 +22,6 @@ var positions = []
 
 func _ready():
 	name = ""
-	#Initial volume
-	#vol = 10
-	#$IntroRect.show()
-	#firstScreen = 0
 	speed = 0.4
 	iCount = 0
 	
@@ -212,78 +208,29 @@ func startBook():
 
 	get_node("Control").scale = Vector2(0.01, 0.01)
 	bookInstance.iStory = iStory
-#
-#	bookInstance.set("iStory", iStory)
 	add_child(bookInstance)
-#	tween.tween_property(bookInstance, "modulate", Color(1,1,1,0), 0.5)
-	#get_node("NameLabel").show()
-	#get_node("NameLabel").show()
 
 func startQuiz():
 	var tween = get_tree().create_tween()
 	var audioS = get_node("AudioStreamPlayer") as AudioStreamPlayer
 	tween.tween_property(audioS,"volume_db", (8*vol) -80, 1)
 	
-	#var quizInstance : TextureRect
-	
-	#var quiz_instance = Quiz.instance()
 	var quizInstance = Quiz.instantiate()
 	quizInstance.iStory = iStory
-	#quiz_instance.set("iStory", iStory)
 	add_child(quizInstance)
-	#tween.tween_property(quizInstance, "modulate", Color(1,1,1,0), 0.5)
-	#get_node("NameLabel").show()
 
 func startGame():
 	@warning_ignore("unused_variable")
 	var tween = get_tree().create_tween()
 	
-#	var gameInstance : TextureRect
-#
-#	gameInstance = Game.instance()
 	var gameInstance = Game.instantiate()
 	gameInstance.gameIndex = iStory
 	gameInstance.set("iStory", iStory)
 	add_child(gameInstance)
-	#tween.tween_property(gameInstance, "modulate", Color.RED, 0.5)
-	#get_node("NameLabel").show()
-	
+
 
 func returnToMain() -> void:
 	$Control.scale = Vector2(1, 1)
-
-#func _on_intro_timer_timeout():
-	#var intro = $IntroRect/Intro
-	#
-	#if firstScreen == 0:
-		#$IntroTimer.wait_time = 1
-		#$IntroTimer.start()
-		#
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(intro, "modulate",Color(1,1,1,0), 0.5)
-		#
-	#elif firstScreen == 1:
-		#$IntroTimer.wait_time = 3
-		#$IntroTimer.start()
-		#
-		#intro.texture = load("res://Images/NWU.png")
-		#var tween = get_tree().create_tween()
-		#tween.tween_property(intro, "modulate",Color(1,1,1,1), 1)
-		#
-	#elif firstScreen == 2:
-		#$IntroTimer.wait_time = 0.5
-		#$IntroTimer.start()
-		#
-		#var intro_rectS = get_node("IntroRect")
-		#var tween = get_tree().create_tween()
-		#
-		#tween.tween_property(intro_rectS, "modulate",Color(1,1,1,0), 0.5)
-		#
-	#else:
-		#$IntroTimer.stop()
-		#$IntroRect.queue_free()
-	#firstScreen += 1
-
 
 func _on_settings_button_down():
 	get_node("Effects").stream = load("res://Audio/Effects/click.wav")
