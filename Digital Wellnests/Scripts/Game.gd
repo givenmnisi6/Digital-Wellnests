@@ -329,7 +329,6 @@ func spawnEnvelope(type: int, lane: int):
 		var random = RandomNumberGenerator.new()
 		envInstance.rotation_degrees = random.randi_range(0, 89) - 45
 
-
 func updateScore(punt: bool):
 	if not gameOver:
 		$Hud/Score2.show()
@@ -395,8 +394,7 @@ func gameEnd(win: bool):
 	var control = $EndGame
 	control.show()
 	control.z_index = get_child_count() - 1
-	#control.raise()
-	
+
 
 func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false

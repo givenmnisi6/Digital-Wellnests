@@ -1,4 +1,4 @@
-[gd_scene load_steps=508 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=507 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="2_3icno"]
@@ -378,7 +378,6 @@
 [ext_resource type="Texture2D" uid="uid://qun5h17dbf24" path="res://Images/QuizBG2.png" id="372_48jvv"]
 [ext_resource type="Texture2D" uid="uid://c0vxuiqb6rrhm" path="res://Images/Audio.png" id="373_38ewv"]
 [ext_resource type="Texture2D" uid="uid://5xrdu432fvp8" path="res://Animations/Cat0/Cat0.0001.png" id="373_abv2c"]
-[ext_resource type="AudioStream" uid="uid://cv5g7x4o21fcb" path="res://Audio/Effects/Jungle.wav" id="374_gndrn"]
 [ext_resource type="Texture2D" uid="uid://k20bxtfphy45" path="res://Animations/Cat0/Cat0.0002.png" id="374_x4hek"]
 [ext_resource type="Texture2D" uid="uid://rpl7pb6qlaao" path="res://Animations/Cat0/Cat0.0003.png" id="375_55i2f"]
 [ext_resource type="Texture2D" uid="uid://ceswepr7l7wju" path="res://Animations/Cat0/Cat0.0004.png" id="376_hel2x"]
@@ -2283,7 +2282,6 @@ Background: valadzionak_volha
 Music: \"Jungle Jumpin'\" by Scott Elliott"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("374_gndrn")
 autoplay = true
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]

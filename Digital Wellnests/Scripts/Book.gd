@@ -11,6 +11,7 @@ var totCharCount: int
 var totCount: int
 
 func _ready():
+	Music.stopMusic()
 	grab_click_focus()
 	#print(iStory)
 	verseCount = 0

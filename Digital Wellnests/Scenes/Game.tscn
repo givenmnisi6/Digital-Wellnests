@@ -1,4 +1,4 @@
-[gd_scene load_steps=992 format=3 uid="uid://cugtttre47j1d"]
+[gd_scene load_steps=993 format=3 uid="uid://cugtttre47j1d"]
 
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="1_klf3e"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="2_4gpnb"]
@@ -979,6 +979,7 @@
 [ext_resource type="Texture2D" uid="uid://1ifmg4vjvk7w" path="res://Animations/Cat1/Cat1.0118.png" id="974_03fv2"]
 [ext_resource type="Texture2D" uid="uid://bmxtd3ymj413b" path="res://Animations/Cat1/Cat1.0119.png" id="975_0y8wb"]
 [ext_resource type="Texture2D" uid="uid://56q0dhnpopaa" path="res://Animations/Cat1/Cat1.0120.png" id="976_dh1ny"]
+[ext_resource type="AudioStream" uid="uid://cv5g7x4o21fcb" path="res://Audio/Effects/Jungle.wav" id="980_t6dhn"]
 
 [sub_resource type="Curve2D" id="Curve2D_kb7ug"]
 _data = {
@@ -4144,6 +4145,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_se7yk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_e8c2u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4i0ma")
 text = "Play Again"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("980_t6dhn")
 
 [connection signal="timeout" from="EnvelopeTimer" to="." method="_on_envelope_timer_timeout"]
 [connection signal="area_entered" from="EnvelopeStop" to="." method="_on_envelope_stop_area_entered"]
