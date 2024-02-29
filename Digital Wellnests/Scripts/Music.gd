@@ -16,3 +16,4 @@ func stopMusic():
 	
 func increaseVolume():
 	$AudioStreamPlayer.volume_db = 1
+
