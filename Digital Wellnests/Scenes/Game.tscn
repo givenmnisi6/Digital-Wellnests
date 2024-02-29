@@ -4,17 +4,17 @@
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="2_4gpnb"]
 [ext_resource type="Texture2D" uid="uid://c11v1s3jp1hat" path="res://Animations/Slak2/Slak1Animation2.0000.png" id="2_acfc5"]
 [ext_resource type="Texture2D" uid="uid://di0rv5r0ajr22" path="res://Animations/Slak2/Slak1Animation2.0001.png" id="3_k573c"]
-[ext_resource type="PackedScene" uid="uid://ci06a0bs5c7q8" path="res://Scenes/Snail/Conveyor.tscn" id="3_y5ogc"]
+[ext_resource type="PackedScene" uid="uid://ci06a0bs5c7q8" path="res://Scenes/Poems/Snail/Conveyor.tscn" id="3_y5ogc"]
 [ext_resource type="Texture2D" uid="uid://dxjf25xvtbtqr" path="res://Animations/Slak2/Slak1Animation2.0002.png" id="4_psva0"]
-[ext_resource type="PackedScene" uid="uid://4wkohyfjs3fn" path="res://Scenes/Snail/Envelope.tscn" id="4_tvbar"]
+[ext_resource type="PackedScene" uid="uid://4wkohyfjs3fn" path="res://Scenes/Poems/Snail/Envelope.tscn" id="4_tvbar"]
 [ext_resource type="Texture2D" uid="uid://cxdq8lruwp1wy" path="res://Animations/Slak2/Slak1Animation2.0003.png" id="5_6okpy"]
-[ext_resource type="PackedScene" uid="uid://celr1t2vxkewx" path="res://Scenes/Hippo/Target.tscn" id="5_71drt"]
+[ext_resource type="PackedScene" uid="uid://celr1t2vxkewx" path="res://Scenes/Poems/Hippo/Target.tscn" id="5_pnnr2"]
+[ext_resource type="PackedScene" uid="uid://drfcovfeg6hec" path="res://Scenes/Poems/Wolf/Tile.tscn" id="6_16q3m"]
 [ext_resource type="Texture2D" uid="uid://c27w2dcsup72a" path="res://Animations/Slak2/Slak1Animation2.0004.png" id="6_36w84"]
-[ext_resource type="PackedScene" uid="uid://drfcovfeg6hec" path="res://Scenes/Wolf/Tile.tscn" id="6_wweqw"]
-[ext_resource type="PackedScene" uid="uid://cln8y7rifqruh" path="res://Scenes/Cat/Activities.tscn" id="7_aiwu6"]
+[ext_resource type="PackedScene" uid="uid://cln8y7rifqruh" path="res://Scenes/Poems/Cat/Activities.tscn" id="7_25vkh"]
 [ext_resource type="Texture2D" uid="uid://cvo2snxjalmy1" path="res://Animations/Slak2/Slak1Animation2.0005.png" id="7_c24sm"]
 [ext_resource type="Texture2D" uid="uid://d3liy6bldeo1h" path="res://Animations/Slak2/Slak1Animation2.0006.png" id="8_4mbno"]
-[ext_resource type="PackedScene" uid="uid://h7xakbe2sx1l" path="res://Scenes/Cat/Cat.tscn" id="8_yf710"]
+[ext_resource type="PackedScene" uid="uid://h7xakbe2sx1l" path="res://Scenes/Poems/Cat/Cat.tscn" id="8_y7na4"]
 [ext_resource type="Texture2D" uid="uid://clx00h3srxq4g" path="res://Animations/Slak2/Slak1Animation2.0007.png" id="9_omf45"]
 [ext_resource type="Texture2D" uid="uid://dhr4673jywnqd" path="res://Animations/Slak2/Slak1Animation2.0008.png" id="10_0v3u3"]
 [ext_resource type="Texture2D" uid="uid://cylu6kfvn8wdr" path="res://Animations/Slak2/Slak1Animation2.0009.png" id="11_bys6r"]
@@ -3972,10 +3972,10 @@ expand_mode = 1
 script = ExtResource("2_4gpnb")
 Conveyor = ExtResource("3_y5ogc")
 Envelope = ExtResource("4_tvbar")
-Target = ExtResource("5_71drt")
-Tile = ExtResource("6_wweqw")
-Activities = ExtResource("7_aiwu6")
-Cat = ExtResource("8_yf710")
+Target = ExtResource("5_pnnr2")
+Tile = ExtResource("6_16q3m")
+Activities = ExtResource("7_25vkh")
+Cat = ExtResource("8_y7na4")
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]

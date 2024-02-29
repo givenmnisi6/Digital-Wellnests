@@ -2203,6 +2203,7 @@ offset_left = 158.478
 offset_top = 109.75
 offset_right = 679.478
 offset_bottom = 177.75
+max_value = 10.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SettingsPage"]
 layout_mode = 0
