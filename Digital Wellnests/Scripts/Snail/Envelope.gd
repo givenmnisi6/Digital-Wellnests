@@ -1,22 +1,25 @@
 extends Area2D
 
-@export var Speed: float = 0.9
-var midPos: float = 0
-var lane: int = 0
-var type: int = 0
+#
+@export var Speed: float = 0.9    # Speed of envelope
+var midPos: float = 0             # Mid position
+var lane: int = 0                 # Current lane of envelope
+var type: int = 0                 # Type of envelope
 
-var hold: bool
-var hit: bool
+var hold: bool                    # Whether the envelpe is being held
+var hit: bool                     # Whether the envelope has been hit
 var _screenSize: Vector2
 
 func _ready():
 	_screenSize = get_viewport().size
 	hit = false
 	$EnvelopeAnim.animation = "Wiggle"
-	print("Start")
+	#print("Start")
 	hold = false
 
 func _process(delta):
+	# Allows the user to move the envelope anyhow
+	# Else it moves on its own at a specific lane with displacement
 	var envAnim = $EnvelopeAnim
 	
 	if hold:
@@ -36,14 +39,16 @@ func _process(delta):
 			envAnim.stop()
 
 func _on_button_gui_input(event):
+	# This is for using the mouse to move the envelope
 	if event is InputEventMouseButton and InputEventScreenTouch and not hit:
 		if event.pressed:
-			print("Hold")
+			#print("Hold")
 			hold = true
 		else:
 			hold = false
 
 func _on_body_entered(body):
+	# The envelope will shrink when it enters the area
 	var envAnim = $EnvelopeAnim
 	hide()
 	emit_signal("Hit")
