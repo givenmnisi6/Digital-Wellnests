@@ -2,7 +2,7 @@
 
 ## Overview
 
-Digital Wellnests is an interactive game inspired by the book "Digital Wellnests: Let Us Play it Safe Nests!" (2016) by Fischer and Von Solms.
+Digital Wellnests is an interactive game inspired by the book "Digital Wellnests: Let us play in safe nests!" (2016) by Fischer and Von Solms.
 
 ## To-Do List
 
