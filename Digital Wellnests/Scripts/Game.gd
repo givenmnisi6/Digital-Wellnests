@@ -35,21 +35,21 @@ var prevObj
 
 
 func _ready():
-	#Playing the voices for each game
+	# Playing the voices for each game
 	$Effects.stream = ResourceLoader.load("res://Audio/Voice/GameEx" + str(gameIndex) + ".wav")
 	$Effects.play()
 	bpaused = false
-	#Loading the how to play instructions of each game
+
+	# Loading the how to play instructions of each game
 	$StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
 	grab_click_focus()
-	#randomize()
 
 func _on_play_button_button_down():
 	level = int($StartGame/HSlider.value)
-	#print(level)
 	$Hud/Score2.show()
 	$Pause.show()
-	#Remove the instructions
+
+	# Remove the instructions
 	$StartGame.scale = Vector2(0.01, 0.01)
 	startGame()
 
@@ -86,7 +86,7 @@ func startGame():
 			
 		unitSize = _screenSize.x / num
 
-		# Loop through the layout and create conveyers
+		# Loop through the layout and create conveyors
 		for i in range (items):
 			createConveyor(Vector2(unitSize * posCount + (unitSize * lay[i] / 2), _screenSize.y / 2 - 2), lay[i], i)
 			posCount += lay[i]
@@ -102,13 +102,13 @@ func startGame():
 		$BullyTimer.start()
 		prev = [[0, 0], [0, 0]]
 
-	#Wolf game
+	# Wolf, Hyena and Fox game
 	elif gameIndex == 2:
 		$Hud/Score2.hide()
 		var x: int = 3
 		var y: int = 2
 		
-		#Checks whether x is odd or is equals to y
+		# Checks whether x is odd or is equals to y
 		for i in range (1, (level + 1)/2):
 			if x % 2 == 1 or x == y:
 				x += 1
@@ -124,13 +124,14 @@ func startGame():
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
 		$Pause.hide()
+	# Cyber Cat game
 	elif gameIndex == 3:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 		$CatTimer.start()
 		$ActivitiesTimer.start()
 
 
-#Generate tiles 
+# Generate tiles 
 func spawnTiles(maxx: int, maxy:int):
 	var uneven: bool = false
 	var imageA: int = 2
@@ -141,7 +142,7 @@ func spawnTiles(maxx: int, maxy:int):
 	for i in range(numImages):
 		tiles.append([0,0])
 
-	#Generates random numbers and check for duplicates, and populates the tiles accordingly
+	# Generates random numbers and check for duplicates, and populates the tiles accordingly
 	for i in range(numImages):
 		var rnd
 		var fnd = false
@@ -230,7 +231,7 @@ func calcConveyor(conSize: int):
 	else:
 		colCount = 4
 
-	#Distribution of sizes of conveyor sections depending on the level
+	# Distribution of sizes of conveyor sections depending on the level
 	if level == 1 or level == 10:
 		lay = []
 		for i in range(conCount):
@@ -239,7 +240,7 @@ func calcConveyor(conSize: int):
 		lay = [2, 3, 2]
 		conCount = 3
 	else:
-	#Min and Max sizes of sections
+	# Min and Max sizes of sections
 		var minimum = 1
 		var maximum = 3
 		var k = 0
@@ -297,13 +298,13 @@ func createConveyor(pos: Vector2, size: int, i:int):
 
 	if i < group.size():
 		if group[i] == 0:
-			#grayish color
+			# grayish color
 			convInstance.modulate = Color(0.15, 0.15, 0.15, 1)
 		elif group[i] == 2:
-			#bluish color
+			# bluish color
 			convInstance.modulate = Color(0.05, 0.3, 0.8, 1)
 		elif group[i] == 3:
-			#greenish color
+			# greenish color
 			convInstance.modulate = Color(0.09, 0.62, 0.14, 1)
 	convInstance.play()
 

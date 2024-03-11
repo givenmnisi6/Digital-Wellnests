@@ -8,7 +8,5 @@ Digital Wellnests is an interactive game inspired by the book "Digital Wellnests
 
 - [ ] **Fix Safety Snails Game**
   - Address any issues and make improvements to enhance the Safety Snails game.
-     
-- [ ] **File Structure**
-  - Move the games into a new folder called 'Poems or Stories' to make the file structure readable
+
 
