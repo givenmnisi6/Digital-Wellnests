@@ -1,6 +1,5 @@
 extends Area2D
 
-#
 @export var Speed: float = 0.9    # Speed of envelope
 var midPos: float = 0             # Mid position
 var lane: int = 0                 # Current lane of envelope
