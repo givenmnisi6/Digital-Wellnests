@@ -210,17 +210,26 @@ func tileClick(obj):
 				gameEnd(true)
 		prevObj = null
 
-# Generates a conveyor layout for the game, assigning different columns
-func calcConveyor(conSize: int):
-	var prev: int = -1               # Initialize previous group number
-	var tmp: Array = []              # Temp array for conveyor sizes
-	var conCount: int = level        # Initialize number of conveyor belt objects
+func customShuffle(arr: Array) -> Array:
+	var n = arr.size()
+	for i in range(n - 1, 0, -1):
+		var j = randi() % (i + 1)
+		arr[i] = arr[i] ^ arr[j]
+		arr[j] = arr[i] ^ arr[j]
+		arr[i] = arr[i] ^ arr[j]
+	return arr
 
-	if conCount == 1:                # Ensure Conveyor count is atleast 2
-		conCount += 1
-	
-	var size = (conSize) / conCount  # Calculate size of each conveyor belt object
-	var random = RandomNumberGenerator.new()
+# Generates a conveyor layout for the game, assigning different columns
+func calcConveyor(conveyorSize: int):
+	var prev: int = -1               #Initialize previous group number
+	var tmp: Array [int] = []        #Temp array for conveyor sizes
+	var conCount = level             #Initialize number of conveyor belt objects
+
+	if conCount == 1:
+		conCount += 1                #Ensure there is at least one conveyor belt object
+
+	var size: float = (conveyorSize) / conCount           # Calculate size of each conveyor belt object
+	var random = RandomNumberGenerator.new()             
 	var containsAll: bool
 	
 	# Set the number of columns based on the current level
@@ -231,57 +240,104 @@ func calcConveyor(conSize: int):
 	else:
 		colCount = 4
 
-	# Distribution of sizes of conveyor sections depending on the level
-	if level == 1 or level == 10:
-		lay = []
-		for i in range(conCount):
-			lay.append(int(size))
-	elif level == 2:     # In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively, the column count will be 3
+	#Distribution of sizes of conveyor sections depending on the level
+	if level == 1:
+		lay = [2, 2]
+		group = [0,1]
+		group = customShuffle(group)
+		if group[0] == group[1]:
+			group[1] = (group[1] + 1) % colCount
+		#for i in range(conCount):
+			#lay.append(int(size))
+	elif level == 2: 	#In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively, the column count will be 3
 		lay = [2, 3, 2]
-		conCount = 3
+		group = [1, 0, 1]
+		group = customShuffle(group)
 	else:
-	# Min and Max sizes of sections
+		# Min and Max sizes for determining the sizes of conveyor sections
 		var minimum = 1
 		var maximum = 3
+		# For keeping track of the index when populating the tmp array	
 		var k = 0
+		# Determine the total number of conveyor sections
 		conCount = 0
-		var tot = 0
-		
-		# Generate the sizes of the conveyor belt objects
-		while tot < conSize:
-			if (conSize - tot < 3):
-				tmp.append(conSize - tot)
-				tot = conSize
+		# Total size of conveyor sections generated
+		var tot = 0 
+
+		# Generate the sizes of the conveyor belt objects with a size that is in between 1 and 3.
+		# While the total size is less than the conveyor size
+		while tot < conveyorSize:
+		# Check whether the remaining size is less than 3, if so set the remaining size and add it to the temp array.
+			if (conveyorSize - tot < 3):
+				tmp.append(conveyorSize - tot)
+				tot = conveyorSize
 			else:
+			# if the size is 3 or more, excecute the following
+			# Generate a number between 1 and 3, if the number is 3, decrement max by 1 and update the temp array.
 				var rnd = random.randi_range(minimum, maximum)
 				if rnd == 3:
 					maximum -= 1
 				tmp.append(rnd)
 				tot += rnd
+			# Increment the counters for index and conveyor sections to keep track of the generated conveyors
 			k += 1
 			conCount += 1
-	
-		#lay = []
-		lay.resize(conCount)
+
+		# Create a new array called 'lay'
+		lay = []
+		# Fill in the temporary array with the conveyorCount
 		for i in range(conCount):
 			lay.append(tmp[i])
-			
+		print("Conveyor Count: ", conCount)
+		print("Generated Conveyor Sizes:", lay)
+
+		var conveyorIndices: Array = []
+		for i in range(conCount):
+			conveyorIndices.append(i + 1)
+
 		# Calculate conveyor group
-		group = [conCount]
+		# Initialises a new array with a size of conveyor count
+		#var group: Array[int] = []
+		#while true:
+			#containsAll  = true
+			#for j in range(colCount):
+				#if j not in group:
+					#containsAll = false
+			#if containsAll:
+				#break
+			#group = []
+			#for i in range(conCount):
+				#var rnd: int
+				#while true:
+					#rnd = random.randi() % colCount
+					#if rnd != prev:
+						#break
+				#group.append(rnd)
+					
 		while (!containsAll):
 			containsAll = true
 			for i in range(conCount):
 				var rnd: int
 				rnd = randi() % colCount
-				while rnd == prev:
+				#while rnd == prev:
+				while true:
 					rnd = randi() % colCount
+					if rnd != prev:
+						break
 				prev = rnd
+				#group[i] = rnd
 				group.append(rnd)
-				
+			var uniqueC ={}
+			for colorIndex in group:
+				uniqueC[colorIndex] = true
 			for j in range(colCount):
-				if !group.find(j) != -1:
-				#if !group.has(j):
+				#if group.find(j) == -1:
+				if not (j in uniqueC):
 					containsAll = false
+					break
+					
+		for i in range(conCount):
+			print("Conveyor ", conveyorIndices[i], ": Group ", group[i])
 
 func createConveyor(pos: Vector2, size: int, i:int):
 	var convInstance = Conveyor.instantiate()
@@ -298,13 +354,16 @@ func createConveyor(pos: Vector2, size: int, i:int):
 
 	if i < group.size():
 		if group[i] == 0:
-			# grayish color
+			# Pinkish
+			convInstance.modulate = Color(1.0, 1.0, 1.0, 1) 
+			# Greyish
+		elif group[i] == 1:
 			convInstance.modulate = Color(0.15, 0.15, 0.15, 1)
+			# Blueish
 		elif group[i] == 2:
-			# bluish color
 			convInstance.modulate = Color(0.05, 0.3, 0.8, 1)
+			# Greenish
 		elif group[i] == 3:
-			# greenish color
 			convInstance.modulate = Color(0.09, 0.62, 0.14, 1)
 	convInstance.play()
 
@@ -320,7 +379,13 @@ func spawnEnvelope(type: int, lane: int):
 		envInstance.set("lane", lane)
 		envInstance.set("type", type)
 		
+		# Scale the envelope in level 1
+		if level == 1:
+			envInstance.scale *= Vector2(0.7, 0.7)
+
 		if type == 0:
+			envInstance.modulate = Color(1.0, 1.0, 1.0, 1) 
+		elif type == 1:
 			envInstance.modulate = Color(0.15, 0.15, 0.15, 1)
 		elif type == 2:
 			envInstance.modulate = Color(0.05, 0.3, 0.8, 1)
@@ -349,11 +414,15 @@ func updateScore(punt: bool):
 
 func _on_envelope_stop_area_entered(area):
 	if gameIndex == 0:
+		# Total of conveyor sizes, it is initialised with the size of the first conveyor
 		var tot = lay[0]
-		var temp = area.get("lane")
-		var convIndex = 0
+		# Holds the temporary lane of the current envelope 
+		var temp: int = area.get("lane")
+		# Keeps track of the conveyor being checked at the moment
+		var convIndex: int = 0
+		# When the temp position exceeds the total of conveyor sizes it will be incremented
 		while temp >= tot:
-			tot += lay[convIndex]
+			tot += lay[convIndex+1]
 			convIndex += 1
 		
 		var ap = $Effects
@@ -367,6 +436,8 @@ func _on_envelope_stop_area_entered(area):
 
 		area.get_node("EnvelopeAnim").animation = "Shrink"
 		area.get_node("EnvelopeAnim").play()
+		print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
+
 
 func gameEnd(win: bool):
 	var ap = $Effects
