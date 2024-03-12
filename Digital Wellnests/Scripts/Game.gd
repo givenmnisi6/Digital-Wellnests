@@ -221,9 +221,9 @@ func customShuffle(arr: Array) -> Array:
 
 # Generates a conveyor layout for the game, assigning different columns
 func calcConveyor(conveyorSize: int):
-	var prev: int = -1               #Initialize previous group number
-	var tmp: Array [int] = []        #Temp array for conveyor sizes
-	var conCount = level             #Initialize number of conveyor belt objects
+	var prev: int = -1               # Initialize previous group number
+	var tmp: Array [int] = []        # Temp array for conveyor sizes
+	var conCount = level             # Initialize number of conveyor belt objects
 
 	if conCount == 1:
 		conCount += 1                #Ensure there is at least one conveyor belt object
