@@ -3,4 +3,5 @@
 ## To-Do List
 
 - [ ] **Fix Safety Snails Game**
-  - Address any issues and make improvements to enhance the Safety Snails game.
+  - Make sure that all the colors are present
+  - The envelope sprite must pause when the pause button is clicked
