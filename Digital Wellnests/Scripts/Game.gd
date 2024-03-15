@@ -297,42 +297,26 @@ func calcConveyor(conveyorSize: int):
 
 		# Calculate conveyor group
 		# Initialises a new array with a size of conveyor count
-		#var group: Array[int] = []
-		#while true:
-			#containsAll  = true
-			#for j in range(colCount):
-				#if j not in group:
-					#containsAll = false
-			#if containsAll:
-				#break
-			#group = []
-			#for i in range(conCount):
-				#var rnd: int
-				#while true:
-					#rnd = random.randi() % colCount
-					#if rnd != prev:
-						#break
-				#group.append(rnd)
-					
 		while (!containsAll):
 			containsAll = true
+			group.clear()
+			var uniqueColors: Array = []  # Array to store unique colors
+			
 			for i in range(conCount):
 				var rnd: int
 				rnd = randi() % colCount
-				#while rnd == prev:
-				while true:
+				while rnd == prev:
 					rnd = randi() % colCount
-					if rnd != prev:
-						break
 				prev = rnd
-				#group[i] = rnd
 				group.append(rnd)
-			var uniqueC ={}
-			for colorIndex in group:
-				uniqueC[colorIndex] = true
-			for j in range(colCount):
-				#if group.find(j) == -1:
-				if not (j in uniqueC):
+			
+			for colorIndex in range(colCount):
+				var foundColor = false
+				for j in range(conCount):
+					if group[j] == colorIndex:
+						foundColor = true
+						break
+				if not foundColor:
 					containsAll = false
 					break
 					
