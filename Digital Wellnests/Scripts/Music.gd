@@ -1,12 +1,12 @@
 extends Node2D
 
-#Load the music
+# Load the music
 var intro = load("res://Audio/Effects/Jungle.wav")
 
 func _ready():
 	pass 
 
-#Play, stop and increase the Music functions
+# Play, stop and increase the Music functions
 func playMusic():
 	$AudioStreamPlayer.stream = intro
 	$AudioStreamPlayer.play()
