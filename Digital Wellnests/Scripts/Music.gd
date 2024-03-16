@@ -12,7 +12,7 @@ func playMusic():
 	$AudioStreamPlayer.play()
 
 func stopMusic():
-	$AudioStreamPlayer.volume_db = -32
+	$AudioStreamPlayer.volume_db = -40
 	
 func increaseVolume():
 	$AudioStreamPlayer.volume_db = 1
