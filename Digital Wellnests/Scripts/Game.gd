@@ -541,23 +541,21 @@ func calcHit(bully: bool):
 	updateScore(bully)
 
 
-func pauseG():
+func pauseGame():
 	bpaused = true
-	var ig = get_node("inGame") 
+	var ig = $inGame 
 
 	if gameIndex == 0:
 		$EnvelopeTimer.paused = true
-
 		for env in ig.get_children():
-			if env == Envelope:
-				env.speed = 0
+			if env.name == "Envelope":  # Check if the child node is of type Envelope
+				env.Speed = 0.0
 				env.hit = true
 			elif env == AnimatedSprite2D:
 				env.stop()
 
 	elif gameIndex == 1:
 		get_node("BullyTimer").paused = true
-
 		for tar in ig.get_children():
 			if tar == Target:
 				tar.get_node("TargetTimer").paused = true
@@ -566,25 +564,26 @@ func pauseG():
 		$ActivitiesTimer.paused = true
 		GD.isNotAllowed = false
 		for act in ig.get_children():
-			if act == Activities:
+			if act.name == "Activities":
 				act.get_node("ActivitiesTimer").paused = true
 
-func playG():
+func playGame():
 	bpaused = false
-	var ig = get_node("inGame") as Control
+	var ig = $inGame 
 
 	if gameIndex == 0:
-		get_node("EnvelopeTimer").paused = false
+		$EnvelopeTimer.paused = true
 
 		for env in ig.get_children():
-			if env == Envelope:
-				env.speed = 1.1 * speed
+			if env.name == "Envelope": 
+				env.Speed = 1.1 * speed
 				env.hit = false
 			elif env is AnimatedSprite2D:
 				env.play()
+		$EnvelopeTimer.paused = false
 
 	elif gameIndex == 1:
-		get_node("BullyTimer").paused = false
+		$BullyTimer.paused = false
 
 		for tar in ig.get_children():
 			if tar == Target:
@@ -600,16 +599,15 @@ func playG():
 
 func _on_pause_button_down():
 	if bpaused:
-		playG()
+		playGame()
 	else:
-		pauseG()
-
+		pauseGame()
 
 func _on_pause_pressed():
 	if bpaused:
-		playG()
+		playGame()
 	else:
-		pauseG()
+		pauseGame()
 
 
 func _on_activities_timer_timeout():
