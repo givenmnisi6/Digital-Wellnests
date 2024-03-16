@@ -269,7 +269,7 @@ func _on_settings_button_down():
 func _on_h_slider_value_changed(volu: float):
 	vol = volu
 	var ans = -80 * pow(0.646, vol) + 1
-	print("vol: " + str(ans))
+	#print("vol: " + str(ans))
 	$AudioStreamPlayer.volume_db = ans
 	$Effects.volume_db = ans
 	$Effects.stream = load("res://Audio/Effects/aRight2.wav")
