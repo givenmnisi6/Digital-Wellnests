@@ -13,7 +13,6 @@ var totCount: int
 func _ready():
 	Music.stopMusic()
 	grab_click_focus()
-	#print(iStory)
 	verseCount = 0
 	charCount = 0
 	totCount = 0
@@ -54,7 +53,7 @@ func storyStart():
 		audioPlayer.play()
 
 	#Frame that is displayed
-	get_node("PageTurn").frame = 48 
+	$PageTurn.frame = 48 
 
 	#Load Story
 	loadStory(1)
@@ -90,7 +89,7 @@ func _input(event: InputEvent):
 				get_parent().get_node("Effects").stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
 				get_parent().get_node("Effects").play()
 
-				var pageTurn = get_node("PageTurn")
+				var pageTurn = $PageTurn
 				pageTurn.play()
 				
 				#Start the page turn from zero
@@ -131,15 +130,9 @@ func _on_word_timer_timeout():
 		pageLock = false
 		charCount += 1
 	$Text.visible_characters = charCount
-	
-#	print("charCount:", charCount)
-#	#print("pageLock:", pageLock)
-#	print("Visible Characters:", $Text.visible_characters)
-#	print("Current Character:", text[charCount])
 
 func _on_page_turn_animation_finished():
 	pageLock = false
-
 
 func _on_ready():
 	var anim = $Animation
