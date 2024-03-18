@@ -9,7 +9,7 @@ var firstScreen: int = 0
 # This script is used as the intro scene
 func _ready():
 	# Play the music using the Music scene
-	Music.playMusic() 
+	#Music.playMusic() 
 
 	# Show the picture of the game
 	$IntroRect.show()
