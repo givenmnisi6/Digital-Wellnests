@@ -4,17 +4,16 @@ extends Node2D
 var intro = load("res://Audio/Effects/Jungle.wav")
 
 func _ready():
-	pass 
-
-# Play the music
-func playMusic():
 	$AudioStreamPlayer.stream = intro
+	$AudioStreamPlayer.volume_db = 0
 	$AudioStreamPlayer.play()
+	print("Initial volume: ", $AudioStreamPlayer.volume_db)
 
+# Increase the volume of the music
+func increaseVolume():
+	$AudioStreamPlayer.volume_db = 0
+	
 # Stop the music
 func stopMusic():
 	$AudioStreamPlayer.volume_db = -40
-	
-# Increase the volume of the music
-func increaseVolume():
-	$AudioStreamPlayer.volume_db = 1
+	print("Stop Volume: ", $AudioStreamPlayer.volume_db)

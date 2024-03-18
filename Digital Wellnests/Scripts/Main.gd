@@ -231,8 +231,8 @@ func _on_c_button_pressed():
 
 func startBook():
 	var tween = get_tree().create_tween()
-	var audioS = $AudioStreamPlayer
-	tween.tween_property(audioS,"volume", -30, 1)
+	#var audioS = $AudioStreamPlayer
+	#tween.tween_property(audioS,"volume", -30, 1)
 
 	var bookInstance = Book.instantiate() 
 	$Control.scale = Vector2(0.01, 0.01)
@@ -242,8 +242,8 @@ func startBook():
 
 func startQuiz():
 	var tween = get_tree().create_tween()
-	var audioS = $AudioStreamPlayer
-	tween.tween_property(audioS,"volume_db", (8*vol) -80, 1)
+	#var audioS = $AudioStreamPlayer
+	#tween.tween_property(audioS,"volume_db", (8*vol) -80, 1)
 	
 	var quizInstance = Quiz.instantiate()
 	quizInstance.iStory = iStory
@@ -267,11 +267,16 @@ func _on_settings_button_down():
 	$SettingsPage.show()
 
 func _on_h_slider_value_changed(volu: float):
+	if vol <= 5:
+		Music.increaseVolume()
+	else:
+		Music.stopMusic()
+
 	vol = volu
 	var ans = -80 * pow(0.646, vol) + 1
 	#print("vol: " + str(ans))
-	$AudioStreamPlayer.volume_db = ans
-	$Effects.volume_db = ans
+	#$AudioStreamPlayer.volume_db = ans
+	#$Effects.volume_db = ans
 	$Effects.stream = load("res://Audio/Effects/aRight2.wav")
 	$Effects.play()
 
