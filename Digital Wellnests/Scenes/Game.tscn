@@ -3938,31 +3938,103 @@ animations = [{
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8kia"]
-bg_color = Color(0.00392157, 0.196078, 0.12549, 1)
+bg_color = Color(0.00784314, 0.282353, 0.188235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.00392157, 0.196078, 0.12549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8hw3"]
-bg_color = Color(0.00392157, 0.235294, 0.12549, 1)
+bg_color = Color(0.00784314, 0.313726, 0.211765, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.00392157, 0.196078, 0.12549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wukaq"]
 bg_color = Color(0.00392157, 0.235294, 0.12549, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wf2sm"]
-bg_color = Color(0.305882, 0, 0.305882, 1)
+bg_color = Color(0.435294, 0, 0.435294, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.34902, 0, 0.34902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2kpt"]
-bg_color = Color(0.396078, 0, 0.396078, 1)
+bg_color = Color(0.490196, 0, 0.490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.34902, 0, 0.34902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3toob"]
-bg_color = Color(0.396078, 0, 0.396078, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsus5"]
+bg_color = Color(0.411765, 0, 0.411765, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.317647, 0, 0.317647, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_se7yk"]
-bg_color = Color(0.290196, 0.290196, 0.0235294, 1)
+bg_color = Color(0.345098, 0.345098, 0.0313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.294118, 0.294118, 0.0235294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8c2u"]
-bg_color = Color(0.345098, 0.345098, 0.0313726, 1)
+bg_color = Color(0.384314, 0.384314, 0.0392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.294118, 0.294118, 0.0235294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i0ma"]
-bg_color = Color(0.345098, 0.345098, 0.0313726, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3t4hr"]
+bg_color = Color(0.321569, 0.321569, 0.027451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.266667, 0.266667, 0.0196078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Game" type="TextureRect"]
 offset_right = 720.0
@@ -4063,12 +4135,12 @@ text = "Level 1"
 
 [node name="playButton" type="Button" parent="StartGame"]
 modulate = Color(0, 1, 0, 1)
-offset_left = 472.0
-offset_top = 404.0
-offset_right = 710.0
-offset_bottom = 471.0
+offset_left = 471.0
+offset_top = 387.0
+offset_right = 709.0
+offset_bottom = 467.0
 theme_override_fonts/font = ExtResource("728_7gdf6")
-theme_override_font_sizes/font_size = 55
+theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_d8kia")
 theme_override_styles/hover = SubResource("StyleBoxFlat_v8hw3")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wukaq")
@@ -4126,10 +4198,10 @@ offset_top = 370.0
 offset_right = 330.0
 offset_bottom = 470.0
 theme_override_fonts/font = ExtResource("728_7gdf6")
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_wf2sm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_f2kpt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_3toob")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nsus5")
 text = "Menu"
 
 [node name="bLevel" type="Button" parent="EndGame"]
@@ -4140,10 +4212,10 @@ offset_top = 370.0
 offset_right = 690.0
 offset_bottom = 470.0
 theme_override_fonts/font = ExtResource("728_7gdf6")
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_se7yk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_e8c2u")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_4i0ma")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3t4hr")
 text = "Play Again"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
