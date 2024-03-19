@@ -1,19 +1,26 @@
 extends Node2D
 
-# Load the music
-var intro = load("res://Audio/Effects/Jungle.wav")
 
 func _ready():
+	var intro = load("res://Audio/Effects/Jungle.wav")
 	$AudioStreamPlayer.stream = intro
-	$AudioStreamPlayer.volume_db = 0
 	$AudioStreamPlayer.play()
-	print("Initial volume: ", $AudioStreamPlayer.volume_db)
 
 # Increase the volume of the music
-func increaseVolume():
+func playMusic():
 	$AudioStreamPlayer.volume_db = 0
 	
 # Stop the music
 func stopMusic():
 	$AudioStreamPlayer.volume_db = -40
-	print("Stop Volume: ", $AudioStreamPlayer.volume_db)
+
+func clickSfx():
+	var click = load("res://Audio/Effects/click.wav")
+	$SoundEffects.stream = click
+	$SoundEffects.play()
+
+func valueChangedSfx():
+	var changed = load("res://Audio/Effects/aRight2.wav")
+	$SoundEffects.stream = changed
+	$SoundEffects.play()
+

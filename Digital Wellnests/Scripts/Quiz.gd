@@ -10,7 +10,6 @@ var ctrl1: Control
 var fq: bool 
 
 func _ready():
-	Music.increaseVolume()
 	fq = true
 	timerCount = 0
 	ctrl1 = $qPlay
@@ -225,6 +224,8 @@ func _on_safety_timer_timeout():
 
 func _on_continue_button_down():
 	get_parent().call("startGame")
+	Music.clickSfx()
 
 func _on_try_again_button_down():
 	get_parent().call("startQuiz")
+	Music.clickSfx()

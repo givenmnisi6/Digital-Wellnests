@@ -6,3 +6,8 @@
 script = ExtResource("1_3vaqt")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="SoundEffects" type="AudioStreamPlayer" parent="."]
+volume_db = 20.0
+bus = &"Sfx"
