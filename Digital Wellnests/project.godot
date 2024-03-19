@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/Intro.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Scenes/Basic/default_bus_layout.tres"
+
 [autoload]
 
 GD="*res://Scripts/Cat/CatVariables.gd"

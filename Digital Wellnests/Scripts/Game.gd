@@ -48,7 +48,7 @@ func _on_play_button_button_down():
 	level = int($StartGame/HSlider.value)
 	$Hud/Score2.show()
 	$Pause.show()
-
+	Music.clickSfx()
 	# Remove the instructions
 	$StartGame.scale = Vector2(0.01, 0.01)
 	startGame()
@@ -455,41 +455,27 @@ func gameEnd(win: bool):
 func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
-
+	Music.clickSfx()
+	
 	get_parent().call("startGame")
 	queue_free()
 
 func _on_b_menu_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
+	Music.clickSfx()
 
-	#get_parent().call("returnToMain")
 	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
-	#var mainInstance = preload("res://Scenes/Main.tscn").instantiate()
-	#var mainInstance = Main.instantiate() 
-	#get_tree().root.add_child(mainInstance)
 	queue_free()
-
 
 func _on_h_slider_value_changed(value):
 	$StartGame/LevelIndicator.text = "Level " + str(value)
 
 func _on_envelope_timer_timeout():
-	thread = Thread.new()
-	#thread.start(_thread_function)
 	var random = RandomNumberGenerator.new()
 	var tp = random.randi_range(0, colCount - 1)
 	var ln = random.randi() % ((level + 1) / 2 + 5)
 	spawnEnvelope(tp, ln)
-	#thread.start(_thread_function.bind("dummy"))
-
-	
-#func _thread_function(dummy):
-#	var random = RandomNumberGenerator.new()
-#	var tp = random.randi() % colCount
-#	var ln = random.randi() % ((level + 1) / 2 + 5)
-#	spawnEnvelope(tp, ln)
-
 
 func _on_bully_timer_timeout():
 	var targetInstance = Target.instantiate()
@@ -507,7 +493,6 @@ func _on_bully_timer_timeout():
 	var x: int
 	var y: int
 	var uni: bool
-	#uni = false
 	
 	while true:
 		uni = true
@@ -539,7 +524,6 @@ func _on_bully_timer_timeout():
 
 func calcHit(bully: bool):
 	updateScore(bully)
-
 
 func pauseGame():
 	bpaused = true
@@ -618,7 +602,6 @@ func _on_activities_timer_timeout():
 	var direction = PI / 2
 	actInstance.position = actLocation.position
 
-	#var velocity = Vector2(randf_range(100.0, 250.0) + (level * 20.0), 0.0)
 	var speed = randf_range(50, 150.0)
 
 	if level <= 3:
@@ -640,7 +623,6 @@ func _on_activities_timer_timeout():
 	else:
 		actInstance.set("coin", true)
 		actInstance.get_node("ActivitiesAnim").animation = "Coin"
-
 
 func calculateHit(coin: bool):
 	updateScore(coin)

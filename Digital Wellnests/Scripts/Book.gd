@@ -11,7 +11,6 @@ var totCharCount: int
 var totCount: int
 
 func _ready():
-	Music.stopMusic()
 	grab_click_focus()
 	verseCount = 0
 	charCount = 0
