@@ -1,4 +1,4 @@
-[gd_scene load_steps=506 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=507 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="2_3icno"]
@@ -496,6 +496,7 @@
 [ext_resource type="Texture2D" uid="uid://muxrd3qyxhs7" path="res://Animations/Cat0/Cat0.0118.png" id="490_yue7m"]
 [ext_resource type="Texture2D" uid="uid://dx15gvc3oc157" path="res://Animations/Cat0/Cat0.0119.png" id="491_mihfm"]
 [ext_resource type="Texture2D" uid="uid://cqnh0xc037oid" path="res://Animations/Cat0/Cat0.0120.png" id="492_bnt6y"]
+[ext_resource type="PackedScene" uid="uid://btcamyy2f7y3v" path="res://Scenes/Basic/HSlider.tscn" id="496_7wbil"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u01sg"]
 animations = [{
@@ -1994,7 +1995,13 @@ animations = [{
 size = Vector2(487.801, 248.75)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_040ov"]
-bg_color = Color(0.352941, 0, 0.27451, 1)
+bg_color = Color(0.419608, 0, 0.258824, 1)
+border_width_bottom = 15
+border_color = Color(0.407843, 0, 0.196078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="ColorRect" type="ColorRect"]
 offset_right = 720.0
@@ -2197,13 +2204,65 @@ offset_top = 11.0
 offset_right = 704.0
 offset_bottom = 469.0
 
-[node name="HSlider" type="HSlider" parent="SettingsPage"]
+[node name="MasterSlider" parent="SettingsPage/ColorRect" instance=ExtResource("496_7wbil")]
 layout_mode = 0
-offset_left = 158.478
-offset_top = 109.75
-offset_right = 679.478
-offset_bottom = 177.75
-max_value = 10.0
+offset_left = 139.0
+offset_top = 108.0
+offset_right = 509.0
+offset_bottom = 124.0
+busName = "Master"
+
+[node name="mRichTextLabel" type="RichTextLabel" parent="SettingsPage/ColorRect/MasterSlider"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -23.0
+offset_right = 132.0
+offset_bottom = 10.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("370_q2sss")
+theme_override_font_sizes/normal_font_size = 25
+text = "Master Volume"
+
+[node name="MusicSlider" parent="SettingsPage/ColorRect" instance=ExtResource("496_7wbil")]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 145.0
+offset_right = 509.0
+offset_bottom = 161.0
+busName = "Music"
+
+[node name="musicRichTextLabel" type="RichTextLabel" parent="SettingsPage/ColorRect/MusicSlider"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -23.0
+offset_right = 127.0
+offset_bottom = 10.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("370_q2sss")
+theme_override_font_sizes/normal_font_size = 25
+text = "Music Volume"
+
+[node name="SfxSlider" parent="SettingsPage/ColorRect" instance=ExtResource("496_7wbil")]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 182.0
+offset_right = 509.0
+offset_bottom = 198.0
+busName = "Sfx"
+
+[node name="sfxRichTextLabel" type="RichTextLabel" parent="SettingsPage/ColorRect/SfxSlider"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -23.0
+offset_right = 191.0
+offset_bottom = 10.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("370_q2sss")
+theme_override_font_sizes/normal_font_size = 25
+text = "Sound Effects Volume"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SettingsPage"]
 layout_mode = 0
@@ -2232,35 +2291,35 @@ text = "Back"
 
 [node name="TextureRect" type="TextureRect" parent="SettingsPage"]
 layout_mode = 0
-offset_left = 53.87
-offset_top = 99.011
-offset_right = 139.87
-offset_bottom = 186.011
+offset_left = 37.0
+offset_top = 99.0
+offset_right = 144.0
+offset_bottom = 207.0
 texture = ExtResource("373_38ewv")
 expand_mode = 1
 
 [node name="AckTitle" type="RichTextLabel" parent="SettingsPage"]
 layout_mode = 0
-offset_left = 46.632
-offset_top = 179.681
-offset_right = 357.632
-offset_bottom = 229.681
+offset_left = 35.0
+offset_top = 236.0
+offset_right = 346.0
+offset_bottom = 286.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 35
 text = "Acknowledgements:"
 
 [node name="Ack" type="RichTextLabel" parent="SettingsPage"]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 243.346
-offset_right = 510.0
-offset_bottom = 452.346
+offset_left = 39.0
+offset_top = 276.0
+offset_right = 475.0
+offset_bottom = 458.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
+theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 25
 text = "Story: Digital wellnests - Rachel Fischer & Sune von Solms
 
 Background: valadzionak_volha
@@ -2292,6 +2351,6 @@ metadata/_edit_lock_ = true
 [connection signal="mouse_entered" from="Control/Settings" to="." method="_on_settings_mouse_entered"]
 [connection signal="mouse_exited" from="Control/Settings" to="." method="_on_settings_mouse_exited"]
 [connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
-[connection signal="value_changed" from="SettingsPage/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="drag_started" from="SettingsPage/ColorRect/SfxSlider" to="." method="_on_sfx_slider_drag_started"]
 [connection signal="button_down" from="SettingsPage/Back" to="." method="_on_back_button_down"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
