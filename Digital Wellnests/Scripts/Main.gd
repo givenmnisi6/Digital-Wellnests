@@ -187,10 +187,9 @@ func _on_arrow_left_gui_input(event):
 func _on_s_button_pressed():
 	# Check if iCount is 0
 	if iCount == 0:
-		# Load and play the click sound effect
-		$Effects.stream = load("res://Audio/Effects/click.wav")
-		$Effects.play()
-		
+		# Play the click sound effect
+		Music.clickSfx()
+
 		# Set iStory to 0 and start the book
 		iStory = 0
 		startBook()
@@ -200,9 +199,8 @@ func _on_h_button_pressed():
 	# Check if iCount is 1
 	if iCount == 1:
 		# Load and play the click sound effect
-		$Effects.stream = load("res://Audio/Effects/click.wav")
-		$Effects.play()
-		
+		Music.clickSfx()
+
 		# Set iStory to 1 and start the book
 		iStory = 1
 		startBook()
@@ -210,9 +208,8 @@ func _on_h_button_pressed():
 func _on_w_button_pressed():
 	# Check if iCount is 2
 	if iCount == 2:
-		# Load and play the click sound effect
-		$Effects.stream = load("res://Audio/Effects/click.wav")
-		$Effects.play()
+		# Play the click sound effect
+		Music.clickSfx()
 
 		# Set iStory to 2 and start the book
 		iStory = 2
@@ -221,9 +218,8 @@ func _on_w_button_pressed():
 func _on_c_button_pressed():
 	# Check if iCount is 3
 	if iCount == 3:
-		# Load and play the click sound effect
-		$Effects.stream = load("res://Audio/Effects/click.wav")
-		$Effects.play()
+		# Play the click sound effect
+		Music.clickSfx()
 
 		# Set iStory to 2 and start the book
 		iStory = 3
@@ -231,21 +227,20 @@ func _on_c_button_pressed():
 
 func startBook():
 	var tween = get_tree().create_tween()
-	#var audioS = $AudioStreamPlayer
-	#tween.tween_property(audioS,"volume", -30, 1)
 
 	var bookInstance = Book.instantiate() 
 	$Control.scale = Vector2(0.01, 0.01)
-
+	Music.stopMusic()
+	
 	bookInstance.iStory = iStory
 	add_child(bookInstance)
 
 func startQuiz():
 	var tween = get_tree().create_tween()
-	#var audioS = $AudioStreamPlayer
-	#tween.tween_property(audioS,"volume_db", (8*vol) -80, 1)
-	
+
 	var quizInstance = Quiz.instantiate()
+	
+	Music.playMusic()
 	quizInstance.iStory = iStory
 	add_child(quizInstance)
 
@@ -262,23 +257,8 @@ func returnToMain() -> void:
 	$Control.scale = Vector2(1, 1)
 
 func _on_settings_button_down():
-	$Effects.stream = load("res://Audio/Effects/click.wav")
-	$Effects.play()
+	Music.clickSfx()
 	$SettingsPage.show()
-
-func _on_h_slider_value_changed(volu: float):
-	if vol <= 5:
-		Music.increaseVolume()
-	else:
-		Music.stopMusic()
-
-	vol = volu
-	var ans = -80 * pow(0.646, vol) + 1
-	#print("vol: " + str(ans))
-	#$AudioStreamPlayer.volume_db = ans
-	#$Effects.volume_db = ans
-	$Effects.stream = load("res://Audio/Effects/aRight2.wav")
-	$Effects.play()
 
 func _on_audio_stream_player_finished():
 	$AudioStreamPlayer.play()
@@ -290,6 +270,9 @@ func _on_settings_mouse_exited():
 	settings.scale = Vector2(1, 1)
 
 func _on_back_button_down():
-	$Effects.stream = load("res://Audio/Effects/click.wav")
-	$Effects.play()
+	Music.clickSfx()
 	$SettingsPage.hide()
+
+
+func _on_sfx_slider_drag_started():
+	Music.valueChangedSfx()
