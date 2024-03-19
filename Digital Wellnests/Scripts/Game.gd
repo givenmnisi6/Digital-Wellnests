@@ -441,6 +441,7 @@ func gameEnd(win: bool):
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
+	$Pause.hide()
 	ap.play()
 	
 	$Hud/EndAnim.visible = true
