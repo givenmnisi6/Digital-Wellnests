@@ -7,5 +7,5 @@
   - Elephant and his Shoe
   - Rabbit with the tablet (Maybe)
 
-- [ ] **Bug Fixes**
-  - The envelope sprite must pause when the pause button is clicked
+- [ ] **UI**
+  - Fix the settings button and make it more User-friendly
