@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Digital Wellnests"
+config/name="Digital Wellnests game"
 run/main_scene="res://Scenes/Intro.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+boot_splash/bg_color=Color(0.470588, 0.517647, 0.556863, 1)
+boot_splash/image="res://Images/Loading.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=2000
 
 [audio]
 
@@ -36,4 +41,5 @@ import/blender/enabled=false
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
