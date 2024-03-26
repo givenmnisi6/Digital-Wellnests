@@ -11,3 +11,5 @@ bus = &"Music"
 [node name="SoundEffects" type="AudioStreamPlayer" parent="."]
 volume_db = 20.0
 bus = &"Sfx"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
