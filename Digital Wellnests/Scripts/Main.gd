@@ -256,18 +256,18 @@ func startGame():
 func returnToMain() -> void:
 	$Control.scale = Vector2(1, 1)
 
-func _on_settings_button_down():
-	Music.clickSfx()
-	$SettingsPage.show()
+#func _on_settings_button_down():
+	#Music.clickSfx()
+	#$SettingsPage.show()
 
 func _on_audio_stream_player_finished():
 	$AudioStreamPlayer.play()
 
-func _on_settings_mouse_entered():
-	settings.scale = Vector2(1.05, 1.05)
+#func _on_settings_mouse_entered():
+	#settings.scale = Vector2(1.05, 1.05)
 
-func _on_settings_mouse_exited():
-	settings.scale = Vector2(1, 1)
+#func _on_settings_mouse_exited():
+	#settings.scale = Vector2(1, 1)
 
 func _on_back_button_down():
 	Music.clickSfx()
@@ -276,3 +276,24 @@ func _on_back_button_down():
 
 func _on_sfx_slider_drag_started():
 	Music.valueChangedSfx()
+
+
+func _on_exit_pressed():
+	Music.clickSfx()
+	$ExitPage.show()
+	#get_tree().quit()
+
+
+func _on_settings_pressed():
+	Music.clickSfx()
+	$SettingsPage.show()
+
+
+func _on_q_button_button_down():
+	Music.clickSfx()
+	$ExitPage.hide()
+
+
+func _on_dq_button_pressed():
+	Music.clickSfx()
+	get_tree().quit()

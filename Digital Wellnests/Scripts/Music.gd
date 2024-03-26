@@ -24,3 +24,8 @@ func valueChangedSfx():
 	$SoundEffects.stream = changed
 	$SoundEffects.play()
 
+
+func _on_audio_stream_player_finished():
+	var intro = load("res://Audio/Effects/Jungle.wav")
+	$AudioStreamPlayer.stream = intro
+	$AudioStreamPlayer.play()
