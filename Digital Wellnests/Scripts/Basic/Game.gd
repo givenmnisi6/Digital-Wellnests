@@ -583,23 +583,6 @@ func playGame():
 			if act == Activities:
 				act.get_node("ActivitiesTimer").paused = false
 
-func _on_pause_pressed():
-	if bpaused:
-		playGame()
-	else:
-		pauseGame()
-		$Pause.visible = false
-		$Play.visible = true
-
-func _on_play_pressed():
-	if bpaused:
-		playGame()
-		$Pause.visible = true
-		$Play.visible = false
-	else:
-		pauseGame()
-
-
 
 func _on_activities_timer_timeout():
 	var actInstance = Activities.instantiate()
@@ -636,3 +619,11 @@ func calculateHit(coin: bool):
 
 func _on_cat_timer_timeout():
 	add_child(catInstance)
+
+
+func _on_texture_button_pressed():
+	if bpaused:
+		playGame()
+	else:
+		pauseGame()
+
