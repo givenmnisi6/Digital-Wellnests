@@ -531,6 +531,7 @@ func pauseGame():
 	var ig = $inGame 
 
 	if gameIndex == 0:
+		get_tree().root.content_scale_size
 		$EnvelopeTimer.paused = true
 		for env in ig.get_children():
 			if env.name == "Envelope":  # Check if the child node is of type Envelope
@@ -582,17 +583,22 @@ func playGame():
 			if act == Activities:
 				act.get_node("ActivitiesTimer").paused = false
 
-func _on_pause_button_down():
-	if bpaused:
-		playGame()
-	else:
-		pauseGame()
-
 func _on_pause_pressed():
 	if bpaused:
 		playGame()
 	else:
 		pauseGame()
+		$Pause.visible = false
+		$Play.visible = true
+
+func _on_play_pressed():
+	if bpaused:
+		playGame()
+		$Pause.visible = true
+		$Play.visible = false
+	else:
+		pauseGame()
+
 
 
 func _on_activities_timer_timeout():
@@ -603,7 +609,7 @@ func _on_activities_timer_timeout():
 	var direction = PI / 2
 	actInstance.position = actLocation.position
 
-	var speed = randf_range(50, 150.0)
+	speed = randf_range(50, 150.0)
 
 	if level <= 3:
 		speed += level * 30.0

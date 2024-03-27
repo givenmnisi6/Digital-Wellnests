@@ -1,7 +1,7 @@
-[gd_scene load_steps=993 format=3 uid="uid://cugtttre47j1d"]
+[gd_scene load_steps=994 format=3 uid="uid://cugtttre47j1d"]
 
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="1_klf3e"]
-[ext_resource type="Script" path="res://Scripts/Game.gd" id="2_4gpnb"]
+[ext_resource type="Script" path="res://Scripts/Basic/Game.gd" id="2_4gpnb"]
 [ext_resource type="Texture2D" uid="uid://c11v1s3jp1hat" path="res://Animations/Slak2/Slak1Animation2.0000.png" id="2_acfc5"]
 [ext_resource type="Texture2D" uid="uid://di0rv5r0ajr22" path="res://Animations/Slak2/Slak1Animation2.0001.png" id="3_k573c"]
 [ext_resource type="PackedScene" uid="uid://ci06a0bs5c7q8" path="res://Scenes/Poems/Snail/Conveyor.tscn" id="3_y5ogc"]
@@ -979,6 +979,7 @@
 [ext_resource type="Texture2D" uid="uid://1ifmg4vjvk7w" path="res://Animations/Cat1/Cat1.0118.png" id="974_03fv2"]
 [ext_resource type="Texture2D" uid="uid://bmxtd3ymj413b" path="res://Animations/Cat1/Cat1.0119.png" id="975_0y8wb"]
 [ext_resource type="Texture2D" uid="uid://56q0dhnpopaa" path="res://Animations/Cat1/Cat1.0120.png" id="976_dh1ny"]
+[ext_resource type="Texture2D" uid="uid://dk7tkigxntyvi" path="res://Images/Play.png" id="980_bw1v7"]
 [ext_resource type="AudioStream" uid="uid://cv5g7x4o21fcb" path="res://Audio/Effects/Jungle.wav" id="980_t6dhn"]
 
 [sub_resource type="Curve2D" id="Curve2D_kb7ug"]
@@ -4180,6 +4181,17 @@ offset_bottom = 43.8
 icon = ExtResource("730_uh23x")
 expand_icon = true
 
+[node name="Play" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 344.0
+offset_top = -3.0
+offset_right = 394.0
+offset_bottom = 46.0
+icon = ExtResource("980_bw1v7")
+icon_alignment = 1
+expand_icon = true
+
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 volume_db = 10.0
 pitch_scale = 1.1
@@ -4229,5 +4241,6 @@ stream = ExtResource("980_t6dhn")
 [connection signal="timeout" from="ActivitiesTimer" to="." method="_on_activities_timer_timeout"]
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
 [connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="button_down" from="EndGame/bMenu" to="." method="_on_b_menu_button_down"]
 [connection signal="button_down" from="EndGame/bLevel" to="." method="_on_b_level_button_down"]
