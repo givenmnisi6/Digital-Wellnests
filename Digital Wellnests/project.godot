@@ -12,9 +12,9 @@ config_version=5
 
 config/name="Digital Wellnests game"
 config/description="The Digital wellnests game is based on a book titled “Digital Wellnests: Let us play in safe nests” by Fischer and Von Solms (2016). This game is aimed at making the book more effective in spreading a cyber safety culture among children."
-run/main_scene="res://Scenes/Intro.tscn"
+run/main_scene="res://Scenes/Basic/Intro.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/bg_color=Color(0.423529, 0.239216, 0.568627, 1)
 boot_splash/image="res://Images/Loading.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -27,8 +27,8 @@ buses/default_bus_layout="res://Scenes/Basic/default_bus_layout.tres"
 
 [autoload]
 
-GD="*res://Scripts/Cat/CatVariables.gd"
-Music="*res://Scenes/Music.tscn"
+GD="*res://Scripts/Poems/Cat/CatVariables.gd"
+Music="*res://Scenes/Basic/Music.tscn"
 
 [display]
 

@@ -1,12 +1,12 @@
-[gd_scene load_steps=509 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=528 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
 [ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="2_3icno"]
-[ext_resource type="PackedScene" uid="uid://dgrnrl2t0ubx1" path="res://Scenes/Book.tscn" id="2_iqdi2"]
-[ext_resource type="PackedScene" uid="uid://cugtttre47j1d" path="res://Scenes/Game.tscn" id="3_1kgnl"]
+[ext_resource type="PackedScene" uid="uid://dgrnrl2t0ubx1" path="res://Scenes/Basic/Book.tscn" id="2_iqdi2"]
+[ext_resource type="PackedScene" uid="uid://cugtttre47j1d" path="res://Scenes/Basic/Game.tscn" id="3_1kgnl"]
 [ext_resource type="Texture2D" uid="uid://dg878qg65qs2l" path="res://Images/AnimBackground.png" id="3_1umnh"]
 [ext_resource type="Texture2D" uid="uid://ve0gbahmpf3a" path="res://Images/ArrowR.png" id="4_lll4g"]
-[ext_resource type="PackedScene" uid="uid://djnw1bayii00g" path="res://Scenes/Quiz.tscn" id="4_tlpos"]
+[ext_resource type="PackedScene" uid="uid://djnw1bayii00g" path="res://Scenes/Basic/Quiz.tscn" id="4_tlpos"]
 [ext_resource type="Texture2D" uid="uid://dplhw613qxxcl" path="res://Images/ArrowL.png" id="5_hahof"]
 [ext_resource type="Texture2D" uid="uid://cjqricwjoko0x" path="res://Animations/Slak1/Slak1Animation1.0000.png" id="6_roxhu"]
 [ext_resource type="Texture2D" uid="uid://cpkvs16q4fd5g" path="res://Animations/Slak1/Slak1Animation1.0001.png" id="7_j4f7l"]
@@ -497,6 +497,13 @@
 [ext_resource type="Texture2D" uid="uid://dx15gvc3oc157" path="res://Animations/Cat0/Cat0.0119.png" id="491_mihfm"]
 [ext_resource type="Texture2D" uid="uid://cqnh0xc037oid" path="res://Animations/Cat0/Cat0.0120.png" id="492_bnt6y"]
 [ext_resource type="PackedScene" uid="uid://btcamyy2f7y3v" path="res://Scenes/Basic/HSlider.tscn" id="496_7wbil"]
+[ext_resource type="Texture2D" uid="uid://1ab8bems4wyc" path="res://Images/GameBG.jpg" id="497_naeyj"]
+[ext_resource type="Texture2D" uid="uid://c8hmsulfvg8rk" path="res://Images/QuizBG.png" id="497_qfh31"]
+[ext_resource type="PackedScene" uid="uid://b6gr7a33x1x7f" path="res://Scenes/Basic/Window.tscn" id="498_kbthm"]
+[ext_resource type="Texture2D" uid="uid://dyajp4ktxugan" path="res://Images/Exit.png" id="498_y3ox8"]
+[ext_resource type="Texture2D" uid="uid://ckehya727c268" path="res://Images/Yes button.png" id="498_yr851"]
+[ext_resource type="Texture2D" uid="uid://dcr717lxc5nyx" path="res://Images/No button.png" id="499_228c6"]
+[ext_resource type="PackedScene" uid="uid://bg3h7rvni1sl6" path="res://Scenes/Basic/Resolution.tscn" id="501_xwsdu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u01sg"]
 animations = [{
@@ -1994,41 +2001,132 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gh8qt"]
 size = Vector2(487.801, 248.75)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cdmof"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q74mb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hv3m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq0oy"]
+bg_color = Color(1, 1, 1, 0.533333)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l54r"]
+bg_color = Color(1, 1, 1, 0.486275)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_040ov"]
-bg_color = Color(0.576471, 0, 0.360784, 1)
+bg_color = Color(0, 0.521569, 0.827451, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(0.458824, 0, 0.282353, 1)
+border_color = Color(0, 0.411765, 0.658824, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nweve"]
-bg_color = Color(0.619608, 0, 0.388235, 1)
+bg_color = Color(0, 0.560784, 0.890196, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(0.458824, 0, 0.282353, 1)
+border_color = Color(0, 0.411765, 0.658824, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rd6jg"]
-bg_color = Color(0.564706, 0, 0.352941, 1)
+bg_color = Color(0, 0.454902, 0.72549, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(0.447059, 0, 0.27451, 1)
+border_color = Color(0, 0.411765, 0.658824, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pepu0"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcivp"]
+bg_color = Color(0.00392157, 0.345098, 0.160784, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 20
+border_color = Color(0.00392157, 0.290196, 0.129412, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx15u"]
+bg_color = Color(0.00392157, 0.380392, 0.180392, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 20
+border_color = Color(0.00392157, 0.290196, 0.129412, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb03d"]
+bg_color = Color(0.00392157, 0.321569, 0.14902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 20
+border_color = Color(0.00392157, 0.27451, 0.121569, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slhuy"]
+bg_color = Color(0.552941, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 20
+border_color = Color(0.482353, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i6te"]
+bg_color = Color(0.619608, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 20
+border_color = Color(0.482353, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1308x"]
+bg_color = Color(0.501961, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 20
+border_color = Color(0.466667, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="ColorRect" type="ColorRect"]
 offset_right = 720.0
@@ -2177,22 +2275,12 @@ offset_right = 237.0
 offset_bottom = 118.0
 metadata/_edit_lock_ = true
 
-[node name="Settings" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 561.0
-offset_top = 24.0
-offset_right = 676.0
-offset_bottom = 129.0
-icon = ExtResource("369_6kui3")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
 [node name="IntroTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
 [node name="Story" type="RichTextLabel" parent="."]
+clip_contents = false
 layout_mode = 0
 offset_left = 2.0
 offset_top = 70.0
@@ -2204,99 +2292,257 @@ theme_override_fonts/normal_font = ExtResource("370_q2sss")
 theme_override_font_sizes/normal_font_size = 55
 bbcode_enabled = true
 text = "[center]Safety snail's emails[/center]"
+metadata/_edit_lock_ = true
 
 [node name="Instructions" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_top = 3.0
+offset_top = 5.0
 offset_right = 719.0
-offset_bottom = 64.0
+offset_bottom = 65.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]Select a story[/center]"
+metadata/_edit_lock_ = true
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 9.0
+offset_right = 76.0
+offset_bottom = 74.0
+theme_override_constants/icon_max_width = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cdmof")
+icon = ExtResource("369_6kui3")
+flat = true
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_lock_ = true
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 9.0
+offset_bottom = 72.0
+grow_horizontal = 0
+theme_override_constants/icon_max_width = 0
+theme_override_fonts/font = ExtResource("370_q2sss")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_q74mb")
+icon = ExtResource("498_y3ox8")
+flat = true
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_lock_ = true
 
 [node name="SettingsPage" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 720.0
+offset_bottom = 480.0
 texture = ExtResource("372_48jvv")
 
-[node name="ColorRect" type="ColorRect" parent="SettingsPage"]
+[node name="Panel" type="Panel" parent="SettingsPage"]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 11.0
-offset_right = 704.0
-offset_bottom = 469.0
+offset_right = 719.0
+offset_bottom = 479.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0hv3m")
 
-[node name="MasterSlider" parent="SettingsPage/ColorRect" instance=ExtResource("496_7wbil")]
+[node name="BGTexture" type="TextureRect" parent="SettingsPage"]
+modulate = Color(1, 1, 1, 0.341176)
 layout_mode = 0
-offset_left = 139.0
-offset_top = 108.0
-offset_right = 509.0
-offset_bottom = 124.0
+offset_right = 720.0
+offset_bottom = 480.0
+texture = ExtResource("497_naeyj")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="SettingsPage"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TabContainer" type="TabContainer" parent="SettingsPage/Control"]
+self_modulate = Color(1, 1, 1, 0.576471)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 652.0
+offset_bottom = 364.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("370_q2sss")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_vq0oy")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4l54r")
+tab_alignment = 1
+clip_tabs = false
+
+[node name="Sound" type="TabBar" parent="SettingsPage/Control/TabContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("370_q2sss")
+theme_override_font_sizes/font_size = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Control/TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="SettingsPage/Control/TabContainer/Sound"]
+layout_mode = 2
+offset_top = 54.0
+offset_right = 136.0
+offset_bottom = 191.0
+texture = ExtResource("373_38ewv")
+expand_mode = 1
+
+[node name="MasterSlider" parent="SettingsPage/Control/TabContainer/Sound" instance=ExtResource("496_7wbil")]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 80.0
+offset_right = 529.0
+offset_bottom = 96.0
 busName = "Master"
 
-[node name="mRichTextLabel" type="RichTextLabel" parent="SettingsPage/ColorRect/MasterSlider"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = -23.0
-offset_right = 132.0
-offset_bottom = 10.0
+[node name="mRichTextLabel" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Sound/MasterSlider"]
+layout_mode = 2
+offset_left = 1.0
+offset_top = -34.0
+offset_right = 258.0
+offset_bottom = 9.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 25
-text = "Master Volume"
+theme_override_font_sizes/normal_font_size = 35
+text = "Master"
 
-[node name="MusicSlider" parent="SettingsPage/ColorRect" instance=ExtResource("496_7wbil")]
+[node name="MusicSlider" parent="SettingsPage/Control/TabContainer/Sound" instance=ExtResource("496_7wbil")]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 145.0
-offset_right = 509.0
-offset_bottom = 161.0
+offset_left = 159.0
+offset_top = 125.0
+offset_right = 529.0
+offset_bottom = 141.0
 busName = "Music"
 
-[node name="musicRichTextLabel" type="RichTextLabel" parent="SettingsPage/ColorRect/MusicSlider"]
+[node name="musicRichTextLabel" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Sound/MusicSlider"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = -23.0
-offset_right = 127.0
-offset_bottom = 10.0
+offset_left = 1.0
+offset_top = -34.0
+offset_right = 191.0
+offset_bottom = 9.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 25
-text = "Music Volume"
+theme_override_font_sizes/normal_font_size = 35
+text = "Music"
 
-[node name="SfxSlider" parent="SettingsPage/ColorRect" instance=ExtResource("496_7wbil")]
+[node name="SfxSlider" parent="SettingsPage/Control/TabContainer/Sound" instance=ExtResource("496_7wbil")]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 182.0
-offset_right = 509.0
-offset_bottom = 198.0
+offset_left = 158.0
+offset_top = 174.0
+offset_right = 528.0
+offset_bottom = 190.0
 busName = "Sfx"
 
-[node name="sfxRichTextLabel" type="RichTextLabel" parent="SettingsPage/ColorRect/SfxSlider"]
+[node name="sfxRichTextLabel" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Sound/SfxSlider"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = -23.0
-offset_right = 191.0
-offset_bottom = 10.0
+offset_left = 1.0
+offset_top = -35.0
+offset_right = 273.0
+offset_bottom = 8.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 25
-text = "Sound Effects Volume"
+theme_override_font_sizes/normal_font_size = 35
+text = "Sound Effects"
+
+[node name="Graphics" type="TabBar" parent="SettingsPage/Control/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Control/TabContainer/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 30.0
+offset_right = 632.0
+offset_bottom = 397.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsPage/Control/TabContainer/Graphics/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPage/Control/TabContainer/Graphics/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 79
+
+[node name="Window" parent="SettingsPage/Control/TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("498_kbthm")]
+layout_mode = 2
+
+[node name="Resolution" parent="SettingsPage/Control/TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("501_xwsdu")]
+layout_mode = 2
+
+[node name="Credits" type="TabBar" parent="SettingsPage/Control/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Ack" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Credits"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.5
+offset_top = -106.5
+offset_right = 244.5
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("370_q2sss")
+theme_override_font_sizes/normal_font_size = 30
+text = "Story: Digital wellnests - Rachel Fischer & Sune von Solms
+
+Background pictures: valadzionak_volha
+
+Music: \"Jungle Jumpin'\" by Scott Elliott"
+tab_size = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SettingsPage"]
-layout_mode = 0
-offset_left = 187.335
-offset_top = 19.674
-offset_right = 538.335
-offset_bottom = 110.674
+layout_mode = 2
+offset_left = 183.0
+offset_top = -7.0
+offset_right = 534.0
+offset_bottom = 84.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
@@ -2305,55 +2551,141 @@ bbcode_enabled = true
 text = "[center]Settings[/center]"
 
 [node name="Back" type="Button" parent="SettingsPage"]
-modulate = Color(0.792157, 0, 0.627451, 1)
+modulate = Color(0.596078, 0.952941, 0.956863, 1)
 layout_mode = 0
-offset_left = 530.629
-offset_top = 327.568
-offset_right = 685.629
-offset_bottom = 448.568
+offset_left = 582.0
+offset_top = 390.0
+offset_right = 702.0
+offset_bottom = 475.0
 theme_override_fonts/font = ExtResource("370_q2sss")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 55
 theme_override_styles/normal = SubResource("StyleBoxFlat_040ov")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nweve")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rd6jg")
 text = "Back"
 
-[node name="TextureRect" type="TextureRect" parent="SettingsPage"]
+[node name="ExitPage" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 37.0
-offset_top = 99.0
-offset_right = 144.0
-offset_bottom = 207.0
-texture = ExtResource("373_38ewv")
+offset_left = 1.0
+offset_right = 721.0
+offset_bottom = 480.0
+texture = ExtResource("372_48jvv")
+
+[node name="Panel" type="Panel" parent="ExitPage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -230.0
+offset_right = 352.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pepu0")
+
+[node name="TextureRect" type="TextureRect" parent="ExitPage/Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 704.0
+offset_bottom = 455.0
+texture = ExtResource("497_qfh31")
 expand_mode = 1
 
-[node name="AckTitle" type="RichTextLabel" parent="SettingsPage"]
+[node name="BG" type="TextureRect" parent="ExitPage/Panel"]
+modulate = Color(1, 1, 1, 0.333333)
 layout_mode = 0
-offset_left = 35.0
-offset_top = 236.0
-offset_right = 346.0
-offset_bottom = 286.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 35
-text = "Acknowledgements:"
+offset_left = -8.0
+offset_top = -10.0
+offset_right = 712.0
+offset_bottom = 470.0
+texture = ExtResource("497_naeyj")
+expand_mode = 1
 
-[node name="Ack" type="RichTextLabel" parent="SettingsPage"]
+[node name="ConfirmExitTitle" type="RichTextLabel" parent="ExitPage/Panel"]
 layout_mode = 0
-offset_left = 39.0
-offset_top = 276.0
-offset_right = 475.0
-offset_bottom = 458.0
+offset_left = 155.0
+offset_top = 7.0
+offset_right = 522.0
+offset_bottom = 105.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
+theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 25
-text = "Story: Digital wellnests - Rachel Fischer & Sune von Solms
+theme_override_font_sizes/normal_font_size = 85
+bbcode_enabled = true
+text = "[center]Confirm Exit[/center]"
 
-Background: valadzionak_volha
+[node name="ConfirmExitTitle2" type="RichTextLabel" parent="ExitPage/Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 111.0
+offset_right = 704.0
+offset_bottom = 185.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("370_q2sss")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Do you want to quit the game?[/center]"
+metadata/_edit_lock_ = true
 
-Music: \"Jungle Jumpin'\" by Scott Elliott"
+[node name="dqButton" type="Button" parent="ExitPage/Panel"]
+visible = false
+layout_mode = 0
+offset_left = 6.0
+offset_top = 211.0
+offset_right = 339.0
+offset_bottom = 402.0
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("498_yr851")
+flat = true
+expand_icon = true
+
+[node name="qButton" type="Button" parent="ExitPage/Panel"]
+visible = false
+layout_mode = 0
+offset_left = 367.0
+offset_top = 219.0
+offset_right = 700.0
+offset_bottom = 410.0
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("499_228c6")
+flat = true
+expand_icon = true
+
+[node name="yButton" type="Button" parent="ExitPage/Panel"]
+modulate = Color(0, 0.905882, 0.180392, 1)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 199.0
+offset_right = 343.0
+offset_bottom = 443.0
+scale = Vector2(1, 1e-05)
+theme_override_fonts/font = ExtResource("370_q2sss")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/normal = SubResource("StyleBoxFlat_kcivp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lx15u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gb03d")
+text = "Yes"
+
+[node name="nButton" type="Button" parent="ExitPage/Panel"]
+modulate = Color(0.780392, 0, 0, 1)
+layout_mode = 0
+offset_left = 361.0
+offset_top = 199.0
+offset_right = 699.0
+offset_bottom = 443.0
+scale = Vector2(1, 1e-05)
+theme_override_fonts/font = ExtResource("370_q2sss")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/normal = SubResource("StyleBoxFlat_slhuy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4i6te")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1308x")
+text = "No"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
@@ -2376,10 +2708,13 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="Control/Hippo/hButton" to="." method="_on_h_button_pressed"]
 [connection signal="pressed" from="Control/Wolf/wButton" to="." method="_on_w_button_pressed"]
 [connection signal="pressed" from="Control/Cat/cButton" to="." method="_on_c_button_pressed"]
-[connection signal="button_down" from="Control/Settings" to="." method="_on_settings_button_down"]
-[connection signal="mouse_entered" from="Control/Settings" to="." method="_on_settings_mouse_entered"]
-[connection signal="mouse_exited" from="Control/Settings" to="." method="_on_settings_mouse_exited"]
 [connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
-[connection signal="drag_started" from="SettingsPage/ColorRect/SfxSlider" to="." method="_on_sfx_slider_drag_started"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="drag_started" from="SettingsPage/Control/TabContainer/Sound/SfxSlider" to="." method="_on_sfx_slider_drag_started"]
 [connection signal="button_down" from="SettingsPage/Back" to="." method="_on_back_button_down"]
+[connection signal="pressed" from="ExitPage/Panel/dqButton" to="." method="_on_dq_button_pressed"]
+[connection signal="button_down" from="ExitPage/Panel/qButton" to="." method="_on_q_button_button_down"]
+[connection signal="pressed" from="ExitPage/Panel/yButton" to="." method="_on_y_button_pressed"]
+[connection signal="pressed" from="ExitPage/Panel/nButton" to="." method="_on_n_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://n5krmpd5ib3i"]
+
+[ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="1_yuxa8"]
+
+[node name="Display" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 433.0
+offset_bottom = 65.0
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_yuxa8")
+theme_override_font_sizes/font_size = 35
+text = "Base"
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yuxa8")
+theme_override_font_sizes/font_size = 40

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cln8y7rifqruh"]
 
-[ext_resource type="Script" path="res://Scripts/Cat/Activities.gd" id="1_5b5aa"]
+[ext_resource type="Script" path="res://Scripts/Poems/Cat/Activities.gd" id="1_5b5aa"]
 [ext_resource type="Texture2D" uid="uid://7fffhg1qv40r" path="res://Animations/Activities/gold_1.png" id="1_fxsx2"]
 [ext_resource type="Texture2D" uid="uid://cpwodypvahsl2" path="res://Animations/Activities/gold_2.png" id="2_7jew7"]
 [ext_resource type="Texture2D" uid="uid://dnv4jynaepkp" path="res://Animations/Activities/gold_3.png" id="3_e21pq"]

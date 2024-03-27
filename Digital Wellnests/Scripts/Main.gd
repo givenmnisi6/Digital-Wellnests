@@ -198,7 +198,7 @@ func _on_s_button_pressed():
 func _on_h_button_pressed():
 	# Check if iCount is 1
 	if iCount == 1:
-		# Load and play the click sound effect
+		# Load and play te click sound effect
 		Music.clickSfx()
 
 		# Set iStory to 1 and start the book
@@ -281,19 +281,33 @@ func _on_sfx_slider_drag_started():
 func _on_exit_pressed():
 	Music.clickSfx()
 	$ExitPage.show()
-	#get_tree().quit()
-
+	var twn = get_tree().create_tween()
+	var y = $ExitPage/Panel/yButton
+	var n = $ExitPage/Panel/nButton
+	
+	twn.tween_property(y, "scale", Vector2(1,1), 0.4)
+	twn.tween_property(n, "scale", Vector2(1,1), 0.4)
 
 func _on_settings_pressed():
 	Music.clickSfx()
 	$SettingsPage.show()
 
-
-func _on_q_button_button_down():
+func _on_n_button_pressed():
 	Music.clickSfx()
 	$ExitPage.hide()
 
-
-func _on_dq_button_pressed():
+func _on_y_button_pressed():
 	Music.clickSfx()
 	get_tree().quit()
+
+#func _on_dq_button_pressed():
+	#Music.clickSfx()
+	#get_tree().quit()
+#
+#
+#func _on_q_button_button_down():
+	#Music.clickSfx()
+	#get_tree().quit()
+
+
+

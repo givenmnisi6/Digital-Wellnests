@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://h7xakbe2sx1l"]
 
-[ext_resource type="Script" path="res://Scripts/Cat/Cat.gd" id="1_q6vt3"]
+[ext_resource type="Script" path="res://Scripts/Poems/Cat/Cat.gd" id="1_q6vt3"]
 [ext_resource type="Texture2D" uid="uid://corb50fuekx3v" path="res://Animations/FlyingCat/Cat.png" id="1_tr0ve"]
 
 [sub_resource type="Animation" id="Animation_pj03p"]

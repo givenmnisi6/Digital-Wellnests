@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6gr7a33x1x7f"]
+
+[ext_resource type="PackedScene" uid="uid://n5krmpd5ib3i" path="res://Scenes/Basic/Display.tscn" id="1_3cc0r"]
+[ext_resource type="Script" path="res://Scripts/Basic/Window.gd" id="2_ag77u"]
+
+[node name="Window" instance=ExtResource("1_3cc0r")]
+script = ExtResource("2_ag77u")
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "Window
+"
+
+[node name="OptionButton" parent="HBoxContainer" index="1"]
+custom_minimum_size = Vector2(200, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 35
+
+[connection signal="item_selected" from="HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=54 format=3 uid="uid://4wkohyfjs3fn"]
 
 [ext_resource type="Texture2D" uid="uid://cv0riss5tfsjw" path="res://Animations/EnvelopeShrink/EnvelopeShrink.0000.png" id="1_5ml44"]
-[ext_resource type="Script" path="res://Scripts/Snail/Envelope.gd" id="1_kq3pa"]
+[ext_resource type="Script" path="res://Scripts/Poems/Snail/Envelope.gd" id="1_kq3pa"]
 [ext_resource type="Texture2D" uid="uid://giuc5p1lrl6y" path="res://Animations/EnvelopeShrink/EnvelopeShrink.0001.png" id="2_7vn86"]
 [ext_resource type="Texture2D" uid="uid://cab7ewhqjei4i" path="res://Animations/EnvelopeShrink/EnvelopeShrink.0002.png" id="3_45sh1"]
 [ext_resource type="Texture2D" uid="uid://bdjptarigrbkr" path="res://Animations/EnvelopeShrink/EnvelopeShrink.0003.png" id="4_2nqk3"]
