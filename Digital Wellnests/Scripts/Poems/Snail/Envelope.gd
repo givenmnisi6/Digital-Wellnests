@@ -10,7 +10,7 @@ var hit: bool  # Whether the envelope has been hit
 var _screenSize: Vector2
 
 func _ready():
-	_screenSize = get_viewport().size
+	_screenSize = get_viewport().get_size()
 	hit = false
 	$EnvelopeAnim.animation = "Wiggle"
 	hold = false

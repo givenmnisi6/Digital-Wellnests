@@ -15,8 +15,13 @@ func _ready():
 	addResolutionItems()
 
 func addResolutionItems() -> void:
+	var currentRes = Vector2(get_viewport().get_size())
+	var Index = 0
 	for i in RESOLUTION_DICTIONARY:
-		opButton.add_item(i)
+		opButton.add_item(i, Index)
+		if RESOLUTION_DICTIONARY[i] == currentRes:
+			opButton._select_int(Index)
+		Index += 1
 
 func _on_option_button_item_selected(index):
 	var size = RESOLUTION_DICTIONARY.get(opButton.get_item_text(index))

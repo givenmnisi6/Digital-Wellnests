@@ -20,6 +20,8 @@ var firstScreen: int
 var playerName: String
 var positions = []
 
+var musicBus = AudioServer.get_bus_index("Music")
+
 func _ready():
 	# Initialize variables
 	name = ""
@@ -311,3 +313,7 @@ func _on_y_button_pressed():
 
 
 
+
+
+func _on_sound_button_pressed():
+	AudioServer.set_bus_mute(musicBus, not AudioServer.is_bus_mute(musicBus))

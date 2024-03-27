@@ -857,7 +857,7 @@
 [ext_resource type="Texture2D" uid="uid://w87whkmbkfe1" path="res://Animations/Wolf2/Wolf2.0120.png" id="727_xabuy"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="728_7gdf6"]
 [ext_resource type="Texture2D" uid="uid://cufffbejcexjj" path="res://Images/GameEx0.png" id="729_ald1e"]
-[ext_resource type="Texture2D" uid="uid://bi780pxjrw7jh" path="res://Images/Pause.png" id="730_uh23x"]
+[ext_resource type="Texture2D" uid="uid://dnkvhlmui1pr5" path="res://Images/Pause.png" id="730_uh23x"]
 [ext_resource type="Texture2D" uid="uid://bi2s41kdpa48l" path="res://Animations/Cat1/Cat1.0000.png" id="856_vh1vq"]
 [ext_resource type="Texture2D" uid="uid://cxmfrqgid5s0h" path="res://Animations/Cat1/Cat1.0001.png" id="857_02461"]
 [ext_resource type="Texture2D" uid="uid://pghlqvwpagva" path="res://Animations/Cat1/Cat1.0002.png" id="858_et0ar"]
@@ -979,7 +979,7 @@
 [ext_resource type="Texture2D" uid="uid://1ifmg4vjvk7w" path="res://Animations/Cat1/Cat1.0118.png" id="974_03fv2"]
 [ext_resource type="Texture2D" uid="uid://bmxtd3ymj413b" path="res://Animations/Cat1/Cat1.0119.png" id="975_0y8wb"]
 [ext_resource type="Texture2D" uid="uid://56q0dhnpopaa" path="res://Animations/Cat1/Cat1.0120.png" id="976_dh1ny"]
-[ext_resource type="Texture2D" uid="uid://dk7tkigxntyvi" path="res://Images/Play.png" id="980_bw1v7"]
+[ext_resource type="Texture2D" uid="uid://c7qcdldnkq0hg" path="res://Images/Play.png" id="980_bw1v7"]
 [ext_resource type="AudioStream" uid="uid://cv5g7x4o21fcb" path="res://Audio/Effects/Jungle.wav" id="980_t6dhn"]
 
 [sub_resource type="Curve2D" id="Curve2D_kb7ug"]
@@ -4171,26 +4171,17 @@ offset_right = 720.0
 offset_bottom = 480.0
 metadata/_edit_lock_ = true
 
-[node name="Pause" type="Button" parent="."]
+[node name="Pause" type="TextureButton" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 346.0
-offset_top = -1.2
-offset_right = 391.0
-offset_bottom = 43.8
-icon = ExtResource("730_uh23x")
-expand_icon = true
-
-[node name="Play" type="Button" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 344.0
-offset_top = -3.0
-offset_right = 394.0
-offset_bottom = 46.0
-icon = ExtResource("980_bw1v7")
-icon_alignment = 1
-expand_icon = true
+offset_left = 351.0
+offset_top = 1.0
+offset_right = 385.0
+offset_bottom = 35.0
+toggle_mode = true
+texture_normal = ExtResource("730_uh23x")
+texture_pressed = ExtResource("980_bw1v7")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 volume_db = 10.0
@@ -4240,7 +4231,6 @@ stream = ExtResource("980_t6dhn")
 [connection signal="timeout" from="BullyTimer" to="." method="_on_bully_timer_timeout"]
 [connection signal="timeout" from="ActivitiesTimer" to="." method="_on_activities_timer_timeout"]
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
-[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Pause" to="." method="_on_texture_button_pressed"]
 [connection signal="button_down" from="EndGame/bMenu" to="." method="_on_b_menu_button_down"]
 [connection signal="button_down" from="EndGame/bLevel" to="." method="_on_b_level_button_down"]
