@@ -228,7 +228,7 @@ func _on_c_button_pressed():
 		startBook()
 
 func startBook():
-	var tween = get_tree().create_tween()
+	#var tween = get_tree().create_tween()
 
 	var bookInstance = Book.instantiate() 
 	$Control.scale = Vector2(0.01, 0.01)
@@ -238,7 +238,7 @@ func startBook():
 	add_child(bookInstance)
 
 func startQuiz():
-	var tween = get_tree().create_tween()
+	#var tween = get_tree().create_tween()
 
 	var quizInstance = Quiz.instantiate()
 	
@@ -247,7 +247,7 @@ func startQuiz():
 	add_child(quizInstance)
 
 func startGame():
-	var tween = get_tree().create_tween()
+	#var tween = get_tree().create_tween()
 
 	var gameInstance = Game.instantiate()
 	gameInstance.gameIndex = iStory
