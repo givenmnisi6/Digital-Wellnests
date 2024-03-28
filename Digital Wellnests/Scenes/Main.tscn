@@ -2367,7 +2367,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TabContainer" type="TabContainer" parent="SettingsPage/Control"]
-self_modulate = Color(1, 1, 1, 0.576471)
+self_modulate = Color(0.0901961, 0.0901961, 0.0901961, 0.721569)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
