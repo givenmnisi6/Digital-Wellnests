@@ -265,12 +265,6 @@ func returnToMain() -> void:
 func _on_audio_stream_player_finished():
 	$AudioStreamPlayer.play()
 
-#func _on_settings_mouse_entered():
-	#settings.scale = Vector2(1.05, 1.05)
-
-#func _on_settings_mouse_exited():
-	#settings.scale = Vector2(1, 1)
-
 func _on_back_button_down():
 	Music.clickSfx()
 	$SettingsPage.hide()
@@ -310,10 +304,6 @@ func _on_y_button_pressed():
 #func _on_q_button_button_down():
 	#Music.clickSfx()
 	#get_tree().quit()
-
-
-
-
 
 func _on_sound_button_pressed():
 	AudioServer.set_bus_mute(musicBus, not AudioServer.is_bus_mute(musicBus))
