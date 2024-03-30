@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dflb6toss5std"
-path="res://.godot/imported/GameEx1.wav-ac8b7ce4c3bb19b8ef4f017fe90d191c.sample"
+uid="uid://b6iesjso25k10"
+path="res://.godot/imported/GameEx4.wav-bf957966c298c2604225e6fe62dd50f1.sample"
 
 [deps]
 
-source_file="res://Audio/Voice/GameEx1.wav"
-dest_files=["res://.godot/imported/GameEx1.wav-ac8b7ce4c3bb19b8ef4f017fe90d191c.sample"]
+source_file="res://Audio/Voice/GameEx4.wav"
+dest_files=["res://.godot/imported/GameEx4.wav-bf957966c298c2604225e6fe62dd50f1.sample"]
 
 [params]
 
