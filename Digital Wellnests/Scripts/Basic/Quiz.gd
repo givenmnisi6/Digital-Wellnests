@@ -18,7 +18,7 @@ func _ready():
 	#Number of questions to be answered
 	count = 4
 	if iStory == 0:
-		#Snail
+		# Safety Snail's e-mails
 		@warning_ignore("unused_variable", "shadowed_variable")
 		questions = {
 			"Mom?": true,
@@ -30,19 +30,32 @@ func _ready():
 			}
 		$qPlay/QTitle.bbcode_text = "[center]Should you accept a message from:[/center]"
 	elif iStory == 1:
-		#Hiipo
+		# Lucky the Fish
 		@warning_ignore("unused_variable", "shadowed_variable")
 		questions = {
-			"Tell Mom?": true,
-			"Tell Dad?": true,
-			"Tell a Teacher?": true,
-			"Fight back?": false,
-			"Stay quiet?": false,
-			"Shout at the bully?": false
+			"Best friend?": true,
+			"Teacher?": true,
+			"Parents?": true,
+			"Mysterious website?": false,
+			"Surprising offer?": false,
+			"Stranger?": false
 			}
-		$qPlay/QTitle.bbcode_text = "[center]When I see a bully I will:[/center]"
+		$qPlay/QTitle.bbcode_text = "[center]Should you click on a link from:[/center]"
 	elif iStory == 2:
-		#Wold
+		# Elephant and his shoe
+		@warning_ignore("unused_variable", "shadowed_variable")
+		questions = {
+			"Librarian?": true,
+			"Doctor?": true,
+			"Trusted adult?": true,
+			"Eduactional website?": false,
+			"Unknown source?": false,
+			"Online character?": false,
+			"Pop-up adverts?": false
+			}
+		$qPlay/QTitle.bbcode_text = "[center]Should you listen to advice about screen time from:[/center]"
+	elif iStory == 3:
+		# Wolf, Hyena and Fox
 		@warning_ignore("unused_variable", "shadowed_variable")
 		questions = {
 			"P@$$w0rD": true,
@@ -53,8 +66,22 @@ func _ready():
 			"dog": false,
 			}
 		$qPlay/QTitle.bbcode_text = "[center]Is this a good password?[/center]"
-		#Cat
-	elif iStory == 3:
+		
+	elif iStory == 4:
+		# Happy Hippo
+		@warning_ignore("unused_variable", "shadowed_variable")
+		questions = {
+			"Tell Mom?": true,
+			"Tell Dad?": true,
+			"Tell a Teacher?": true,
+			"Fight back?": false,
+			"Stay quiet?": false,
+			"Shout at the bully?": false
+			}
+		$qPlay/QTitle.bbcode_text = "[center]When I see a bully I will:[/center]"
+
+		# Cyber Cat
+	elif iStory == 5:
 		questions = {
 			"Playing online games?": true,
 			"Watching cartoons?": true,

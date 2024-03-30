@@ -1,13 +1,13 @@
-[gd_scene load_steps=529 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=535 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
-[ext_resource type="Texture2D" uid="uid://csnmmdiwivqpp" path="res://Images/BackGround.jpg" id="2_3icno"]
+[ext_resource type="Texture2D" uid="uid://de34vch3s1wx2" path="res://Images/BackGround.jpg" id="2_3icno"]
 [ext_resource type="PackedScene" uid="uid://dgrnrl2t0ubx1" path="res://Scenes/Basic/Book.tscn" id="2_iqdi2"]
 [ext_resource type="PackedScene" uid="uid://cugtttre47j1d" path="res://Scenes/Basic/Game.tscn" id="3_1kgnl"]
-[ext_resource type="Texture2D" uid="uid://dg878qg65qs2l" path="res://Images/AnimBackground.png" id="3_1umnh"]
-[ext_resource type="Texture2D" uid="uid://ve0gbahmpf3a" path="res://Images/ArrowR.png" id="4_lll4g"]
+[ext_resource type="Texture2D" uid="uid://y30i45a4dghk" path="res://Images/AnimBackground.png" id="3_1umnh"]
+[ext_resource type="Texture2D" uid="uid://ba37r3n3rc7il" path="res://Images/ArrowR.png" id="4_lll4g"]
 [ext_resource type="PackedScene" uid="uid://djnw1bayii00g" path="res://Scenes/Basic/Quiz.tscn" id="4_tlpos"]
-[ext_resource type="Texture2D" uid="uid://dplhw613qxxcl" path="res://Images/ArrowL.png" id="5_hahof"]
+[ext_resource type="Texture2D" uid="uid://bri45ha0eaim4" path="res://Images/ArrowL.png" id="5_hahof"]
 [ext_resource type="Texture2D" uid="uid://cjqricwjoko0x" path="res://Animations/Slak1/Slak1Animation1.0000.png" id="6_roxhu"]
 [ext_resource type="Texture2D" uid="uid://cpkvs16q4fd5g" path="res://Animations/Slak1/Slak1Animation1.0001.png" id="7_j4f7l"]
 [ext_resource type="Texture2D" uid="uid://buhbwkf6drm1e" path="res://Animations/Slak1/Slak1Animation1.0002.png" id="8_hxb4v"]
@@ -371,10 +371,10 @@
 [ext_resource type="Texture2D" uid="uid://dnmwek4h575lk" path="res://Animations/Wolf1/Wolf0.0118.png" id="366_wt1g7"]
 [ext_resource type="Texture2D" uid="uid://0nbqukooqtrx" path="res://Animations/Wolf1/Wolf0.0119.png" id="367_057ij"]
 [ext_resource type="Texture2D" uid="uid://dd82c82ciyrfw" path="res://Animations/Wolf1/Wolf0.0120.png" id="368_uk84c"]
-[ext_resource type="Texture2D" uid="uid://b8qsapis6xg8m" path="res://Images/Settings.png" id="369_6kui3"]
+[ext_resource type="Texture2D" uid="uid://1j7hxj2qsgpm" path="res://Images/Settings.png" id="369_6kui3"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="370_q2sss"]
 [ext_resource type="Texture2D" uid="uid://m5argv0q5nbo" path="res://Animations/Cat0/Cat0.0000.png" id="372_4b06e"]
-[ext_resource type="Texture2D" uid="uid://qun5h17dbf24" path="res://Images/QuizBG2.png" id="372_48jvv"]
+[ext_resource type="Texture2D" uid="uid://dtt7uh7tuemv5" path="res://Images/QuizBG2.png" id="372_48jvv"]
 [ext_resource type="Texture2D" uid="uid://5xrdu432fvp8" path="res://Animations/Cat0/Cat0.0001.png" id="373_abv2c"]
 [ext_resource type="Texture2D" uid="uid://k20bxtfphy45" path="res://Animations/Cat0/Cat0.0002.png" id="374_x4hek"]
 [ext_resource type="Texture2D" uid="uid://rpl7pb6qlaao" path="res://Animations/Cat0/Cat0.0003.png" id="375_55i2f"]
@@ -495,15 +495,17 @@
 [ext_resource type="Texture2D" uid="uid://muxrd3qyxhs7" path="res://Animations/Cat0/Cat0.0118.png" id="490_yue7m"]
 [ext_resource type="Texture2D" uid="uid://dx15gvc3oc157" path="res://Animations/Cat0/Cat0.0119.png" id="491_mihfm"]
 [ext_resource type="Texture2D" uid="uid://cqnh0xc037oid" path="res://Animations/Cat0/Cat0.0120.png" id="492_bnt6y"]
+[ext_resource type="Texture2D" uid="uid://cpcbltyb6xs8f" path="res://Animations/Fish0/Fish.png" id="493_j3bnw"]
+[ext_resource type="Texture2D" uid="uid://bc1rtv0jawwnn" path="res://Animations/Elephant0/Elephant.png" id="494_vwfqf"]
 [ext_resource type="PackedScene" uid="uid://btcamyy2f7y3v" path="res://Scenes/Basic/HSlider.tscn" id="496_7wbil"]
-[ext_resource type="Texture2D" uid="uid://1ab8bems4wyc" path="res://Images/GameBG.jpg" id="497_naeyj"]
-[ext_resource type="Texture2D" uid="uid://c8hmsulfvg8rk" path="res://Images/QuizBG.png" id="497_qfh31"]
+[ext_resource type="Texture2D" uid="uid://duqdpiajoi26i" path="res://Images/GameBG.jpg" id="497_naeyj"]
+[ext_resource type="Texture2D" uid="uid://cyi2awlmrx8sl" path="res://Images/QuizBG.png" id="497_qfh31"]
 [ext_resource type="PackedScene" uid="uid://b6gr7a33x1x7f" path="res://Scenes/Basic/Window.tscn" id="498_kbthm"]
-[ext_resource type="Texture2D" uid="uid://dyajp4ktxugan" path="res://Images/Exit.png" id="498_y3ox8"]
-[ext_resource type="Texture2D" uid="uid://ckehya727c268" path="res://Images/Yes button.png" id="498_yr851"]
-[ext_resource type="Texture2D" uid="uid://dcr717lxc5nyx" path="res://Images/No button.png" id="499_228c6"]
-[ext_resource type="Texture2D" uid="uid://dwcwklaal6frk" path="res://Images/Sound.png" id="499_l3w82"]
-[ext_resource type="Texture2D" uid="uid://cty27xu4obsds" path="res://Images/Mute.png" id="500_8gsmd"]
+[ext_resource type="Texture2D" uid="uid://difv8bep64l6d" path="res://Images/Exit.png" id="498_y3ox8"]
+[ext_resource type="Texture2D" uid="uid://imdvteb5l424" path="res://Images/Yes button.png" id="498_yr851"]
+[ext_resource type="Texture2D" uid="uid://dcx4t2r2wpkpg" path="res://Images/No button.png" id="499_228c6"]
+[ext_resource type="Texture2D" uid="uid://b4agnl0mfbeu1" path="res://Images/Sound.png" id="499_l3w82"]
+[ext_resource type="Texture2D" uid="uid://8quf7sq0fd52" path="res://Images/Mute.png" id="500_8gsmd"]
 [ext_resource type="PackedScene" uid="uid://bg3h7rvni1sl6" path="res://Scenes/Basic/Resolution.tscn" id="501_xwsdu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u01sg"]
@@ -2000,7 +2002,35 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gh8qt"]
-size = Vector2(487.801, 248.75)
+size = Vector2(369.863, 213.041)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_il2xg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("493_j3bnw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s67pl"]
+size = Vector2(399.894, 343.834)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oq2qg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("494_vwfqf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c2ln"]
+size = Vector2(464.674, 464.674)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cdmof"]
 
@@ -2192,13 +2222,15 @@ sprite_frames = SubResource("SpriteFrames_u01sg")
 animation = &"New Anim"
 frame_progress = 0.330388
 speed_scale = 5.0
-metadata/_edit_lock_ = true
 
 [node name="sArea" type="Area2D" parent="Control/Snail"]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Snail/sArea"]
+visible = false
 position = Vector2(55.207, 45.629)
 shape = SubResource("RectangleShape2D_gyqp4")
+metadata/_edit_lock_ = true
 
 [node name="sButton" type="Button" parent="Control/Snail"]
 self_modulate = Color(1, 1, 1, 0)
@@ -2206,20 +2238,21 @@ offset_left = -114.0
 offset_top = -51.0
 offset_right = 222.0
 offset_bottom = 139.0
+metadata/_edit_lock_ = true
 
 [node name="Hippo" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(622.578, 410)
-scale = Vector2(0.4, 0.4)
+position = Vector2(184, 404)
+scale = Vector2(0.340278, 0.340278)
 sprite_frames = SubResource("SpriteFrames_8nex8")
 animation = &"New Anim"
 frame_progress = 0.721473
 speed_scale = 5.0
-metadata/_edit_lock_ = true
 
 [node name="hArea" type="Area2D" parent="Control/Hippo"]
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Hippo/hArea"]
+visible = false
 position = Vector2(-11.6891, 0.602417)
 shape = SubResource("RectangleShape2D_x2k5f")
 metadata/_edit_lock_ = true
@@ -2230,50 +2263,96 @@ offset_left = -244.0
 offset_top = -122.0
 offset_right = 224.0
 offset_bottom = 115.0
+metadata/_edit_lock_ = true
 
 [node name="Wolf" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(385, 415)
-scale = Vector2(0.5, 0.5)
+position = Vector2(365, 427)
+scale = Vector2(0.408102, 0.408102)
 sprite_frames = SubResource("SpriteFrames_1ypn0")
 frame_progress = 0.0254198
 speed_scale = 5.0
-metadata/_edit_lock_ = true
 
 [node name="wArea" type="Area2D" parent="Control/Wolf"]
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Wolf/wArea"]
+visible = false
 position = Vector2(1.936, -6)
 shape = SubResource("RectangleShape2D_6phnr")
 metadata/_edit_lock_ = true
 
 [node name="wButton" type="Button" parent="Control/Wolf"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -244.0
-offset_top = -122.0
-offset_right = 224.0
-offset_bottom = 115.0
+offset_left = -140.0
+offset_top = -132.0
+offset_right = 147.0
+offset_bottom = 120.0
 metadata/_edit_lock_ = true
 
 [node name="Cat" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(115, 410)
-scale = Vector2(0.5, 0.5)
+position = Vector2(79, 339)
+scale = Vector2(0.337963, 0.337963)
 sprite_frames = SubResource("SpriteFrames_3alv8")
 speed_scale = 5.0
-metadata/_edit_lock_ = true
 
 [node name="cArea" type="Area2D" parent="Control/Cat"]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Cat/cArea"]
-position = Vector2(-9.99997, -7.50012)
+visible = false
+position = Vector2(-36.9863, -8.87671)
 shape = SubResource("RectangleShape2D_gh8qt")
+metadata/_edit_lock_ = true
 
 [node name="cButton" type="Button" parent="Control/Cat"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -255.0
-offset_top = -132.0
-offset_right = 237.0
-offset_bottom = 118.0
+offset_left = -225.0
+offset_top = -107.0
+offset_right = 154.0
+offset_bottom = 92.0
+metadata/_edit_lock_ = true
+
+[node name="Fish" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(660, 339)
+scale = Vector2(0.270833, 0.270833)
+sprite_frames = SubResource("SpriteFrames_il2xg")
+
+[node name="fArea" type="Area2D" parent="Control/Fish"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Fish/fArea"]
+visible = false
+position = Vector2(-1.05737, 3.7373)
+shape = SubResource("RectangleShape2D_s67pl")
+metadata/_edit_lock_ = true
+
+[node name="fButton" type="Button" parent="Control/Fish"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -201.0
+offset_top = -164.0
+offset_right = 203.0
+offset_bottom = 176.0
+metadata/_edit_lock_ = true
+
+[node name="Elephant" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(534.141, 404)
+scale = Vector2(0.2333, 0.2333)
+sprite_frames = SubResource("SpriteFrames_oq2qg")
+
+[node name="eArea2D" type="Area2D" parent="Control/Elephant"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Elephant/eArea2D"]
+visible = false
+position = Vector2(-6.51416, -2.17139)
+shape = SubResource("RectangleShape2D_4c2ln")
+metadata/_edit_lock_ = true
+
+[node name="eButton" type="Button" parent="Control/Elephant"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -238.851
+offset_top = -234.508
+offset_right = 226.149
+offset_bottom = 230.492
 metadata/_edit_lock_ = true
 
 [node name="IntroTimer" type="Timer" parent="."]
@@ -2713,12 +2792,14 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="Control/Hippo/hButton" to="." method="_on_h_button_pressed"]
 [connection signal="pressed" from="Control/Wolf/wButton" to="." method="_on_w_button_pressed"]
 [connection signal="pressed" from="Control/Cat/cButton" to="." method="_on_c_button_pressed"]
+[connection signal="pressed" from="Control/Fish/fButton" to="." method="_on_f_button_pressed"]
+[connection signal="pressed" from="Control/Elephant/eButton" to="." method="_on_e_button_pressed"]
 [connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="SettingsPage/Control/TabContainer/Sound/SoundButton" to="." method="_on_sound_button_pressed"]
 [connection signal="drag_started" from="SettingsPage/Control/TabContainer/Sound/SfxSlider" to="." method="_on_sfx_slider_drag_started"]
-[connection signal="button_down" from="SettingsPage/Back" to="." method="_on_back_button_down"]
+[connection signal="pressed" from="SettingsPage/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="ExitPage/Panel/dqButton" to="." method="_on_dq_button_pressed"]
 [connection signal="button_down" from="ExitPage/Panel/qButton" to="." method="_on_q_button_button_down"]
 [connection signal="pressed" from="ExitPage/Panel/yButton" to="." method="_on_y_button_pressed"]

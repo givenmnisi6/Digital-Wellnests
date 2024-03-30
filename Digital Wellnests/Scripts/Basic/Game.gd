@@ -74,7 +74,7 @@ func startGame():
 		
 		# Calculate the conveyor size based on the level
 		speed = level * 0.2 + 1             # Calculate the speed based on the level
-		_screenSize = get_viewport().size   # Set the screen size
+		_screenSize = Vector2(720, 480)  # Set the screen size
 		
 		# Initialize variables for looping through the layout (lay)
 		var items: int = lay.size()
@@ -95,7 +95,7 @@ func startGame():
 		$EnvelopeTimer.start()
 
 	# Happy Hippo game
-	elif gameIndex == 1:
+	elif gameIndex == 4:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 
 		$BullyTimer.wait_time = (18 - level) * 0.06
@@ -103,7 +103,7 @@ func startGame():
 		prev = [[0, 0], [0, 0]]
 
 	# Wolf, Hyena and Fox game
-	elif gameIndex == 2:
+	elif gameIndex == 3:
 		$Hud/Score2.hide()
 		var x: int = 3
 		var y: int = 2
@@ -125,7 +125,7 @@ func startGame():
 		$Hud/Lives.hide()
 		$Pause.hide()
 	# Cyber Cat game
-	elif gameIndex == 3:
+	elif gameIndex == 5:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 		$CatTimer.start()
 		$ActivitiesTimer.start()
@@ -540,13 +540,13 @@ func pauseGame():
 			elif env == AnimatedSprite2D:
 				env.stop()
 
-	elif gameIndex == 1:
+	elif gameIndex == 4:
 		get_node("BullyTimer").paused = true
 		for tar in ig.get_children():
 			if tar == Target:
 				tar.get_node("TargetTimer").paused = true
 				tar.get_node("DispTimer").paused = true
-	elif gameIndex == 3:
+	elif gameIndex == 5:
 		$ActivitiesTimer.paused = true
 		GD.isNotAllowed = false
 		for act in ig.get_children():
@@ -568,7 +568,7 @@ func playGame():
 				env.play()
 		$EnvelopeTimer.paused = false
 
-	elif gameIndex == 1:
+	elif gameIndex == 4:
 		$BullyTimer.paused = false
 
 		for tar in ig.get_children():
@@ -576,7 +576,7 @@ func playGame():
 				tar.get_node("TargetTimer").paused = false
 				tar.get_node("DispTimer").paused = false
 
-	elif gameIndex == 3:
+	elif gameIndex == 5:
 		$ActivitiesTimer.paused = false
 		GD.isNotAllowed = true
 		for act in ig.get_children():

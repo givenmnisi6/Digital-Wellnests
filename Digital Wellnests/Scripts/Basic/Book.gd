@@ -16,7 +16,7 @@ func _ready():
 	charCount = 0
 	totCount = 0
 	totCharCount = 0
-	story = ["Snail", "Hippo", "Wolf", "Cat"]
+	story = ["Snail", "Fish", "Elephant", "Wolf", "Hippo", "Cat"]
 	storyStart()
 
 func storyStart():
