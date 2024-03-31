@@ -44,14 +44,16 @@ func _ready():
 	$StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
 	grab_click_focus()
 
-func _on_play_button_button_down():
+func _on_play_button_pressed():
 	level = int($StartGame/HSlider.value)
-	$Hud/Score2.show()
+	$Hud/Score.show()
 	$Pause.show()
 	Music.clickSfx()
 	# Remove the instructions
 	$StartGame.scale = Vector2(0.01, 0.01)
+	$Effects.stop()
 	startGame()
+	
 
 func startGame():
 	# At the start, all games have 3 lives and to win you need to have 20 points
@@ -74,7 +76,7 @@ func startGame():
 		
 		# Calculate the conveyor size based on the level
 		speed = level * 0.2 + 1             # Calculate the speed based on the level
-		_screenSize = Vector2(720, 480)  # Set the screen size
+		_screenSize = Vector2(720, 480)     # Set the screen size
 		
 		# Initialize variables for looping through the layout (lay)
 		var items: int = lay.size()
@@ -104,7 +106,7 @@ func startGame():
 
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
-		$Hud/Score2.hide()
+		$Hud/Score.hide()
 		var x: int = 3
 		var y: int = 2
 		
@@ -381,11 +383,11 @@ func spawnEnvelope(type: int, lane: int):
 
 func updateScore(punt: bool):
 	if not gameOver:
-		$Hud/Score2.show()
+		$Hud/Score.show()
 		if punt:
 			#print("Score++")
 			score += 1
-			$Hud/Score2.text = str(score) + " "
+			$Hud/Score.text = str(score) + " "
 			if score >= goal:
 				gameEnd(true)
 		else:
@@ -626,4 +628,7 @@ func _on_texture_button_pressed():
 		playGame()
 	else:
 		pauseGame()
+
+
+
 
