@@ -3964,6 +3964,15 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wukaq"]
 bg_color = Color(0.00392157, 0.235294, 0.12549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.00392157, 0.188235, 0.121569, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wf2sm"]
 bg_color = Color(0.435294, 0, 0.435294, 1)
@@ -4092,7 +4101,7 @@ sprite_frames = SubResource("SpriteFrames_i3x47")
 animation = &"Victory0"
 speed_scale = 5.0
 
-[node name="Score2" type="RichTextLabel" parent="Hud"]
+[node name="Score" type="RichTextLabel" parent="Hud"]
 visible = false
 offset_left = 298.0
 offset_top = 1.5
@@ -4228,7 +4237,7 @@ stream = ExtResource("980_t6dhn")
 [connection signal="timeout" from="EnvelopeTimer" to="." method="_on_envelope_timer_timeout"]
 [connection signal="area_entered" from="EnvelopeStop" to="." method="_on_envelope_stop_area_entered"]
 [connection signal="value_changed" from="StartGame/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="button_down" from="StartGame/playButton" to="." method="_on_play_button_button_down"]
+[connection signal="pressed" from="StartGame/playButton" to="." method="_on_play_button_pressed"]
 [connection signal="timeout" from="BullyTimer" to="." method="_on_bully_timer_timeout"]
 [connection signal="timeout" from="ActivitiesTimer" to="." method="_on_activities_timer_timeout"]
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
