@@ -6,8 +6,8 @@ extends Control
 const WINDOW_MODE : Array[String] = [
 	"Windowed",
 	"Fullscreen",
-	"Borderless Fullscreen",
-	"Borderless Windowed"
+	"Borderless Windowed",
+	"Borderless Fullscreen"
 ]
 
 func _ready():
