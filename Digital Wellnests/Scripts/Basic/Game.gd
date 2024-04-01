@@ -33,7 +33,6 @@ var grid: Array
 
 var prevObj
 
-
 func _ready():
 	# Playing the voices for each game
 	$Effects.stream = ResourceLoader.load("res://Audio/Voice/GameEx" + str(gameIndex) + ".wav")
@@ -49,11 +48,11 @@ func _on_play_button_pressed():
 	$Hud/Score.show()
 	$Pause.show()
 	Music.clickSfx()
+	
 	# Remove the instructions
 	$StartGame.scale = Vector2(0.01, 0.01)
 	$Effects.stop()
 	startGame()
-	
 
 func startGame():
 	# At the start, all games have 3 lives and to win you need to have 20 points
@@ -96,14 +95,6 @@ func startGame():
 		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
 		$EnvelopeTimer.start()
 
-	# Happy Hippo game
-	elif gameIndex == 4:
-		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
-
-		$BullyTimer.wait_time = (18 - level) * 0.06
-		$BullyTimer.start()
-		prev = [[0, 0], [0, 0]]
-
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
 		$Hud/Score.hide()
@@ -126,12 +117,20 @@ func startGame():
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
 		$Pause.hide()
+
+	# Happy Hippo game
+	elif gameIndex == 4:
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
+
+		$BullyTimer.wait_time = (18 - level) * 0.06
+		$BullyTimer.start()
+		prev = [[0, 0], [0, 0]]
+
 	# Cyber Cat game
 	elif gameIndex == 5:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 		$CatTimer.start()
 		$ActivitiesTimer.start()
-
 
 # Generate tiles 
 func spawnTiles(maxx: int, maxy:int):
@@ -212,6 +211,7 @@ func tileClick(obj):
 				gameEnd(true)
 		prevObj = null
 
+# Random shuffle of the colors
 func customShuffle(arr: Array) -> Array:
 	var n = arr.size()
 	for i in range(n - 1, 0, -1):
@@ -228,9 +228,10 @@ func calcConveyor(conveyorSize: int):
 	var conCount = level             # Initialize number of conveyor belt objects
 
 	if conCount == 1:
-		conCount += 1                #Ensure there is at least one conveyor belt object
+		conCount += 1                # Ensure there is at least one conveyor belt object
 
-	var size: float = (conveyorSize) / conCount           # Calculate size of each conveyor belt object
+	# Calculate size of each conveyor belt object
+	var size: float = (conveyorSize) / conCount           
 	var random = RandomNumberGenerator.new()             
 	var containsAll: bool
 	
@@ -242,16 +243,16 @@ func calcConveyor(conveyorSize: int):
 	else:
 		colCount = 4
 
-	#Distribution of sizes of conveyor sections depending on the level
+	# Distribution of sizes of conveyor sections depending on the level
 	if level == 1:
 		lay = [2, 2]
 		group = [0,1]
 		group = customShuffle(group)
 		if group[0] == group[1]:
 			group[1] = (group[1] + 1) % colCount
-		#for i in range(conCount):
-			#lay.append(int(size))
-	elif level == 2: 	#In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively, the column count will be 3
+
+	# In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively, the column count will be 3
+	elif level == 2: 
 		lay = [2, 3, 2]
 		group = [1, 0, 1]
 		group = customShuffle(group)
@@ -290,8 +291,8 @@ func calcConveyor(conveyorSize: int):
 		# Fill in the temporary array with the conveyorCount
 		for i in range(conCount):
 			lay.append(tmp[i])
-		print("Conveyor Count: ", conCount)
-		print("Generated Conveyor Sizes:", lay)
+		#print("Conveyor Count: ", conCount)
+		#print("Generated Conveyor Sizes:", lay)
 
 		var conveyorIndices: Array = []
 		for i in range(conCount):
@@ -302,7 +303,8 @@ func calcConveyor(conveyorSize: int):
 		while (!containsAll):
 			containsAll = true
 			group.clear()
-			var uniqueColors: Array = []  # Array to store unique colors
+			# Array to store unique colors
+			var uniqueColors: Array = [] 
 			
 			for i in range(conCount):
 				var rnd: int
@@ -321,9 +323,9 @@ func calcConveyor(conveyorSize: int):
 				if not foundColor:
 					containsAll = false
 					break
-					
-		for i in range(conCount):
-			print("Conveyor ", conveyorIndices[i], ": Group ", group[i])
+
+		#for i in range(conCount):
+			#print("Conveyor ", conveyorIndices[i], ": Group ", group[i])
 
 func createConveyor(pos: Vector2, size: int, i:int):
 	var convInstance = Conveyor.instantiate()
@@ -394,7 +396,6 @@ func updateScore(punt: bool):
 			#print("Lives--")
 			lives -= 1
 			$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart" + str(lives) + ".png")
-			#$Hud/Lives.rect_min_size = Vector2(40 * lives, 35)
 			if lives <= 0:
 				gameEnd(false)
 
@@ -412,7 +413,7 @@ func _on_envelope_stop_area_entered(area):
 			convIndex += 1
 		
 		var ap = $Effects
-		#Check if the entered area's type matches the conveyor's group
+		# Check if the entered area's type matches the conveyor's group
 		if int(area.type) == group[convIndex]:
 			ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
 		else:
@@ -422,12 +423,12 @@ func _on_envelope_stop_area_entered(area):
 
 		area.get_node("EnvelopeAnim").animation = "Shrink"
 		area.get_node("EnvelopeAnim").play()
-		print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
-
+		#print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
 
 func gameEnd(win: bool):
 	var ap = $Effects
 	gameOver = true
+	
 	$CatTimer.stop()
 	$BullyTimer.stop()
 	$ActivitiesTimer.stop()
@@ -453,7 +454,6 @@ func gameEnd(win: bool):
 	var control = $EndGame
 	control.show()
 	control.z_index = get_child_count() - 1
-
 
 func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false
@@ -536,7 +536,8 @@ func pauseGame():
 		get_tree().root.content_scale_size
 		$EnvelopeTimer.paused = true
 		for env in ig.get_children():
-			if env.name == "Envelope":  # Check if the child node is of type Envelope
+			# Check if the child node is of type Envelope
+			if env.name == "Envelope":  
 				env.Speed = 0.0
 				env.hit = true
 			elif env == AnimatedSprite2D:
@@ -585,7 +586,6 @@ func playGame():
 			if act == Activities:
 				act.get_node("ActivitiesTimer").paused = false
 
-
 func _on_activities_timer_timeout():
 	var actInstance = Activities.instantiate()
 	var actLocation = $Path2D/PathFollow2D
@@ -622,13 +622,8 @@ func calculateHit(coin: bool):
 func _on_cat_timer_timeout():
 	add_child(catInstance)
 
-
 func _on_texture_button_pressed():
 	if bpaused:
 		playGame()
 	else:
 		pauseGame()
-
-
-
-
