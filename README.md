@@ -1,4 +1,4 @@
-# Digital Wellness Game
+# Digital Wellness game
 
 ## To-Do List
 
@@ -25,4 +25,5 @@
         - Online character? No
         - Unknown/Pop up ads advert? No
   - **Rabbit with the tablet** (Maybe)
+  - **Voice-overs**
 
