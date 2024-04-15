@@ -1,4 +1,4 @@
-# Digital Wellness game
+# Digital Wellnests game
 
 ## To-Do List
 
