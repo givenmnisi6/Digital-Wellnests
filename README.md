@@ -28,4 +28,5 @@ Digital Wellnests is a serious game thatcan be used as an intervention to spread
         - Online character? No
         - Unknown/Pop up ads advert? No
   - **Rabbit with the tablet** (Maybe)
+  - **Voice-overs**
 
