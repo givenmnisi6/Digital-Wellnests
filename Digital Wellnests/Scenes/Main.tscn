@@ -1,13 +1,13 @@
-[gd_scene load_steps=535 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=533 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
-[ext_resource type="Texture2D" uid="uid://de34vch3s1wx2" path="res://Images/BackGround.jpg" id="2_3icno"]
+[ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="2_3icno"]
 [ext_resource type="PackedScene" uid="uid://dgrnrl2t0ubx1" path="res://Scenes/Basic/Book.tscn" id="2_iqdi2"]
 [ext_resource type="PackedScene" uid="uid://cugtttre47j1d" path="res://Scenes/Basic/Game.tscn" id="3_1kgnl"]
-[ext_resource type="Texture2D" uid="uid://y30i45a4dghk" path="res://Images/AnimBackground.png" id="3_1umnh"]
-[ext_resource type="Texture2D" uid="uid://ba37r3n3rc7il" path="res://Images/ArrowR.png" id="4_lll4g"]
+[ext_resource type="Texture2D" uid="uid://by481jc6g21eb" path="res://Images/AnimBackground.png" id="3_1umnh"]
+[ext_resource type="Texture2D" uid="uid://d0yu214lejv80" path="res://Images/ArrowR.png" id="4_lll4g"]
 [ext_resource type="PackedScene" uid="uid://djnw1bayii00g" path="res://Scenes/Basic/Quiz.tscn" id="4_tlpos"]
-[ext_resource type="Texture2D" uid="uid://bri45ha0eaim4" path="res://Images/ArrowL.png" id="5_hahof"]
+[ext_resource type="Texture2D" uid="uid://dfsb33cwxxjwy" path="res://Images/ArrowL.png" id="5_hahof"]
 [ext_resource type="Texture2D" uid="uid://cjqricwjoko0x" path="res://Animations/Slak1/Slak1Animation1.0000.png" id="6_roxhu"]
 [ext_resource type="Texture2D" uid="uid://cpkvs16q4fd5g" path="res://Animations/Slak1/Slak1Animation1.0001.png" id="7_j4f7l"]
 [ext_resource type="Texture2D" uid="uid://buhbwkf6drm1e" path="res://Animations/Slak1/Slak1Animation1.0002.png" id="8_hxb4v"]
@@ -371,10 +371,10 @@
 [ext_resource type="Texture2D" uid="uid://dnmwek4h575lk" path="res://Animations/Wolf1/Wolf0.0118.png" id="366_wt1g7"]
 [ext_resource type="Texture2D" uid="uid://0nbqukooqtrx" path="res://Animations/Wolf1/Wolf0.0119.png" id="367_057ij"]
 [ext_resource type="Texture2D" uid="uid://dd82c82ciyrfw" path="res://Animations/Wolf1/Wolf0.0120.png" id="368_uk84c"]
-[ext_resource type="Texture2D" uid="uid://1j7hxj2qsgpm" path="res://Images/Settings.png" id="369_6kui3"]
+[ext_resource type="Texture2D" uid="uid://b7s7um0mums48" path="res://Images/Settings.png" id="369_6kui3"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="370_q2sss"]
 [ext_resource type="Texture2D" uid="uid://m5argv0q5nbo" path="res://Animations/Cat0/Cat0.0000.png" id="372_4b06e"]
-[ext_resource type="Texture2D" uid="uid://dtt7uh7tuemv5" path="res://Images/QuizBG2.png" id="372_48jvv"]
+[ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="372_48jvv"]
 [ext_resource type="Texture2D" uid="uid://5xrdu432fvp8" path="res://Animations/Cat0/Cat0.0001.png" id="373_abv2c"]
 [ext_resource type="Texture2D" uid="uid://k20bxtfphy45" path="res://Animations/Cat0/Cat0.0002.png" id="374_x4hek"]
 [ext_resource type="Texture2D" uid="uid://rpl7pb6qlaao" path="res://Animations/Cat0/Cat0.0003.png" id="375_55i2f"]
@@ -498,14 +498,12 @@
 [ext_resource type="Texture2D" uid="uid://cpcbltyb6xs8f" path="res://Animations/Fish0/Fish.png" id="493_j3bnw"]
 [ext_resource type="Texture2D" uid="uid://bc1rtv0jawwnn" path="res://Animations/Elephant0/Elephant.png" id="494_vwfqf"]
 [ext_resource type="PackedScene" uid="uid://btcamyy2f7y3v" path="res://Scenes/Basic/HSlider.tscn" id="496_7wbil"]
-[ext_resource type="Texture2D" uid="uid://duqdpiajoi26i" path="res://Images/GameBG.jpg" id="497_naeyj"]
-[ext_resource type="Texture2D" uid="uid://cyi2awlmrx8sl" path="res://Images/QuizBG.png" id="497_qfh31"]
+[ext_resource type="Texture2D" uid="uid://dilph5mebhish" path="res://Images/GameBG.jpg" id="497_naeyj"]
+[ext_resource type="Texture2D" uid="uid://fq3dkupitt2y" path="res://Images/QuizBG.png" id="497_qfh31"]
 [ext_resource type="PackedScene" uid="uid://b6gr7a33x1x7f" path="res://Scenes/Basic/Window.tscn" id="498_kbthm"]
-[ext_resource type="Texture2D" uid="uid://difv8bep64l6d" path="res://Images/Exit.png" id="498_y3ox8"]
-[ext_resource type="Texture2D" uid="uid://imdvteb5l424" path="res://Images/Yes button.png" id="498_yr851"]
-[ext_resource type="Texture2D" uid="uid://dcx4t2r2wpkpg" path="res://Images/No button.png" id="499_228c6"]
-[ext_resource type="Texture2D" uid="uid://b4agnl0mfbeu1" path="res://Images/Sound.png" id="499_l3w82"]
-[ext_resource type="Texture2D" uid="uid://8quf7sq0fd52" path="res://Images/Mute.png" id="500_8gsmd"]
+[ext_resource type="Texture2D" uid="uid://cflx1uvvsv74r" path="res://Images/Exit.png" id="498_y3ox8"]
+[ext_resource type="Texture2D" uid="uid://c4nta1b8t4ik5" path="res://Images/Sound.png" id="499_l3w82"]
+[ext_resource type="Texture2D" uid="uid://dth3uo5atxd1m" path="res://Images/Mute.png" id="500_8gsmd"]
 [ext_resource type="PackedScene" uid="uid://bg3h7rvni1sl6" path="res://Scenes/Basic/Resolution.tscn" id="501_xwsdu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u01sg"]
@@ -2720,30 +2718,6 @@ bbcode_enabled = true
 text = "[center]Do you want to quit the game?[/center]"
 metadata/_edit_lock_ = true
 
-[node name="dqButton" type="Button" parent="ExitPage/Panel"]
-visible = false
-layout_mode = 0
-offset_left = 6.0
-offset_top = 211.0
-offset_right = 339.0
-offset_bottom = 402.0
-theme_override_constants/icon_max_width = 0
-icon = ExtResource("498_yr851")
-flat = true
-expand_icon = true
-
-[node name="qButton" type="Button" parent="ExitPage/Panel"]
-visible = false
-layout_mode = 0
-offset_left = 367.0
-offset_top = 219.0
-offset_right = 700.0
-offset_bottom = 410.0
-theme_override_constants/icon_max_width = 0
-icon = ExtResource("499_228c6")
-flat = true
-expand_icon = true
-
 [node name="yButton" type="Button" parent="ExitPage/Panel"]
 modulate = Color(0, 0.905882, 0.180392, 1)
 layout_mode = 0
@@ -2799,12 +2773,10 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="Control/Elephant/eButton" to="." method="_on_e_button_pressed"]
 [connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="gui_input" from="Exit" to="." method="_on_exit_gui_input"]
 [connection signal="pressed" from="SettingsPage/Control/TabContainer/Sound/SoundButton" to="." method="_on_sound_button_pressed"]
 [connection signal="drag_started" from="SettingsPage/Control/TabContainer/Sound/SfxSlider" to="." method="_on_sfx_slider_drag_started"]
 [connection signal="pressed" from="SettingsPage/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="ExitPage/Panel/dqButton" to="." method="_on_dq_button_pressed"]
-[connection signal="button_down" from="ExitPage/Panel/qButton" to="." method="_on_q_button_button_down"]
 [connection signal="pressed" from="ExitPage/Panel/yButton" to="." method="_on_y_button_pressed"]
 [connection signal="pressed" from="ExitPage/Panel/nButton" to="." method="_on_n_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

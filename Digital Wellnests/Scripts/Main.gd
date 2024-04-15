@@ -387,6 +387,17 @@ func _on_exit_pressed():
 	twn.tween_property(y, "scale", Vector2(1,1), 0.4)
 	twn.tween_property(n, "scale", Vector2(1,1), 0.4)
 
+func _on_exit_gui_input(event):
+	if (event is InputEventScreenTouch && InputEventMouseButton):
+		Music.clickSfx()
+		$ExitPage.show()
+		var twn = get_tree().create_tween()
+		var y = $ExitPage/Panel/yButton
+		var n = $ExitPage/Panel/nButton
+		
+		twn.tween_property(y, "scale", Vector2(1,1), 0.4)
+		twn.tween_property(n, "scale", Vector2(1,1), 0.4)
+
 func _on_settings_pressed():
 	Music.clickSfx()
 	$SettingsPage.show()
@@ -399,16 +410,6 @@ func _on_y_button_pressed():
 	Music.clickSfx()
 	get_tree().quit()
 
-#func _on_dq_button_pressed():
-	#Music.clickSfx()
-	#get_tree().quit()
-
-#func _on_q_button_button_down():
-	#Music.clickSfx()
-	#get_tree().quit()
-
 func _on_sound_button_pressed():
 	AudioServer.set_bus_mute(musicBus, not AudioServer.is_bus_mute(musicBus))
-
-
 
