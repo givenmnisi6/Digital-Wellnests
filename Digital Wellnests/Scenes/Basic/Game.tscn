@@ -1,6 +1,6 @@
 [gd_scene load_steps=994 format=3 uid="uid://cugtttre47j1d"]
 
-[ext_resource type="Texture2D" uid="uid://de34vch3s1wx2" path="res://Images/BackGround.jpg" id="1_klf3e"]
+[ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="1_klf3e"]
 [ext_resource type="Script" path="res://Scripts/Basic/Game.gd" id="2_4gpnb"]
 [ext_resource type="Texture2D" uid="uid://c11v1s3jp1hat" path="res://Animations/Slak2/Slak1Animation2.0000.png" id="2_acfc5"]
 [ext_resource type="Texture2D" uid="uid://di0rv5r0ajr22" path="res://Animations/Slak2/Slak1Animation2.0001.png" id="3_k573c"]
@@ -856,8 +856,8 @@
 [ext_resource type="Texture2D" uid="uid://dpfmfh874opdl" path="res://Animations/Wolf2/Wolf2.0119.png" id="726_q803x"]
 [ext_resource type="Texture2D" uid="uid://w87whkmbkfe1" path="res://Animations/Wolf2/Wolf2.0120.png" id="727_xabuy"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="728_7gdf6"]
-[ext_resource type="Texture2D" uid="uid://b5q8aargnoekl" path="res://Images/GameEx0.png" id="729_ald1e"]
-[ext_resource type="Texture2D" uid="uid://cbu82b28ujv5p" path="res://Images/Pause.png" id="730_uh23x"]
+[ext_resource type="Texture2D" uid="uid://dwnnlial0w88q" path="res://Images/GameEx0.png" id="729_ald1e"]
+[ext_resource type="Texture2D" uid="uid://f1xch3t6ltfx" path="res://Images/Pause.png" id="730_uh23x"]
 [ext_resource type="Texture2D" uid="uid://bi2s41kdpa48l" path="res://Animations/Cat1/Cat1.0000.png" id="856_vh1vq"]
 [ext_resource type="Texture2D" uid="uid://cxmfrqgid5s0h" path="res://Animations/Cat1/Cat1.0001.png" id="857_02461"]
 [ext_resource type="Texture2D" uid="uid://pghlqvwpagva" path="res://Animations/Cat1/Cat1.0002.png" id="858_et0ar"]
@@ -979,7 +979,7 @@
 [ext_resource type="Texture2D" uid="uid://1ifmg4vjvk7w" path="res://Animations/Cat1/Cat1.0118.png" id="974_03fv2"]
 [ext_resource type="Texture2D" uid="uid://bmxtd3ymj413b" path="res://Animations/Cat1/Cat1.0119.png" id="975_0y8wb"]
 [ext_resource type="Texture2D" uid="uid://56q0dhnpopaa" path="res://Animations/Cat1/Cat1.0120.png" id="976_dh1ny"]
-[ext_resource type="Texture2D" uid="uid://bfw3tpciwtfb1" path="res://Images/Play.png" id="980_bw1v7"]
+[ext_resource type="Texture2D" uid="uid://c7yffgtrirh1d" path="res://Images/Play.png" id="980_bw1v7"]
 [ext_resource type="AudioStream" uid="uid://cv5g7x4o21fcb" path="res://Audio/Effects/Jungle.wav" id="980_t6dhn"]
 
 [sub_resource type="Curve2D" id="Curve2D_kb7ug"]
