@@ -1,4 +1,7 @@
-# Digital Wellness Game
+# Digital Wellnests
+
+Digital Wellnests is a serious game thatcan be used as an intervention to spread digital well-being and awareness of preschool children.
+
 
 ## To-Do List
 
