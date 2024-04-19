@@ -413,3 +413,7 @@ func _on_y_button_pressed():
 func _on_sound_button_pressed():
 	AudioServer.set_bus_mute(musicBus, not AudioServer.is_bus_mute(musicBus))
 
+func _on_settings_gui_input(event):
+	if (event is InputEventScreenTouch && InputEventMouseButton):
+		Music.clickSfx()
+		$SettingsPage.show()
