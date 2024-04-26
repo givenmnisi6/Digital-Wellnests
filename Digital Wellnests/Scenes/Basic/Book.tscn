@@ -1,10 +1,10 @@
 [gd_scene load_steps=58 format=3 uid="uid://dgrnrl2t0ubx1"]
 
 [ext_resource type="Script" path="res://Scripts/Basic/Book.gd" id="1_1wfa0"]
-[ext_resource type="Texture2D" uid="uid://b18ofxhfhavlw" path="res://Images/OpenPages.png" id="2_4jpuk"]
-[ext_resource type="Texture2D" uid="uid://y30i45a4dghk" path="res://Images/AnimBackground.png" id="3_sc8xq"]
+[ext_resource type="Texture2D" uid="uid://58mo68rm5nbc" path="res://Images/OpenPages.png" id="2_4jpuk"]
+[ext_resource type="Texture2D" uid="uid://by481jc6g21eb" path="res://Images/AnimBackground.png" id="3_sc8xq"]
 [ext_resource type="PackedScene" uid="uid://y1ct72dyugt1" path="res://Scenes/Basic/AnimatedSprite.tscn" id="4_8cats"]
-[ext_resource type="Texture2D" uid="uid://di1b1u01c6k7a" path="res://Images/PagesR.png" id="5_iqijk"]
+[ext_resource type="Texture2D" uid="uid://cicmfy5ejelah" path="res://Images/PagesR.png" id="5_iqijk"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="6_1i4o4"]
 [ext_resource type="Texture2D" uid="uid://daylkijgws37" path="res://Animations/PageTurn/PageTurn.0000.png" id="7_3v36b"]
 [ext_resource type="Texture2D" uid="uid://b5wiug4pab3ji" path="res://Animations/PageTurn/PageTurn.0001.png" id="8_u11n4"]
@@ -241,13 +241,11 @@ visible = false
 modulate = Color(0, 0, 0, 0.376471)
 position = Vector2(179.109, 285)
 scale = Vector2(0.85, 0.85)
-frame_progress = 0.888617
 
 [node name="Animation" parent="." instance=ExtResource("4_8cats")]
 visible = false
 position = Vector2(183, 277)
 scale = Vector2(0.8, 0.8)
-animation = &"Cat0"
 
 [node name="Book2" type="TextureRect" parent="."]
 modulate = Color(0.85098, 0.819608, 0.780392, 1)

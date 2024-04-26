@@ -39,11 +39,11 @@ func storyStart():
 	poemText.text = ""
 	currentVerse = 0
 	
-	#Animation to play when a certain story is selected
+	# Animation to play when a certain story is selected
 	anim.animation = story[iStory] + str(totCount)
 	anim2.animation = story[iStory] + str(totCount)
 	
-		#To Play Sound when game is loading, "Safety Snail Emails"
+	# To Play Sound when game is loading, "Safety Snail Emails"
 	var audioPlayer = $AudioStreamPlayer
 	var audioPath = "res://Audio/Voice/" + story[iStory] + str(totCount) + ".wav"
 	
