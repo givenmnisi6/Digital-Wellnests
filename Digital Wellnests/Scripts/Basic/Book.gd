@@ -12,22 +12,33 @@ var totCount: int
 
 func _ready():
 	grab_click_focus()
+	
+	# Prints the value of iStory (which is not defined in this snippet, so it will likely throw an error)
+	print(iStory)
 	verseCount = 0
 	charCount = 0
 	totCount = 0
 	totCharCount = 0
+	
+	# Array of the story
 	story = ["Snail", "Fish", "Elephant", "Wolf", "Hippo", "Cat"]
+	
+	# Start the story function
 	storyStart()
 
 func storyStart():
 	var anim = $Animation
 	var anim2 = $AnimationShadow
 
+	# Show and play animation 
 	anim.show()
 	anim.play()
+
+	# Show and play animation shadow
 	anim2.show()
 	anim2.play()
 	
+	# Adjust the scale and position of the animations based on the value of iStory
 	if iStory == 2:
 		anim.scale = Vector2(1, 1)
 		anim2.scale = Vector2(1.05, 1.05)
@@ -35,15 +46,19 @@ func storyStart():
 		anim.position = Vector2(180+25, 285)
 		anim2.position = Vector2(180+25, 285)
 
-	var poemText = $Text 
+	var poemText = $Text
+	
+	# Clear the text
 	poemText.text = ""
+	
+	# Set the current verse to 0
 	currentVerse = 0
 	
 	# Animation to play when a certain story is selected
 	anim.animation = story[iStory] + str(totCount)
 	anim2.animation = story[iStory] + str(totCount)
 	
-	# To Play Sound when game is loading, "Safety Snail Emails"
+	# To play sound when a story is loading, "Safety Snail Emails"
 	var audioPlayer = $AudioStreamPlayer
 	var audioPath = "res://Audio/Voice/" + story[iStory] + str(totCount) + ".wav"
 	
@@ -51,28 +66,32 @@ func storyStart():
 		audioPlayer.stream = ResourceLoader.load(audioPath)
 		audioPlayer.play()
 
-	#Frame that is displayed
+	# Frame that is displayed
 	$PageTurn.frame = 48 
 
-	#Load Story
+	# Load Story
 	loadStory(1)
+	
 	pageLock = false
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
-		#print("Click")
+		print("Click")
 
 		if !pageLock:
-			#If the paragraphs are less than 3
+			# If the paragraphs are less than 3
 			if currentVerse < 3:
+				# Increment the current verse and total count
 				currentVerse += 1
 				totCount += 1
-
+				
+				# If the animation exists, set it as the current animation
 				if $Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
 					$Animation.animation = story[iStory] + str(totCount)
 				if $AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
 					$AnimationShadow.animation = story[iStory] + str(totCount)
 
+				# Load and play an audio stream
 				var audioStreamPlayer = $AudioStreamPlayer
 				var audioFilePath = "res://Audio/Voice/" + story[iStory] + str(totCount) + ".wav"
 
@@ -80,7 +99,8 @@ func _input(event: InputEvent):
 					var audioStream = ResourceLoader.load(audioFilePath)
 					audioStreamPlayer.stream = audioStream
 					audioStreamPlayer.play()
-
+				
+				# Start the word timer
 				$WordTimer.start()
 				pageLock = true
 			else:
@@ -94,22 +114,29 @@ func _input(event: InputEvent):
 				#Start the page turn from zero
 				pageTurn.frame = 0
 				
+				# If the total verse count is less than or equal to 3, start the quiz and free the current node
 				if totalVerse <= 3:
-					#Calling the startQuiz method, to start the Quiz
 					get_parent().call("startQuiz")
 					queue_free()
-				
+					
+				 # Lock the page
 				pageLock = true
+				
+				# Increment the total count
 				totCount += 1
 				
+				# If the total verse count is greater than 3
 				if totalVerse > 3:
+					# Reset the current verse and decrement the total verse count
 					currentVerse = 0
 					totalVerse -= 3
-					#print(totalVerse)
-					@warning_ignore("integer_division")
+					print(totalVerse)
+					
 					loadStory(totalVerse / 3 + 2)
 				
 				if iStory == 1 and totCount == 8:
+					currentVerse = 0
+					print("AAA")
 					var anim = $Animation
 					anim.position = Vector2(180+25, 285)
 					var anim2 = $AnimationShadow
@@ -119,7 +146,7 @@ func _on_word_timer_timeout():
 	var poemText = $Text
 	var text = poemText.text
 
-	#For revealing the words of the Poem
+	# For revealing the words of the Poem
 	if (charCount + 1 < text.length() && (text[charCount] != '\n' || text[charCount + 1] != '\n') || charCount + 1 == text.length()):
 		#if text[charCount] != '\n':
 		$Text.visible_characters = $Text.visible_characters + 1
@@ -144,18 +171,21 @@ func loadStory(num: int):
 	var poemTitle = $Title
 	var poemText = $Text
 	
-	#Opening the poems and reading them
+	# Opening the poems and reading them
 	var txtFile = FileAccess.open("res://Poems/" + story[iStory] + ".txt", FileAccess.READ)
 	
+	# Get the entire text content of the poem file
 	var poem = txtFile.get_as_text()
 	
+	# Extracting the total number of verses and poem content
 	if num == 1:
-		totalVerse = int(poem.substr(0, poem.find("-")))
-	poem = poem.substr(poem.find("-") + 1)
+		totalVerse = int(poem.substr(0, poem.find("-"))) # Extract the total number of verses from the start of the text
+	poem = poem.substr(poem.find("-") + 1) # Remove the total verse count from the poem text
 	
 	#print("Total number of paragraphs or verses: " + str(totalVerse))
 	
-	poemTitle.text = poem.substr(0, poem.find("\n\n"))
+	# Setting the title of the poem
+	poemTitle.text = poem.substr(0, poem.find("\n\n")) # Set the poem title text
 	poemTitle.bbcode_text = "[center]" + poem.substr(0, poem.find("\n")) + "[/center]"
 	poem = poem.substr(poem.find("\n") + 2)
 	
@@ -168,13 +198,14 @@ func loadStory(num: int):
 	else:
 		poem = poem.substr(totCharCount, indx)
 	
-	#Starting the poem
+	# Starting the poem
+	# Removing leading newlines from the poem text
 	while poem.begins_with('\n'):
 		poem = poem.substr(1)
 	
-	poemText.text = poem
-	poemText.visible_characters = 0
-	currentVerse = 0
+	poemText.text = poem              # Clear the poem text
+	poemText.visible_characters = 0   # Start with no characters visible
+	currentVerse = 0                  # Reset the current verse counter
 
 func getIndex(s: String, t: String, n: int) -> int:
 	var count = 0
@@ -184,7 +215,6 @@ func getIndex(s: String, t: String, n: int) -> int:
 			if count == n:
 				return i
 	return -1
-
 
 func _on_page_turn_frame_changed():
 	if $PageTurn.frame == 12:
