@@ -96,7 +96,7 @@ func swap():
 		phTween.tween_property(hippo, "position", Vector2(368, 438), 0.35)
 		pcTween.tween_property(wolf, "position", Vector2(530, 405), 0.35)
 		pwTween.tween_property(cat, "position", Vector2(220 , 420), 0.35)
-		pwTween.parallel().tween_property(fish, "position", Vector2(360, 230), 0.35)
+		pfTween.parallel().tween_property(fish, "position", Vector2(360, 230), 0.35)
 		peTween.tween_property(elephant, "position", Vector2(665, 355), 0.35)
 		
 		ssTween.tween_property(snail, "scale", Vector2(0.47, 0.47), 0.3)
