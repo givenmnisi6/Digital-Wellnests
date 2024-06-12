@@ -14,7 +14,7 @@ func _ready():
 	grab_click_focus()
 	
 	# Prints the value of iStory (which is not defined in this snippet, so it will likely throw an error)
-	print(iStory)
+	#print(iStory)
 	verseCount = 0
 	charCount = 0
 	totCount = 0
@@ -76,7 +76,7 @@ func storyStart():
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
-		print("Click")
+		#print("Click")
 
 		if !pageLock:
 			# If the paragraphs are less than 3
@@ -130,13 +130,13 @@ func _input(event: InputEvent):
 					# Reset the current verse and decrement the total verse count
 					currentVerse = 0
 					totalVerse -= 3
-					print(totalVerse)
+					#print(totalVerse)
 					
 					loadStory(totalVerse / 3 + 2)
 				
 				if iStory == 1 and totCount == 8:
 					currentVerse = 0
-					print("AAA")
+					#print("AAA")
 					var anim = $Animation
 					anim.position = Vector2(180+25, 285)
 					var anim2 = $AnimationShadow
