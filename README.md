@@ -4,25 +4,12 @@ Digital Wellnests is a serious game that can be used as an intervention to sprea
 
 - [ ] **Implement the following poems into games:**
   - **Lucky the Fish**
-    - **Question:** Should you click on a link from:
-      - Possible answers:
-        - Best friend? Yes
-        - Teacher? Yes
-        - Parents? Yes
-        - Mysterious website? No
-        - Surprising offer? No
-        - Stranger? No
   - **Elephant and his Shoe**
-    - **Question:** Should you listen to advice about screen time from?
-      - Possible answers:
-        - Librarian? Yes
-        - Doctor? Yes
-        - Trusted adult? Yes
-        - Educational website? Yes
-        - Stranger? No
-        - Unknown source? No
-        - Celebrity? No
-        - Online character? No
-        - Unknown/Pop up ads advert? No
-  - **Rabbit with the tablet** (Maybe)
+    - **Question:** Should you follow screen time advice from:
+  - **Fix the following voice-overs**
+    - Parents
+    - Pop-up adverts
+    - Best friend
+    - Elephant5
+    - Elephant0
 

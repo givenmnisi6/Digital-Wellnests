@@ -53,7 +53,7 @@ func _ready():
 			"Online character?": false,
 			"Pop-up adverts?": false
 			}
-		$qPlay/QTitle.bbcode_text = "[center]Should you listen to advice about screen time from:[/center]"
+		$qPlay/QTitle.bbcode_text = "[font_size={50}]Should you follow screen time advice from:[/font_size]"
 	elif iStory == 3:
 		# Wolf, Hyena and Fox
 		@warning_ignore("unused_variable", "shadowed_variable")
