@@ -45,7 +45,7 @@ func _ready():
 	fish.play()
 	elephant.play()
 
-# Funtion for swapping the Animations
+# Function for swapping the Animations
 func swap():
 	# Create tweens for each animated sprite's position and scale
 	var psTween = get_tree().create_tween()
@@ -222,7 +222,7 @@ func swap():
 		$Story.bbcode_text = "[center]Cyber Cat[/center]"
 
 func _on_arrow_right_gui_input(event):
-	# Check if the event is a mouse button press and screen touch
+	# Check if the event is a mouse button press or screen touch
 	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
 		# Increment iCount with wrap-around
 		if iCount == 5:
@@ -252,7 +252,7 @@ func _on_arrow_right_gui_input(event):
 		swap()
 
 func _on_arrow_left_gui_input(event):
-	# Check if the event is a mouse button press and screen touch
+	# Check if the event is a mouse button press or screen touch
 	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
 		# Decrement iCount with wrap-around
 		if iCount == 0:
@@ -324,7 +324,7 @@ func _on_w_button_pressed():
 func _on_h_button_pressed():
 	# Check if iCount is 4
 	if iCount == 4:
-		# Load and play te click sound effect
+		# Load and play the click sound effect
 		Music.clickSfx()
 
 		# Set iStory to 4 and start the book
@@ -342,78 +342,132 @@ func _on_c_button_pressed():
 		startBook()
 
 func startBook():
+	# Instantiate the book scene
 	var bookInstance = Book.instantiate() 
 	
+	# Scale down the Control node
 	$Control.scale = Vector2(0.01, 0.01)
+	
+	# Stop the music
 	Music.stopMusic()
 	
+	# Set the iStory value of the book instance
 	bookInstance.iStory = iStory
+	
+	# Add the book instance as a child node
 	add_child(bookInstance)
 
 func startQuiz():
+	# Instantiate the quiz scene
 	var quizInstance = Quiz.instantiate()
 	
+	# Play the music
 	Music.playMusic()
+	
+	# Set the iStory value of the quiz instance
 	quizInstance.iStory = iStory
+	
+	# Add the quiz instance as a child node
 	add_child(quizInstance)
 
 func startGame():
+	# Instantiate the game scene
 	var gameInstance = Game.instantiate()
+	
+	# Set the gameIndex value of the game instance
 	gameInstance.gameIndex = iStory
-
+	
+	# Set the iStory value of the game instance
 	gameInstance.set("iStory", iStory)
+	
+	# Add the game instance as a child node
 	add_child(gameInstance)
 
 func returnToMain() -> void:
+	# Scale up the Control node
 	$Control.scale = Vector2(1, 1)
 
 func _on_audio_stream_player_finished():
+	# Play the audio stream again
 	$AudioStreamPlayer.play()
 
 func _on_back_pressed():
+	# Play the click sound effect
 	Music.clickSfx()
+	
+	# Hide the SettingsPage node
 	$SettingsPage.hide()
 
 func _on_sfx_slider_drag_started():
+	# Notify that the SFX slider value has changed
 	Music.valueChangedSfx()
 
 func _on_exit_pressed():
+	# Play the click sound effect
 	Music.clickSfx()
+	
+	# Show the Exit Page
 	$ExitPage.show()
+	
+	# Create a tween for animation
 	var twn = get_tree().create_tween()
+	
+	# Get the yButton and nButton nodes
 	var y = $ExitPage/Panel/yButton
 	var n = $ExitPage/Panel/nButton
 	
+	# Scale up the yButton and nButton nodes
 	twn.tween_property(y, "scale", Vector2(1,1), 0.4)
 	twn.tween_property(n, "scale", Vector2(1,1), 0.4)
 
 func _on_exit_gui_input(event):
 	if (event is InputEventScreenTouch && InputEventMouseButton):
+		# Play the click sound effect
 		Music.clickSfx()
+		
+		# Show the ExitPage node
 		$ExitPage.show()
+		
+		# Create a tween for animation
 		var twn = get_tree().create_tween()
+		
+		# Get the yButton and nButton nodes
 		var y = $ExitPage/Panel/yButton
 		var n = $ExitPage/Panel/nButton
 		
+		# Scale up the yButton and nButton nodes
 		twn.tween_property(y, "scale", Vector2(1,1), 0.4)
 		twn.tween_property(n, "scale", Vector2(1,1), 0.4)
 
 func _on_settings_pressed():
+	# Play the click sound effect
 	Music.clickSfx()
+	
+	# Show the SettingsPage node
 	$SettingsPage.show()
 
 func _on_n_button_pressed():
+	# Play the click sound effect
 	Music.clickSfx()
+	
+	# Hide the ExitPage node
 	$ExitPage.hide()
 
 func _on_y_button_pressed():
+	# Play the click sound effect
 	Music.clickSfx()
+	
+	# Quit the game
 	get_tree().quit()
 
 func _on_sound_button_pressed():
+	# Toggle the mute state of the music bus
 	AudioServer.set_bus_mute(musicBus, not AudioServer.is_bus_mute(musicBus))
 
 func _on_settings_gui_input(event):
 	if (event is InputEventScreenTouch && InputEventMouseButton):
+		# Play the click sound effect
 		Music.clickSfx()
+		
+		# Show the SettingsPage node
 		$SettingsPage.show()

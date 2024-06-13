@@ -207,6 +207,7 @@ func loadStory(num: int):
 	poemText.visible_characters = 0   # Start with no characters visible
 	currentVerse = 0                  # Reset the current verse counter
 
+# Function to get the index of the nth occurrence of a substring in a string
 func getIndex(s: String, t: String, n: int) -> int:
 	var count = 0
 	for i in range (s.length() - 1):
@@ -218,8 +219,10 @@ func getIndex(s: String, t: String, n: int) -> int:
 
 func _on_page_turn_frame_changed():
 	if $PageTurn.frame == 12:
+		# Reset the visible characters to 0 when the page turn frame reaches 12
 		$Text.visible_characters = 0
 	elif $PageTurn.frame == 22:
+		# Check if the animation exists and set it as the current animation when the page turn frame reaches 22
 		if $Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
 			$Animation.animation = story[iStory] + str(totCount)
 		if $AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
