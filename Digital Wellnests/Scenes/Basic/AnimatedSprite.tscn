@@ -14556,5 +14556,5 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 position = Vector2(505, 292)
 sprite_frames = SubResource("SpriteFrames_kwf3f")
-animation = &"Cat0"
+animation = &"Fish7"
 speed_scale = 5.0
