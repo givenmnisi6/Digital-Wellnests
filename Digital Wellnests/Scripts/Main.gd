@@ -76,7 +76,7 @@ func swap():
 		shTween.tween_property(hippo, "scale", Vector2(0.34,0.34), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.4,0.4), 0.3)
 		scTween.tween_property(cat, "scale", Vector2(0.34,0.34), 0.3)
-		sfTween.parallel().tween_property(fish, "scale", Vector2(0.28,0.28), 0.3)
+		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39,0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.233,0.233), 0.3)
 		
 		# Play and stop animations accordingly
@@ -103,7 +103,7 @@ func swap():
 		shTween.tween_property(hippo, "scale", Vector2(0.3, 0.3), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.4, 0.4), 0.3)
 		scTween.tween_property(cat, "scale", Vector2(0.37, 0.37), 0.3)
-		sfTween.parallel().tween_property(fish, "scale", Vector2(0.65, 0.65), 0.3)
+		sfTween.parallel().tween_property(fish, "scale", Vector2(0.94, 0.94), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.23, 0.23), 0.3)
 		
 		# Play and stop animations accordingly
@@ -130,7 +130,7 @@ func swap():
 		shTween.tween_property(hippo, "scale", Vector2(0.3, 0.3), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.4, 0.4), 0.3)
 		scTween.tween_property(cat, "scale", Vector2(0.37, 0.37), 0.3)
-		sfTween.parallel().tween_property(fish, "scale", Vector2(0.28, 0.28), 0.3)
+		sfTween.parallel().tween_property(fish, "scale", Vector2(0.35, 0.35), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.55, 0.55), 0.3)
 		
 		# Play and stop animations accordingly
@@ -157,7 +157,7 @@ func swap():
 		shTween.tween_property(hippo, "scale", Vector2(0.3, 0.3), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(1, 1), 0.3)
 		scTween.tween_property(cat, "scale", Vector2(0.37, 0.37), 0.3)
-		sfTween.parallel().tween_property(fish, "scale", Vector2(0.28, 0.28), 0.3)
+		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.23, 0.23), 0.3)
 
 		snail.stop()
@@ -176,14 +176,14 @@ func swap():
 		phTween.tween_property(hippo, "position", Vector2(355, 239), 0.35)
 		pcTween.tween_property(wolf, "position", Vector2(59, 350), 0.35)
 		pwTween.tween_property(cat, "position", Vector2(665, 355), 0.35)
-		pwTween.parallel().tween_property(fish, "position", Vector2(330, 430), 0.35)
+		pwTween.parallel().tween_property(fish, "position", Vector2(330, 425), 0.35)
 		peTween.tween_property(elephant, "position", Vector2(193, 400), 0.35)
 
 		ssTween.tween_property(snail, "scale", Vector2(0.46, 0.46 ), 0.3)
 		shTween.tween_property(hippo, "scale", Vector2(0.8, 0.8), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.4, 0.4), 0.3)
 		scTween.tween_property(cat, "scale", Vector2(0.37, 0.37), 0.3)
-		sfTween.parallel().tween_property(fish, "scale", Vector2(0.28, 0.28), 0.3)
+		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.23, 0.23), 0.3)
 
 		snail.stop()
@@ -209,7 +209,7 @@ func swap():
 		shTween.tween_property(hippo, "scale", Vector2(0.3, 0.3), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.4, 0.4), 0.3)
 		scTween.tween_property(cat, "scale", Vector2(0.9, 0.9), 0.3)
-		sfTween.parallel().tween_property(fish, "scale", Vector2(0.25, 0.25), 0.3)
+		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.23, 0.23), 0.3)
 
 		snail.stop()

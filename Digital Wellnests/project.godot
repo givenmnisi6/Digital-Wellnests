@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Digital Wellnests game"
-config/description="The Digital wellnests game is based on a book titled “Digital Wellnests: Let us play in safe nests” by Fischer and Von Solms (2016). This game is aimed at making the book more effective in spreading a cyber safety culture among children."
 run/main_scene="res://Scenes/Basic/Intro.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 run/max_fps=144
