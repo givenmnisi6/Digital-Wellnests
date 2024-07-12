@@ -5,6 +5,8 @@ Digital Wellnests is a serious game that can be used as an intervention to sprea
 - [ ] **Implement the following poems into games:**
   - **Lucky the Fish**
    - Game Implementation: The child should click on the correct links and leave the incorrect ones as they fall.
+   - Use different colours to differentiate the different links, maybe green, blue, red...something like that.
+   - Or maybe shapes? (cross marks and check marks)
   - **Elephant and his Shoe**
     - **Question:** Should you follow screen time advice from:
   - **Fix the following voice-overs**
@@ -13,4 +15,5 @@ Digital Wellnests is a serious game that can be used as an intervention to sprea
     - Best friend
     - Elephant5
     - Elephant0
+    - Lucky the fish ("No!" said Sunny, "This is not wise)
 
