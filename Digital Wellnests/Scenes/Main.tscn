@@ -2699,6 +2699,7 @@ scale = Vector2(0.997915, 0.978448)
 sprite_frames = SubResource("SpriteFrames_u01sg")
 animation = &"New Anim"
 speed_scale = 5.0
+metadata/_edit_lock_ = true
 
 [node name="sArea" type="Area2D" parent="Control/Snail"]
 metadata/_edit_lock_ = true
@@ -2747,6 +2748,7 @@ position = Vector2(365, 427)
 scale = Vector2(0.408102, 0.408102)
 sprite_frames = SubResource("SpriteFrames_1ypn0")
 speed_scale = 5.0
+metadata/_edit_lock_ = true
 
 [node name="wArea" type="Area2D" parent="Control/Wolf"]
 
@@ -2770,6 +2772,7 @@ scale = Vector2(0.337963, 0.337963)
 sprite_frames = SubResource("SpriteFrames_3alv8")
 frame_progress = 0.340578
 speed_scale = 5.0
+metadata/_edit_lock_ = true
 
 [node name="cArea" type="Area2D" parent="Control/Cat"]
 metadata/_edit_lock_ = true
@@ -2796,6 +2799,7 @@ animation = &"new_animation_1"
 frame = 102
 frame_progress = 0.0105935
 speed_scale = 5.0
+metadata/_edit_lock_ = true
 
 [node name="fArea" type="Area2D" parent="Control/Fish"]
 metadata/_edit_lock_ = true
@@ -2897,6 +2901,7 @@ icon = ExtResource("498_y3ox8")
 flat = true
 icon_alignment = 1
 expand_icon = true
+metadata/_edit_lock_ = true
 
 [node name="SettingsPage" type="TextureRect" parent="."]
 visible = false
