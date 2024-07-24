@@ -8,9 +8,6 @@ func _ready():
 	var activities = $ActivitiesAnim.sprite_frames.get_animation_names()
 	$ActivitiesAnim.play(activities[randi() % activities.size()])
 
-func _process(delta):
-	pass  # No processing needed in this function
-
 func coinHit():
 	# Play the sound effect for when the object is a coin
 	var audio = $Effects
