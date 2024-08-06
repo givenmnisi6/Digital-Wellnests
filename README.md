@@ -10,10 +10,6 @@ Digital Wellnests is a serious game that can be used as an intervention to sprea
   - **Elephant and his Shoe**
     - **Question:** Should you follow screen time advice from:
   - **Fix the following voice-overs**
-    - Parents
-    - Pop-up adverts
-    - Best friend
-    - Elephant5
-    - Elephant0
+    - Fish5
     - Lucky the fish ("No!" said Sunny, "This is not wise)
 
