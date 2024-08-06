@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnxd7db1y8nwr"]
+
+[ext_resource type="Texture2D" uid="uid://gp3dnmg3l68g" path="res://Images/crime.png" id="1_gyl6a"]
+[ext_resource type="Script" path="res://Scenes/Poems/Fish/Mails.gd" id="1_ht06a"]
+[ext_resource type="Texture2D" uid="uid://by68v75qyopxy" path="res://Images/PhishingEmail.png" id="2_5xrtw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i61p3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gyl6a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5xrtw")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmak5"]
+size = Vector2(514.427, 363.981)
+
+[node name="Items" type="RigidBody2D"]
+gravity_scale = -0.2
+script = ExtResource("1_ht06a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(156.625, 493.375)
+scale = Vector2(0.161621, 0.161621)
+sprite_frames = SubResource("SpriteFrames_i61p3")
+speed_scale = 0.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(155.841, 493.767)
+scale = Vector2(0.161621, 0.161621)
+shape = SubResource("RectangleShape2D_nmak5")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 113.0
+offset_top = 465.0
+offset_right = 199.0
+offset_bottom = 524.0
+
+[node name="VisibilityTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]
