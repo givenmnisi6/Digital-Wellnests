@@ -39,14 +39,6 @@ func _on_visibility_timer_timeout() -> void:
 func spam():
 	$Effects.stream = load("res://Audio/Effects/aWrong.wav")
 	$Effects.play()
-	
-	#var audio = $Effects
-	#audio.stream = load("res://Audio/Effects/aRight2.wav")
-	#audio.play()
-
-#func notSpam():
-	#$Sfx.stream = load("res://Audio/Effects/aRight2.wav")
-	#$Sfx.play()
 
 
 func _on_timer_timeout() -> void:
