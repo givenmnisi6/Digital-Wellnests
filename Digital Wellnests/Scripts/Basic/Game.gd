@@ -7,6 +7,7 @@ extends TextureRect
 @export var Activities: PackedScene
 @export var Cat:PackedScene
 @onready var catInstance = Cat.instantiate()
+@export var Mails:PackedScene
 
 var _screenSize: Vector2
 var speed: float
@@ -61,11 +62,14 @@ func startGame():
 	lives = 3
 	score = 0 
 	gameOver = false
-	
+
+	if gameIndex == 0:
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$MailTimer.start()
 	# Safety Snail game
 	# This set up the initial state of the game, by creating belts for each level
 	# and starts a time to spawn the envelopes
-	if gameIndex == 0:
+	if gameIndex == 1:
 		#Displaying the 3 hearts
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
 		
@@ -94,6 +98,8 @@ func startGame():
 
 		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
 		$EnvelopeTimer.start()
+		
+
 
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
@@ -399,30 +405,30 @@ func updateScore(punt: bool):
 			if lives <= 0:
 				gameEnd(false)
 
-func _on_envelope_stop_area_entered(area):
-	if gameIndex == 0:
-		# Total of conveyor sizes, it is initialised with the size of the first conveyor
-		var tot = lay[0]
-		# Holds the temporary lane of the current envelope 
-		var temp: int = area.get("lane")
-		# Keeps track of the conveyor being checked at the moment
-		var convIndex: int = 0
-		# When the temp position exceeds the total of conveyor sizes it will be incremented
-		while temp >= tot:
-			tot += lay[convIndex+1]
-			convIndex += 1
-		
-		var ap = $Effects
-		# Check if the entered area's type matches the conveyor's group
-		if int(area.type) == group[convIndex]:
-			ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
-		else:
-			ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
-		ap.play()
-		updateScore(int(area.get("type")) == group[convIndex])
-
-		area.get_node("EnvelopeAnim").animation = "Shrink"
-		area.get_node("EnvelopeAnim").play()
+#func _on_envelope_stop_area_entered(area):
+	#if gameIndex == 0:
+		## Total of conveyor sizes, it is initialised with the size of the first conveyor
+		#var tot = lay[0]
+		## Holds the temporary lane of the current envelope 
+		#var temp: int = area.get("lane")
+		## Keeps track of the conveyor being checked at the moment
+		#var convIndex: int = 0
+		## When the temp position exceeds the total of conveyor sizes it will be incremented
+		#while temp >= tot:
+			#tot += lay[convIndex+1]
+			#convIndex += 1
+		#
+		#var ap = $Effects
+		## Check if the entered area's type matches the conveyor's group
+		#if int(area.type) == group[convIndex]:
+			#ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
+		#else:
+			#ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
+		#ap.play()
+		#updateScore(int(area.get("type")) == group[convIndex])
+#
+		#area.get_node("EnvelopeAnim").animation = "Shrink"
+		#area.get_node("EnvelopeAnim").play()
 		#print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
 
 func gameEnd(win: bool):
@@ -588,7 +594,7 @@ func playGame():
 
 func _on_activities_timer_timeout():
 	var actInstance = Activities.instantiate()
-	var actLocation = $Path2D/PathFollow2D
+	var actLocation = $CatPath2D/PathFollow2D
 	actLocation.progress_ratio = randf()
 	
 	var direction = PI / 2
@@ -619,6 +625,9 @@ func _on_activities_timer_timeout():
 func calculateHit(coin: bool):
 	updateScore(coin)
 
+func mailScore(spamEmail: bool):
+	updateScore(spamEmail)
+
 func _on_cat_timer_timeout():
 	add_child(catInstance)
 
@@ -627,3 +636,41 @@ func _on_texture_button_pressed():
 		playGame()
 	else:
 		pauseGame()
+
+# Spawning the Mails randomly
+func spawnMails():
+	var mailInstance = Mails.instantiate()
+	var mailLocation = %PathFollow2D
+	
+	# Random value for the mails to spawn 
+	mailLocation.progress_ratio = randf()
+	
+	# Position to move the mails
+	mailInstance.position = mailLocation.position
+
+	add_child(mailInstance)
+	
+	#speed = randf_range(50.0, 150.0)
+#
+	#if level <= 3:
+		#speed += level * 30.0
+	#elif level <= 6:
+		#speed += level * 40.0
+	#else:
+		#speed += level * 55.0	
+	
+	if level == 1:
+		mailInstance.get_node("ItemsAnim").scale = Vector2(1,1)
+	
+	if randi() % 2 == 0:
+		mailInstance.set("spamEmail", false)
+		mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+		#mailInstance.get_node("Sprite2D/AnimationPlayer").play("spamEmail")
+		mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+	else:
+		mailInstance.set("spamEmail", true)
+		mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+		mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+
+func _on_mail_timer_timeout():
+	spawnMails()
