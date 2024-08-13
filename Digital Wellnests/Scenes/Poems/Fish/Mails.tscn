@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://cnxd7db1y8nwr"]
+[gd_scene load_steps=11 format=3 uid="uid://cnxd7db1y8nwr"]
 
-[ext_resource type="Texture2D" uid="uid://gp3dnmg3l68g" path="res://Images/crime.png" id="1_gyl6a"]
 [ext_resource type="Script" path="res://Scenes/Poems/Fish/Mails.gd" id="1_ht06a"]
 [ext_resource type="Texture2D" uid="uid://by68v75qyopxy" path="res://Images/PhishingEmail.png" id="2_5xrtw"]
 [ext_resource type="Texture2D" uid="uid://caun7f2lnkr5r" path="res://Images/SafeEmail.png" id="2_xqwju"]
@@ -19,7 +18,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_gyl6a")
+"texture": ExtResource("6_ithgg")
 }],
 "loop": true,
 "name": &"spamEmail",
@@ -131,7 +130,7 @@ script = ExtResource("1_ht06a")
 position = Vector2(156.625, 493.375)
 scale = Vector2(0.161621, 0.161621)
 sprite_frames = SubResource("SpriteFrames_i61p3")
-animation = &"safeEmail"
+animation = &"spamEmail"
 speed_scale = 0.2
 metadata/_edit_lock_ = true
 
@@ -155,9 +154,6 @@ offset_bottom = 539.0
 wait_time = 8.0
 autostart = true
 
-[node name="Effects" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_iep4i")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(161, 500.357)
@@ -178,7 +174,9 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_iep4i")
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]
-[connection signal="finished" from="Effects" to="." method="_on_effects_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
