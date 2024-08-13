@@ -1,17 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnxd7db1y8nwr"]
+[gd_scene load_steps=11 format=3 uid="uid://cnxd7db1y8nwr"]
 
-[ext_resource type="Texture2D" uid="uid://gp3dnmg3l68g" path="res://Images/crime.png" id="1_gyl6a"]
 [ext_resource type="Script" path="res://Scenes/Poems/Fish/Mails.gd" id="1_ht06a"]
 [ext_resource type="Texture2D" uid="uid://by68v75qyopxy" path="res://Images/PhishingEmail.png" id="2_5xrtw"]
+[ext_resource type="Texture2D" uid="uid://caun7f2lnkr5r" path="res://Images/SafeEmail.png" id="2_xqwju"]
+[ext_resource type="AudioStream" uid="uid://b0foxiulbcy6b" path="res://Audio/Effects/aWrong.wav" id="5_iep4i"]
+[ext_resource type="Texture2D" uid="uid://bn20qvooabhc1" path="res://Images/spamEmail.png" id="6_ithgg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i61p3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_gyl6a")
+"texture": ExtResource("2_xqwju")
 }],
 "loop": true,
-"name": &"default",
+"name": &"safeEmail",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ithgg")
+}],
+"loop": true,
+"name": &"spamEmail",
 "speed": 5.0
 }, {
 "frames": [{
@@ -19,38 +29,154 @@ animations = [{
 "texture": ExtResource("2_5xrtw")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"spamLink",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmak5"]
-size = Vector2(514.427, 363.981)
+size = Vector2(618.807, 435.322)
 
-[node name="Items" type="RigidBody2D"]
-gravity_scale = -0.2
+[sub_resource type="Animation" id="Animation_8ocny"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Effects:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Effects:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("5_iep4i")]
+}
+
+[sub_resource type="Animation" id="Animation_dlv3b"]
+resource_name = "spamEmail"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_ithgg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Effects:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("5_iep4i")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Effects:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kekw4"]
+_data = {
+"RESET": SubResource("Animation_8ocny"),
+"spamEmail": SubResource("Animation_dlv3b")
+}
+
+[node name="Mails" type="RigidBody2D"]
+gravity_scale = -0.1
 script = ExtResource("1_ht06a")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="ItemsAnim" type="AnimatedSprite2D" parent="."]
 position = Vector2(156.625, 493.375)
 scale = Vector2(0.161621, 0.161621)
 sprite_frames = SubResource("SpriteFrames_i61p3")
+animation = &"spamEmail"
 speed_scale = 0.2
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(155.841, 493.767)
+[node name="Area2D" type="Area2D" parent="ItemsAnim"]
+position = Vector2(-969.087, -3052.66)
+scale = Vector2(6.18731, 6.18731)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemsAnim/Area2D"]
+position = Vector2(161, 500)
 scale = Vector2(0.161621, 0.161621)
 shape = SubResource("RectangleShape2D_nmak5")
 
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 113.0
-offset_top = 465.0
-offset_right = 199.0
-offset_bottom = 524.0
+offset_top = 460.0
+offset_right = 209.0
+offset_bottom = 539.0
 
 [node name="VisibilityTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 8.0
 autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(161, 500.357)
+scale = Vector2(0.161621, 0.161621)
+shape = SubResource("RectangleShape2D_nmak5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(223, 464)
+scale = Vector2(0.1875, 0.179688)
+texture = ExtResource("6_ithgg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_kekw4")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_iep4i")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
