@@ -20,18 +20,8 @@ func _on_button_pressed() -> void:
 		Music.wrongSfx()
 	else:
 		Music.rightSfx()
-		#audio.stream = load("res://Audio/Effects/aRight2.wav")
-		#audio.play()
-	
-	#_on_timer_timeout()
-	#audio.play()
-	#await _on_effects_finished() # Wait for the audio to finish
-	queue_free()
-	
-	#print("spamEmail is set to: ", self.spamEmail)
 
-	#elif safeEmail and safeLink:
-		#notSpam()
+	queue_free()
 
 func _on_visibility_timer_timeout() -> void:
 	queue_free()
@@ -40,10 +30,5 @@ func spam():
 	$Effects.stream = load("res://Audio/Effects/aWrong.wav")
 	$Effects.play()
 
-
 func _on_timer_timeout() -> void:
 	queue_free()
-
-
-#func _on_effects_finished() -> void:
-	#pass # Replace with function body.
