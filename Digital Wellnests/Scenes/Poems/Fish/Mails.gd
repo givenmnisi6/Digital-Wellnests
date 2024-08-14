@@ -1,13 +1,8 @@
 extends RigidBody2D
 
 var spamEmail: bool
-#var spamLink: bool
-var _screenSize: Vector2
-#var safeEmail: bool
-#var safeLink: bool
 
 func _ready() -> void:
-	#_screenSize = get_viewport().get_size()
 	pass
 	
 func _on_button_pressed() -> void:
