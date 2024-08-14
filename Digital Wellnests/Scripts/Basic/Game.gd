@@ -62,14 +62,11 @@ func startGame():
 	lives = 3
 	score = 0 
 	gameOver = false
-
-	if gameIndex == 0:
-		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
-		$MailTimer.start()
+	
 	# Safety Snail game
 	# This set up the initial state of the game, by creating belts for each level
 	# and starts a time to spawn the envelopes
-	if gameIndex == 1:
+	if gameIndex == 0:
 		#Displaying the 3 hearts
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
 		
@@ -98,7 +95,10 @@ func startGame():
 
 		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
 		$EnvelopeTimer.start()
-		
+
+	if gameIndex == 1:
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$MailTimer.start()
 
 
 	# Wolf, Hyena and Fox game
@@ -405,31 +405,31 @@ func updateScore(punt: bool):
 			if lives <= 0:
 				gameEnd(false)
 
-#func _on_envelope_stop_area_entered(area):
-	#if gameIndex == 0:
-		## Total of conveyor sizes, it is initialised with the size of the first conveyor
-		#var tot = lay[0]
-		## Holds the temporary lane of the current envelope 
-		#var temp: int = area.get("lane")
-		## Keeps track of the conveyor being checked at the moment
-		#var convIndex: int = 0
-		## When the temp position exceeds the total of conveyor sizes it will be incremented
-		#while temp >= tot:
-			#tot += lay[convIndex+1]
-			#convIndex += 1
-		#
-		#var ap = $Effects
-		## Check if the entered area's type matches the conveyor's group
-		#if int(area.type) == group[convIndex]:
-			#ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
-		#else:
-			#ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
-		#ap.play()
-		#updateScore(int(area.get("type")) == group[convIndex])
-#
-		#area.get_node("EnvelopeAnim").animation = "Shrink"
-		#area.get_node("EnvelopeAnim").play()
-		#print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
+func _on_envelope_stop_area_entered(area):
+	if gameIndex == 0:
+		# Total of conveyor sizes, it is initialised with the size of the first conveyor
+		var tot = lay[0]
+		# Holds the temporary lane of the current envelope 
+		var temp: int = area.get("lane")
+		# Keeps track of the conveyor being checked at the moment
+		var convIndex: int = 0
+		# When the temp position exceeds the total of conveyor sizes it will be incremented
+		while temp >= tot:
+			tot += lay[convIndex+1]
+			convIndex += 1
+		
+		var ap = $Effects
+		# Check if the entered area's type matches the conveyor's group
+		if int(area.type) == group[convIndex]:
+			ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
+		else:
+			ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
+		ap.play()
+		updateScore(int(area.get("type")) == group[convIndex])
+
+		area.get_node("EnvelopeAnim").animation = "Shrink"
+		area.get_node("EnvelopeAnim").play()
+		print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
 
 func gameEnd(win: bool):
 	var ap = $Effects
@@ -548,7 +548,14 @@ func pauseGame():
 				env.hit = true
 			elif env == AnimatedSprite2D:
 				env.stop()
-
+				
+	if gameIndex == 1:
+		$MailTimer.paused = true
+		for mails in ig.get_children():
+			if mails == Mails:
+				mails.Speed = 0.0
+				mails.get_node("MailTimer").paused = true
+				
 	elif gameIndex == 4:
 		get_node("BullyTimer").paused = true
 		for tar in ig.get_children():
@@ -566,6 +573,7 @@ func playGame():
 	bpaused = false
 	var ig = $inGame 
 
+	# Play Safety Snail's Email game
 	if gameIndex == 0:
 		$EnvelopeTimer.paused = true
 
@@ -576,6 +584,12 @@ func playGame():
 			elif env is AnimatedSprite2D:
 				env.play()
 		$EnvelopeTimer.paused = false
+	
+	if gameIndex == 1:
+		$MailTimer.paused = false
+		for mails in ig.get_children():
+			if mails == Mails:
+				mails.get_node("MailTimer").paused = false
 
 	elif gameIndex == 4:
 		$BullyTimer.paused = false
@@ -665,7 +679,6 @@ func spawnMails():
 	if randi() % 2 == 0:
 		mailInstance.set("spamEmail", false)
 		mailInstance.get_node("ItemsAnim").animation = "spamEmail"
-		#mailInstance.get_node("Sprite2D/AnimationPlayer").play("spamEmail")
 		mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
 	else:
 		mailInstance.set("spamEmail", true)
