@@ -43,7 +43,7 @@ script = ExtResource("1_ht06a")
 position = Vector2(156.625, 493.375)
 scale = Vector2(0.161621, 0.161621)
 sprite_frames = SubResource("SpriteFrames_i61p3")
-animation = &"spamEmail"
+animation = &"spamLink"
 speed_scale = 0.2
 metadata/_edit_lock_ = true
 
