@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcrtlmpwd337x"]
+
+[ext_resource type="Script" path="res://Scripts/Basic/Intro.gd" id="1_6g6qk"]
+[ext_resource type="PackedScene" uid="uid://d28g3wuhntauh" path="res://Scenes/Main.tscn" id="2_5bst5"]
+[ext_resource type="Texture2D" uid="uid://dltc1pdvqg5j6" path="res://Images/Intro.jpg" id="2_q6mu0"]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_6g6qk")
+Main = ExtResource("2_5bst5")
+
+[node name="IntroTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="IntroRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 720.0
+offset_bottom = 480.0
+
+[node name="Intro" type="TextureRect" parent="IntroRect"]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 489.0
+texture = ExtResource("2_q6mu0")
+expand_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
