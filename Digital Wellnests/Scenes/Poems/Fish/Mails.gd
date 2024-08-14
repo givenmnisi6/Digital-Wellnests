@@ -21,7 +21,3 @@ func _on_button_pressed() -> void:
 # Visibility Timer of the Mail or Link to appear on the screen
 func _on_visibility_timer_timeout() -> void:
 	queue_free()
-
-func spam():
-	$Effects.stream = load("res://Audio/Effects/aWrong.wav")
-	$Effects.play()
