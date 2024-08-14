@@ -63,6 +63,7 @@ func startGame():
 	score = 0 
 	gameOver = false
 	
+	
 	# Safety Snail game
 	# This set up the initial state of the game, by creating belts for each level
 	# and starts a time to spawn the envelopes
@@ -99,7 +100,6 @@ func startGame():
 	if gameIndex == 1:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 		$MailTimer.start()
-
 
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
@@ -435,6 +435,7 @@ func gameEnd(win: bool):
 	var ap = $Effects
 	gameOver = true
 	
+	$MailTimer.stop()
 	$CatTimer.stop()
 	$BullyTimer.stop()
 	$ActivitiesTimer.stop()
@@ -530,7 +531,6 @@ func _on_bully_timer_timeout():
 		targetInstance.set("bully", true)
 		targetInstance.get_node("TargetFace").animation = "Bully"
 
-
 func calcHit(bully: bool):
 	updateScore(bully)
 
@@ -549,13 +549,14 @@ func pauseGame():
 			elif env == AnimatedSprite2D:
 				env.stop()
 				
-	if gameIndex == 1:
+	elif gameIndex == 1:
 		$MailTimer.paused = true
 		for mails in ig.get_children():
-			if mails == Mails:
-				mails.Speed = 0.0
+			if mails.name == "Mails":
+				#mails.Speed = 0.0
+				#mails.hit = true
 				mails.get_node("MailTimer").paused = true
-				
+		
 	elif gameIndex == 4:
 		get_node("BullyTimer").paused = true
 		for tar in ig.get_children():
@@ -570,25 +571,35 @@ func pauseGame():
 				act.get_node("ActivitiesTimer").paused = true
 
 func playGame():
+	# Play the game, unpause it
 	bpaused = false
 	var ig = $inGame 
 
 	# Play Safety Snail's Email game
 	if gameIndex == 0:
+		# Pause the envelope timer initially
 		$EnvelopeTimer.paused = true
 
+		# Iterate through all child nodes of the in-game node
 		for env in ig.get_children():
+			# Check if the child node is an envelope
 			if env.name == "Envelope": 
+				# Set the speed of the envelope based on the game speed
 				env.Speed = 1.1 * speed
+				# Reset the hit status of the envelope
 				env.hit = false
+				# If the child node is an AnimatedSprite2D, play its animation
 			elif env is AnimatedSprite2D:
 				env.play()
+		# Resume the envelope timer after setting up the envelopes and animations
 		$EnvelopeTimer.paused = false
-	
-	if gameIndex == 1:
+		
+	elif gameIndex == 1:
 		$MailTimer.paused = false
 		for mails in ig.get_children():
-			if mails == Mails:
+			if mails.name == "Mails":
+				#mails.Speed = 0.0
+				#mails.hit = false
 				mails.get_node("MailTimer").paused = false
 
 	elif gameIndex == 4:
