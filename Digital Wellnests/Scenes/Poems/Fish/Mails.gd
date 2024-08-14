@@ -20,8 +20,10 @@ func _on_button_pressed() -> void:
 		Music.wrongSfx()
 	else:
 		Music.rightSfx()
+	# Free the email node after it has been processed
 	queue_free()
 
+# Visibility Timer of the Mail or Link to appear on the screen
 func _on_visibility_timer_timeout() -> void:
 	queue_free()
 
