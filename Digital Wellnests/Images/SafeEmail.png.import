@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://caun7f2lnkr5r"
-path="res://.godot/imported/SafeEmail.png-1a4ad1ea5484564f865b4b24f0320ffc.ctex"
+path="res://.godot/imported/safeEmail.png-ac7780ef90776a841a4cc4c38e415d30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/SafeEmail.png"
-dest_files=["res://.godot/imported/SafeEmail.png-1a4ad1ea5484564f865b4b24f0320ffc.ctex"]
+source_file="res://Images/safeEmail.png"
+dest_files=["res://.godot/imported/safeEmail.png-ac7780ef90776a841a4cc4c38e415d30.ctex"]
 
 [params]
 
