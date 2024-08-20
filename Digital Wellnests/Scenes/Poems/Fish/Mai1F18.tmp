@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnxd7db1y8nwr"]
+
+[ext_resource type="Script" path="res://Scenes/Poems/Fish/Mails.gd" id="1_ht06a"]
+[ext_resource type="Texture2D" uid="uid://by68v75qyopxy" path="res://Images/PhishingEmail.png" id="2_5xrtw"]
+[ext_resource type="Texture2D" uid="uid://caun7f2lnkr5r" path="res://Images/SafeEmail.png" id="2_xqwju"]
+[ext_resource type="Texture2D" uid="uid://bn20qvooabhc1" path="res://Images/spamEmail.png" id="6_ithgg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i61p3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xqwju")
+}],
+"loop": true,
+"name": &"safeEmail",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ithgg")
+}],
+"loop": true,
+"name": &"spamEmail",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5xrtw")
+}],
+"loop": true,
+"name": &"spamLink",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmak5"]
+size = Vector2(618.807, 435.322)
+
+[node name="Mails" type="RigidBody2D"]
+gravity_scale = -0.1
+script = ExtResource("1_ht06a")
+
+[node name="ItemsAnim" type="AnimatedSprite2D" parent="."]
+position = Vector2(156.625, 493.375)
+scale = Vector2(0.161621, 0.161621)
+sprite_frames = SubResource("SpriteFrames_i61p3")
+animation = &"spamLink"
+speed_scale = 0.2
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="ItemsAnim"]
+position = Vector2(-969.087, -3052.66)
+scale = Vector2(6.18731, 6.18731)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemsAnim/Area2D"]
+position = Vector2(161, 500)
+scale = Vector2(0.161621, 0.161621)
+shape = SubResource("RectangleShape2D_nmak5")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 113.0
+offset_top = 460.0
+offset_right = 209.0
+offset_bottom = 539.0
+
+[node name="VisibilityTimer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(161, 500.357)
+scale = Vector2(0.161621, 0.161621)
+shape = SubResource("RectangleShape2D_nmak5")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]
