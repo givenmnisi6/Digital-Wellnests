@@ -991,9 +991,9 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_0f708"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -11.1227, 432, 0, 0, 0, 0, 722, 436.5, 0, 0, 0, 0, 722, 480.648, 0, 0, 0, 0, -11.1227, 480.648)
+"points": PackedVector2Array(0, 0, 0, 0, -11.1227, 432, 0, 0, 0, 0, 722, 436.5, 0, 0, 0, 0, 722.065, 456.547, 0, 0, 0, 0, 722, 480.648, 0, 0, 0, 0, -11.1227, 480.648)
 }
-point_count = 4
+point_count = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r3jb"]
 size = Vector2(718, 20)
@@ -4085,8 +4085,8 @@ position = Vector2(0, -5)
 rotation = 0.00278163
 
 [node name="FishPath2D" type="Path2D" parent="."]
-position = Vector2(41.1347, 442.48)
-scale = Vector2(0.911171, 0.0822221)
+position = Vector2(48.9517, 442.479)
+scale = Vector2(0.894723, 0.0822243)
 curve = SubResource("Curve2D_0f708")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="FishPath2D"]
