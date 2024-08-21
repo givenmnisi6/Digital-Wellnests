@@ -1,18 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnxd7db1y8nwr"]
+[gd_scene load_steps=8 format=3 uid="uid://cnxd7db1y8nwr"]
 
 [ext_resource type="Script" path="res://Scenes/Poems/Fish/Mails.gd" id="1_ht06a"]
 [ext_resource type="Texture2D" uid="uid://by68v75qyopxy" path="res://Images/PhishingEmail.png" id="2_5xrtw"]
-[ext_resource type="Texture2D" uid="uid://caun7f2lnkr5r" path="res://Images/SafeEmail.png" id="2_xqwju"]
+[ext_resource type="Texture2D" uid="uid://caun7f2lnkr5r" path="res://Images/safeEmail.png" id="2_pmhpg"]
+[ext_resource type="Texture2D" uid="uid://duc5mgc5gnyl5" path="res://Images/safeLink.png" id="3_isbev"]
 [ext_resource type="Texture2D" uid="uid://bn20qvooabhc1" path="res://Images/spamEmail.png" id="6_ithgg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i61p3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xqwju")
+"texture": ExtResource("2_pmhpg")
 }],
 "loop": true,
 "name": &"safeEmail",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_isbev")
+}],
+"loop": true,
+"name": &"safeLink",
 "speed": 5.0
 }, {
 "frames": [{
@@ -43,7 +52,7 @@ script = ExtResource("1_ht06a")
 position = Vector2(156.625, 493.375)
 scale = Vector2(0.161621, 0.161621)
 sprite_frames = SubResource("SpriteFrames_i61p3")
-animation = &"spamLink"
+animation = &"safeEmail"
 speed_scale = 0.2
 metadata/_edit_lock_ = true
 
