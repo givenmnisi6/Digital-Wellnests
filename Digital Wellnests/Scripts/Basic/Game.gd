@@ -21,6 +21,7 @@ var colCount: int
 var gameOver: bool
 var gameIndex: int
 var bpaused: bool
+var paused: bool
 
 var thread: Thread
 var unitSize: float
@@ -63,43 +64,42 @@ func startGame():
 	score = 0 
 	gameOver = false
 	
+	if gameIndex == 0:
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$MailTimer.start()
 	
 	# Safety Snail game
 	# This set up the initial state of the game, by creating belts for each level
 	# and starts a time to spawn the envelopes
-	if gameIndex == 0:
-		#Displaying the 3 hearts
-		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
-		
-		# Calculate the conveyor size based on the level
-		var conSize: int = (level + 1) / 2 + 5
-		calcConveyor(conSize) 
-		
-		# Calculate the conveyor size based on the level
-		speed = level * 0.2 + 1             # Calculate the speed based on the level
-		_screenSize = Vector2(720, 480)     # Set the screen size
-		
-		# Initialize variables for looping through the layout (lay)
-		var items: int = lay.size()
-		var posCount: int = 0
-		var num: int = 0
-
-		for j in range (items):
-			num += lay[j]
-			
-		unitSize = _screenSize.x / num
-
-		# Loop through the layout and create conveyors
-		for i in range (items):
-			createConveyor(Vector2(unitSize * posCount + (unitSize * lay[i] / 2), _screenSize.y / 2 - 2), lay[i], i)
-			posCount += lay[i]
-
-		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
-		$EnvelopeTimer.start()
-
-	if gameIndex == 1:
-		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
-		$MailTimer.start()
+	#if gameIndex == 0:
+		##Displaying the 3 hearts
+		#$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
+		#
+		## Calculate the conveyor size based on the level
+		#var conSize: int = (level + 1) / 2 + 5
+		#calcConveyor(conSize) 
+		#
+		## Calculate the conveyor size based on the level
+		#speed = level * 0.2 + 1             # Calculate the speed based on the level
+		#_screenSize = Vector2(720, 480)     # Set the screen size
+		#
+		## Initialize variables for looping through the layout (lay)
+		#var items: int = lay.size()
+		#var posCount: int = 0
+		#var num: int = 0
+#
+		#for j in range (items):
+			#num += lay[j]
+			#
+		#unitSize = _screenSize.x / num
+#
+		## Loop through the layout and create conveyors
+		#for i in range (items):
+			#createConveyor(Vector2(unitSize * posCount + (unitSize * lay[i] / 2), _screenSize.y / 2 - 2), lay[i], i)
+			#posCount += lay[i]
+#
+		#$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
+		#$EnvelopeTimer.start()
 
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
@@ -405,31 +405,31 @@ func updateScore(punt: bool):
 			if lives <= 0:
 				gameEnd(false)
 
-func _on_envelope_stop_area_entered(area):
-	if gameIndex == 0:
-		# Total of conveyor sizes, it is initialised with the size of the first conveyor
-		var tot = lay[0]
-		# Holds the temporary lane of the current envelope 
-		var temp: int = area.get("lane")
-		# Keeps track of the conveyor being checked at the moment
-		var convIndex: int = 0
-		# When the temp position exceeds the total of conveyor sizes it will be incremented
-		while temp >= tot:
-			tot += lay[convIndex+1]
-			convIndex += 1
-		
-		var ap = $Effects
-		# Check if the entered area's type matches the conveyor's group
-		if int(area.type) == group[convIndex]:
-			ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
-		else:
-			ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
-		ap.play()
-		updateScore(int(area.get("type")) == group[convIndex])
-
-		area.get_node("EnvelopeAnim").animation = "Shrink"
-		area.get_node("EnvelopeAnim").play()
-		print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
+#func _on_envelope_stop_area_entered(area):
+	#if gameIndex == 0:
+		## Total of conveyor sizes, it is initialised with the size of the first conveyor
+		#var tot = lay[0]
+		## Holds the temporary lane of the current envelope 
+		#var temp: int = area.get("lane")
+		## Keeps track of the conveyor being checked at the moment
+		#var convIndex: int = 0
+		## When the temp position exceeds the total of conveyor sizes it will be incremented
+		#while temp >= tot:
+			#tot += lay[convIndex+1]
+			#convIndex += 1
+		#
+		#var ap = $Effects
+		## Check if the entered area's type matches the conveyor's group
+		#if int(area.type) == group[convIndex]:
+			#ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
+		#else:
+			#ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
+		#ap.play()
+		#updateScore(int(area.get("type")) == group[convIndex])
+#
+		#area.get_node("EnvelopeAnim").animation = "Shrink"
+		#area.get_node("EnvelopeAnim").play()
+		#print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
 
 func gameEnd(win: bool):
 	var ap = $Effects
@@ -539,24 +539,34 @@ func pauseGame():
 	var ig = $inGame 
 
 	if gameIndex == 0:
-		get_tree().root.content_scale_size
-		$EnvelopeTimer.paused = true
-		for env in ig.get_children():
-			# Check if the child node is of type Envelope
-			if env.name == "Envelope":  
-				env.Speed = 0.0
-				env.hit = true
-			elif env == AnimatedSprite2D:
-				env.stop()
-				
-	elif gameIndex == 1:
 		$MailTimer.paused = true
-		for mails in ig.get_children():
-			if mails.name == "Mails":
-				#mails.Speed = 0.0
-				#mails.hit = true
-				mails.get_node("MailTimer").paused = true
 		
+		#Mails.pause_mails()
+		#for node in get_tree().get_nodes_in_group("Mails"):
+			#node.set_physics_process(false)
+			#node.linear_velocity = Vector2.ZERO
+		for mails in ig.get_children():
+				Engine.time_scale = 1
+			#if mails.name == "Mails":
+				#mails.pause_mails()
+				#mails.gravity_scale = 0.0
+				##mails.Speed = 0.0
+				##mails.hit = true
+				#mails.get_node("MailTimer").paused = true
+
+				
+	#if gameIndex == 0:
+		#get_tree().root.content_scale_size
+		#$EnvelopeTimer.paused = true
+		#for env in ig.get_children():
+			## Check if the child node is of type Envelope
+			#if env.name == "Envelope":  
+				#env.Speed = 0.0
+				#env.hit = true
+			#elif env == AnimatedSprite2D:
+				#env.stop()
+				
+
 	elif gameIndex == 4:
 		get_node("BullyTimer").paused = true
 		for tar in ig.get_children():
@@ -575,6 +585,19 @@ func playGame():
 	bpaused = false
 	var ig = $inGame 
 
+	if gameIndex == 0:
+		
+		$MailTimer.paused = false
+		
+		for mails in ig.get_children():
+			print(mails)
+			if mails.name == "Mails":
+				mails.unpause_mails()
+				mails.gravity_scale = -0.1
+				##mails.Speed = 0.0
+				##mails.hit = false
+				#mails.get_node("MailTimer").paused = false
+	
 	# Play Safety Snail's Email game
 	if gameIndex == 0:
 		# Pause the envelope timer initially
@@ -593,14 +616,7 @@ func playGame():
 				env.play()
 		# Resume the envelope timer after setting up the envelopes and animations
 		$EnvelopeTimer.paused = false
-		
-	elif gameIndex == 1:
-		$MailTimer.paused = false
-		for mails in ig.get_children():
-			if mails.name == "Mails":
-				#mails.Speed = 0.0
-				#mails.hit = false
-				mails.get_node("MailTimer").paused = false
+
 
 	elif gameIndex == 4:
 		$BullyTimer.paused = false
@@ -675,6 +691,7 @@ func spawnMails():
 
 	add_child(mailInstance)
 	
+	print("Mail  Instance Position After Set:", mailInstance.position)
 	#speed = randf_range(50.0, 150.0)
 #
 	#if level <= 3:
@@ -686,15 +703,68 @@ func spawnMails():
 	
 	if level == 1:
 		mailInstance.get_node("ItemsAnim").scale = Vector2(1,1)
-	
-	if randi() % 2 == 0:
-		mailInstance.set("spamEmail", false)
-		mailInstance.get_node("ItemsAnim").animation = "spamEmail"
-		mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
-	else:
-		mailInstance.set("spamEmail", true)
-		mailInstance.get_node("ItemsAnim").animation = "safeEmail"
-		mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+		if randi() % 2 == 0:
+			mailInstance.set("spamEmail", false)
+			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+		else:
+			mailInstance.set("spamEmail", true)
+			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+	elif level == 2:
+		if randi() % 3 == 0:
+			mailInstance.set("spamEmail", false)
+			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+		elif  randi() % 3 == 1:
+			mailInstance.set("spamEmail", true)
+			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+		else:
+			mailInstance.set("spamEmail", true)
+			mailInstance.get_node("ItemsAnim").animation = "safeLink"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+	elif level == 3:
+		if randi() % 3 == 0:
+			mailInstance.set("spamEmail", false)
+			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+		elif  randi() % 3 == 1:
+			mailInstance.set("spamEmail", true)
+			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+		else:
+			mailInstance.set("spamEmail", false)
+			mailInstance.get_node("ItemsAnim").animation = "spamLink"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+	elif level >= 4:
+		if randi() % 4 == 0:
+			mailInstance.set("spamEmail", false)
+			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+		elif  randi() % 4 == 1:
+			mailInstance.set("spamEmail", true)
+			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+		elif randi() % 4 == 2:
+			mailInstance.set("spamEmail", false)
+			mailInstance.get_node("ItemsAnim").animation = "spamLink"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+		else:
+			mailInstance.set("spamEmail", true)
+			mailInstance.get_node("ItemsAnim").animation = "safeLink"
+			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
 
 func _on_mail_timer_timeout():
 	spawnMails()
+	
+func pauseMenu():
+	if paused:
+		#pause_menu.hide()
+		Engine.time_scale = 1
+		#get_tree().paused = false
+	else:
+		#pause_menu.show()
+		Engine.time_scale = 0
+		#get_tree().paused = true
+	paused = !paused
