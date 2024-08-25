@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var spamEmail: bool
 var pause_status: bool
-@export var speed: float  # Movement speed
+@export var speed: float  
 @export var smoke_explosion:PackedScene
 
 func _ready() -> void:
@@ -14,6 +14,9 @@ func _process(delta: float):
 	# Move the character upward
 	velocity.y = -speed
 	move_and_slide()
+
+func setSpeed(new_speed: float):
+	speed = new_speed
 
 func _on_button_pressed() -> void:
 	#const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
@@ -29,7 +32,7 @@ func _on_button_pressed() -> void:
 	else:
 		Music.rightSfx()
 	# Free the email node after it has been processed
-	get_parent().add_child(smkInstance)
+	#get_parent().add_child(smkInstance)
 	smkInstance.global_transform.origin = global_transform.origin
 	queue_free()
 
