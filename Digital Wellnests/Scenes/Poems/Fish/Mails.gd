@@ -1,11 +1,24 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 var spamEmail: bool
+var pause_status: bool
+@export var speed: float  # Movement speed
+@export var smoke_explosion:PackedScene
 
 func _ready() -> void:
-	pass
-	
+	 # Calculate the bottom position
+	var screen_size = get_viewport().size
+	var start_position = Vector2(screen_size.x / 2, screen_size.y)
+
+func _process(delta: float):
+	# Move the character upward
+	velocity.y = -speed
+	move_and_slide()
+
 func _on_button_pressed() -> void:
+	#const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
+	var smkInstance = smoke_explosion.instantiate()
+	
 	# Update the score by calling the parent node's 'mailScore' method
 	# Passes 'spamEmail' to indicate whether the email was spam or not
 	var score = get_parent().call("mailScore", spamEmail)
@@ -16,8 +29,19 @@ func _on_button_pressed() -> void:
 	else:
 		Music.rightSfx()
 	# Free the email node after it has been processed
+	get_parent().add_child(smkInstance)
+	smkInstance.global_transform.origin = global_transform.origin
 	queue_free()
 
 # Visibility Timer of the Mail or Link to appear on the screen
 func _on_visibility_timer_timeout() -> void:
 	queue_free()
+	
+func _physics_process(delta):
+	if pause_status == true:
+		pass
+		
+	if Input.is_action_just_pressed("pause"):
+		pause_status = true
+	elif Input.is_action_just_pressed("resume"):
+		pause_status = false
