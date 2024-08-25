@@ -677,6 +677,8 @@ func _on_texture_button_pressed():
 		playGame()
 	else:
 		pauseGame()
+	if gameIndex == 0:
+		pauseMenu()
 
 # Spawning the Mails randomly
 func spawnMails():
@@ -691,7 +693,7 @@ func spawnMails():
 
 	add_child(mailInstance)
 	
-	print("Mail  Instance Position After Set:", mailInstance.position)
+	#("Mail  Instance Position After Set:", mailInstance.position)
 	#speed = randf_range(50.0, 150.0)
 #
 	#if level <= 3:
