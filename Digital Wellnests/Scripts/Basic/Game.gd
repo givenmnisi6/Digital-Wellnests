@@ -692,18 +692,9 @@ func spawnMails():
 	mailInstance.position = mailLocation.position
 
 	add_child(mailInstance)
-	
-	#("Mail  Instance Position After Set:", mailInstance.position)
-	#speed = randf_range(50.0, 150.0)
-#
-	#if level <= 3:
-		#speed += level * 30.0
-	#elif level <= 6:
-		#speed += level * 40.0
-	#else:
-		#speed += level * 55.0	
-	
+
 	if level == 1:
+		speed = randf_range(200.0, 250.0) 
 		mailInstance.get_node("ItemsAnim").scale = Vector2(1,1)
 		if randi() % 2 == 0:
 			mailInstance.set("spamEmail", false)
@@ -714,6 +705,7 @@ func spawnMails():
 			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
 			mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
 	elif level == 2:
+		speed = randf_range(230.0, 280.0)
 		if randi() % 3 == 0:
 			mailInstance.set("spamEmail", false)
 			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
@@ -727,6 +719,7 @@ func spawnMails():
 			mailInstance.get_node("ItemsAnim").animation = "safeLink"
 			mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
 	elif level == 3:
+		speed = randf_range(260.0, 310.0)
 		if randi() % 3 == 0:
 			mailInstance.set("spamEmail", false)
 			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
@@ -740,6 +733,7 @@ func spawnMails():
 			mailInstance.get_node("ItemsAnim").animation = "spamLink"
 			mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
 	elif level >= 4:
+		speed = randf_range(290.0, 430.0)
 		if randi() % 4 == 0:
 			mailInstance.set("spamEmail", false)
 			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
@@ -756,7 +750,7 @@ func spawnMails():
 			mailInstance.set("spamEmail", true)
 			mailInstance.get_node("ItemsAnim").animation = "safeLink"
 			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
-
+	mailInstance.setSpeed(speed)
 func _on_mail_timer_timeout():
 	spawnMails()
 	
