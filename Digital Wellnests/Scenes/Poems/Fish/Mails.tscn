@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnxd7db1y8nwr"]
+[gd_scene load_steps=9 format=3 uid="uid://cnxd7db1y8nwr"]
 
 [ext_resource type="Script" path="res://Scenes/Poems/Fish/Mails.gd" id="1_ht06a"]
 [ext_resource type="Texture2D" uid="uid://by68v75qyopxy" path="res://Images/PhishingEmail.png" id="2_5xrtw"]
+[ext_resource type="PackedScene" uid="uid://dhmhmrth6rdce" path="res://smoke_explosion/smoke_explosion.tscn" id="2_h32r0"]
 [ext_resource type="Texture2D" uid="uid://caun7f2lnkr5r" path="res://Images/safeEmail.png" id="2_pmhpg"]
 [ext_resource type="Texture2D" uid="uid://duc5mgc5gnyl5" path="res://Images/safeLink.png" id="3_isbev"]
 [ext_resource type="Texture2D" uid="uid://bn20qvooabhc1" path="res://Images/spamEmail.png" id="6_ithgg"]
@@ -44,9 +45,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmak5"]
 size = Vector2(618.807, 435.322)
 
-[node name="Mails" type="RigidBody2D"]
-gravity_scale = -0.1
+[node name="Mails" type="CharacterBody2D"]
 script = ExtResource("1_ht06a")
+speed = 200.0
+smoke_explosion = ExtResource("2_h32r0")
 
 [node name="ItemsAnim" type="AnimatedSprite2D" parent="."]
 position = Vector2(156.625, 493.375)
