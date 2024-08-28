@@ -21,7 +21,9 @@ func escapeButton():
 		resumeGame()
 
 func _on_resume_button_pressed() -> void:
+	Music.clickSfx()
 	game.pauseMenus()
 
 func _on_exit_button_pressed() -> void:
+	Music.clickSfx()
 	quitGame()
