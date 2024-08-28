@@ -2516,23 +2516,11 @@ size = Vector2(464.674, 464.674)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hv3m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq0oy"]
-bg_color = Color(1, 1, 1, 0.533333)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l54r"]
 bg_color = Color(1, 1, 1, 0.486275)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_040ov"]
-bg_color = Color(0, 0.521569, 0.827451, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 12
-border_color = Color(0, 0.411765, 0.658824, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq0oy"]
+bg_color = Color(1, 1, 1, 0.533333)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nweve"]
 bg_color = Color(0, 0.560784, 0.890196, 1)
@@ -2558,24 +2546,24 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_040ov"]
+bg_color = Color(0, 0.521569, 0.827451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0, 0.411765, 0.658824, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pepu0"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcivp"]
-bg_color = Color(0.00392157, 0.345098, 0.160784, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 20
-border_color = Color(0.00392157, 0.290196, 0.129412, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx15u"]
 bg_color = Color(0.00392157, 0.380392, 0.180392, 1)
@@ -2601,13 +2589,13 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slhuy"]
-bg_color = Color(0.552941, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcivp"]
+bg_color = Color(0.00392157, 0.345098, 0.160784, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 20
-border_color = Color(0.482353, 0, 0, 1)
+border_color = Color(0.00392157, 0.290196, 0.129412, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -2632,6 +2620,18 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 20
 border_color = Color(0.466667, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slhuy"]
+bg_color = Color(0.552941, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 20
+border_color = Color(0.482353, 0, 0, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -2984,9 +2984,10 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("370_q2sss")
 theme_override_font_sizes/font_size = 40
-theme_override_styles/tab_selected = SubResource("StyleBoxFlat_vq0oy")
 theme_override_styles/panel = SubResource("StyleBoxFlat_4l54r")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_vq0oy")
 tab_alignment = 1
+current_tab = 0
 clip_tabs = false
 
 [node name="Sound" type="TabBar" parent="SettingsPage/Control/TabContainer"]
@@ -2994,6 +2995,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("370_q2sss")
 theme_override_font_sizes/font_size = 20
+metadata/_tab_index = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Control/TabContainer/Sound"]
 layout_mode = 1
@@ -3083,6 +3085,7 @@ text = "Sound Effects"
 [node name="Credits" type="TabBar" parent="SettingsPage/Control/TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Ack" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Credits"]
 custom_minimum_size = Vector2(0, 50)
@@ -3134,9 +3137,9 @@ offset_right = 702.0
 offset_bottom = 475.0
 theme_override_fonts/font = ExtResource("370_q2sss")
 theme_override_font_sizes/font_size = 55
-theme_override_styles/normal = SubResource("StyleBoxFlat_040ov")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nweve")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rd6jg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_040ov")
 text = "Back"
 
 [node name="ExitPage" type="TextureRect" parent="."]
@@ -3201,7 +3204,8 @@ offset_top = 111.0
 offset_right = 704.0
 offset_bottom = 185.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
@@ -3218,9 +3222,9 @@ offset_bottom = 443.0
 scale = Vector2(1, 1e-05)
 theme_override_fonts/font = ExtResource("370_q2sss")
 theme_override_font_sizes/font_size = 200
-theme_override_styles/normal = SubResource("StyleBoxFlat_kcivp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lx15u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gb03d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kcivp")
 text = "Yes"
 
 [node name="nButton" type="Button" parent="ExitPage/Panel"]
@@ -3233,9 +3237,9 @@ offset_bottom = 443.0
 scale = Vector2(1, 1e-05)
 theme_override_fonts/font = ExtResource("370_q2sss")
 theme_override_font_sizes/font_size = 200
-theme_override_styles/normal = SubResource("StyleBoxFlat_slhuy")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4i6te")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1308x")
+theme_override_styles/normal = SubResource("StyleBoxFlat_slhuy")
 text = "No"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
