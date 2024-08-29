@@ -3815,7 +3815,7 @@ animations = [{
 "texture": ExtResource("856_4q4sb")
 }],
 "loop": true,
-"name": &"Victory2",
+"name": &"Victory1",
 "speed": 5.0
 }, {
 "frames": [{
@@ -5094,7 +5094,7 @@ stretch_mode = 4
 visible = false
 position = Vector2(360, 255)
 sprite_frames = SubResource("SpriteFrames_i3x47")
-animation = &"Defeat1"
+animation = &"Victory1"
 speed_scale = 5.0
 
 [node name="Score" type="RichTextLabel" parent="Hud"]
