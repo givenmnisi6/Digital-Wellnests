@@ -1,7 +1,9 @@
 extends Control
 
+# References the game node.
 @onready var game = $"../../"
 
+# Checks if the esc button is pressed
 func _process(delta: float) -> void:
 	escapeButton()
 
