@@ -1,5 +1,7 @@
 extends Control
 
+# NB! Make sure that in the Inspector, under Node the Mode is Always
+
 # References the game node - two levels up
 @onready var game = $"../../"
 
