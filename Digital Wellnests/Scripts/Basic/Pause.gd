@@ -1,5 +1,7 @@
 extends Control
 
+# NB! Make sure that in the Inspector, under Node the Mode is Always
+
 # References the game node - two levels up
 @onready var game = $"../../"
 
@@ -31,7 +33,7 @@ func _on_resume_button_pressed() -> void:
 	Music.clickSfx()
 	game.pauseMenus()
 
-# Calls the quit function
+# Calls the quit function and the Sfx 
 func _on_exit_button_pressed() -> void:
 	Music.clickSfx()
 	quitGame()
