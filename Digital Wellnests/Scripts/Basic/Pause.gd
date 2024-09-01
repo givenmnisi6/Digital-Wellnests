@@ -33,7 +33,7 @@ func _on_resume_button_pressed() -> void:
 	Music.clickSfx()
 	game.pauseMenus()
 
-# Calls the quit function
+# Calls the quit function and the Sfx 
 func _on_exit_button_pressed() -> void:
 	Music.clickSfx()
 	quitGame()
