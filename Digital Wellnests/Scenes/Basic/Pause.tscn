@@ -49,36 +49,36 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu6xl"]
-bg_color = Color(0.490196, 0, 0.490196, 1)
+bg_color = Color(0.384314, 0.384314, 0.0392157, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(0.34902, 0, 0.34902, 1)
+border_color = Color(0.294118, 0.294118, 0.0235294, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfjqo"]
-bg_color = Color(0.411765, 0, 0.411765, 1)
+bg_color = Color(0.321569, 0.321569, 0.027451, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(0.317647, 0, 0.317647, 1)
+border_color = Color(0.266667, 0.266667, 0.0196078, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcvm2"]
-bg_color = Color(0.435294, 0, 0.435294, 1)
+bg_color = Color(0.345098, 0.345098, 0.0313726, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 12
-border_color = Color(0.34902, 0, 0.34902, 1)
+border_color = Color(0.294118, 0.294118, 0.0235294, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -194,8 +194,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -92.0
-offset_top = -86.0
+offset_top = -101.0
 offset_right = 92.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_72bda")
@@ -205,19 +206,17 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_2s3yy")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lu4io")
 text = "Resume"
 
-[node name="menuButton" type="Button" parent="Panel"]
-visible = false
-modulate = Color(0.917647, 0, 1, 1)
+[node name="restartButton" type="Button" parent="Panel"]
+modulate = Color(0.882353, 1, 0, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -86.0
-offset_top = -14.0
-offset_right = 98.0
-offset_bottom = 72.0
+offset_left = -92.0
+offset_right = 92.0
+offset_bottom = 86.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_72bda")
@@ -225,7 +224,7 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = SubResource("StyleBoxFlat_qu6xl")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wfjqo")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vcvm2")
-text = "Main Menu
+text = "Restart
 "
 
 [node name="exitButton" type="Button" parent="Panel"]
@@ -237,9 +236,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -92.0
-offset_top = 39.0
+offset_top = 100.0
 offset_right = 92.0
-offset_bottom = 125.0
+offset_bottom = 186.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_72bda")
@@ -247,7 +246,7 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = SubResource("StyleBoxFlat_7nu8s")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_a51b6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47utx")
-text = "Exit Game
+text = "Exit 
 "
 
 [node name="Label" type="Label" parent="Panel"]
@@ -283,4 +282,5 @@ bbcode_enabled = true
 text = "[center]Paused[/center]"
 
 [connection signal="pressed" from="Panel/resumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/restartButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Panel/exitButton" to="." method="_on_exit_button_pressed"]
