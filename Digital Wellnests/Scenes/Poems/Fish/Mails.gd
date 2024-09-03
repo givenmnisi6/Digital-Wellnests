@@ -3,7 +3,6 @@ extends CharacterBody2D
 var spamEmail: bool
 var pause_status: bool
 @export var speed: float  
-@export var smoke_explosion:PackedScene
 
 func _ready() -> void:
 	 # Calculate the bottom position
@@ -19,9 +18,6 @@ func setSpeed(new_speed: float):
 	speed = new_speed
 
 func _on_button_pressed() -> void:
-	#const SMOKE = preload("res://smoke_explosion/smoke_explosion.tscn")
-	var smkInstance = smoke_explosion.instantiate()
-	
 	# Update the score by calling the parent node's 'mailScore' method
 	# Passes 'spamEmail' to indicate whether the email was spam or not
 	var score = get_parent().call("mailScore", spamEmail)
@@ -32,8 +28,6 @@ func _on_button_pressed() -> void:
 	else:
 		Music.rightSfx()
 	# Free the email node after it has been processed
-	#get_parent().add_child(smkInstance)
-	smkInstance.global_transform.origin = global_transform.origin
 	queue_free()
 
 # Visibility Timer of the Mail or Link to appear on the screen
