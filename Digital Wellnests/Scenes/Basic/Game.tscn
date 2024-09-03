@@ -1227,7 +1227,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_0f708"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -11.1227, 432, 0, 0, 0, 0, 722, 436.5, 0, 0, 0, 0, 722.065, 456.547, 0, 0, 0, 0, 722, 480.648, 0, 0, 0, 0, -11.1227, 480.648)
+"points": PackedVector2Array(0, 0, 0, 0, 1.17165, 432.001, 0, 0, 0, 0, 722, 436.5, 0, 0, 0, 0, 722.065, 456.547, 0, 0, 0, 0, 722, 480.648, 0, 0, 0, 0, -11.1227, 480.648)
 }
 point_count = 5
 
@@ -5051,6 +5051,7 @@ modulate = Color(0.513726, 0.513726, 0.513726, 0.666667)
 layout_mode = 0
 offset_right = 720.0
 offset_bottom = 480.0
+metadata/_edit_lock_ = true
 
 [node name="FishPath2D" type="Path2D" parent="."]
 position = Vector2(48.9517, 442.479)
@@ -5059,8 +5060,8 @@ curve = SubResource("Curve2D_0f708")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="FishPath2D"]
 unique_name_in_owner = true
-position = Vector2(-11.1227, 432)
-rotation = 0.00613805
+position = Vector2(1.17165, 432.001)
+rotation = 0.00624134
 
 [node name="CatPath2D" type="Path2D" parent="."]
 self_modulate = Color(0.501961, 0.6, 1, 0.701961)
