@@ -37,3 +37,8 @@ func _on_resume_button_pressed() -> void:
 func _on_exit_button_pressed() -> void:
 	Music.clickSfx()
 	quitGame()
+
+
+func _on_menu_button_pressed() -> void:
+	resumeGame()
+	get_tree().reload_current_scene()
