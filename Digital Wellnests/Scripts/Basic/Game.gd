@@ -592,7 +592,8 @@ func playGame():
 		# Resume the envelope timer after setting up the envelopes and animations
 		$EnvelopeTimer.paused = false
 
-	elif gameIndex == 0:
+	# Play Lucky the Fish game
+	elif gameIndex == 1:
 		$MailTimer.paused = false
 
 	elif gameIndex == 4:
@@ -650,10 +651,6 @@ func _on_cat_timer_timeout():
 	add_child(catInstance)
 
 func _on_pause_pressed() -> void:
-	#if bpaused:
-		#playGame()
-	#else:
-		#pauseGame()
 	if gameIndex == 0:
 		pauseMenus()
 	if gameIndex == 1:
@@ -667,77 +664,75 @@ func _on_pause_pressed() -> void:
 
 # Spawning the Mails randomly
 func spawnMails():
-	var mailInstance = Mails.instantiate()
-	add_child(mailInstance)
-	
-	var mailLocation = %PathFollow2D
-	
-	# Random value for the mails to spawn 
-	mailLocation.progress_ratio = randf()
-	
-	# Position to move the mails
-	mailInstance.position = mailLocation.position
-	#mailInstance.position = mailLocation.to_local(mailLocation.global_position)
-	#print("Mail Location position: ", mailLocation.position)
-	
-	if level == 1:
-		speed = randf_range(200.0, 250.0) 
-		mailInstance.get_node("ItemsAnim").scale = Vector2(1,1)
-		if randi() % 2 == 0:
-			mailInstance.set("spamEmail", false)
-			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
-		else:
-			mailInstance.set("spamEmail", true)
-			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
-	elif level == 2:
-		speed = randf_range(230.0, 280.0)
-		if randi() % 3 == 0:
-			mailInstance.set("spamEmail", false)
-			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
-		elif  randi() % 3 == 1:
-			mailInstance.set("spamEmail", true)
-			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
-		else:
-			mailInstance.set("spamEmail", true)
-			mailInstance.get_node("ItemsAnim").animation = "safeLink"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
-	elif level == 3:
-		speed = randf_range(260.0, 310.0)
-		if randi() % 3 == 0:
-			mailInstance.set("spamEmail", false)
-			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
-		elif  randi() % 3 == 1:
-			mailInstance.set("spamEmail", true)
-			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
-		else:
-			mailInstance.set("spamEmail", false)
-			mailInstance.get_node("ItemsAnim").animation = "spamLink"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
-	elif level >= 4:
-		speed = randf_range(290.0, 430.0)
-		if randi() % 4 == 0:
-			mailInstance.set("spamEmail", false)
-			mailInstance.get_node("ItemsAnim").animation = "spamEmail"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
-		elif  randi() % 4 == 1:
-			mailInstance.set("spamEmail", true)
-			mailInstance.get_node("ItemsAnim").animation = "safeEmail"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
-		elif randi() % 4 == 2:
-			mailInstance.set("spamEmail", false)
-			mailInstance.get_node("ItemsAnim").animation = "spamLink"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
-		else:
-			mailInstance.set("spamEmail", true)
-			mailInstance.get_node("ItemsAnim").animation = "safeLink"
-			mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
-	mailInstance.setSpeed(speed)
+	if gameIndex == 1:
+		var mailInstance = Mails.instantiate()
+		
+		# Random value for the mails to spawn  on Path2D
+		var mailLocation = %PathFollow2D
+		mailLocation.progress_ratio = randf_range(0, 0.3)
+		
+		# Position to move the mails
+		mailInstance.position = mailLocation.position
+		
+		add_child(mailInstance)
+		if level == 1:
+			speed = randf_range(200.0, 250.0) 
+			mailInstance.get_node("ItemsAnim").scale = Vector2(1,1)
+			if randi() % 2 == 0:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+			else:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+		elif level == 2:
+			speed = randf_range(230.0, 280.0)
+			if randi() % 3 == 0:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+			elif  randi() % 3 == 1:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+			else:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeLink"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+		elif level == 3:
+			speed = randf_range(260.0, 310.0)
+			if randi() % 3 == 0:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+			elif  randi() % 3 == 1:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+			else:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamLink"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+		elif level >= 4:
+			speed = randf_range(290.0, 430.0)
+			if randi() % 4 == 0:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+			elif  randi() % 4 == 1:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+			elif randi() % 4 == 2:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamLink"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+			else:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeLink"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+		mailInstance.setSpeed(speed)
 	
 func _on_mail_timer_timeout():
 	spawnMails()
