@@ -31,3 +31,15 @@ func _on_audio_stream_player_finished():
 	var intro = load("res://Audio/Effects/Jungle.wav")
 	$AudioStreamPlayer.stream = intro
 	$AudioStreamPlayer.play()
+
+func wrongSfx():
+	# Load the wrong sound effect
+	var wrong = load("res://Audio/Effects/aWrong.wav")
+	$SoundEffects.stream = wrong
+	$SoundEffects.play()
+
+func rightSfx():
+	# Load the correct sound effect
+	var wrong = load("res://Audio/Effects/aRight2.wav")
+	$SoundEffects.stream = wrong
+	$SoundEffects.play()

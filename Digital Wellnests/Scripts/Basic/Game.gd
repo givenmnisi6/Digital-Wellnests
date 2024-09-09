@@ -7,6 +7,8 @@ extends TextureRect
 @export var Activities: PackedScene
 @export var Cat:PackedScene
 @onready var catInstance = Cat.instantiate()
+@export var Mails:PackedScene
+@onready var pauseMenu = $CanvasLayer/Pause
 
 var _screenSize: Vector2
 var speed: float
@@ -19,7 +21,8 @@ var level: int
 var colCount: int
 var gameOver: bool
 var gameIndex: int
-var bpaused: bool
+var bpaused: bool = false
+var paused: bool
 
 var thread: Thread
 var unitSize: float
@@ -94,7 +97,11 @@ func startGame():
 
 		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
 		$EnvelopeTimer.start()
-
+		
+	elif gameIndex == 1:
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
+		$MailTimer.start()
+		
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
 		$Hud/Score.hide()
@@ -324,9 +331,6 @@ func calcConveyor(conveyorSize: int):
 					containsAll = false
 					break
 
-		#for i in range(conCount):
-			#print("Conveyor ", conveyorIndices[i], ": Group ", group[i])
-
 func createConveyor(pos: Vector2, size: int, i:int):
 	var convInstance = Conveyor.instantiate()
 	$inGame.add_child(convInstance)
@@ -423,12 +427,15 @@ func _on_envelope_stop_area_entered(area):
 
 		area.get_node("EnvelopeAnim").animation = "Shrink"
 		area.get_node("EnvelopeAnim").play()
-		#print("Color of envelope: ", area.get("type"), " Color of conveyor: ",group[convIndex])
 
 func gameEnd(win: bool):
 	var ap = $Effects
 	gameOver = true
+	var mailInstance = Mails.instantiate()
+	speed = -10.0
+	mailInstance.setSpeed(speed)
 	
+	$MailTimer.stop()
 	$CatTimer.stop()
 	$BullyTimer.stop()
 	$ActivitiesTimer.stop()
@@ -436,11 +443,14 @@ func gameEnd(win: bool):
 	var hud = $Hud
 	if win:
 		catInstance.queue_free()
+		mailInstance.queue_free()
+
 		ap.stream = ResourceLoader.load("res://Audio/Effects/aWin.wav")
 		$Hud/Message.text = "You WIN"
 		$Hud/EndAnim.animation = "Victory" + str(gameIndex)
 	else:
 		catInstance.queue_free()
+		mailInstance.queue_free()
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
@@ -524,7 +534,6 @@ func _on_bully_timer_timeout():
 		targetInstance.set("bully", true)
 		targetInstance.get_node("TargetFace").animation = "Bully"
 
-
 func calcHit(bully: bool):
 	updateScore(bully)
 
@@ -543,6 +552,9 @@ func pauseGame():
 			elif env == AnimatedSprite2D:
 				env.stop()
 
+	elif gameIndex == 1:
+		$MailTimer.paused = true
+
 	elif gameIndex == 4:
 		get_node("BullyTimer").paused = true
 		for tar in ig.get_children():
@@ -557,19 +569,32 @@ func pauseGame():
 				act.get_node("ActivitiesTimer").paused = true
 
 func playGame():
+	# Play the game, unpause it
 	bpaused = false
-	var ig = $inGame 
-
+	var ig = $inGame
+	
+	# Play Safety Snail's Email game
 	if gameIndex == 0:
+		# Pause the envelope timer initially
 		$EnvelopeTimer.paused = true
 
+		# Iterate through all child nodes of the in-game node
 		for env in ig.get_children():
+			# Check if the child node is an envelope
 			if env.name == "Envelope": 
+				# Set the speed of the envelope based on the game speed
 				env.Speed = 1.1 * speed
+				# Reset the hit status of the envelope
 				env.hit = false
+				# If the child node is an AnimatedSprite2D, play its animation
 			elif env is AnimatedSprite2D:
 				env.play()
+		# Resume the envelope timer after setting up the envelopes and animations
 		$EnvelopeTimer.paused = false
+
+	# Play Lucky the Fish game
+	elif gameIndex == 1:
+		$MailTimer.paused = false
 
 	elif gameIndex == 4:
 		$BullyTimer.paused = false
@@ -588,7 +613,7 @@ func playGame():
 
 func _on_activities_timer_timeout():
 	var actInstance = Activities.instantiate()
-	var actLocation = $Path2D/PathFollow2D
+	var actLocation = $CatPath2D/PathFollow2D
 	actLocation.progress_ratio = randf()
 	
 	var direction = PI / 2
@@ -619,11 +644,106 @@ func _on_activities_timer_timeout():
 func calculateHit(coin: bool):
 	updateScore(coin)
 
+func mailScore(spamEmail: bool):
+	updateScore(spamEmail)
+
 func _on_cat_timer_timeout():
 	add_child(catInstance)
 
-func _on_texture_button_pressed():
-	if bpaused:
-		playGame()
+func _on_pause_pressed() -> void:
+	if gameIndex == 0:
+		pauseMenus()
+	if gameIndex == 1:
+		pauseMenus()
+	if gameIndex == 2:
+		pauseMenus()
+	if gameIndex == 4:
+		pauseMenus()
+	if gameIndex == 5:
+		pauseMenus()
+
+# Spawning the Mails randomly
+func spawnMails():
+	if gameIndex == 1:
+		var mailInstance = Mails.instantiate()
+		
+		# Random value for the mails to spawn  on Path2D
+		var mailLocation = %PathFollow2D
+		mailLocation.progress_ratio = randf_range(0, 0.3)
+		
+		# Position to move the mails
+		mailInstance.position = mailLocation.position
+		
+		add_child(mailInstance)
+		if level == 1:
+			speed = randf_range(200.0, 250.0) 
+			mailInstance.get_node("ItemsAnim").scale = Vector2(1,1)
+			if randi() % 2 == 0:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+			else:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
+		elif level == 2:
+			speed = randf_range(230.0, 280.0)
+			if randi() % 3 == 0:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+			elif  randi() % 3 == 1:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+			else:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeLink"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
+		elif level == 3:
+			speed = randf_range(260.0, 310.0)
+			if randi() % 3 == 0:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+			elif  randi() % 3 == 1:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+			else:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamLink"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
+		elif level >= 4:
+			speed = randf_range(290.0, 430.0)
+			if randi() % 4 == 0:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+			elif  randi() % 4 == 1:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+			elif randi() % 4 == 2:
+				mailInstance.set("spamEmail", false)
+				mailInstance.get_node("ItemsAnim").animation = "spamLink"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+			else:
+				mailInstance.set("spamEmail", true)
+				mailInstance.get_node("ItemsAnim").animation = "safeLink"
+				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
+		mailInstance.setSpeed(speed)
+	
+func _on_mail_timer_timeout():
+	spawnMails()
+
+func pauseMenus():
+	if paused:
+		pauseMenu.hide()
+		#Engine.time_scale = 1
+		get_tree().paused = false
 	else:
-		pauseGame()
+		pauseMenu.show()
+		#Engine.time_scale = 0
+		get_tree().paused = true
+	paused = !paused
