@@ -651,6 +651,7 @@ func _on_cat_timer_timeout():
 	add_child(catInstance)
 
 func _on_pause_pressed() -> void:
+	# Pause Mechanisms
 	if gameIndex == 0:
 		pauseMenus()
 	if gameIndex == 1:
