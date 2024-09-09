@@ -2725,6 +2725,7 @@ sprite_frames = SubResource("SpriteFrames_8nex8")
 animation = &"New Anim"
 frame_progress = 0.721473
 speed_scale = 5.0
+metadata/_edit_lock_ = true
 
 [node name="hArea" type="Area2D" parent="Control/Hippo"]
 metadata/_edit_lock_ = true
