@@ -8,7 +8,7 @@ extends TextureRect
 @export var Cat:PackedScene
 @onready var catInstance = Cat.instantiate()
 @export var Mails:PackedScene
-@onready var pauseMenu = $CanvasLayer/Pause
+@onready var pauseMenu = $PauseMenu/PauseControl
 
 var _screenSize: Vector2
 var speed: float
@@ -36,6 +36,22 @@ var grid: Array
 
 var prevObj
 
+# Start position of the Rabbit and the Camera2D
+const RABBIT_START_POS = Vector2i(45, 385)
+const CAM_START_POS = Vector2i(360, 240)
+
+# Speed of the Rabbit
+var rabbitSpeed : float
+
+# Changing speed for difficulty level
+const START_SPEED : float = 3.0
+
+# Maximum speed for the Rabbit
+const MAX_SPEED : int = 25
+
+var ground_height: int
+var screen_size : Vector2i
+
 func _ready():
 	# Playing the voices for each game
 	$Effects.stream = ResourceLoader.load("res://Audio/Voice/GameEx" + str(gameIndex) + ".wav")
@@ -46,14 +62,17 @@ func _ready():
 	$StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
 	grab_click_focus()
 
+
 func _on_play_button_pressed():
 	level = int($StartGame/HSlider.value)
 	$Hud/Score.show()
-	$Pause.show()
+	#$PauseMenu/Pause
+	$PauseMenu/Pause.show()
 	Music.clickSfx()
 	
 	# Remove the instructions
-	$StartGame.scale = Vector2(0.01, 0.01)
+	$StartGame.scale = Vector2(0, 0)
+	#$StartGame.visible = true
 	$Effects.stop()
 	startGame()
 
@@ -65,12 +84,20 @@ func startGame():
 	score = 0 
 	gameOver = false
 	
+	#if gameIndex == 0:
+		#$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
+		#$".".hide()
+		
+		#var rabbitInstance = Rabbit.instantiate()
+		#add_child(rabbitInstance)
+		
 	# Safety Snail game
 	# This set up the initial state of the game, by creating belts for each level
 	# and starts a time to spawn the envelopes
 	if gameIndex == 0:
 		#Displaying the 3 hearts
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
+		
 		
 		# Calculate the conveyor size based on the level
 		var conSize: int = (level + 1) / 2 + 5
@@ -101,7 +128,7 @@ func startGame():
 	elif gameIndex == 1:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
 		$MailTimer.start()
-		
+
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
 		$Hud/Score.hide()
@@ -123,12 +150,10 @@ func startGame():
 		
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
-		$Pause.hide()
-
+		$PauseMenu/Pause.hide()
 	# Happy Hippo game
 	elif gameIndex == 4:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
-
 		$BullyTimer.wait_time = (18 - level) * 0.06
 		$BullyTimer.start()
 		prev = [[0, 0], [0, 0]]
@@ -454,7 +479,7 @@ func gameEnd(win: bool):
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
-	$Pause.hide()
+	$PauseMenu/Pause.hide()
 	ap.play()
 	
 	$Hud/EndAnim.visible = true
