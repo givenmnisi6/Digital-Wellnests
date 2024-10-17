@@ -1,4 +1,4 @@
-[gd_scene load_steps=1238 format=3 uid="uid://cugtttre47j1d"]
+[gd_scene load_steps=1241 format=3 uid="uid://cugtttre47j1d"]
 
 [ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="1_klf3e"]
 [ext_resource type="Script" path="res://Scripts/Basic/Game.gd" id="2_4gpnb"]
@@ -1223,7 +1223,10 @@
 [ext_resource type="Texture2D" uid="uid://bmxtd3ymj413b" path="res://Animations/Cat1/Cat1.0119.png" id="975_0y8wb"]
 [ext_resource type="Texture2D" uid="uid://56q0dhnpopaa" path="res://Animations/Cat1/Cat1.0120.png" id="976_dh1ny"]
 [ext_resource type="AudioStream" uid="uid://cv5g7x4o21fcb" path="res://Audio/Effects/Jungle.wav" id="980_t6dhn"]
+[ext_resource type="PackedScene" uid="uid://ucvwyg1mk62k" path="res://Scenes/Poems/Elephant/Background.tscn" id="1225_0fndf"]
 [ext_resource type="PackedScene" uid="uid://cydy5wvvioivi" path="res://Scenes/Basic/Pause.tscn" id="1225_xa8gl"]
+[ext_resource type="PackedScene" uid="uid://dj0xjp7n6mh0j" path="res://Scenes/Poems/Elephant/Ground.tscn" id="1226_wna0y"]
+[ext_resource type="PackedScene" uid="uid://df5i7qumvx3s0" path="res://Scenes/Poems/Elephant/Rabbit.tscn" id="1227_nsxff"]
 
 [sub_resource type="Curve2D" id="Curve2D_0f708"]
 _data = {
@@ -5237,6 +5240,28 @@ text = "Play Again"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("980_t6dhn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("1225_xa8gl")]
+visible = false
+
+[node name="Elephant" type="CanvasLayer" parent="."]
+
+[node name="Background" parent="Elephant" instance=ExtResource("1225_0fndf")]
+visible = false
+
+[node name="Ground" parent="Elephant" instance=ExtResource("1226_wna0y")]
+visible = false
+position = Vector2(-1, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Elephant"]
+position = Vector2(360, 240)
+enabled = false
+
+[node name="Rabbit" parent="Elephant" instance=ExtResource("1227_nsxff")]
+visible = false
+position = Vector2(50, 385)
 
 [connection signal="timeout" from="EnvelopeTimer" to="." method="_on_envelope_timer_timeout"]
 [connection signal="area_entered" from="EnvelopeStop" to="." method="_on_envelope_stop_area_entered"]
