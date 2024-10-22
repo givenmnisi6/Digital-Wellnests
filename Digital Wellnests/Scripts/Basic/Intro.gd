@@ -38,7 +38,8 @@ func _on_intro_timer_timeout():
 		$IntroTimer.start()
 		
 		# Change the texture of the Intro texture to the NWU image
-		intro.texture = load("res://Images/NWU.png")
+		#intro.texture = load("res://Images/NWU.png")
+		intro.texture = load("res://Images/NWUCSIR.png")
 		# Create a tween to fade in the Intro texture over 1 second
 		var tween = get_tree().create_tween()
 		# White with full opacity

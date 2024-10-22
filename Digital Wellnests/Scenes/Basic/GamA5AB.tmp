@@ -1223,10 +1223,10 @@
 [ext_resource type="Texture2D" uid="uid://bmxtd3ymj413b" path="res://Animations/Cat1/Cat1.0119.png" id="975_0y8wb"]
 [ext_resource type="Texture2D" uid="uid://56q0dhnpopaa" path="res://Animations/Cat1/Cat1.0120.png" id="976_dh1ny"]
 [ext_resource type="AudioStream" uid="uid://cv5g7x4o21fcb" path="res://Audio/Effects/Jungle.wav" id="980_t6dhn"]
-[ext_resource type="PackedScene" uid="uid://culixfaqwtsx3" path="res://Scenes/Poems/Elephant/Background.tscn" id="1225_3853e"]
+[ext_resource type="PackedScene" uid="uid://ucvwyg1mk62k" path="res://Scenes/Poems/Elephant/Background.tscn" id="1225_0fndf"]
 [ext_resource type="PackedScene" uid="uid://cydy5wvvioivi" path="res://Scenes/Basic/Pause.tscn" id="1225_xa8gl"]
-[ext_resource type="PackedScene" uid="uid://dinimoyomv3p6" path="res://Scenes/Poems/Elephant/Ground.tscn" id="1226_nv64w"]
-[ext_resource type="PackedScene" uid="uid://c67yvm48yyejt" path="res://Scenes/Poems/Elephant/Rabbit.tscn" id="1227_81pap"]
+[ext_resource type="PackedScene" uid="uid://dj0xjp7n6mh0j" path="res://Scenes/Poems/Elephant/Ground.tscn" id="1226_wna0y"]
+[ext_resource type="PackedScene" uid="uid://df5i7qumvx3s0" path="res://Scenes/Poems/Elephant/Rabbit.tscn" id="1227_nsxff"]
 
 [sub_resource type="Curve2D" id="Curve2D_0f708"]
 _data = {
@@ -5242,20 +5242,26 @@ text = "Play Again"
 stream = ExtResource("980_t6dhn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
-[node name="Background" parent="CanvasLayer" instance=ExtResource("1225_3853e")]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("1225_xa8gl")]
 visible = false
 
-[node name="Ground" parent="CanvasLayer" instance=ExtResource("1226_nv64w")]
+[node name="Elephant" type="CanvasLayer" parent="."]
+
+[node name="Background" parent="Elephant" instance=ExtResource("1225_0fndf")]
 visible = false
 
-[node name="Rabbit" parent="CanvasLayer" instance=ExtResource("1227_81pap")]
+[node name="Ground" parent="Elephant" instance=ExtResource("1226_wna0y")]
 visible = false
-position = Vector2(30, 339)
+position = Vector2(-1, 0)
 
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+[node name="Camera2D" type="Camera2D" parent="Elephant"]
 position = Vector2(360, 240)
+enabled = false
+
+[node name="Rabbit" parent="Elephant" instance=ExtResource("1227_nsxff")]
+visible = false
+position = Vector2(50, 385)
 
 [connection signal="timeout" from="EnvelopeTimer" to="." method="_on_envelope_timer_timeout"]
 [connection signal="area_entered" from="EnvelopeStop" to="." method="_on_envelope_stop_area_entered"]
