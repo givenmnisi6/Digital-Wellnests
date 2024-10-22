@@ -6,15 +6,9 @@ extends TextureRect
 @export var Tile: PackedScene
 @export var Activities: PackedScene
 @export var Cat:PackedScene
-@export var Mails:PackedScene
-var cactusScene = preload("res://Scenes/Poems/Elephant/Cactus.tscn")
-var cactiScene = preload("res://Scenes/Poems/Elephant/Cacti.tscn")
-var thornScene = preload("res://Scenes/Poems/Elephant/Thorn.tscn")
-var ballScene = preload("res://Scenes/Poems/Elephant/Ball.tscn")
-var birdScene = preload("res://Scenes/Poems/Elephant/Bird.tscn")
-
 @onready var catInstance = Cat.instantiate()
-@onready var pauseMenu = $PauseMenu/PauseControl
+@export var Mails:PackedScene
+@onready var pauseMenu = $CanvasLayer/Pause
 
 var _screenSize: Vector2
 var speed: float
@@ -42,120 +36,26 @@ var grid: Array
 
 var prevObj
 
-const RABBIT_START_POS = Vector2i(30, 339)
-const CAM_START_POS = Vector2i(360, 240)
-const START_SPEED : float = 5.0
-const MAX_SPEED : int = 15
-const SCORE_MODIFIER: int = 10
-const SPEED_MODIFIER: int = 5000
-const MAX_DIFFICULTY : int = 2
-
-var screen_size : Vector2i
-var ground_height: int
-var lastObs
-var rabbitSpeed : float
-
-var obstaclesType := [cactusScene, cactiScene, thornScene]
-var obstacles : Array
-var birdHeight := [240, 390]
-var difficulty
-
 func _ready():
 	# Playing the voices for each game
 	$Effects.stream = ResourceLoader.load("res://Audio/Voice/GameEx" + str(gameIndex) + ".wav")
 	$Effects.play()
 	bpaused = false
-	screen_size = get_window().size
-	ground_height = $CanvasLayer/Ground.get_node("Sprite2D").texture.get_height()
 
 	# Loading the how to play instructions of each game
 	$StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
 	grab_click_focus()
-	startRunning()
-
-func startRunning():
-	score = 0
-	#difficulty = 0
-	#
-	## delete the obstacles
-	#for obs in obstacles:
-		#obs.queue_free()
-	#obstacles.clear()
-	
-	$CanvasLayer/Rabbit.position = RABBIT_START_POS
-	$CanvasLayer/Rabbit.velocity = Vector2i(0, 0)
-	$CanvasLayer/Camera2D.position = CAM_START_POS
-	$CanvasLayer/Ground.position = Vector2i(0, 0)
-	
-	bpaused = true
-
-func _process(delta: float) -> void:
-	if bpaused:
-		return
-
-	generateObstacles()
-	#generateObs()
-	#difficultyLevel()
-	#speed = START_SPEED + score / SPEED_MODIFIER
-	# Move the surf and camera
-	$CanvasLayer/Rabbit.position.x += rabbitSpeed
-	$CanvasLayer/Camera2D.position.x += rabbitSpeed
-
-	# Update score
-	score += rabbitSpeed
-	#showScore()
-	
-	# Update the ground position when the ground position ends
-	if $CanvasLayer/Camera2D.position.x - $CanvasLayer/Ground.position.x > screen_size.x * 1.5:
-		$CanvasLayer/Ground.position.x += screen_size.x
-	
-	# Remove obstacles that already have passed
-	#for obs in obstacles:
-		#if obs.position.x < ($CanvasLayer/Camera2D.position.x - screen_size.x):
-			#removeObstacle(obs) 
 
 func _on_play_button_pressed():
 	level = int($StartGame/HSlider.value)
 	$Hud/Score.show()
-	$PauseMenu/Pause.show()
+	$Pause.show()
 	Music.clickSfx()
 	
 	# Remove the instructions
-	$StartGame.scale = Vector2(0, 0)
-	#$StartGame.visible = true
+	$StartGame.scale = Vector2(0.01, 0.01)
 	$Effects.stop()
 	startGame()
-
-func generateObstacles():
-	# If the obstacles array/list is empty
-	if obstacles.is_empty() or lastObs.position.x < score + randi_range(100, 500):
-		# Pick any random obstacle and assign it to the obstacles type variable
-		var obsType = obstaclesType[randi() % obstaclesType.size()]
-		var obs
-		var maxObstacles = 2
-		for i in range(randi() % maxObstacles + 1):
-			obs = obsType.instantiate()
-			var obsHeight = obs.get_node("Sprite2D").texture.get_height()
-			print("obsHeight: ", obsHeight)
-			
-			var obsScale = obs.get_node("Sprite2D").scale
-			print("obsScale: ", obsScale)
-			
-			var obs_x: int = screen_size.x + score + 100 + (i * 100)
-			var obs_y : int = screen_size.y - ground_height - (obsHeight * obsScale.y / 2) + 172
-			obs.position = Vector2i(obs_x, obs_y)
-			  # Increase this value to ensure it's on top
-			lastObs = obs
-			addObstacles(obs, obs_x, obs_y)
-
-func addObstacles(obs, x, y):
-	obs.position = Vector2(x, y)
-	obs.z_index = 100
-	if true:
-		get_parent().add_child(obs)
-	else:
-		add_child(obs)
-	obstacles.append(obs)
 
 func startGame():
 	# At the start, all games have 3 lives and to win you need to have 20 points
@@ -165,56 +65,38 @@ func startGame():
 	score = 0 
 	gameOver = false
 	
-	if gameIndex == 0:
-		$".".scale = Vector2(0,0)
-		$StartGame.hide()
-		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
-		$CanvasLayer/Background.show()
-		$CanvasLayer/Ground.show()
-		$CanvasLayer/Rabbit.show()
-
-		# Ajust the speed slowly, based on each level
-		# 5 + ((1-1)/ (10-1) * (15 - 5) * 0.5
-		rabbitSpeed = START_SPEED + ((level - 1) / float($StartGame/HSlider.max_value - 1)) * (MAX_SPEED - START_SPEED) * 0.5
-		
-		# Limit the speed to the max speed allowed
-		if rabbitSpeed > MAX_SPEED:
-			rabbitSpeed = MAX_SPEED
-
-		bpaused = false
-		
 	# Safety Snail game
 	# This set up the initial state of the game, by creating belts for each level
 	# and starts a time to spawn the envelopes
-	#if gameIndex == 0:
-		##Displaying the 3 hearts
-		#$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
-		#
-		## Calculate the conveyor size based on the level
-		#var conSize: int = (level + 1) / 2 + 5
-		#calcConveyor(conSize) 
-		#
-		## Calculate the conveyor size based on the level
-		#speed = level * 0.2 + 1             # Calculate the speed based on the level
-		#_screenSize = Vector2(720, 480)     # Set the screen size
-		#
-		## Initialize variables for looping through the layout (lay)
-		#var items: int = lay.size()
-		#var posCount: int = 0
-		#var num: int = 0
-#
-		#for j in range (items):
-			#num += lay[j]
-			#
-		#unitSize = _screenSize.x / num
-#
-		## Loop through the layout and create conveyors
-		#for i in range (items):
-			#createConveyor(Vector2(unitSize * posCount + (unitSize * lay[i] / 2), _screenSize.y / 2 - 2), lay[i], i)
-			#posCount += lay[i]
-#
-		#$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
-		#$EnvelopeTimer.start()
+	if gameIndex == 0:
+		#Displaying the 3 hearts
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
+		
+		# Calculate the conveyor size based on the level
+		var conSize: int = (level + 1) / 2 + 5
+		calcConveyor(conSize) 
+		
+		# Calculate the conveyor size based on the level
+		speed = level * 0.2 + 1             # Calculate the speed based on the level
+		_screenSize = Vector2(720, 480)     # Set the screen size
+		
+		# Initialize variables for looping through the layout (lay)
+		var items: int = lay.size()
+		var posCount: int = 0
+		var num: int = 0
+
+		for j in range (items):
+			num += lay[j]
+			
+		unitSize = _screenSize.x / num
+
+		# Loop through the layout and create conveyors
+		for i in range (items):
+			createConveyor(Vector2(unitSize * posCount + (unitSize * lay[i] / 2), _screenSize.y / 2 - 2), lay[i], i)
+			posCount += lay[i]
+
+		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
+		$EnvelopeTimer.start()
 		
 	elif gameIndex == 1:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
@@ -241,8 +123,7 @@ func startGame():
 		
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
-		#$Pause.hide()
-		$PauseMenu/Pause.hide()
+		$Pause.hide()
 
 	# Happy Hippo game
 	elif gameIndex == 4:
@@ -522,30 +403,30 @@ func updateScore(punt: bool):
 			if lives <= 0:
 				gameEnd(false)
 
-#func _on_envelope_stop_area_entered(area):
-	#if gameIndex == 0:
-		## Total of conveyor sizes, it is initialised with the size of the first conveyor
-		#var tot = lay[0]
-		## Holds the temporary lane of the current envelope 
-		#var temp: int = area.get("lane")
-		## Keeps track of the conveyor being checked at the moment
-		#var convIndex: int = 0
-		## When the temp position exceeds the total of conveyor sizes it will be incremented
-		#while temp >= tot:
-			#tot += lay[convIndex+1]
-			#convIndex += 1
-		#
-		#var ap = $Effects
-		## Check if the entered area's type matches the conveyor's group
-		#if int(area.type) == group[convIndex]:
-			#ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
-		#else:
-			#ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
-		#ap.play()
-		#updateScore(int(area.get("type")) == group[convIndex])
-#
-		#area.get_node("EnvelopeAnim").animation = "Shrink"
-		#area.get_node("EnvelopeAnim").play()
+func _on_envelope_stop_area_entered(area):
+	if gameIndex == 0:
+		# Total of conveyor sizes, it is initialised with the size of the first conveyor
+		var tot = lay[0]
+		# Holds the temporary lane of the current envelope 
+		var temp: int = area.get("lane")
+		# Keeps track of the conveyor being checked at the moment
+		var convIndex: int = 0
+		# When the temp position exceeds the total of conveyor sizes it will be incremented
+		while temp >= tot:
+			tot += lay[convIndex+1]
+			convIndex += 1
+		
+		var ap = $Effects
+		# Check if the entered area's type matches the conveyor's group
+		if int(area.type) == group[convIndex]:
+			ap.stream = ResourceLoader.load("res://Audio/Effects/aRight2.wav")
+		else:
+			ap.stream = ResourceLoader.load("res://Audio/Effects/aWrong.wav")
+		ap.play()
+		updateScore(int(area.get("type")) == group[convIndex])
+
+		area.get_node("EnvelopeAnim").animation = "Shrink"
+		area.get_node("EnvelopeAnim").play()
 
 func gameEnd(win: bool):
 	var ap = $Effects
@@ -573,7 +454,7 @@ func gameEnd(win: bool):
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
-	$PauseMenu/Pause.hide()
+	$Pause.hide()
 	ap.play()
 	
 	$Hud/EndAnim.visible = true

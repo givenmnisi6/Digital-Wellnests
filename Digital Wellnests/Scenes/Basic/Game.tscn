@@ -1,4 +1,4 @@
-[gd_scene load_steps=1241 format=3 uid="uid://cugtttre47j1d"]
+[gd_scene load_steps=1238 format=3 uid="uid://cugtttre47j1d"]
 
 [ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="1_klf3e"]
 [ext_resource type="Script" path="res://Scripts/Basic/Game.gd" id="2_4gpnb"]
@@ -1223,10 +1223,7 @@
 [ext_resource type="Texture2D" uid="uid://bmxtd3ymj413b" path="res://Animations/Cat1/Cat1.0119.png" id="975_0y8wb"]
 [ext_resource type="Texture2D" uid="uid://56q0dhnpopaa" path="res://Animations/Cat1/Cat1.0120.png" id="976_dh1ny"]
 [ext_resource type="AudioStream" uid="uid://cv5g7x4o21fcb" path="res://Audio/Effects/Jungle.wav" id="980_t6dhn"]
-[ext_resource type="PackedScene" uid="uid://culixfaqwtsx3" path="res://Scenes/Poems/Elephant/Background.tscn" id="1225_3853e"]
 [ext_resource type="PackedScene" uid="uid://cydy5wvvioivi" path="res://Scenes/Basic/Pause.tscn" id="1225_xa8gl"]
-[ext_resource type="PackedScene" uid="uid://dinimoyomv3p6" path="res://Scenes/Poems/Elephant/Ground.tscn" id="1226_nv64w"]
-[ext_resource type="PackedScene" uid="uid://c67yvm48yyejt" path="res://Scenes/Poems/Elephant/Rabbit.tscn" id="1227_81pap"]
 
 [sub_resource type="Curve2D" id="Curve2D_0f708"]
 _data = {
@@ -5081,7 +5078,6 @@ rotation = 0.00278163
 [node name="EnvelopeStop" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnvelopeStop"]
-visible = false
 position = Vector2(360, 435)
 shape = SubResource("RectangleShape2D_1r3jb")
 
@@ -5184,10 +5180,9 @@ offset_right = 720.0
 offset_bottom = 480.0
 metadata/_edit_lock_ = true
 
-[node name="PauseMenu" type="CanvasLayer" parent="."]
-
-[node name="Pause" type="TextureButton" parent="PauseMenu"]
+[node name="Pause" type="TextureButton" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 351.0
 offset_top = 1.0
 offset_right = 385.0
@@ -5196,9 +5191,6 @@ toggle_mode = true
 texture_normal = ExtResource("730_uh23x")
 ignore_texture_size = true
 stretch_mode = 0
-
-[node name="PauseControl" parent="PauseMenu" instance=ExtResource("1225_xa8gl")]
-visible = false
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
 volume_db = 10.0
@@ -5242,20 +5234,9 @@ text = "Play Again"
 stream = ExtResource("980_t6dhn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
-[node name="Background" parent="CanvasLayer" instance=ExtResource("1225_3853e")]
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("1225_xa8gl")]
 visible = false
-
-[node name="Ground" parent="CanvasLayer" instance=ExtResource("1226_nv64w")]
-visible = false
-
-[node name="Rabbit" parent="CanvasLayer" instance=ExtResource("1227_81pap")]
-visible = false
-position = Vector2(30, 339)
-
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
-position = Vector2(360, 240)
 
 [connection signal="timeout" from="EnvelopeTimer" to="." method="_on_envelope_timer_timeout"]
 [connection signal="area_entered" from="EnvelopeStop" to="." method="_on_envelope_stop_area_entered"]
@@ -5265,6 +5246,6 @@ position = Vector2(360, 240)
 [connection signal="timeout" from="ActivitiesTimer" to="." method="_on_activities_timer_timeout"]
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
 [connection signal="timeout" from="MailTimer" to="." method="_on_mail_timer_timeout"]
-[connection signal="pressed" from="PauseMenu/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="Pause" to="." method="_on_pause_pressed"]
 [connection signal="button_down" from="EndGame/bMenu" to="." method="_on_b_menu_button_down"]
 [connection signal="button_down" from="EndGame/bLevel" to="." method="_on_b_level_button_down"]

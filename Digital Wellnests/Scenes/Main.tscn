@@ -1,4 +1,4 @@
-[gd_scene load_steps=773 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=774 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
 [ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="2_3icno"]
@@ -497,6 +497,7 @@
 [ext_resource type="Texture2D" uid="uid://cqnh0xc037oid" path="res://Animations/Cat0/Cat0.0120.png" id="492_bnt6y"]
 [ext_resource type="Texture2D" uid="uid://cqo3jri8b57rb" path="res://Animations/Fish8/Fish8.0000.png" id="493_t2e2m"]
 [ext_resource type="Texture2D" uid="uid://bcvy0ldxely1a" path="res://Animations/Fish8/Fish8.0001.png" id="494_3gb6i"]
+[ext_resource type="Texture2D" path="res://Animations/Elephant0/Elephant.png" id="494_vwfqf"]
 [ext_resource type="Texture2D" uid="uid://dyslvhbf5rg06" path="res://Animations/Fish8/Fish8.0002.png" id="495_1m256"]
 [ext_resource type="Texture2D" uid="uid://djivor53iw6m3" path="res://Animations/Fish8/Fish8.0003.png" id="496_1bkir"]
 [ext_resource type="PackedScene" uid="uid://btcamyy2f7y3v" path="res://Scenes/Basic/HSlider.tscn" id="496_7wbil"]
@@ -2620,6 +2621,14 @@ size = Vector2(399.894, 343.834)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("494_vwfqf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("616_7bn00")
 }, {
 "duration": 1.0,
@@ -2983,7 +2992,7 @@ animations = [{
 "texture": ExtResource("736_xjx5m")
 }],
 "loop": true,
-"name": &"default",
+"name": &"new_animation",
 "speed": 5.0
 }]
 
@@ -3205,6 +3214,7 @@ sprite_frames = SubResource("SpriteFrames_8nex8")
 animation = &"New Anim"
 frame_progress = 0.721473
 speed_scale = 5.0
+metadata/_edit_lock_ = true
 
 [node name="hArea" type="Area2D" parent="Control/Hippo"]
 metadata/_edit_lock_ = true
@@ -3299,11 +3309,11 @@ offset_bottom = 176.0
 metadata/_edit_lock_ = true
 
 [node name="Elephant" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(531, 392)
-scale = Vector2(0.459374, 0.459374)
+position = Vector2(534.141, 404)
+scale = Vector2(0.2333, 0.2333)
 sprite_frames = SubResource("SpriteFrames_oq2qg")
-speed_scale = 8.0
-metadata/_edit_lock_ = true
+animation = &"new_animation"
+speed_scale = 5.0
 
 [node name="eArea2D" type="Area2D" parent="Control/Elephant"]
 metadata/_edit_lock_ = true
