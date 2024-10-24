@@ -3,7 +3,7 @@ extends CharacterBody2D
 # pushes the player down
 const GRAVITY : int = 4200
 # pushes the player up
-const JUMP_SPEED: int = -1400
+const JUMP_SPEED: int = -1500
 
 func _physics_process(delta: float) -> void:
 	velocity.y += GRAVITY * delta
