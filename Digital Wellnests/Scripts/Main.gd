@@ -1,10 +1,10 @@
-extends ColorRect
+extends Control
 
 # Loading the scenes in the Inspector of this Main (ColorRect)
 @export var Book: PackedScene
 @export var Game: PackedScene
 @export var Quiz: PackedScene
-@onready var settings = $Control/Settings
+@onready var settings = $Settings
 
 var snail: AnimatedSprite2D
 var hippo: AnimatedSprite2D
@@ -415,7 +415,7 @@ func _on_exit_pressed():
 	# Get the yButton and nButton nodes
 	var y = $ExitPage/Panel/yButton
 	var n = $ExitPage/Panel/nButton
-	
+
 	# Scale up the yButton and nButton nodes
 	twn.tween_property(y, "scale", Vector2(1,1), 0.4)
 	twn.tween_property(n, "scale", Vector2(1,1), 0.4)
