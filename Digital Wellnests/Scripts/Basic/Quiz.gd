@@ -48,7 +48,7 @@ func _ready():
 			"Librarian?": true,
 			"Doctor?": true,
 			"Trusted adult?": true,
-			"Educational website?": false,
+			"Educational website?": true,
 			"Unknown source?": false,
 			"Online character?": false,
 			"Pop-up adverts?": false
