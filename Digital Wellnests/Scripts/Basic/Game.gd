@@ -1,4 +1,4 @@
-extends TextureRect
+extends Control
 
 @export var Conveyor: PackedScene
 @export var Envelope: PackedScene
@@ -8,7 +8,7 @@ extends TextureRect
 @export var Cat:PackedScene
 @onready var catInstance = Cat.instantiate()
 @export var Mails:PackedScene
-@onready var pauseMenu = $CanvasLayer/Pause
+@onready var pauseMenu = $PauseGame/PauseG
 
 var _screenSize: Vector2
 var speed: float
@@ -44,17 +44,20 @@ func _ready():
 
 	# Loading the how to play instructions of each game
 	$StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
+	#$Game/StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
 	grab_click_focus()
 
 func _on_play_button_pressed():
+	#level = int($Game/StartGame/HSlider.value)
 	level = int($StartGame/HSlider.value)
 	$Hud/Score.show()
-	$Pause.show()
+	$PauseGame/Pause.show()
 	Music.clickSfx()
 	
 	# Remove the instructions
 	$StartGame.scale = Vector2(0, 0)
-	#$StartGame.visible = true
+	#$Game/StartGame.scale = Vector2(0, 0)
+	#$Game/StartGame.visible = true
 	$Effects.stop()
 	startGame()
 
@@ -124,7 +127,7 @@ func startGame():
 		
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
-		$Pause.hide()
+		$PauseGame/Pause.hide()
 
 	# Happy Hippo game
 	elif gameIndex == 4:
@@ -139,7 +142,6 @@ func startGame():
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 		$CatTimer.start()
 		$ActivitiesTimer.start()
-
 # Generate tiles 
 func spawnTiles(maxx: int, maxy:int):
 	var uneven: bool = false
@@ -334,7 +336,7 @@ func calcConveyor(conveyorSize: int):
 
 func createConveyor(pos: Vector2, size: int, i:int):
 	var convInstance = Conveyor.instantiate()
-	$inGame.add_child(convInstance)
+	$BG/inGame.add_child(convInstance)
 	
 	var random = RandomNumberGenerator.new()
 	convInstance.position = pos
@@ -363,8 +365,8 @@ func createConveyor(pos: Vector2, size: int, i:int):
 func spawnEnvelope(type: int, lane: int):
 	if !gameOver:
 		var envInstance = Envelope.instantiate()
-		$inGame.add_child(envInstance)
-		
+		$BG/inGame.add_child(envInstance)
+
 		envInstance.set("midPos", unitSize)
 		envInstance.position = Vector2((lane + 1) * unitSize - unitSize / 2, -10)
 		envInstance.scale *= Vector2(unitSize / 100, unitSize / 100)
@@ -455,7 +457,7 @@ func gameEnd(win: bool):
 		ap.stream = ResourceLoader.load("res://Audio/Voice/TA.wav")
 		$Hud/Message.text = "You LOSE"
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
-	$Pause.hide()
+	$PauseGame/Pause.hide()
 	ap.play()
 	
 	$Hud/EndAnim.visible = true
@@ -464,7 +466,7 @@ func gameEnd(win: bool):
 	grab_click_focus()
 	var control = $EndGame
 	control.show()
-	control.z_index = get_child_count() - 1
+	#control.z_index = get_child_count() - 1
 
 func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false
@@ -484,7 +486,6 @@ func _on_b_menu_button_down():
 
 func _on_h_slider_value_changed(value):
 	$StartGame/LevelIndicator.text = "Level " + str(value)
-
 func _on_envelope_timer_timeout():
 	var random = RandomNumberGenerator.new()
 	var tp = random.randi_range(0, colCount - 1)
@@ -616,7 +617,7 @@ func _on_activities_timer_timeout():
 	var actInstance = Activities.instantiate()
 	var actLocation = $CatPath2D/PathFollow2D
 	actLocation.progress_ratio = randf()
-	
+
 	var direction = PI / 2
 	actInstance.position = actLocation.position
 
