@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://hkh28470jkqy"]
+
+[ext_resource type="Texture2D" uid="uid://0egf0k6ikhu6" path="res://Images/Elephant assets/Obstacles/cactus_01.png" id="1_h2xs2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq6kd"]
+size = Vector2(47.25, 98.5)
+
+[node name="Cactus" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.50002, -18.5136)
+scale = Vector2(0.255435, 0.255435)
+texture = ExtResource("1_h2xs2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -18)
+shape = SubResource("RectangleShape2D_qq6kd")
