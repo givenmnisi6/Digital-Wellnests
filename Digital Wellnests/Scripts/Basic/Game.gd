@@ -9,6 +9,13 @@ extends Control
 @export var Cat:PackedScene
 @export var Mails:PackedScene
 
+# Preloading the obstacles scene for quick access
+var cactusScene = preload("res://Scenes/Poems/Elephant/Cactus.tscn")
+var cactiScene = preload("res://Scenes/Poems/Elephant/Cacti.tscn")
+var thornScene = preload("res://Scenes/Poems/Elephant/Thorn.tscn")
+var ballScene = preload("res://Scenes/Poems/Elephant/Ball.tscn")
+var birdScene = preload("res://Scenes/Poems/Elephant/Bird.tscn")
+
 # Ready variables for nodes and scenes
 @onready var pauseMenu = $PauseGame/PauseG
 @onready var catInstance = Cat.instantiate()
