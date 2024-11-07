@@ -3,7 +3,7 @@ extends CharacterBody2D
 # pushes the player down
 const GRAVITY : int = 4200
 # pushes the player up
-const JUMP_SPEED: int = -1500
+const JUMP_SPEED: int = -1370
 
 func _physics_process(delta: float) -> void:
 	velocity.y += GRAVITY * delta
@@ -12,10 +12,13 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		# Enable the running collisions
 		if Input.is_action_pressed("ui_accept"):
-			velocity.y = JUMP_SPEED
-			$Jump.play()
+			jump()
 		else:
 			$AnimatedSprite2D.play("run")
 	else:
 		$AnimatedSprite2D.play("jump")
 	move_and_slide()
+
+func jump():
+	velocity.y = JUMP_SPEED
+	$Jump.play()
