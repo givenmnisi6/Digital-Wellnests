@@ -1,14 +1,17 @@
 extends Control
 
+# Exported variables for different scene references, enabling them to be set in the Inspector node
 @export var Conveyor: PackedScene
 @export var Envelope: PackedScene
 @export var Target: PackedScene
 @export var Tile: PackedScene
 @export var Activities: PackedScene
 @export var Cat:PackedScene
-@onready var catInstance = Cat.instantiate()
 @export var Mails:PackedScene
+
+# Ready variables for nodes and scenes
 @onready var pauseMenu = $PauseGame/PauseG
+@onready var catInstance = Cat.instantiate()
 
 var _screenSize: Vector2
 var speed: float
