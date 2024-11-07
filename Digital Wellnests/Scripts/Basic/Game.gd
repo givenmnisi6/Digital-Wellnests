@@ -20,7 +20,17 @@ var birdScene = preload("res://Scenes/Poems/Elephant/Bird.tscn")
 @onready var pauseMenu = $PauseGame/PauseG
 @onready var catInstance = Cat.instantiate()
 
+# Constants for Elephant and his shoe game
+# Start position of the character and the camera, based on placement
+const RABBIT_START_POS = Vector2i(30, 339)
+const CAM_START_POS = Vector2i(360, 240)
+
+# Initial and maxium speed
+const START_SPEED : float = 3.0
+const MAX_SPEED : int = 9
+
 var _screenSize: Vector2
+var screen_size : Vector2i
 var speed: float
 var goal: int
 var score: int
@@ -45,6 +55,21 @@ var prev: Array
 var grid: Array
 
 var prevObj
+
+var groundHeight: int
+var rabbitSpeed : float
+
+# List of possible obstacle scenes, more can be added
+var obstaclesType := [cactusScene, cactiScene, thornScene, ballScene] 
+# Array for storing instantiated obstacles
+var obstacles: Array
+
+# Last obstacle spawned
+var lastObs
+
+# Height of the bird and score
+var birdHeight := [240, 390]
+var rabbitScore
 
 func _ready():
 	# Playing the voices for each game
