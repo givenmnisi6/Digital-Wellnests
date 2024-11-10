@@ -24,10 +24,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w0lbp"]
-size = Vector2(106.25, 37)
+size = Vector2(106.25, 16.5)
 
 [node name="Area2D" type="Area2D" groups=["Cat"]]
-position = Vector2(60, 434)
+position = Vector2(53, 435)
 script = ExtResource("1_q6vt3")
 metadata/_edit_group_ = true
 
@@ -47,7 +47,7 @@ libraries = {
 speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.875, -41)
+position = Vector2(7.875, -51.25)
 shape = SubResource("RectangleShape2D_w0lbp")
 
 [node name="Button" type="Button" parent="."]
