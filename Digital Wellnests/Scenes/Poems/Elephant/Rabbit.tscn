@@ -61,7 +61,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ma3yc"]
-size = Vector2(129.375, 141)
+size = Vector2(94, 137)
 
 [node name="Rabbit" type="CharacterBody2D"]
 z_index = 1
@@ -75,7 +75,7 @@ animation = &"run"
 autoplay = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(37.3125, 14.5)
+position = Vector2(28, 16.5)
 shape = SubResource("RectangleShape2D_ma3yc")
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
