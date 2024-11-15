@@ -4,6 +4,3 @@ Digital Wellnests is a serious game that can be used as an intervention to sprea
 
 - [ ] **Implement the following poems into games:**
   - **Elephant and his Shoe**
-   - Implement hurt animations when the Rabbit collides with the bad obstacles
-   - Instance the scenes in code
-   - Make the obstacles disappear when they collide with the Rabbit
