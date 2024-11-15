@@ -3,7 +3,7 @@ extends CharacterBody2D
 # pushes the player down
 const GRAVITY : int = 4200
 # pushes the player up
-const JUMP_SPEED: int = -1500
+const JUMP_SPEED: int = -1370
 
 # These variables control the state of this game
 # Controls if the Rabbit game is active, specifically the jumping
