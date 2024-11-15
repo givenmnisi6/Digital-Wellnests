@@ -6,6 +6,7 @@ const GRAVITY : int = 4200
 const JUMP_SPEED: int = -1370
 
 var isActive = false
+var touch_jump = false
 
 #func _input(event: InputEvent) -> void:
 	#if isActive and !get_tree().paused:
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		# if the player is on the floor, do the following, else jump
 		if is_on_floor():
 			# Enable the running collisions
-			if Input.is_action_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if Input.is_action_pressed("ui_accept") or touch_jump == true:
 				jump()
 			else:
 				$AnimatedSprite2D.play("run")
@@ -52,3 +53,15 @@ func setActive(active: bool) -> void:
 #func jump():
 	#velocity.y = JUMP_SPEED
 	#$Jump.play()
+
+func makeVisible():
+	$CanvasLayer/TextureButton.visible = true
+
+func makeInvisible():
+	$CanvasLayer/TextureButton.visible = false
+
+func _on_texture_button_button_down() -> void:
+	touch_jump = true
+
+func _on_texture_button_button_up() -> void:
+	touch_jump = false
