@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7adnmbic5og6"]
+
+[ext_resource type="Texture2D" uid="uid://7fffhg1qv40r" path="res://Animations/Activities/gold_1.png" id="1_wsfrx"]
+[ext_resource type="Texture2D" uid="uid://cpwodypvahsl2" path="res://Animations/Activities/gold_2.png" id="2_b3hbe"]
+[ext_resource type="Texture2D" uid="uid://dnv4jynaepkp" path="res://Animations/Activities/gold_3.png" id="3_wmvbk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3oke4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wsfrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b3hbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wmvbk")
+}],
+"loop": true,
+"name": &"coin",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5eh2a"]
+radius = 39.0512
+
+[node name="Bird" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, 4)
+scale = Vector2(0.904762, 0.904762)
+texture = ExtResource("1_wsfrx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-3.5, 3.5)
+scale = Vector2(0.916667, 0.916667)
+sprite_frames = SubResource("SpriteFrames_3oke4")
+animation = &"coin"
+frame_progress = 0.0314127
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 3)
+shape = SubResource("CircleShape2D_5eh2a")

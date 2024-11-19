@@ -367,6 +367,13 @@ func startQuiz():
 	# Set the iStory value of the quiz instance
 	quizInstance.iStory = iStory
 	
+	# Hiding all the instructions, story name, exit and settings
+	$ColorRect.scale = Vector2(0.01, 0.01)
+	$Story.hide()
+	$Instructions.hide()
+	$Exit.hide()
+	$Settings.hide()
+
 	# Add the quiz instance as a child node
 	add_child(quizInstance)
 
@@ -380,12 +387,23 @@ func startGame():
 	# Set the iStory value of the game instance
 	gameInstance.set("iStory", iStory)
 	
+	# Hiding all the instructions, story name, exit and settings
+	$Control.scale = Vector2(0.01, 0.01)
+	$Story.hide()
+	$Instructions.hide()
+	$Exit.hide()
+	$Settings.hide()
+	
 	# Add the game instance as a child node
 	add_child(gameInstance)
 
 func returnToMain() -> void:
 	# Scale up the Control node
 	$Control.scale = Vector2(1, 1)
+	$Story.show()
+	$Instructions.show()
+	$Exit.show()
+	$Settings.show()
 
 func _on_audio_stream_player_finished():
 	# Play the audio stream again
