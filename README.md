@@ -4,3 +4,4 @@ Digital Wellnests is a serious game that can be used as an intervention to sprea
 
 - [ ] **Implement the following poems into games:**
   - **Elephant and his Shoe**
+  - Fix the jumping using mouse 
