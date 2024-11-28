@@ -15,6 +15,7 @@ var cactiScene = preload("res://Scenes/Poems/Elephant/Cacti.tscn")
 var thornScene = preload("res://Scenes/Poems/Elephant/Thorn.tscn")
 var ballScene = preload("res://Scenes/Poems/Elephant/Ball.tscn")
 var birdScene = preload("res://Scenes/Poems/Elephant/Bird.tscn")
+var coinScene = preload("res://Scenes/Poems/Elephant/Coin.tscn")
 
 # Ready variables for nodes and scenes
 @onready var pauseMenu = $PauseGame/PauseG
@@ -60,7 +61,7 @@ var groundHeight: int
 var rabbitSpeed : float
 
 # List of possible obstacle scenes, more can be added
-var obstaclesType := [cactusScene, cactiScene, thornScene, ballScene] 
+var obstaclesType := [cactusScene, cactiScene, thornScene, ballScene, coinScene] 
 # Array for storing instantiated obstacles
 var obstacles: Array
 
@@ -69,18 +70,63 @@ var lastObs
 
 # Height of the bird and score
 var birdHeight := [240, 390]
+var coinHeight: = [170, 370]
 var rabbitScore
 
 func _ready():
 	# Playing the voices for each game
 	$Effects.stream = ResourceLoader.load("res://Audio/Voice/GameEx" + str(gameIndex) + ".wav")
 	$Effects.play()
-	bpaused = false
+	bpaused = false 
 
 	# Loading the how to play instructions of each game
 	$StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
-	#$Game/StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
+	
+	# Ensures that the game window responds to player inputs 
 	grab_click_focus()
+	
+	# Enable viewport for the camera to follow the screen, can be done in the Inspector node
+	$CanvasLayer.follow_viewport_enabled = true
+	
+	# Screensize of the window, this is used for resising elements based on the screen resolution
+	screen_size = get_window().size
+	
+	# Get the height of the ground sprite, this is used for positioning objects in the game
+	groundHeight = $CanvasLayer/Ground.get_node("Sprite2D").texture.get_height()
+	
+	# If gameIndex == 2, which is Elephant and his shoe, disable the already existing collision shape
+	# So that it does not intefer with other games
+	if gameIndex == 2:
+		$CanvasLayer/Ground.get_node("CollisionShape2D").set_disabled(false)
+		$CanvasLayer/Rabbit.get_node("CanvasLayer/TextureButton").visible = true
+	else:
+		$CanvasLayer/Ground.get_node("CollisionShape2D").set_disabled(true)
+		$CanvasLayer/Rabbit.get_node("CanvasLayer/TextureButton").visible = false
+	# Call the running function
+	startRunning()
+
+func _process(delta: float) -> void:
+	# Check if the game is paused
+	if bpaused:
+		return
+	
+	generateObstacles()
+	
+	# Move the character2d and camera
+	$CanvasLayer/Rabbit.position.x += rabbitSpeed
+	$CanvasLayer/Camera2D.position.x += rabbitSpeed
+
+	# Update score based on the distance
+	rabbitScore += rabbitSpeed
+	
+	# Update the ground position when the ground position ends
+	if $CanvasLayer/Camera2D.position.x - $CanvasLayer/Ground.position.x > screen_size.x * 1.5:
+		$CanvasLayer/Ground.position.x += screen_size.x
+	
+	# Remove obstacles that already have passed
+	for obs in obstacles:
+		if obs.position.x < ($CanvasLayer/Camera2D.position.x - screen_size.x):
+			removeObstacle(obs) 
 
 func _on_play_button_pressed():
 	#level = int($Game/StartGame/HSlider.value)
@@ -91,6 +137,7 @@ func _on_play_button_pressed():
 	
 	# Remove the instructions
 	$StartGame.scale = Vector2(0, 0)
+	$CanvasLayer/Rabbit.setActive(true)
 	#$Game/StartGame.scale = Vector2(0, 0)
 	#$Game/StartGame.visible = true
 	$Effects.stop()
@@ -103,7 +150,7 @@ func startGame():
 	lives = 3
 	score = 0 
 	gameOver = false
-	
+
 	# Safety Snail game
 	# This set up the initial state of the game, by creating belts for each level
 	# and starts a time to spawn the envelopes
@@ -140,6 +187,28 @@ func startGame():
 	elif gameIndex == 1:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
 		$MailTimer.start()
+
+	elif gameIndex == 2:
+		$".".scale = Vector2(0,0)
+		$StartGame.hide()
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
+		$CanvasLayer/Background.show()
+		$CanvasLayer/Ground.show()
+		$CanvasLayer/Rabbit.show()
+		$CanvasLayer/Rabbit.setActive(true)
+		$CanvasLayer/Camera2D.make_current()
+
+		# Ajust the speed slowly, based on each level
+		# 5 + ((1-1)/ (10-1) * (15 - 5) * 0.5
+		rabbitSpeed = START_SPEED #+ ((level - 1) / float($StartGame/HSlider.max_value - 1)) * (MAX_SPEED - START_SPEED) * 0.25
+		#if level >= 6:
+			#rabbitSpeed = START_SPEED * 1.5
+		
+		# Limit the speed to the max speed allowed
+		if rabbitSpeed > MAX_SPEED:
+			rabbitSpeed = MAX_SPEED
+
+		bpaused = false
 		
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
@@ -177,6 +246,134 @@ func startGame():
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
 		$CatTimer.start()
 		$ActivitiesTimer.start()
+
+# Elephant and his shoe game
+func startRunning():
+	rabbitScore = 0
+	$CanvasLayer/Rabbit.position = RABBIT_START_POS
+	$CanvasLayer/Rabbit.velocity = Vector2i(0, 0)
+	$CanvasLayer/Camera2D.position = CAM_START_POS
+	$CanvasLayer/Ground.position = Vector2i(0, 0)
+	
+	bpaused = true
+
+func generateObstacles():
+	# If its game over 
+	if gameOver:
+		return
+
+	# If the obstacles array/list is empty
+	# Or if the last obstacle is far from the Rabbit's current score 
+	if obstacles.is_empty() or lastObs.position.x < rabbitScore + randi_range(100, 150):
+		# Maximum number of obstacles
+		var maxObstacles = 1
+		# If the level is greater than 3, start generating a maximum of 2 obstacles
+		# Adding more challenge to the game
+		if level < 3:
+			obstaclesType += [ballScene, coinScene]
+		if level > 5:
+			maxObstacles = 2
+		if level > 7:
+			maxObstacles = 3
+			
+		# Generate the specified number of obstacles
+		for i in range(maxObstacles):
+			# Pick a different obstacle type each iteration
+			var obsType = obstaclesType[randi() % obstaclesType.size()]
+			var obs = obsType.instantiate()
+			
+			# Get height and scale information
+			var obsHeight = obs.get_node("Sprite2D").texture.get_height()
+			var obsScale = obs.get_node("Sprite2D").scale
+
+			var obs_x: int = screen_size.x + rabbitScore + 100 + (i * 100)
+			
+			# Set position of each obstacle
+			if level >= 6:
+				obs_x = screen_size.x + rabbitScore + 100 + (i * 250)
+			
+			var obs_y: int = screen_size.y - groundHeight - (obsHeight * obsScale.y / 2) + 168
+			
+			# Increase the y-axis of the ball to be a bit higher
+			if obsType == ballScene:
+				obs_y -= 19
+			if obsType == coinScene:
+				# Position coinScene in the middle to top of the screen
+				obs_y = randi_range(int(screen_size.y * 0.3), int(screen_size.y * 0.7))
+			obs.position = Vector2(obs_x, obs_y)
+			
+			# Update lastObs and add obstacle to the scene
+			lastObs = obs
+			#print("Last Obstacle: ", obs_x)
+			addObstacles(obs, obs_x, obs_y,obsType)
+			
+		if level > 4: 
+			if(randi() % 2) == 0:
+				# Generate a bird obstacle
+				var birdObs = birdScene.instantiate()
+				var obs_x: int = screen_size.x + rabbitScore + 100 
+				var obs_y : int = birdHeight[randi() % birdHeight.size()] - 130
+				#print("obs_y: ", obs_y)
+				addObstacles(birdObs, obs_x, obs_y, birdScene)
+
+func addObstacles(obs, x, y, obsType):
+	# Position of the obstacles
+	obs.position = Vector2(x, y)
+	# Connect obstacle collision signals based on the type of obstacle
+	if obsType == ballScene:
+		obs.body_entered.connect(gainPoints)
+	elif obsType == coinScene:
+		obs.body_entered.connect(gainPoints)
+	else:
+		obs.body_entered.connect(losePoints)
+	# Making the obstacles appear in front of other objects
+	obs.z_index = 1
+
+	#if obs.has_method("set_z_as_relative"):
+		#obs.set_z_as_relative(false)
+	#print("Obstacle z_index: ", obs.z_index)
+	#print("Rabbit z_index: ", $CanvasLayer/Rabbit.z_index)
+	
+	# Adding the obstacles to the scene tree, otherwise, add directly to the current node
+	if true:
+		get_parent().add_child(obs)
+	else:
+		add_child(obs)
+	# Keep adding obstacles in the obstacles array
+	obstacles.append(obs) 
+
+func losePoints(body):
+	# Check if the colliding body is the Rabbit
+	if body.name == "Rabbit":
+		var audio = $Effects
+		
+		# Make the player blink twice when it collides with harmful obstacles
+		for i in range(2):
+			body.visible = false
+			await get_tree().create_timer(0.1).timeout
+			body.visible = true
+			await get_tree().create_timer(0.1).timeout
+		audio.stream = load("res://Audio/Effects/aWrong.wav")
+		audio.play()
+		$CanvasLayer/Rabbit.stopJumpingSound()
+		$CanvasLayer/Rabbit.makeInvisible()
+		updateScore(false)
+
+func gainPoints(body):
+	# Check if the colliding body is the Rabbit
+	if body.name == "Rabbit":
+		var audio = $Effects
+		audio.stream = load("res://Audio/Effects/aRight2.wav")
+		audio.play()
+		$CanvasLayer/Rabbit.stopJumpingSound()
+		$CanvasLayer/Rabbit.makeInvisible()
+		updateScore(true)
+
+func removeObstacle(obs):
+	# Remove the obstacle from the scene
+	obs.queue_free()
+	obstacles.erase(obs)
+
 # Generate tiles 
 func spawnTiles(maxx: int, maxy:int):
 	var uneven: bool = false
@@ -473,10 +670,31 @@ func gameEnd(win: bool):
 	speed = -10.0
 	mailInstance.setSpeed(speed)
 	
-	$MailTimer.stop()
+	$MailTimer.stop() 
 	$CatTimer.stop()
 	$BullyTimer.stop()
 	$ActivitiesTimer.stop()
+
+	if gameIndex == 2:
+		# Checks if camera2D exists in canvaslayer
+		if $CanvasLayer/Camera2D:
+			# Ensures this camera is active
+			$CanvasLayer/Camera2D.make_current()  
+			# Stop any processing in Camera2D,
+			$CanvasLayer/Camera2D.set_process(false)
+		# Disable Camera2D to stop it from following 
+		$CanvasLayer/Camera2D.enabled = false
+	
+	# gameIndex == 3
+	# Stop generating new obstacles and clear the list 
+		for obs in obstacles:
+			obs.queue_free()
+		obstacles.clear()
+			
+		$CanvasLayer.follow_viewport_enabled = false
+	#if gameIndex == 1:
+		$".".scale = Vector2(1,1)
+		$EndGame.show()
 
 	var hud = $Hud
 	if win:
@@ -699,6 +917,7 @@ func _on_pause_pressed() -> void:
 		pauseMenus()
 	if gameIndex == 5:
 		pauseMenus()
+	
 
 # Spawning the Mails randomly
 func spawnMails():
@@ -771,7 +990,7 @@ func spawnMails():
 				mailInstance.get_node("ItemsAnim").animation = "safeLink"
 				mailInstance.get_node("ItemsAnim").scale = Vector2(0.17,0.17)
 		mailInstance.setSpeed(speed)
-	
+
 func _on_mail_timer_timeout():
 	spawnMails()
 
@@ -780,8 +999,15 @@ func pauseMenus():
 		pauseMenu.hide()
 		#Engine.time_scale = 1
 		get_tree().paused = false
+		$CanvasLayer/Rabbit.setActive(true)
+		if gameIndex == 2:
+			$CanvasLayer/Rabbit.makeVisible()
 	else:
 		pauseMenu.show()
 		#Engine.time_scale = 0
 		get_tree().paused = true
+		$CanvasLayer/Rabbit.setActive(false)
+		if gameIndex == 2:
+			$CanvasLayer/Rabbit.makeInvisible()
+		#$CanvasLayer/Rabbit.reset_velocity()
 	paused = !paused
