@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dinimoyomv3p6"]
+
+[ext_resource type="Texture2D" uid="uid://eo56wkkpbxu8" path="res://Images/Elephant assets/Background/SpringShort1_0.png" id="1_haycd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bufuy"]
+size = Vector2(1435.5, 64)
+
+[node name="Ground" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(717, 448)
+scale = Vector2(0.745438, 0.300459)
+texture = ExtResource("1_haycd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(717.25, 449)
+shape = SubResource("RectangleShape2D_bufuy")
