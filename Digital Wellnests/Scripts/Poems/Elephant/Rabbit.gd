@@ -78,6 +78,6 @@ func _on_texture_button_button_down() -> void:
 func _on_texture_button_button_up() -> void:
 	touchJump = false
 
-
+# Stop the jumping sound
 func stopJumpingSound() -> void:
 	$Jump.stop()
