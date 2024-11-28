@@ -1,58 +1,83 @@
 extends CharacterBody2D
 
-# pushes the player down
-const GRAVITY : int = 4200
-# pushes the player up
+# Gravity constant - controls downward acceleration
+const GRAVITY: int = 4200
+
+# Jump speed constant - determines the initial upward velocity when jumping
 const JUMP_SPEED: int = -1370
 
-# These variables control the state of this game
-# Controls if the Rabbit game is active, specifically the jumping
-# Checks whether the jump is triggered by the jump input: i.e. tapping on the screen using a mouse
-var isActive = false
-var touchJump = false
+# Game state variables
+var isActive = false  # Controls whether the game (specifically jumping) is active
+var touchJump = false  # Tracks if jump is triggered by screen touch
+var can_jump = true  # Prevents multiple jumps without releasing
 
-#func _input(event: InputEvent) -> void:
-	#if isActive and !get_tree().paused:
-		#if event is InputEventScreenTouch and event.pressed:
-			#jump()
-
-func _physics_process(delta: float) -> void:
+# Handle input events (screen touches)
+func _input(event: InputEvent) -> void:
+	# Only process input if the game is active and not paused
 	if isActive and !get_tree().paused:
-		# Applying gravity to the player
-		velocity.y += GRAVITY * delta
+		if event is InputEventScreenTouch:
+			# On touch press, enable jumping
+			if event.pressed and can_jump:
+				touchJump = true
+				can_jump = false
+			# On touch release, reset jump state
+			elif !event.pressed:
+				touchJump = false
+				can_jump = true
 
-		# if the player is on the floor, do the following, else jump
-		if is_on_floor():
-			# Enable the running collisions
-			if Input.is_action_pressed("ui_accept") or touchJump == true:
-				jump()
-			else:
-				$AnimatedSprite2D.play("run")
+# Physics processing - handles movement and animations
+func _physics_process(delta: float) -> void:
+	# Completely stop processing if not active or game is paused
+	if !isActive or get_tree().paused:
+		# Reset velocity to prevent any residual movement
+		velocity = Vector2.ZERO
+		return
+	
+	# Apply gravity
+	velocity.y += GRAVITY * delta
+	
+	# Handle jumping and animation states
+	if is_on_floor():
+		# Jump when accept action or touch jump is triggered
+		if Input.is_action_pressed("ui_accept") or touchJump:
+			jump()
 		else:
-			$AnimatedSprite2D.play("jump")
-		# Moves the player based on the velocity
-		move_and_slide()
+			# Play running animation when on floor
+			$AnimatedSprite2D.play("run")
+	else:
+		# Play jumping animation when in air
+		$AnimatedSprite2D.play("jump")
+	
+	# Apply movement
+	move_and_slide()
 
-# Method for handling jumping
-func jump():
+# Execute jump action
+func jump() -> void:
+	# Set vertical velocity to jump speed (upward)
 	velocity.y = JUMP_SPEED
-	# Play the jumping music
+	# Play jumping sound
 	$Jump.play()
 
-# Deactivate jumping
+# Set the active state of the game
 func setActive(active: bool) -> void:
 	isActive = active
 
-# These two functions (makeVisible, makeInvisible) will be used in the game scene
-# For making the texture visible and invisible when the playerJumps
-func makeVisible():
+# Make the texture button visible
+func makeVisible() -> void:
 	$CanvasLayer/TextureButton.visible = true
 
-func makeInvisible():
+# Hide the texture button
+func makeInvisible() -> void:
 	$CanvasLayer/TextureButton.visible = false
 
+# Handle texture button press down
 func _on_texture_button_button_down() -> void:
 	touchJump = true
 
+# Handle texture button release
 func _on_texture_button_button_up() -> void:
 	touchJump = false
+
+# Stop the jumping sound
+func stopJumpingSound() -> void:
+	$Jump.stop()

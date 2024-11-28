@@ -71,7 +71,7 @@ script = ExtResource("1_jqans")
 position = Vector2(27.4375, 53.4978)
 scale = Vector2(0.348468, 0.348468)
 sprite_frames = SubResource("SpriteFrames_fh5eg")
-animation = &"run"
+animation = &"jump"
 autoplay = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -80,3 +80,14 @@ shape = SubResource("RectangleShape2D_ma3yc")
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("37_pmjaf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 18.0
+offset_top = 102.0
+offset_right = 702.0
+offset_bottom = 382.0
+
+[connection signal="button_down" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_up" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_button_up"]

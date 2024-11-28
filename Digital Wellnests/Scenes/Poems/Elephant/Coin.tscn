@@ -22,13 +22,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5eh2a"]
-radius = 39.0512
+radius = 36.0555
 
 [node name="Bird" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4, 4)
-scale = Vector2(0.904762, 0.904762)
+position = Vector2(-6.5, 6.5)
+scale = Vector2(0.845238, 0.845238)
 texture = ExtResource("1_wsfrx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -40,5 +40,5 @@ animation = &"coin"
 frame_progress = 0.0314127
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 3)
+position = Vector2(-6, 7)
 shape = SubResource("CircleShape2D_5eh2a")

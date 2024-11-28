@@ -251,8 +251,10 @@ func _on_safety_timer_timeout():
 
 func _on_continue_button_down():
 	get_parent().call("startGame")
+	queue_free()
 	Music.clickSfx()
 
 func _on_try_again_button_down():
 	get_parent().call("startQuiz")
+	queue_free()
 	Music.clickSfx()
