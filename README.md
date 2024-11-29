@@ -7,9 +7,10 @@
 ## To-Do List  
 
 ### Known Issues:  
-- [ ] Fix Rabbit jumping issues when using the mouse.  
+- [ ] Elephant and his shoe game.  
   - The Rabbit currently jumps unintentionally at certain times (e.g., when the pause button is pressed).  
-  - Fix the collection of the points
+  - Fix the collection of the points.
+  - Add voice overs for Instructions.
 
 ---
 
