@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dgrnrl2t0ubx1"]
+[gd_scene load_steps=62 format=3 uid="uid://dgrnrl2t0ubx1"]
 
 [ext_resource type="Script" path="res://Scripts/Basic/Book.gd" id="1_1wfa0"]
 [ext_resource type="Texture2D" uid="uid://58mo68rm5nbc" path="res://Images/OpenPages.png" id="2_4jpuk"]
@@ -56,6 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://dmmk6utea1qgj" path="res://Animations/PageTurn/PageTurn.0047.png" id="54_jfi30"]
 [ext_resource type="Texture2D" uid="uid://c2d5caxno0f72" path="res://Animations/PageTurn/PageTurn.0048.png" id="55_ftpqm"]
 [ext_resource type="AudioStream" uid="uid://blga8lj04csty" path="res://Audio/Voice/Snail1.wav" id="56_vgmqd"]
+[ext_resource type="Texture2D" uid="uid://cflx1uvvsv74r" path="res://Images/Exit.png" id="57_2x0ve"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vu66r"]
 animations = [{
@@ -212,6 +213,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llph1"]
+bg_color = Color(0, 0.560784, 0.890196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 10
+border_color = Color(0, 0.411765, 0.658824, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ucqq"]
+bg_color = Color(0, 0.454902, 0.72549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 10
+border_color = Color(0, 0.411765, 0.658824, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lph2"]
+bg_color = Color(0, 0.521569, 0.827451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 10
+border_color = Color(0, 0.411765, 0.658824, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Pages" type="ColorRect"]
 offset_right = 720.0
 offset_bottom = 480.0
@@ -271,8 +308,8 @@ offset_top = 32.0
 offset_right = 356.0
 offset_bottom = 128.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.0509804, 0.282353, 0.505882, 1)
 theme_override_colors/font_outline_color = Color(0.0509804, 0.282353, 0.505882, 1)
+theme_override_colors/font_shadow_color = Color(0.0509804, 0.282353, 0.505882, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("6_1i4o4")
 theme_override_font_sizes/normal_font_size = 42
@@ -330,7 +367,37 @@ stream = ExtResource("56_vgmqd")
 volume_db = 12.0
 pitch_scale = 1.1
 
+[node name="Back" type="Button" parent="."]
+modulate = Color(0.596078, 0.952941, 0.956863, 1)
+layout_mode = 0
+offset_left = 624.0
+offset_top = 421.0
+offset_right = 709.0
+offset_bottom = 473.0
+theme_override_fonts/font = ExtResource("6_1i4o4")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_llph1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ucqq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2lph2")
+text = "Back"
+metadata/_edit_lock_ = true
+
+[node name="ExitGame" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 673.0
+offset_top = 1.0
+offset_right = 720.0
+offset_bottom = 41.0
+theme_override_constants/icon_max_width = 0
+icon = ExtResource("57_2x0ve")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="animation_finished" from="PageTurn" to="." method="_on_page_turn_animation_finished"]
 [connection signal="frame_changed" from="PageTurn" to="." method="_on_page_turn_frame_changed"]
 [connection signal="timeout" from="WordTimer" to="." method="_on_word_timer_timeout"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="ExitGame" to="." method="_on_exit_game_pressed"]
