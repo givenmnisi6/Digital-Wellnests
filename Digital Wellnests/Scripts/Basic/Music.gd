@@ -12,7 +12,7 @@ func playMusic():
 	
 # Stop the music
 func stopMusic():
-	$AudioStreamPlayer.volume_db = -40
+	$AudioStreamPlayer.volume_db = -22
 
 func clickSfx():
 	# Load the click sound effect
