@@ -224,6 +224,7 @@ func swap():
 func _on_arrow_right_gui_input(event):
 	# Check if the event is a mouse button press or screen touch
 	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
+		Music.clickSfx()
 		# Increment iCount with wrap-around
 		if iCount == 5:
 			iCount = 0
@@ -254,6 +255,7 @@ func _on_arrow_right_gui_input(event):
 func _on_arrow_left_gui_input(event):
 	# Check if the event is a mouse button press or screen touch
 	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
+		Music.clickSfx()
 		# Decrement iCount with wrap-around
 		if iCount == 0:
 			iCount = 5
@@ -481,6 +483,7 @@ func _on_y_button_pressed():
 func _on_sound_button_pressed():
 	# Toggle the mute state of the music bus
 	AudioServer.set_bus_mute(musicBus, not AudioServer.is_bus_mute(musicBus))
+	Music.clickSfx()
 
 func _on_settings_gui_input(event):
 	if (event is InputEventScreenTouch && InputEventMouseButton):
