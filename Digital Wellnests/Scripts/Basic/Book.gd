@@ -227,3 +227,10 @@ func _on_page_turn_frame_changed():
 			$Animation.animation = story[iStory] + str(totCount)
 		if $AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
 			$AnimationShadow.animation = story[iStory] + str(totCount)
+
+
+func _on_back_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+	Music.clickSfx()
+	queue_free()
+	Music.playMusic()
