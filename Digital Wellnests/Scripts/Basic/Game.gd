@@ -358,6 +358,13 @@ func losePoints(body):
 		$CanvasLayer/Rabbit.stopJumpingSound()
 		$CanvasLayer/Rabbit.makeInvisible()
 		updateScore(false)
+		
+		# Get the obstacle from the signal emitter (the Area2D that detected the collision)
+		var obstacle = body.get_parent().get_node_or_null(str(get_path_to(get_parent())))
+		if obstacle and obstacles.has(obstacle):
+			# Create a small delay before removing the obstacle
+			await get_tree().create_timer(0.1).timeout
+			removeObstacle(obstacle)
 
 func gainPoints(body):
 	# Check if the colliding body is the Rabbit
@@ -365,14 +372,35 @@ func gainPoints(body):
 		var audio = $Effects
 		audio.stream = load("res://Audio/Effects/aRight2.wav")
 		audio.play()
+
 		$CanvasLayer/Rabbit.stopJumpingSound()
 		$CanvasLayer/Rabbit.makeInvisible()
 		updateScore(true)
+		
+		var obstacle = body.get_parent().get_node_or_null(str(get_path_to(get_parent())))
+		if obstacle and obstacles.has(obstacle):
+			# Create a small delay before removing the obstacle
+			await get_tree().create_timer(0.1).timeout
+			removeObstacle(obstacle)
 
 func removeObstacle(obs):
 	# Remove the obstacle from the scene
+	# Only proceed if the obstacle is still in the scene tree
+	if not is_instance_valid(obs) or not obs.is_inside_tree():
+		return
+		
+	# Disconnect any existing signals before removing
+	if obs.is_connected("body_entered", gainPoints):
+		obs.body_entered.disconnect(gainPoints)
+	elif obs.is_connected("body_entered", losePoints):
+		obs.body_entered.disconnect(losePoints)
+	
+	# Remove the obstacle from the obstacles array first
+	if obstacles.has(obs):
+		obstacles.erase(obs)
+	
+	# Then remove it from the scene
 	obs.queue_free()
-	obstacles.erase(obs)
 
 # Generate tiles 
 func spawnTiles(maxx: int, maxy:int):
