@@ -38,14 +38,6 @@ func _on_exit_button_pressed() -> void:
 	Music.clickSfx()
 	quitGame()
 
-
-#func _on_menu_button_pressed() -> void:
-	#resumeGame()
-	#get_tree().reload_current_scene()
-
-
-func _on_restart_button_pressed() -> void:
-	resumeGame()
-	#game.reloadScene()
-
-	get_tree().change_scene_to_file("res://Scenes/Basic/Game.tscn")
+func _on_menu_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
