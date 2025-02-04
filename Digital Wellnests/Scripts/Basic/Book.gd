@@ -1,4 +1,4 @@
-extends ColorRect
+extends Control
 
 var pageLock: bool
 var totalVerse: int
@@ -24,12 +24,17 @@ func _ready():
 	story = ["Snail", "Fish", "Elephant", "Wolf", "Hippo", "Cat"]
 	
 	# Start the story function
+	
+	#showInstruction()
 	storyStart()
 
-func storyStart():
-	var anim = $Animation
-	var anim2 = $AnimationShadow
+func showInstruction():
+	$Pages.hide()
+	$GameInstructions.show()
 
+func storyStart():
+	var anim = $Pages/Animation
+	var anim2 = $Pages/AnimationShadow
 	# Show and play animation 
 	anim.show()
 	anim.play()
@@ -46,7 +51,7 @@ func storyStart():
 		anim.position = Vector2(180+25, 285)
 		anim2.position = Vector2(180+25, 285)
 
-	var poemText = $Text
+	var poemText = $Pages/Text
 	
 	# Clear the text
 	poemText.text = ""
@@ -67,7 +72,7 @@ func storyStart():
 		audioPlayer.play()
 
 	# Frame that is displayed
-	$PageTurn.frame = 48 
+	$Pages/PageTurn.frame = 48 
 
 	# Load Story
 	loadStory(1)
@@ -86,10 +91,10 @@ func _input(event: InputEvent):
 				totCount += 1
 				
 				# If the animation exists, set it as the current animation
-				if $Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
-					$Animation.animation = story[iStory] + str(totCount)
-				if $AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
-					$AnimationShadow.animation = story[iStory] + str(totCount)
+				if $Pages/Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
+					$Pages/Animation.animation = story[iStory] + str(totCount)
+				if $Pages/AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
+					$Pages/AnimationShadow.animation = story[iStory] + str(totCount)
 
 				# Load and play an audio stream
 				var audioStreamPlayer = $AudioStreamPlayer
@@ -108,7 +113,7 @@ func _input(event: InputEvent):
 				get_parent().get_node("Effects").stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
 				get_parent().get_node("Effects").play()
 
-				var pageTurn = $PageTurn
+				var pageTurn = $Pages/PageTurn
 				pageTurn.play()
 				
 				#Start the page turn from zero
@@ -137,39 +142,39 @@ func _input(event: InputEvent):
 				if iStory == 1 and totCount == 8:
 					currentVerse = 0
 					#print("AAA")
-					var anim = $Animation
+					var anim = $Pages/Animation
 					anim.position = Vector2(180+25, 285)
-					var anim2 = $AnimationShadow
+					var anim2 = $Pages/AnimationShadow
 					anim2.position = Vector2(180+25, 285)
 
 func _on_word_timer_timeout():
-	var poemText = $Text
+	var poemText = $Pages/Text
 	var text = poemText.text
 
 	# For revealing the words of the Poem
 	if (charCount + 1 < text.length() && (text[charCount] != '\n' || text[charCount + 1] != '\n') || charCount + 1 == text.length()):
 		#if text[charCount] != '\n':
-		$Text.visible_characters = $Text.visible_characters + 1
+		poemText.visible_characters = poemText.visible_characters + 1
 		charCount += 1
 		$WordTimer.start()
 	else:
 		pageLock = false
 		charCount += 1
-	$Text.visible_characters = charCount
+	poemText.visible_characters = charCount
 
 func _on_page_turn_animation_finished():
 	pageLock = false
 
 func _on_ready():
-	var anim = $Animation
-	var animShad = $AnimationShadow
+	var anim = $Pages/Animation
+	var animShad = $Pages/AnimationShadow
 	
 	anim.frame = 0
 	animShad.frame = 0
 
 func loadStory(num: int):
-	var poemTitle = $Title
-	var poemText = $Text
+	var poemTitle = $Pages/Title
+	var poemText = $Pages/Text
 	
 	# Opening the poems and reading them
 	var txtFile = FileAccess.open("res://Poems/" + story[iStory] + ".txt", FileAccess.READ)
@@ -218,15 +223,15 @@ func getIndex(s: String, t: String, n: int) -> int:
 	return -1
 
 func _on_page_turn_frame_changed():
-	if $PageTurn.frame == 12:
+	if $Pages/PageTurn.frame == 12:
 		# Reset the visible characters to 0 when the page turn frame reaches 12
-		$Text.visible_characters = 0
-	elif $PageTurn.frame == 22:
+		$Pages/Text.visible_characters = 0
+	elif $Pages/PageTurn.frame == 22:
 		# Check if the animation exists and set it as the current animation when the page turn frame reaches 22
-		if $Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
-			$Animation.animation = story[iStory] + str(totCount)
-		if $AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
-			$AnimationShadow.animation = story[iStory] + str(totCount)
+		if $Pages/Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
+			$Pages/Animation.animation = story[iStory] + str(totCount)
+		if $Pages/AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
+			$Pages/AnimationShadow.animation = story[iStory] + str(totCount)
 
 
 func _on_back_pressed() -> void:
@@ -235,8 +240,8 @@ func _on_back_pressed() -> void:
 	queue_free()
 	Music.playMusic()
 
-func _on_exit_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
-	Music.clickSfx()
-	queue_free()
-	Music.playMusic()
+
+func _on_okay_button_pressed() -> void:
+	$GameInstructions.hide()
+	$Pages.show()
+	storyStart()
