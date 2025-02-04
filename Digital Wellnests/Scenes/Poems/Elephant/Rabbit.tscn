@@ -91,3 +91,4 @@ offset_bottom = 382.0
 
 [connection signal="button_down" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_up" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]

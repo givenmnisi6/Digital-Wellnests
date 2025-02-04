@@ -124,9 +124,17 @@ func _process(delta: float) -> void:
 		$CanvasLayer/Ground.position.x += screen_size.x
 	
 	# Remove obstacles that already have passed
+	# Create a temporary array for obstacles to remove
+	var obstaclesToRemove = []
+	
 	for obs in obstacles:
-		if obs.position.x < ($CanvasLayer/Camera2D.position.x - screen_size.x):
-			removeObstacle(obs) 
+		# Check if the obstacle is valid and has moved out of the screen's view
+		if is_instance_valid(obs) and obs.position.x < ($CanvasLayer/Camera2D.position.x - screen_size.x):
+			obstaclesToRemove.append(obs)
+	
+	# Remove obstacles after the loop
+	for obs in obstaclesToRemove:
+		removeObstacle(obs)
 
 func _on_play_button_pressed():
 	#level = int($Game/StartGame/HSlider.value)
@@ -264,7 +272,7 @@ func generateObstacles():
 
 	# If the obstacles array/list is empty
 	# Or if the last obstacle is far from the Rabbit's current score 
-	if obstacles.is_empty() or lastObs.position.x < rabbitScore + randi_range(100, 150):
+	if obstacles.is_empty() or !is_instance_valid(lastObs) or lastObs.position.x < rabbitScore + randi_range(100, 150):
 		# Maximum number of obstacles
 		var maxObstacles = 1
 		# If the level is greater than 3, start generating a maximum of 2 obstacles
@@ -316,31 +324,31 @@ func generateObstacles():
 				#print("obs_y: ", obs_y)
 				addObstacles(birdObs, obs_x, obs_y, birdScene)
 
-func addObstacles(obs, x, y, obsType):
-	# Position of the obstacles
-	obs.position = Vector2(x, y)
-	# Connect obstacle collision signals based on the type of obstacle
-	if obsType == ballScene:
-		obs.body_entered.connect(gainPoints)
-	elif obsType == coinScene:
-		obs.body_entered.connect(gainPoints)
-	else:
-		obs.body_entered.connect(losePoints)
-	# Making the obstacles appear in front of other objects
-	obs.z_index = 1
+#var isCollidingBall = false
+#var isCollidingCoin = false
+#var isCollidingBird = false
 
-	#if obs.has_method("set_z_as_relative"):
-		#obs.set_z_as_relative(false)
-	#print("Obstacle z_index: ", obs.z_index)
-	#print("Rabbit z_index: ", $CanvasLayer/Rabbit.z_index)
-	
-	# Adding the obstacles to the scene tree, otherwise, add directly to the current node
-	if true:
-		get_parent().add_child(obs)
-	else:
-		add_child(obs)
-	# Keep adding obstacles in the obstacles array
-	obstacles.append(obs) 
+#func losePoints(body):
+	#if body.name == "Rabbit" and not isCollidingBird:
+		#isCollidingBird = true
+		#var audio = $Effects
+		#
+		## Make the player blink twice when it collides with harmful obstacles
+		#for i in range(2):
+			#body.visible = false
+			#await get_tree().create_timer(0.1).timeout
+			#body.visible = true
+			#await get_tree().create_timer(0.1).timeout
+			#
+		#audio.stream = load("res://Audio/Effects/aWrong.wav")
+		#audio.play()
+		#$CanvasLayer/Rabbit.stopJumpingSound()
+		#$CanvasLayer/Rabbit.makeInvisible()
+			#
+		#updateScore(false)
+		#
+		#await get_tree().create_timer(0.5).timeout
+		#isCollidingBird = false
 
 func losePoints(body):
 	# Check if the colliding body is the Rabbit
@@ -358,13 +366,36 @@ func losePoints(body):
 		$CanvasLayer/Rabbit.stopJumpingSound()
 		$CanvasLayer/Rabbit.makeInvisible()
 		updateScore(false)
-		
-		# Get the obstacle from the signal emitter (the Area2D that detected the collision)
-		var obstacle = body.get_parent().get_node_or_null(str(get_path_to(get_parent())))
-		if obstacle and obstacles.has(obstacle):
-			# Create a small delay before removing the obstacle
-			await get_tree().create_timer(0.1).timeout
-			removeObstacle(obstacle)
+
+#func gainPoints(body):
+	#if body.name != "Rabbit":
+		#return
+		#
+	#var obstacle = get_parent()
+	#var isColliding = false
+	#
+	#if obstacle.is_in_group("ball"):
+		#if isCollidingBall:
+			#return
+		#isCollidingBall = true
+	#elif obstacle.is_in_group("coin"):
+		#if isCollidingCoin:
+			#return
+		#isCollidingCoin = true
+		#call_deferred("removeObstacle", obstacle)
+#
+	#var audio = $Effects
+	#audio.stream = load("res://Audio/Effects/aRight2.wav")
+	#audio.play()
+	#$CanvasLayer/Rabbit.stopJumpingSound()
+	#$CanvasLayer/Rabbit.makeInvisible()
+	#updateScore(true)
+	#
+	#await get_tree().create_timer(0.5).timeout
+	#if obstacle.is_in_group("ball"):
+		#isCollidingBall = false
+	#elif obstacle.is_in_group("coin"):
+		#isCollidingCoin = false
 
 func gainPoints(body):
 	# Check if the colliding body is the Rabbit
@@ -376,25 +407,35 @@ func gainPoints(body):
 		$CanvasLayer/Rabbit.stopJumpingSound()
 		$CanvasLayer/Rabbit.makeInvisible()
 		updateScore(true)
-		
-		var obstacle = body.get_parent().get_node_or_null(str(get_path_to(get_parent())))
-		if obstacle and obstacles.has(obstacle):
-			# Create a small delay before removing the obstacle
-			await get_tree().create_timer(0.1).timeout
-			removeObstacle(obstacle)
+
+func addObstacles(obs, x, y, obsType):
+	# Position of the obstacles
+	obs.position = Vector2(x, y)
+	# Connect obstacle collision signals based on the type of obstacle
+	if obsType == ballScene:
+		obs.body_entered.connect(gainPoints)
+	elif obsType == coinScene:
+		obs.body_entered.connect(gainPoints)
+	else:
+		obs.add_to_group("bird")
+		obs.body_entered.connect(losePoints)
+	# Making the obstacles appear in front of other objects
+	obs.z_index = 1
+
+	#if obs.has_method("set_z_as_relative"):
+		#obs.set_z_as_relative(false)
+	#print("Obstacle z_index: ", obs.z_index)
+	#print("Rabbit z_index: ", $CanvasLayer/Rabbit.z_index)
+	
+	# Adding the obstacles to the scene tree, otherwise, add directly to the current node
+	if true:
+		get_parent().add_child(obs)
+	else:
+		add_child(obs)
+	# Keep adding obstacles in the obstacles array
+	obstacles.append(obs) 
 
 func removeObstacle(obs):
-	# Remove the obstacle from the scene
-	# Only proceed if the obstacle is still in the scene tree
-	if not is_instance_valid(obs) or not obs.is_inside_tree():
-		return
-		
-	# Disconnect any existing signals before removing
-	if obs.is_connected("body_entered", gainPoints):
-		obs.body_entered.disconnect(gainPoints)
-	elif obs.is_connected("body_entered", losePoints):
-		obs.body_entered.disconnect(losePoints)
-	
 	# Remove the obstacle from the obstacles array first
 	if obstacles.has(obs):
 		obstacles.erase(obs)
@@ -715,7 +756,8 @@ func gameEnd(win: bool):
 	
 	# gameIndex == 3
 	# Stop generating new obstacles and clear the list 
-		for obs in obstacles:
+		var valid_obstacles = obstacles.filter(func(obs): return is_instance_valid(obs))
+		for obs in valid_obstacles:
 			obs.queue_free()
 		obstacles.clear()
 			
