@@ -9,21 +9,28 @@ const JUMP_SPEED: int = -1370
 # Game state variables
 var isActive = false  # Controls whether the game (specifically jumping) is active
 var touchJump = false  # Tracks if jump is triggered by screen touch
-var can_jump = true  # Prevents multiple jumps without releasing
+var canJump = true  # Prevents multiple jumps without releasing
 
 # Handle input events (screen touches)
 func _input(event: InputEvent) -> void:
-	# Only process input if the game is active and not paused
-	if isActive and !get_tree().paused:
+	# Check if game is paused first - if so, ignore all input
+	if get_tree().paused:
+		return
+		
+	# Only process input if the game is active
+	if isActive:
 		if event is InputEventScreenTouch:
-			# On touch press, enable jumping
-			if event.pressed and can_jump:
+			# Ignore touch input if it's in the pause button area
+			# Adjust these values based on your pause button's position and size
+			if event.position.y < 100:  # Assuming pause button is in top 100 pixels
+				return
+				
+			if event.pressed and canJump:
 				touchJump = true
-				can_jump = false
-			# On touch release, reset jump state
+				canJump = false
 			elif !event.pressed:
 				touchJump = false
-				can_jump = true
+				canJump = true
 
 # Physics processing - handles movement and animations
 func _physics_process(delta: float) -> void:
