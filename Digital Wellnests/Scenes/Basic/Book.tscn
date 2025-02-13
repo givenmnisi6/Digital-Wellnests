@@ -55,7 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://5e5fbsrshcg" path="res://Animations/PageTurn/PageTurn.0046.png" id="53_aiop6"]
 [ext_resource type="Texture2D" uid="uid://dmmk6utea1qgj" path="res://Animations/PageTurn/PageTurn.0047.png" id="54_jfi30"]
 [ext_resource type="Texture2D" uid="uid://c2d5caxno0f72" path="res://Animations/PageTurn/PageTurn.0048.png" id="55_ftpqm"]
-[ext_resource type="Texture2D" uid="uid://d1h8o2pmn3uko" path="res://Images/icons8-info-512.png" id="56_6mqj2"]
+[ext_resource type="Texture2D" uid="uid://bo5xa6aq3dm32" path="res://Images/Informationss.png" id="56_2p5ng"]
 [ext_resource type="AudioStream" uid="uid://blga8lj04csty" path="res://Audio/Voice/Snail1.wav" id="56_vgmqd"]
 [ext_resource type="Texture2D" uid="uid://lmx5hxljeh3w" path="res://Images/OpenPage.png" id="58_241h3"]
 [ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="58_h8tnf"]
@@ -520,7 +520,7 @@ offset_right = 359.0
 offset_bottom = 31.0
 pivot_offset = Vector2(16, 15)
 toggle_mode = true
-texture_normal = ExtResource("56_6mqj2")
+texture_normal = ExtResource("56_2p5ng")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -646,9 +646,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -225.0
+offset_left = -199.0
 offset_top = -54.0
-offset_right = 223.0
+offset_right = 198.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
