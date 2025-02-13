@@ -89,6 +89,7 @@ func _input(event: InputEvent):
 		#print("Click")
 		if event.pressed:
 			closeInstructions()
+		#%InfoAnimationPlayer.play("PopInfo")
 
 		if !pageLock:
 			# If the paragraphs are less than 3
@@ -247,12 +248,10 @@ func _on_back_pressed() -> void:
 	queue_free()
 	Music.playMusic()
 
-
 func _on_okay_button_pressed() -> void:
 	$GameInstructions.hide()
 	$Pages.show()
 	storyStart()
-
 
 func _on_info_button_mouse_entered() -> void:
 	#$GameInstructions.show()
