@@ -5,6 +5,8 @@ func _ready():
 	var intro = load("res://Audio/Effects/Jungle.wav")
 	$AudioStreamPlayer.stream = intro
 	$AudioStreamPlayer.play()
+	$AudioStreamPlayer.connect("finished",Callable(self, "_on_audio_stream_player_finished"))
+	
 
 # Increase the volume of the music
 func playMusic():
