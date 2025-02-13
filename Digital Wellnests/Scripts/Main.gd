@@ -416,7 +416,8 @@ func _on_back_pressed():
 	Music.clickSfx()
 	
 	# Hide the SettingsPage node
-	$SettingsPage.hide()
+	%AnimationPlayer.play_backwards("PopOut")
+	#$SettingsPage.hide()
 
 func _on_sfx_slider_drag_started():
 	# Notify that the SFX slider value has changed
@@ -427,6 +428,7 @@ func _on_exit_pressed():
 	Music.clickSfx()
 	
 	# Show the Exit Page
+	%ExitAnimationPlayer.play("popExit")
 	$ExitPage.show()
 	
 	# Create a tween for animation
@@ -464,6 +466,7 @@ func _on_settings_pressed():
 	Music.clickSfx()
 	
 	# Show the SettingsPage node
+	%AnimationPlayer.play("PopOut")
 	$SettingsPage.show()
 
 func _on_n_button_pressed():
@@ -471,13 +474,15 @@ func _on_n_button_pressed():
 	Music.clickSfx()
 	
 	# Hide the ExitPage node
-	$ExitPage.hide()
+	#$ExitPage.hide()
+	%ExitAnimationPlayer.play_backwards("popExit")
 
 func _on_y_button_pressed():
 	# Play the click sound effect
 	Music.clickSfx()
 	
 	# Quit the game
+	%ExitAnimationPlayer.play_backwards("popExit")
 	get_tree().quit()
 
 func _on_sound_button_pressed():
