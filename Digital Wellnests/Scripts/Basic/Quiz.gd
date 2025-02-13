@@ -241,7 +241,6 @@ func _on_timer_timeout():
 		twn.tween_property(ta, "scale", Vector2(1, 1), 0.5) 
 		twn.tween_property(cnt, "scale", Vector2(1, 1), 0.5)
 
-
 func _on_safety_timer_timeout():
 	var twn = get_tree().create_tween()
 	var y = $qPlay/bYes

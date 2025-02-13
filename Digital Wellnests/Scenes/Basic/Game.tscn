@@ -6095,6 +6095,8 @@ offset_bottom = 367.0
 texture = ExtResource("729_ald1e")
 expand_mode = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StartGame"]
+
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="Lives" type="TextureRect" parent="Hud"]

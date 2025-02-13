@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dgrnrl2t0ubx1"]
+[gd_scene load_steps=74 format=3 uid="uid://dgrnrl2t0ubx1"]
 
 [ext_resource type="Script" path="res://Scripts/Basic/Book.gd" id="1_pcbcp"]
 [ext_resource type="Texture2D" uid="uid://58mo68rm5nbc" path="res://Images/OpenPages.png" id="2_4jpuk"]
@@ -55,7 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://5e5fbsrshcg" path="res://Animations/PageTurn/PageTurn.0046.png" id="53_aiop6"]
 [ext_resource type="Texture2D" uid="uid://dmmk6utea1qgj" path="res://Animations/PageTurn/PageTurn.0047.png" id="54_jfi30"]
 [ext_resource type="Texture2D" uid="uid://c2d5caxno0f72" path="res://Animations/PageTurn/PageTurn.0048.png" id="55_ftpqm"]
-[ext_resource type="Texture2D" uid="uid://y34cpr8c05x6" path="res://Images/informations.png" id="56_p5dfi"]
+[ext_resource type="Texture2D" uid="uid://d1h8o2pmn3uko" path="res://Images/icons8-info-512.png" id="56_6mqj2"]
 [ext_resource type="AudioStream" uid="uid://blga8lj04csty" path="res://Audio/Voice/Snail1.wav" id="56_vgmqd"]
 [ext_resource type="Texture2D" uid="uid://lmx5hxljeh3w" path="res://Images/OpenPage.png" id="58_241h3"]
 [ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="58_h8tnf"]
@@ -251,12 +251,50 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="Animation" id="Animation_mh8um"]
+resource_name = "PopInfo"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(0.338889, 0.338889), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4vm48"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3peu"]
+_data = {
+"PopInfo": SubResource("Animation_mh8um"),
+"RESET": SubResource("Animation_4vm48")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oh6xn"]
 bg_color = Color(0.811765, 0.768627, 0.705882, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0.0509804, 0.282353, 0.505882, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
@@ -477,13 +515,20 @@ one_shot = true
 
 [node name="InfoButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 326.0
-offset_top = 7.0
-offset_right = 355.0
-offset_bottom = 35.0
-texture_normal = ExtResource("56_p5dfi")
+offset_left = 327.0
+offset_right = 359.0
+offset_bottom = 31.0
+pivot_offset = Vector2(16, 15)
+toggle_mode = true
+texture_normal = ExtResource("56_6mqj2")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="InfoAnimationPlayer" type="AnimationPlayer" parent="InfoButton"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_i3peu")
+}
 
 [node name="GameInstructions" type="TextureRect" parent="."]
 visible = false
@@ -612,7 +657,7 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/normal_font = ExtResource("6_1i4o4")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center]Tap anywhere on the screen to display the next paragraph
+text = "[center]Tap anywhere on the screen to display the paragraph
 [/center]"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
