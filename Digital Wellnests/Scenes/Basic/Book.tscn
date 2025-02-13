@@ -55,7 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://5e5fbsrshcg" path="res://Animations/PageTurn/PageTurn.0046.png" id="53_aiop6"]
 [ext_resource type="Texture2D" uid="uid://dmmk6utea1qgj" path="res://Animations/PageTurn/PageTurn.0047.png" id="54_jfi30"]
 [ext_resource type="Texture2D" uid="uid://c2d5caxno0f72" path="res://Animations/PageTurn/PageTurn.0048.png" id="55_ftpqm"]
-[ext_resource type="Texture2D" uid="uid://cq8fi7iymk0q8" path="res://Images/icons8-info-512.png" id="56_6mqj2"]
+[ext_resource type="Texture2D" uid="uid://d1h8o2pmn3uko" path="res://Images/icons8-info-512.png" id="56_6mqj2"]
 [ext_resource type="AudioStream" uid="uid://blga8lj04csty" path="res://Audio/Voice/Snail1.wav" id="56_vgmqd"]
 [ext_resource type="Texture2D" uid="uid://lmx5hxljeh3w" path="res://Images/OpenPage.png" id="58_241h3"]
 [ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="58_h8tnf"]
