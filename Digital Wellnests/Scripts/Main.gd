@@ -350,8 +350,9 @@ func startBook():
 	# Scale down the Control node
 	$Control.scale = Vector2(0.01, 0.01)
 	
-	# Stop the music
+	# Stop the music and the overlapping sound
 	Music.stopMusic()
+	$Effects.stop()
 	
 	# Set the iStory value of the book instance
 	bookInstance.iStory = iStory
