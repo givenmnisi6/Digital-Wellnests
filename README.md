@@ -7,7 +7,9 @@
 ## To-Do List  
 
 ### Developments:  
--  Fix book instructions
+- Fix book instructions
+- Confirm exit voice overs
+- Cyber Cat voice overs
 ---
 
 ## Developed With  
