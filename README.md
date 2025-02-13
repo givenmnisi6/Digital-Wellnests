@@ -6,10 +6,10 @@
 
 ## To-Do List  
 
-### Known Issues:  
-- [ ] Elephant and his shoe game.  
-  - The Rabbit currently jumps unintentionally at certain times (e.g., when the pause button is pressed).  
-
+### Developments:  
+- Fix book instructions
+- Confirm exit voice overs
+- Cyber Cat voice overs
 ---
 
 ## Developed With  

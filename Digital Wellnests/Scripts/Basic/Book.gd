@@ -30,11 +30,12 @@ func _ready():
 
 func showInstruction():
 	$Pages.hide()
-	$GameInstructions.show()
+	$Panel.show()
 
 func storyStart():
 	var anim = $Pages/Animation
 	var anim2 = $Pages/AnimationShadow
+	$Panel/AnimationPlayer.play("PopUp")
 	# Show and play animation 
 	anim.show()
 	anim.play()
@@ -79,9 +80,15 @@ func storyStart():
 	
 	pageLock = false
 
+func closeInstructions():
+	$Panel.hide()
+	#queue_free()
+
 func _input(event: InputEvent):
-	if event is InputEventMouseButton and InputEventScreenTouch and event.pressed:
+	if event is InputEventMouseButton and InputEventScreenTouch:# and event.pressed:
 		#print("Click")
+		if event.pressed:
+			closeInstructions()
 
 		if !pageLock:
 			# If the paragraphs are less than 3
@@ -245,3 +252,14 @@ func _on_okay_button_pressed() -> void:
 	$GameInstructions.hide()
 	$Pages.show()
 	storyStart()
+
+
+func _on_info_button_mouse_entered() -> void:
+	#$GameInstructions.show()
+	$Panel/AnimationPlayer.play("PopUp")
+	$Panel.show()
+
+func _on_info_button_mouse_exited() -> void:
+	#$GameInstructions.hide()
+	$Panel/AnimationPlayer.play_backwards("PopUp")
+	$Panel.hide()

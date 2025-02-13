@@ -977,6 +977,7 @@ func _on_cat_timer_timeout():
 
 func _on_pause_pressed() -> void:
 	# Pause Mechanisms
+	pauseMenu.pauseAnimation()
 	if gameIndex == 0:
 		pauseMenus()
 	if gameIndex == 1:

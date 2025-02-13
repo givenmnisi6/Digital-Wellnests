@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Digital Wellnests game"
+config/name="Digital Wellnests"
 run/main_scene="res://Scenes/Basic/Intro.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 run/max_fps=144
@@ -18,8 +18,10 @@ boot_splash/bg_color=Color(0.423529, 0.239216, 0.568627, 1)
 boot_splash/image="res://Images/Loading.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://Icon.svg"
+config/icon="res://icon.svg"
 boot_splash/minimum_display_time=2000
+run/icon="res://Icon.svg"
+run/name="Digital Wellnests"
 
 [audio]
 
@@ -29,6 +31,7 @@ buses/default_bus_layout="res://Scenes/Basic/default_bus_layout.tres"
 
 GD="*res://Scripts/Poems/Cat/CatVariables.gd"
 Music="*res://Scenes/Basic/Music.tscn"
+PopUps="*res://Scripts/Basic/PopUps.tscn"
 
 [display]
 
