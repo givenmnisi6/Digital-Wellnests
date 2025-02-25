@@ -407,6 +407,36 @@ func returnToMain() -> void:
 	$Instructions.show()
 	$Exit.show()
 	$Settings.show()
+	
+	swap()
+	
+	# I want when I return to Main, it defaults to the story that was initially selected
+	if iCount == 0:
+		name = "Snail"
+	elif iCount == 1:
+		name = "Fish"
+	elif iCount == 2:
+		name = "Elephant"
+	elif iCount == 3:
+		name = "Wolf"
+	elif iCount == 4:
+		name = "Hippo"
+	elif iCount == 5:
+		name = "Cat"
+		
+	# Update the story title
+	if iCount == 0:
+		$Story.bbcode_text = "[center]Safety Snail's e-mails[/center]"
+	elif iCount == 1:
+		$Story.bbcode_text = "[center]Lucky the Fish[/center]"
+	elif iCount == 2:
+		$Story.bbcode_text = "[center]Elephant and his shoe[/center]"
+	elif iCount == 3:
+		$Story.bbcode_text = "[center]Wolf, Hyena and Fox[/center]"
+	elif iCount == 4:
+		$Story.bbcode_text = "[center]Happy Hippo[/center]"
+	elif iCount == 5:
+		$Story.bbcode_text = "[center]Cyber Cat[/center]"
 
 func _on_audio_stream_player_finished():
 	# Play the audio stream again

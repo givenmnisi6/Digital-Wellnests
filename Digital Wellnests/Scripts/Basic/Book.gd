@@ -243,7 +243,8 @@ func _on_page_turn_frame_changed():
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+	# Return to the parent scene which is the Main Menu one
+	get_parent().returnToMain()
 	Music.clickSfx()
 	queue_free()
 	Music.playMusic()
