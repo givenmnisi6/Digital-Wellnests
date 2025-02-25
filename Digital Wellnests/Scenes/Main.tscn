@@ -3415,7 +3415,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("370_q2sss")
 theme_override_font_sizes/normal_font_size = 55
 bbcode_enabled = true
-text = "[center]Safety snail's emails[/center]"
+text = "[center]Safety Snail's emails[/center]"
 metadata/_edit_lock_ = true
 
 [node name="Instructions" type="RichTextLabel" parent="."]
