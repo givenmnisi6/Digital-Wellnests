@@ -507,7 +507,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_llph1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ucqq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2lph2")
 text = "Back"
-metadata/_edit_lock_ = true
 
 [node name="WordTimer" type="Timer" parent="."]
 wait_time = 0.01
