@@ -656,7 +656,7 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/normal_font = ExtResource("6_1i4o4")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center]Tap anywhere on the screen to display the paragraph
+text = "[center]Click anywhere on the screen to display the paragraph
 [/center]"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
