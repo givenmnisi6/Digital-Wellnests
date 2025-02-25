@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cydy5wvvioivi"]
+[gd_scene load_steps=21 format=3 uid="uid://cydy5wvvioivi"]
 
 [ext_resource type="Texture2D" uid="uid://dilph5mebhish" path="res://Images/GameBG.jpg" id="1_8nj2d"]
 [ext_resource type="Script" path="res://Scripts/Basic/Pause.gd" id="1_xwjqh"]
@@ -43,6 +43,42 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 12
 border_color = Color(0.00392157, 0.196078, 0.12549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pbpx"]
+bg_color = Color(0.384314, 0.384314, 0.0392157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.294118, 0.294118, 0.0235294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clxig"]
+bg_color = Color(0.321569, 0.321569, 0.027451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.266667, 0.266667, 0.0196078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxjej"]
+bg_color = Color(0.345098, 0.345098, 0.0313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0.294118, 0.294118, 0.0235294, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -244,6 +280,20 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_2s3yy")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lu4io")
 text = "Resume"
 
+[node name="restartButton" type="Button" parent="Panel"]
+modulate = Color(0.882353, 1, 0, 1)
+layout_mode = 0
+offset_left = 115.0
+offset_top = 194.0
+offset_right = 309.0
+offset_bottom = 275.0
+theme_override_fonts/font = ExtResource("4_72bda")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_8pbpx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_clxig")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cxjej")
+text = "Restart"
+
 [node name="menuButton" type="Button" parent="Panel"]
 modulate = Color(0.917647, 0, 1, 1)
 layout_mode = 1
@@ -253,9 +303,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -93.0
-offset_top = -5.0
+offset_top = 87.0
 offset_right = 101.0
-offset_bottom = 76.0
+offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_72bda")
@@ -267,6 +317,7 @@ text = "Main Menu
 "
 
 [node name="exitButton" type="Button" parent="Panel"]
+visible = false
 modulate = Color(0.780392, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -311,5 +362,6 @@ libraries = {
 }
 
 [connection signal="pressed" from="Panel/resumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/restartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Panel/menuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Panel/exitButton" to="." method="_on_exit_button_pressed"]
