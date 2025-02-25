@@ -6,15 +6,14 @@ func _ready():
 	$AudioStreamPlayer.stream = intro
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer.connect("finished",Callable(self, "_on_audio_stream_player_finished"))
-	
 
 # Increase the volume of the music
 func playMusic():
-	$AudioStreamPlayer.volume_db = 0
+	$AudioStreamPlayer.volume_db = -5
 	
 # Stop the music
 func stopMusic():
-	$AudioStreamPlayer.volume_db = -22
+	$AudioStreamPlayer.volume_db = -10
 
 func clickSfx():
 	# Load the click sound effect
