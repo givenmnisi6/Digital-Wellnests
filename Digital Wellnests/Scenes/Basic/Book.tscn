@@ -456,7 +456,7 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/normal_font = ExtResource("6_1i4o4")
 theme_override_font_sizes/normal_font_size = 42
 bbcode_enabled = true
-text = "Safety snail's emails
+text = "Safety Snail's e-mails
 
 "
 metadata/_edit_lock_ = true
@@ -497,12 +497,12 @@ metadata/_edit_lock_ = true
 [node name="Back" type="Button" parent="Pages"]
 modulate = Color(0.596078, 0.952941, 0.956863, 1)
 layout_mode = 0
-offset_left = 624.0
-offset_top = 421.0
-offset_right = 709.0
-offset_bottom = 473.0
+offset_left = 648.0
+offset_top = 435.0
+offset_right = 713.0
+offset_bottom = 475.0
 theme_override_fonts/font = ExtResource("6_1i4o4")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 theme_override_styles/hover = SubResource("StyleBoxFlat_llph1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ucqq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2lph2")
