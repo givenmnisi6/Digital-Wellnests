@@ -38,6 +38,5 @@ func _on_window_selected(index: int) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 
-
-func _on_option_button_item_selected(index):
-	pass # Replace with function body.
+# func _on_option_button_item_selected(index):
+#	pass # Replace with function body.
