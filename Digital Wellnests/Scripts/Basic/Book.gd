@@ -89,6 +89,50 @@ func storyStart():
 func closeInstructions():
 	$Panel.hide()
 	#queue_free()
+<<<<<<< HEAD
+
+# This code is for displaying the paragraphs when the continue button is pressed
+func _on_continue_pressed() -> void:
+	if !pageLock:
+		Music.clickSfx()
+		# If the paragraphs are less than 3
+		if currentVerse < 3:
+			# Increment the current verse and total count
+			currentVerse += 1
+			totCount += 1
+			
+			# If the animation exists, set it as the current animation
+			if $Pages/Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
+				$Pages/Animation.animation = story[iStory] + str(totCount)
+			if $Pages/AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
+				$Pages/AnimationShadow.animation = story[iStory] + str(totCount)
+			# Load and play an audio stream
+			var audioStreamPlayer = $AudioStreamPlayer
+			var audioFilePath = "res://Audio/Voice/" + story[iStory] + str(totCount) + ".wav"
+			if ResourceLoader.exists(audioFilePath):
+				var audioStream = ResourceLoader.load(audioFilePath)
+				audioStreamPlayer.stream = audioStream
+				audioStreamPlayer.play()
+			
+			# Start the word timer
+			$WordTimer.start()
+			pageLock = true
+		else:
+			$AudioStreamPlayer.stop()
+			get_parent().get_node("Effects").stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
+			get_parent().get_node("Effects").play()
+			var pageTurn = $Pages/PageTurn
+			pageTurn.play()
+			
+			#Start the page turn from zero
+			pageTurn.frame = 0
+			
+			# If the total verse count is less than or equal to 3, start the quiz and free the current node
+			if totalVerse <= 3:
+				get_parent().call("startQuiz")
+				queue_free()
+=======
+>>>>>>> 48008efcf2ab9b603d045f553683bdb13bb52141
 				
 
 #func _input(event: InputEvent):
