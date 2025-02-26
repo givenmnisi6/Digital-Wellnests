@@ -90,7 +90,7 @@ func closeInstructions():
 	$Panel.hide()
 	#queue_free()
 
-# This code is for displaying the paragraphs when the continue button is button
+# This code is for displaying the paragraphs when the continue button is pressed
 func _on_continue_pressed() -> void:
 	if !pageLock:
 		Music.clickSfx()
