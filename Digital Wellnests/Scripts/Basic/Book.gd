@@ -90,14 +90,142 @@ func closeInstructions():
 	$Panel.hide()
 	#queue_free()
 
-
+# This code is for displaying the paragraphs when the continue button is button
+func _on_continue_pressed() -> void:
+	if !pageLock:
+		Music.clickSfx()
+		# If the paragraphs are less than 3
+		if currentVerse < 3:
+			# Increment the current verse and total count
+			currentVerse += 1
+			totCount += 1
+			
+			# If the animation exists, set it as the current animation
+			if $Pages/Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
+				$Pages/Animation.animation = story[iStory] + str(totCount)
+			if $Pages/AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
+				$Pages/AnimationShadow.animation = story[iStory] + str(totCount)
+			# Load and play an audio stream
+			var audioStreamPlayer = $AudioStreamPlayer
+			var audioFilePath = "res://Audio/Voice/" + story[iStory] + str(totCount) + ".wav"
+			if ResourceLoader.exists(audioFilePath):
+				var audioStream = ResourceLoader.load(audioFilePath)
+				audioStreamPlayer.stream = audioStream
+				audioStreamPlayer.play()
+			
+			# Start the word timer
+			$WordTimer.start()
+			pageLock = true
+		else:
+			$AudioStreamPlayer.stop()
+			get_parent().get_node("Effects").stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
+			get_parent().get_node("Effects").play()
+			var pageTurn = $Pages/PageTurn
+			pageTurn.play()
+			
+			#Start the page turn from zero
+			pageTurn.frame = 0
+			
+			# If the total verse count is less than or equal to 3, start the quiz and free the current node
+			if totalVerse <= 3:
+				get_parent().call("startQuiz")
+				queue_free()
+				
+			 # Lock the page
+			pageLock = true
+			
+			# Increment the total count
+			totCount += 1
+			
+			# If the total verse count is greater than 3
+			if totalVerse > 3:
+				# Reset the current verse and decrement the total verse count
+				currentVerse = 0
+				totalVerse -= 3
+				
+				loadStory(totalVerse / 3 + 2)
+			
+			if iStory == 1 and totCount == 8:
+				currentVerse = 0
+				var anim = $Pages/Animation
+				anim.position = Vector2(180+25, 285)
+				var anim2 = $Pages/AnimationShadow
+				anim2.position = Vector2(180+25, 285)
 
 # Enabling and disabling the continue button
 # This depends on the timer and word count
 func setContinue(enabled: bool):
 	$Pages/Continue.disabled = !enabled
 
-
+#func _input(event: InputEvent):
+	#if event is InputEventMouseButton and InputEventScreenTouch:# and event.pressed:
+		##print("Click")
+		#if event.pressed:
+			#closeInstructions()
+#
+		#if !pageLock:
+			## If the paragraphs are less than 3
+			#if currentVerse < 3:
+				## Increment the current verse and total count
+				#currentVerse += 1
+				#totCount += 1
+				#
+				## If the animation exists, set it as the current animation
+				#if $Pages/Animation.sprite_frames.has_animation(story[iStory] + str(totCount)):
+					#$Pages/Animation.animation = story[iStory] + str(totCount)
+				#if $Pages/AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
+					#$Pages/AnimationShadow.animation = story[iStory] + str(totCount)
+#
+				## Load and play an audio stream
+				#var audioStreamPlayer = $AudioStreamPlayer
+				#var audioFilePath = "res://Audio/Voice/" + story[iStory] + str(totCount) + ".wav"
+#
+				#if ResourceLoader.exists(audioFilePath):
+					#var audioStream = ResourceLoader.load(audioFilePath)
+					#audioStreamPlayer.stream = audioStream
+					#audioStreamPlayer.play()
+				#
+				## Start the word timer
+				#$WordTimer.start()
+				#pageLock = true
+			#else:
+				#$AudioStreamPlayer.stop()
+				#get_parent().get_node("Effects").stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
+				#get_parent().get_node("Effects").play()
+#
+				#var pageTurn = $Pages/PageTurn
+				#pageTurn.play()
+				#
+				##Start the page turn from zero
+				#pageTurn.frame = 0
+				#
+				## If the total verse count is less than or equal to 3, start the quiz and free the current node
+				#if totalVerse <= 3:
+					#get_parent().call("startQuiz")
+					#queue_free()
+					#
+				 ## Lock the page
+				#pageLock = true
+				#
+				## Increment the total count
+				#totCount += 1
+				#
+				## If the total verse count is greater than 3
+				#if totalVerse > 3:
+					## Reset the current verse and decrement the total verse count
+					#currentVerse = 0
+					#totalVerse -= 3
+					##print(totalVerse)
+					#
+					#loadStory(totalVerse / 3 + 2)
+				#
+				#if iStory == 1 and totCount == 8:
+					#currentVerse = 0
+					##print("AAA")
+					#var anim = $Pages/Animation
+					#anim.position = Vector2(180+25, 285)
+					#var anim2 = $Pages/AnimationShadow
+					#anim2.position = Vector2(180+25, 285)
 
 func _on_word_timer_timeout():
 	pageLock = false
