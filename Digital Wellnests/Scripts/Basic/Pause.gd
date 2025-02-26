@@ -5,6 +5,9 @@ extends Control
 # References the game node - two levels up
 @onready var game = $"../../"
 
+#func _ready() -> void:
+	#$Instructions/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(game.gameIndex) + ".png")
+
 # Checks if the esc button is pressed
 func _process(delta: float) -> void:
 	escapeButton()
@@ -40,9 +43,9 @@ func _on_resume_button_pressed() -> void:
 	game.pauseMenus()
 
 # Calls the quit function and the Sfx 
-func _on_exit_button_pressed() -> void:
-	Music.clickSfx()
-	quitGame()
+#func _on_exit_button_pressed() -> void:
+	#Music.clickSfx()
+	#quitGame()
 
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
@@ -51,7 +54,6 @@ func _on_menu_button_pressed() -> void:
 	var mainScene = game.get_parent()
 	mainScene.returnToMain()
 	game.queue_free()
-
 
 func _on_restart_button_pressed() -> void:
 	# Unpause the game
@@ -76,3 +78,16 @@ func restartGame():
 	
 	# Start a new game with the same story
 	main_scene.startGame()
+
+func _on_how_to_button_pressed() -> void:
+	$Instructions.show()
+	Music.clickSfx()
+	$Instructions/InstructionsAnimationPlayer.play("PopUp")
+	$Instructions/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(game.gameIndex) + ".png")
+	$Panel.hide()
+
+func _on_back_button_pressed() -> void:
+	$Instructions.hide()
+	Music.clickSfx()
+	$Instructions/InstructionsAnimationPlayer.play_backwards("PopUp")
+	$Panel.show()
