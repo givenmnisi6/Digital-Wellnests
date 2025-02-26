@@ -89,9 +89,8 @@ func storyStart():
 func closeInstructions():
 	$Panel.hide()
 	#queue_free()
-<<<<<<< HEAD
 
-# This code is for displaying the paragraphs when the continue button is pressed
+# This code is for displaying the paragraphs when the continue button is button
 func _on_continue_pressed() -> void:
 	if !pageLock:
 		Music.clickSfx()
@@ -131,9 +130,32 @@ func _on_continue_pressed() -> void:
 			if totalVerse <= 3:
 				get_parent().call("startQuiz")
 				queue_free()
-=======
->>>>>>> 48008efcf2ab9b603d045f553683bdb13bb52141
 				
+			 # Lock the page
+			pageLock = true
+			
+			# Increment the total count
+			totCount += 1
+			
+			# If the total verse count is greater than 3
+			if totalVerse > 3:
+				# Reset the current verse and decrement the total verse count
+				currentVerse = 0
+				totalVerse -= 3
+				
+				loadStory(totalVerse / 3 + 2)
+			
+			if iStory == 1 and totCount == 8:
+				currentVerse = 0
+				var anim = $Pages/Animation
+				anim.position = Vector2(180+25, 285)
+				var anim2 = $Pages/AnimationShadow
+				anim2.position = Vector2(180+25, 285)
+
+# Enabling and disabling the continue button
+# This depends on the timer and word count
+func setContinue(enabled: bool):
+	$Pages/Continue.disabled = !enabled
 
 #func _input(event: InputEvent):
 	#if event is InputEventMouseButton and InputEventScreenTouch:# and event.pressed:
@@ -303,10 +325,12 @@ func _on_back_pressed() -> void:
 	queue_free()
 	Music.playMusic()
 
+
 func _on_okay_button_pressed() -> void:
 	$GameInstructions.hide()
 	$Pages.show()
 	storyStart()
+
 
 func _on_info_button_mouse_entered() -> void:
 	#$GameInstructions.show()
