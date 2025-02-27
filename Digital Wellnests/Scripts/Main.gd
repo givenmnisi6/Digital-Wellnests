@@ -22,8 +22,6 @@ var vol: float
 var playerName: String
 var positions = []
 
-var musicBus = AudioServer.get_bus_index("Music")
-
 func _ready():
 	# Initialize variables
 	name = ""
@@ -518,11 +516,6 @@ func _on_y_button_pressed():
 	# Quit the game
 	%ExitAnimationPlayer.play_backwards("popExit")
 	get_tree().quit()
-
-func _on_sound_button_pressed():
-	# Toggle the mute state of the music bus
-	AudioServer.set_bus_mute(musicBus, not AudioServer.is_bus_mute(musicBus))
-	Music.clickSfx()
 
 func _on_settings_gui_input(event):
 	if (event is InputEventScreenTouch && InputEventMouseButton):
