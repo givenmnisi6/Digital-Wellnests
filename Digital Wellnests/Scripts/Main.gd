@@ -4,6 +4,7 @@ extends Control
 @export var Book: PackedScene
 @export var Game: PackedScene
 @export var Quiz: PackedScene
+@export var Settings: PackedScene
 @onready var settings = $Settings
 
 var snail: AnimatedSprite2D
@@ -442,13 +443,13 @@ func _on_audio_stream_player_finished():
 	# Play the audio stream again
 	$AudioStreamPlayer.play()
 
-func _on_back_pressed():
-	# Play the click sound effect
-	Music.clickSfx()
-	
-	# Hide the SettingsPage node
-	%AnimationPlayer.play_backwards("PopOut")
-	#$SettingsPage.hide()
+#func _on_back_pressed():
+	## Play the click sound effect
+	#Music.clickSfx()
+	#
+	## Hide the SettingsPage node
+	#%AnimationPlayer.play_backwards("PopOut")
+	##$SettingsPage.hide()
 
 func _on_sfx_slider_drag_started():
 	# Notify that the SFX slider value has changed
@@ -495,10 +496,12 @@ func _on_exit_gui_input(event):
 func _on_settings_pressed():
 	# Play the click sound effect
 	Music.clickSfx()
-	
+	# Instantiate the game scene
+	var settingsInstance = Settings.instantiate()
+	add_child(settingsInstance)
 	# Show the SettingsPage node
-	%AnimationPlayer.play("PopOut")
-	$SettingsPage.show()
+	#%AnimationPlayer.play("PopOut")
+	settingsInstance.show()
 
 func _on_n_button_pressed():
 	# Play the click sound effect
