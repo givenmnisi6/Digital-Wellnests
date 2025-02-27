@@ -1,0 +1,386 @@
+[gd_scene load_steps=19 format=3 uid="uid://dn6h20wotd65l"]
+
+[ext_resource type="Script" path="res://Scenes/Basic/Settings.gd" id="1_b4mng"]
+[ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="1_isqnx"]
+[ext_resource type="Texture2D" uid="uid://dilph5mebhish" path="res://Images/GameBG.jpg" id="2_nxrnt"]
+[ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="3_lv2qj"]
+[ext_resource type="Texture2D" uid="uid://c4nta1b8t4ik5" path="res://Images/Sound.png" id="4_43tde"]
+[ext_resource type="Texture2D" uid="uid://dth3uo5atxd1m" path="res://Images/Mute.png" id="5_au8aq"]
+[ext_resource type="PackedScene" uid="uid://btcamyy2f7y3v" path="res://Scenes/Basic/HSlider.tscn" id="6_ijtdq"]
+[ext_resource type="PackedScene" uid="uid://b6gr7a33x1x7f" path="res://Scenes/Basic/Window.tscn" id="7_13g32"]
+[ext_resource type="PackedScene" uid="uid://bg3h7rvni1sl6" path="res://Scenes/Basic/Resolution.tscn" id="8_ebiyi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da4q5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27f7r"]
+bg_color = Color(1, 1, 1, 0.486275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebqtr"]
+bg_color = Color(1, 1, 1, 0.533333)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8n2t"]
+bg_color = Color(0, 0.560784, 0.890196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0, 0.411765, 0.658824, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbdgq"]
+bg_color = Color(0, 0.454902, 0.72549, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0, 0.411765, 0.658824, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1ilj"]
+bg_color = Color(0, 0.521569, 0.827451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 12
+border_color = Color(0, 0.411765, 0.658824, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_3orbe"]
+resource_name = "PopOut"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_klh0g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p56qm"]
+_data = {
+"PopOut": SubResource("Animation_3orbe"),
+"RESET": SubResource("Animation_klh0g")
+}
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b4mng")
+
+[node name="SettingsPage" type="TextureRect" parent="."]
+offset_right = 720.0
+offset_bottom = 480.0
+pivot_offset = Vector2(360, 240)
+texture = ExtResource("1_isqnx")
+
+[node name="Panel" type="Panel" parent="SettingsPage"]
+layout_mode = 0
+offset_right = 719.0
+offset_bottom = 479.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_da4q5")
+
+[node name="BGTexture" type="TextureRect" parent="SettingsPage"]
+modulate = Color(1, 1, 1, 0.341176)
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 480.0
+texture = ExtResource("2_nxrnt")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="SettingsPage"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TabContainer" type="TabContainer" parent="SettingsPage/Control"]
+self_modulate = Color(0, 0, 0, 0.721569)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 652.0
+offset_bottom = 364.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_lv2qj")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/panel = SubResource("StyleBoxFlat_27f7r")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_ebqtr")
+tab_alignment = 1
+current_tab = 0
+clip_tabs = false
+
+[node name="Sound" type="TabBar" parent="SettingsPage/Control/TabContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_lv2qj")
+theme_override_font_sizes/font_size = 20
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Control/TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+metadata/_edit_lock_ = true
+
+[node name="SoundButton" type="TextureButton" parent="SettingsPage/Control/TabContainer/Sound"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 60.0
+offset_right = 134.0
+offset_bottom = 182.0
+toggle_mode = true
+texture_normal = ExtResource("4_43tde")
+texture_pressed = ExtResource("5_au8aq")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MasterSlider" parent="SettingsPage/Control/TabContainer/Sound" instance=ExtResource("6_ijtdq")]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 80.0
+offset_right = 529.0
+offset_bottom = 96.0
+busName = "Master"
+
+[node name="mRichTextLabel" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Sound/MasterSlider"]
+layout_mode = 2
+offset_left = 1.0
+offset_top = -34.0
+offset_right = 258.0
+offset_bottom = 9.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_lv2qj")
+theme_override_font_sizes/normal_font_size = 35
+text = "Master"
+
+[node name="MusicSlider" parent="SettingsPage/Control/TabContainer/Sound" instance=ExtResource("6_ijtdq")]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 125.0
+offset_right = 529.0
+offset_bottom = 141.0
+busName = "Music"
+
+[node name="musicRichTextLabel" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Sound/MusicSlider"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -34.0
+offset_right = 191.0
+offset_bottom = 9.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_lv2qj")
+theme_override_font_sizes/normal_font_size = 35
+text = "Music"
+
+[node name="SfxSlider" parent="SettingsPage/Control/TabContainer/Sound" instance=ExtResource("6_ijtdq")]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 174.0
+offset_right = 528.0
+offset_bottom = 190.0
+busName = "Sfx"
+
+[node name="sfxRichTextLabel" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Sound/SfxSlider"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -35.0
+offset_right = 273.0
+offset_bottom = 8.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_lv2qj")
+theme_override_font_sizes/normal_font_size = 35
+text = "Sound Effects"
+
+[node name="Graphics" type="TabBar" parent="SettingsPage/Control/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPage/Control/TabContainer/Graphics"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 30.0
+offset_right = 632.0
+offset_bottom = 397.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsPage/Control/TabContainer/Graphics/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPage/Control/TabContainer/Graphics/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 79
+
+[node name="Window" parent="SettingsPage/Control/TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("7_13g32")]
+layout_mode = 2
+
+[node name="Resolution" parent="SettingsPage/Control/TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("8_ebiyi")]
+layout_mode = 2
+
+[node name="Credits" type="TabBar" parent="SettingsPage/Control/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Acks" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Credits"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -317.0
+offset_top = -116.0
+offset_right = 314.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_lv2qj")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Story based on Digital Wellnests 
+Written by: Rachel Fischer & Sune von Solms
+
+Background pictures by: Valadzionak_volha
+
+Music: \"Jungle Jumpin'\" by Scott Elliott
+[/center]"
+tab_size = 2
+
+[node name="Assets" type="TabBar" parent="SettingsPage/Control/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="GAssets" type="RichTextLabel" parent="SettingsPage/Control/TabContainer/Assets"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -314.0
+offset_top = -121.0
+offset_right = 317.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("3_lv2qj")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center] Lucky the Fish
+Secure email by: Ida Desi Mariana
+Safe email \"Special linear color\" by: Freepik
+Caution email by: Yogi Aprelliyanto
+Phishing email by: Dewi Sari
+
+Elephant and his shoe 
+Parallax background by: Askariot
+Mascot bunny character by: Segel
+Spikey objects by: Robert Brooks
+Balls by: Robert Brooks
+
+Cyber Cat
+Flying Cat by: judgemon21
+
+[/center]"
+tab_size = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SettingsPage"]
+layout_mode = 2
+offset_left = 183.0
+offset_top = -7.0
+offset_right = 534.0
+offset_bottom = 84.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("3_lv2qj")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center]Settings[/center]"
+
+[node name="Back" type="Button" parent="SettingsPage"]
+modulate = Color(0.596078, 0.952941, 0.956863, 1)
+layout_mode = 0
+offset_left = 582.0
+offset_top = 390.0
+offset_right = 702.0
+offset_bottom = 475.0
+theme_override_fonts/font = ExtResource("3_lv2qj")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/hover = SubResource("StyleBoxFlat_f8n2t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dbdgq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a1ilj")
+text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SettingsPage"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_p56qm")
+}
+
+[connection signal="pressed" from="SettingsPage/Back" to="." method="_on_back_pressed"]
