@@ -455,7 +455,11 @@ func _on_sfx_slider_drag_started():
 
 func _on_exit_pressed():
 	# Play the click sound effect
+	
 	Music.clickSfx()
+	
+	$Effects.stream = load("res://Audio/Voice/Quit.wav")
+	$Effects.play()
 	
 	# Show the Exit Page
 	%ExitAnimationPlayer.play("popExit")
