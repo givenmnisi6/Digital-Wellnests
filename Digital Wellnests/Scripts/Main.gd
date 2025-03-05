@@ -509,6 +509,8 @@ func _on_n_button_pressed():
 	# Play the click sound effect
 	Music.clickSfx()
 	
+	$Effects.stop()
+	
 	# Hide the ExitPage node
 	#$ExitPage.hide()
 	%ExitAnimationPlayer.play_backwards("popExit")
