@@ -3405,8 +3405,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_pepu0")
 [node name="TextureRect" type="TextureRect" parent="ExitPage/Panel"]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 2.0
-offset_right = 704.0
+offset_top = 4.0
+offset_right = 701.0
 offset_bottom = 455.0
 texture = ExtResource("497_qfh31")
 expand_mode = 1
@@ -3414,9 +3414,9 @@ expand_mode = 1
 [node name="BG" type="TextureRect" parent="ExitPage/Panel"]
 modulate = Color(1, 1, 1, 0.333333)
 layout_mode = 0
-offset_left = -8.0
+offset_left = -11.0
 offset_top = -10.0
-offset_right = 712.0
+offset_right = 709.0
 offset_bottom = 470.0
 texture = ExtResource("497_naeyj")
 expand_mode = 1

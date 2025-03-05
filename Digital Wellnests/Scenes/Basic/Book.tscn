@@ -55,7 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://5e5fbsrshcg" path="res://Animations/PageTurn/PageTurn.0046.png" id="53_aiop6"]
 [ext_resource type="Texture2D" uid="uid://dmmk6utea1qgj" path="res://Animations/PageTurn/PageTurn.0047.png" id="54_jfi30"]
 [ext_resource type="Texture2D" uid="uid://c2d5caxno0f72" path="res://Animations/PageTurn/PageTurn.0048.png" id="55_ftpqm"]
-[ext_resource type="Texture2D" uid="uid://b5ivd3q7dbn4o" path="res://Images/Info.png" id="56_1idlk"]
+[ext_resource type="Texture2D" uid="uid://b5ivd3q7dbn4o" path="res://Images/info.png" id="56_1idlk"]
 [ext_resource type="AudioStream" uid="uid://blga8lj04csty" path="res://Audio/Voice/Snail1.wav" id="56_vgmqd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vu66r"]
@@ -535,10 +535,10 @@ one_shot = true
 
 [node name="InfoButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 296.0
-offset_top = -19.0
-offset_right = 383.0
-offset_bottom = 65.0
+offset_left = 303.0
+offset_top = -20.0
+offset_right = 382.0
+offset_bottom = 56.0
 pivot_offset = Vector2(16, 15)
 toggle_mode = true
 texture_normal = ExtResource("56_1idlk")
