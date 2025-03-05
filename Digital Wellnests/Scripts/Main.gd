@@ -79,12 +79,18 @@ func swap():
 		seTween.tween_property(elephant, "scale", Vector2(0.45,0.45), 0.3)
 		
 		# Play and stop animations accordingly
+		#snail.play()
+		#wolf.stop()
+		#hippo.stop()
+		#cat.stop()
+		#fish.stop()
+		#elephant.stop()
 		snail.play()
-		wolf.stop()
-		hippo.stop()
-		cat.stop()
-		fish.stop()
-		elephant.stop()
+		wolf.play()
+		hippo.play()
+		cat.play()
+		fish.play()
+		elephant.play()
 		
 		$Story.bbcode_text = "[center]Safety Snail’s e-mails[/center]"
 	
@@ -106,12 +112,18 @@ func swap():
 		seTween.tween_property(elephant, "scale", Vector2(0.42, 0.42), 0.3)
 		
 		# Play and stop animations accordingly
-		snail.stop()
-		wolf.stop()
-		hippo.stop()
-		cat.stop()
+		#snail.stop()
+		#wolf.stop()
+		#hippo.stop()
+		#cat.stop()
+		#fish.play()
+		#elephant.stop()
+		snail.play()
+		wolf.play()
+		hippo.play()
+		cat.play()
 		fish.play()
-		elephant.stop()
+		elephant.play()
 		
 		$Story.bbcode_text = "[center]Lucky the Fish[/center]"
 
@@ -133,11 +145,17 @@ func swap():
 		seTween.tween_property(elephant, "scale", Vector2(1.09, 1.09), 0.3)
 		
 		# Play and stop animations accordingly
-		snail.stop()
-		wolf.stop()
-		hippo.stop()
-		cat.stop()
-		fish.stop()
+		#snail.stop()
+		#wolf.stop()
+		#hippo.stop()
+		#cat.stop()
+		#fish.stop()
+		#elephant.play()
+		snail.play()
+		wolf.play()
+		hippo.play()
+		cat.play()
+		fish.play()
 		elephant.play()
 		
 		$Story.bbcode_text = "[center]Elephant and his shoe[/center]"
@@ -159,12 +177,18 @@ func swap():
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.4, 0.4), 0.3)
 
-		snail.stop()
+		#snail.stop()
+		#wolf.play()
+		#hippo.stop()
+		#cat.stop()
+		#fish.stop()
+		#elephant.stop()
+		snail.play()
 		wolf.play()
-		hippo.stop()
-		cat.stop()
-		fish.stop()
-		elephant.stop()
+		hippo.play()
+		cat.play()
+		fish.play()
+		elephant.play()
 		
 		$Story.bbcode_text = "[center]Wolf, Hyena and Fox[/center]"
 		
@@ -185,12 +209,18 @@ func swap():
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.4, 0.4), 0.3)
 
-		snail.stop()
-		wolf.stop()
+		#snail.stop()
+		#wolf.stop()
+		#hippo.play()
+		#cat.stop()
+		#fish.stop()
+		#elephant.stop()
+		snail.play()
+		wolf.play()
 		hippo.play()
-		cat.stop()
-		fish.stop()
-		elephant.stop()
+		cat.play()
+		fish.play()
+		elephant.play()
 		
 		$Story.bbcode_text = "[center]Happy Hippo[/center]"
 
@@ -211,12 +241,18 @@ func swap():
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.4, 0.4), 0.3)
 
-		snail.stop()
-		wolf.stop()
-		hippo.stop()
+		#snail.stop()
+		#wolf.stop()
+		#hippo.stop()
+		#cat.play()
+		#fish.stop()
+		#elephant.stop()
+		snail.play()
+		wolf.play()
+		hippo.play()
 		cat.play()
-		fish.stop()
-		elephant.stop()
+		fish.play()
+		elephant.play()
 
 		$Story.bbcode_text = "[center]Cyber Cat[/center]"
 
