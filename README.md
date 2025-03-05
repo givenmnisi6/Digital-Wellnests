@@ -4,15 +4,7 @@
 
 ---
 
-## To-Do List  
-
-### Developments:  
-- Fix book instructions
-- Confirm exit voice overs
-- Cyber Cat voice overs
----
-
 ## Developed With  
 
-- **Engine**: Godot 4  
+- **Engine**: Godot 4.3 
  
