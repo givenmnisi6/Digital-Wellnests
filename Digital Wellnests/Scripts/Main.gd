@@ -97,14 +97,14 @@ func swap():
 	# Lucky the Fish
 	elif iCount == 1:
 		# Move and scale each sprite to their respective positions and scales
-		psTween.tween_property(snail, "position", Vector2(52, 339), 0.35)
+		psTween.tween_property(snail, "position", Vector2(70, 339), 0.35)
 		phTween.tween_property(hippo, "position", Vector2(368, 438), 0.35)
 		pcTween.tween_property(wolf, "position", Vector2(530, 405), 0.35)
 		pwTween.tween_property(cat, "position", Vector2(220 , 420), 0.35)
 		pfTween.parallel().tween_property(fish, "position", Vector2(360, 230), 0.35)
 		peTween.tween_property(elephant, "position", Vector2(665, 355), 0.35)
 		
-		ssTween.tween_property(snail, "scale", Vector2(0.47, 0.47), 0.3)
+		ssTween.tween_property(snail, "scale", Vector2(0.43, 0.43), 0.3)
 		shTween.tween_property(hippo, "scale", Vector2(0.3, 0.3), 0.3)
 		swTween.tween_property(wolf, "scale", Vector2(0.4, 0.4), 0.3)
 		scTween.tween_property(cat, "scale", Vector2(0.37, 0.37), 0.3)
