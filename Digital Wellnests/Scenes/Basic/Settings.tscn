@@ -428,6 +428,7 @@ Balls by: Robert Brooks
 Cyber Cat
 Flying Cat by: judgemon21
 
+Info icon - gamegfx
 [/center]"
 tab_size = 2
 
@@ -497,5 +498,6 @@ libraries = {
 "": SubResource("AnimationLibrary_p56qm")
 }
 
+[connection signal="tab_clicked" from="SettingsPage/Control/TabContainer" to="." method="_on_tab_container_tab_clicked"]
 [connection signal="pressed" from="SettingsPage/Control/TabContainer/Sound/SoundButton" to="." method="_on_sound_button_pressed"]
 [connection signal="pressed" from="SettingsPage/Back" to="." method="_on_back_pressed"]

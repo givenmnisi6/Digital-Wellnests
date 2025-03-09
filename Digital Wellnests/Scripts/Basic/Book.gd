@@ -325,12 +325,10 @@ func _on_back_pressed() -> void:
 	queue_free()
 	Music.playMusic()
 
-
 func _on_okay_button_pressed() -> void:
 	$GameInstructions.hide()
 	$Pages.show()
 	storyStart()
-
 
 func _on_info_button_mouse_entered() -> void:
 	#$GameInstructions.show()

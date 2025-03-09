@@ -1,4 +1,4 @@
-[gd_scene load_steps=766 format=3 uid="uid://d28g3wuhntauh"]
+[gd_scene load_steps=754 format=3 uid="uid://d28g3wuhntauh"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
 [ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="2_3icno"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://djnw1bayii00g" path="res://Scenes/Basic/Quiz.tscn" id="4_tlpos"]
 [ext_resource type="Texture2D" uid="uid://dfsb33cwxxjwy" path="res://Images/ArrowL.png" id="5_hahof"]
 [ext_resource type="PackedScene" uid="uid://dn6h20wotd65l" path="res://Scenes/Basic/Settings.tscn" id="5_u1u5g"]
+[ext_resource type="PackedScene" uid="uid://qw3qmhc6su1q" path="res://Scenes/Basic/Exit.tscn" id="6_ilwlu"]
 [ext_resource type="Texture2D" uid="uid://cjqricwjoko0x" path="res://Animations/Slak1/Slak1Animation1.0000.png" id="6_roxhu"]
 [ext_resource type="Texture2D" uid="uid://cpkvs16q4fd5g" path="res://Animations/Slak1/Slak1Animation1.0001.png" id="7_j4f7l"]
 [ext_resource type="Texture2D" uid="uid://buhbwkf6drm1e" path="res://Animations/Slak1/Slak1Animation1.0002.png" id="8_hxb4v"]
@@ -375,7 +376,6 @@
 [ext_resource type="Texture2D" uid="uid://b7s7um0mums48" path="res://Images/Settings.png" id="369_6kui3"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="370_q2sss"]
 [ext_resource type="Texture2D" uid="uid://m5argv0q5nbo" path="res://Animations/Cat0/Cat0.0000.png" id="372_4b06e"]
-[ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="372_48jvv"]
 [ext_resource type="Texture2D" uid="uid://5xrdu432fvp8" path="res://Animations/Cat0/Cat0.0001.png" id="373_abv2c"]
 [ext_resource type="Texture2D" uid="uid://k20bxtfphy45" path="res://Animations/Cat0/Cat0.0002.png" id="374_x4hek"]
 [ext_resource type="Texture2D" uid="uid://rpl7pb6qlaao" path="res://Animations/Cat0/Cat0.0003.png" id="375_55i2f"]
@@ -500,8 +500,6 @@
 [ext_resource type="Texture2D" uid="uid://bcvy0ldxely1a" path="res://Animations/Fish8/Fish8.0001.png" id="494_3gb6i"]
 [ext_resource type="Texture2D" uid="uid://dyslvhbf5rg06" path="res://Animations/Fish8/Fish8.0002.png" id="495_1m256"]
 [ext_resource type="Texture2D" uid="uid://djivor53iw6m3" path="res://Animations/Fish8/Fish8.0003.png" id="496_1bkir"]
-[ext_resource type="Texture2D" uid="uid://dilph5mebhish" path="res://Images/GameBG.jpg" id="497_naeyj"]
-[ext_resource type="Texture2D" uid="uid://fq3dkupitt2y" path="res://Images/QuizBG.png" id="497_qfh31"]
 [ext_resource type="Texture2D" uid="uid://cboadjvhqnuw5" path="res://Animations/Fish8/Fish8.0004.png" id="497_rggfm"]
 [ext_resource type="Texture2D" uid="uid://cflx1uvvsv74r" path="res://Images/Exit.png" id="498_y3ox8"]
 [ext_resource type="Texture2D" uid="uid://chagfnyaa6btk" path="res://Animations/Fish8/Fish8.0005.png" id="498_yu0hf"]
@@ -2990,122 +2988,6 @@ size = Vector2(464.674, 464.674)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q74mb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pepu0"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lx15u"]
-bg_color = Color(0.00392157, 0.380392, 0.180392, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 20
-border_color = Color(0.00392157, 0.290196, 0.129412, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb03d"]
-bg_color = Color(0.00392157, 0.321569, 0.14902, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 20
-border_color = Color(0.00392157, 0.27451, 0.121569, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcivp"]
-bg_color = Color(0.00392157, 0.345098, 0.160784, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 20
-border_color = Color(0.00392157, 0.290196, 0.129412, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i6te"]
-bg_color = Color(0.619608, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 20
-border_color = Color(0.482353, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1308x"]
-bg_color = Color(0.501961, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 20
-border_color = Color(0.466667, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slhuy"]
-bg_color = Color(0.552941, 0, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 20
-border_color = Color(0.482353, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="Animation" id="Animation_00cv5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_aeqvp"]
-resource_name = "popExit"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_eiau4"]
-_data = {
-"RESET": SubResource("Animation_00cv5"),
-"popExit": SubResource("Animation_aeqvp")
-}
-
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -3116,6 +2998,7 @@ Book = ExtResource("2_iqdi2")
 Game = ExtResource("3_1kgnl")
 Quiz = ExtResource("4_tlpos")
 Settings = ExtResource("5_u1u5g")
+Exit = ExtResource("6_ilwlu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -3359,6 +3242,7 @@ icon = ExtResource("369_6kui3")
 flat = true
 icon_alignment = 1
 expand_icon = true
+metadata/_edit_lock_ = true
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 1
@@ -3378,113 +3262,6 @@ icon_alignment = 1
 expand_icon = true
 metadata/_edit_lock_ = true
 
-[node name="ExitPage" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 1.0
-offset_right = 721.0
-offset_bottom = 480.0
-pivot_offset = Vector2(360, 240)
-texture = ExtResource("372_48jvv")
-
-[node name="Panel" type="Panel" parent="ExitPage"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -230.0
-offset_right = 354.0
-offset_bottom = 230.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pepu0")
-
-[node name="TextureRect" type="TextureRect" parent="ExitPage/Panel"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 4.0
-offset_right = 701.0
-offset_bottom = 455.0
-texture = ExtResource("497_qfh31")
-expand_mode = 1
-
-[node name="BG" type="TextureRect" parent="ExitPage/Panel"]
-modulate = Color(1, 1, 1, 0.333333)
-layout_mode = 0
-offset_left = -11.0
-offset_top = -10.0
-offset_right = 709.0
-offset_bottom = 470.0
-texture = ExtResource("497_naeyj")
-expand_mode = 1
-
-[node name="ConfirmExitTitle" type="RichTextLabel" parent="ExitPage/Panel"]
-layout_mode = 0
-offset_left = 155.0
-offset_top = 7.0
-offset_right = 522.0
-offset_bottom = 105.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 85
-bbcode_enabled = true
-text = "[center]Confirm Exit[/center]"
-
-[node name="ConfirmExitTitle2" type="RichTextLabel" parent="ExitPage/Panel"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 111.0
-offset_right = 704.0
-offset_bottom = 185.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 9
-theme_override_fonts/normal_font = ExtResource("370_q2sss")
-theme_override_font_sizes/normal_font_size = 60
-bbcode_enabled = true
-text = "[center]Are you sure you want to quit?[/center]"
-metadata/_edit_lock_ = true
-
-[node name="yButton" type="Button" parent="ExitPage/Panel"]
-modulate = Color(0, 0.905882, 0.180392, 1)
-layout_mode = 0
-offset_left = 5.0
-offset_top = 199.0
-offset_right = 343.0
-offset_bottom = 443.0
-scale = Vector2(1, 1e-05)
-theme_override_fonts/font = ExtResource("370_q2sss")
-theme_override_font_sizes/font_size = 200
-theme_override_styles/hover = SubResource("StyleBoxFlat_lx15u")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_gb03d")
-theme_override_styles/normal = SubResource("StyleBoxFlat_kcivp")
-text = "Yes"
-
-[node name="nButton" type="Button" parent="ExitPage/Panel"]
-modulate = Color(0.780392, 0, 0, 1)
-layout_mode = 0
-offset_left = 361.0
-offset_top = 199.0
-offset_right = 699.0
-offset_bottom = 443.0
-scale = Vector2(1, 1e-05)
-theme_override_fonts/font = ExtResource("370_q2sss")
-theme_override_font_sizes/font_size = 200
-theme_override_styles/hover = SubResource("StyleBoxFlat_4i6te")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1308x")
-theme_override_styles/normal = SubResource("StyleBoxFlat_slhuy")
-text = "No"
-
-[node name="ExitAnimationPlayer" type="AnimationPlayer" parent="ExitPage"]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_eiau4")
-}
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
 
@@ -3503,6 +3280,4 @@ volume_db = 12.0
 [connection signal="pressed" from="Control/Elephant/eButton" to="." method="_on_e_button_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="ExitPage/Panel/yButton" to="." method="_on_y_button_pressed"]
-[connection signal="pressed" from="ExitPage/Panel/nButton" to="." method="_on_n_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

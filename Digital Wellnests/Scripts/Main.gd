@@ -6,6 +6,7 @@ extends Control
 @export var Quiz: PackedScene
 @export var Settings: PackedScene
 @onready var settings = $Settings
+@export var Exit: PackedScene
 
 var snail: AnimatedSprite2D
 var hippo: AnimatedSprite2D
@@ -437,6 +438,7 @@ func startGame():
 
 func returnToMain() -> void:
 	# Scale up the Control node
+	$ColorRect.scale = Vector2(1, 1)
 	$Control.scale = Vector2(1, 1)
 	$Story.show()
 	$Instructions.show()
@@ -477,40 +479,10 @@ func _on_audio_stream_player_finished():
 	# Play the audio stream again
 	$AudioStreamPlayer.play()
 
-#func _on_back_pressed():
-	## Play the click sound effect
-	#Music.clickSfx()
-	#
-	## Hide the SettingsPage node
-	#%AnimationPlayer.play_backwards("PopOut")
-	##$SettingsPage.hide()
-
 func _on_sfx_slider_drag_started():
 	# Notify that the SFX slider value has changed
 	Music.valueChangedSfx()
 
-func _on_exit_pressed():
-	# Play the click sound effect
-	
-	Music.clickSfx()
-	
-	$Effects.stream = load("res://Audio/Voice/Quit.wav")
-	$Effects.play()
-	
-	# Show the Exit Page
-	%ExitAnimationPlayer.play("popExit")
-	$ExitPage.show()
-	
-	# Create a tween for animation
-	var twn = get_tree().create_tween()
-	
-	# Get the yButton and nButton nodes
-	var y = $ExitPage/Panel/yButton
-	var n = $ExitPage/Panel/nButton
-
-	# Scale up the yButton and nButton nodes
-	twn.tween_property(y, "scale", Vector2(1,1), 0.4)
-	twn.tween_property(n, "scale", Vector2(1,1), 0.4)
 
 func _on_exit_gui_input(event):
 	if (event is InputEventScreenTouch && InputEventMouseButton):
@@ -538,26 +510,16 @@ func _on_settings_pressed():
 	var settingsInstance = Settings.instantiate()
 	add_child(settingsInstance)
 	# Show the SettingsPage node
-	#%AnimationPlayer.play("PopOut")
 	settingsInstance.show()
 
-func _on_n_button_pressed():
+func _on_exit_pressed():
 	# Play the click sound effect
 	Music.clickSfx()
 	
-	$Effects.stop()
+	var exitInstance = Exit.instantiate()
+	add_child(exitInstance)
 	
-	# Hide the ExitPage node
-	#$ExitPage.hide()
-	%ExitAnimationPlayer.play_backwards("popExit")
-
-func _on_y_button_pressed():
-	# Play the click sound effect
-	Music.clickSfx()
-	
-	# Quit the game
-	%ExitAnimationPlayer.play_backwards("popExit")
-	get_tree().quit()
+	exitInstance.show()
 
 func _on_settings_gui_input(event):
 	if (event is InputEventScreenTouch && InputEventMouseButton):

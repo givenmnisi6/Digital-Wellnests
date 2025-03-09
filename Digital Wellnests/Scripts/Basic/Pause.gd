@@ -5,9 +5,6 @@ extends Control
 # References the game node - two levels up
 @onready var game = $"../../"
 
-#func _ready() -> void:
-	#$Instructions/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(game.gameIndex) + ".png")
-
 # Checks if the esc button is pressed
 func _process(delta: float) -> void:
 	escapeButton()
@@ -42,16 +39,12 @@ func _on_resume_button_pressed() -> void:
 	Music.clickSfx()
 	game.pauseMenus()
 
-# Calls the quit function and the Sfx 
-#func _on_exit_button_pressed() -> void:
-	#Music.clickSfx()
-	#quitGame()
-
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
 	
 	# Get the parent scene, the Main scene and return to it and free the game instance
 	var mainScene = game.get_parent()
+	#mainScene.ControlRect.show
 	mainScene.returnToMain()
 	game.queue_free()
 
