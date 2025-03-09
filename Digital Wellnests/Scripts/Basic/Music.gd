@@ -42,6 +42,7 @@ func _on_audio_stream_player_finished():
 func wrongSfx():
 	# Play the wrong sound effect
 	playSfx(wrong)
+	
 
 func rightSfx():
 	# Play the correct sound effect
