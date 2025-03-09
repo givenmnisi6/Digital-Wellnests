@@ -1,8 +1,14 @@
 extends Node2D
 
+# Load the music and sound effects
+var intro = load("res://Audio/Effects/Jungle.wav")
+var click = load("res://Audio/Effects/click.wav")
+var changed = load("res://Audio/Effects/aRight2.wav")
+var wrong = load("res://Audio/Effects/aWrong.wav")
+var right = changed  # Use the same resource instead of loading twice
+
 func _ready():
 	# Load the intro music
-	var intro = load("res://Audio/Effects/Jungle.wav")
 	$AudioStreamPlayer.stream = intro
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer.connect("finished",Callable(self, "_on_audio_stream_player_finished"))
@@ -15,32 +21,28 @@ func playMusic():
 func stopMusic():
 	$AudioStreamPlayer.volume_db = -10
 
-func clickSfx():
-	# Load the click sound effect
-	var click = load("res://Audio/Effects/click.wav")
-	$SoundEffects.stream = click
+# Helper function to play sound effects
+func playSfx(sound):
+	# Play the given sound effect
+	$SoundEffects.stream = sound
 	$SoundEffects.play()
 
+func clickSfx():
+	# Play the click sound effect
+	playSfx(click)
+
 func valueChangedSfx():
-	# Load the sound effect for value change
-	var changed = load("res://Audio/Effects/aRight2.wav")
-	$SoundEffects.stream = changed
-	$SoundEffects.play()
+	# Play the sound effect for value change
+	playSfx(changed)
 
 func _on_audio_stream_player_finished():
 	# When the audio stream player finishes playing, restart the intro music
-	var intro = load("res://Audio/Effects/Jungle.wav")
-	$AudioStreamPlayer.stream = intro
 	$AudioStreamPlayer.play()
 
 func wrongSfx():
-	# Load the wrong sound effect
-	var wrong = load("res://Audio/Effects/aWrong.wav")
-	$SoundEffects.stream = wrong
-	$SoundEffects.play()
+	# Play the wrong sound effect
+	playSfx(wrong)
 
 func rightSfx():
-	# Load the correct sound effect
-	var wrong = load("res://Audio/Effects/aRight2.wav")
-	$SoundEffects.stream = wrong
-	$SoundEffects.play()
+	# Play the correct sound effect
+	playSfx(right)
