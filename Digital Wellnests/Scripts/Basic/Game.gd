@@ -362,6 +362,7 @@ func losePoints(body):
 			body.visible = true
 			await get_tree().create_timer(0.1).timeout
 		audio.stream = load("res://Audio/Effects/aWrong.wav")
+		audio.volume_db = -3.0
 		audio.play()
 		$CanvasLayer/Rabbit.stopJumpingSound()
 		$CanvasLayer/Rabbit.makeInvisible()
@@ -1066,10 +1067,17 @@ func pauseMenus():
 		$CanvasLayer/Rabbit.setActive(true)
 		if gameIndex == 2:
 			$CanvasLayer/Rabbit.makeVisible()
+			# Show the ground and rabbit again when unpausing
+			$CanvasLayer/Ground.show()
+			$CanvasLayer/Rabbit.show()
 	else:
 		pauseMenu.show()
 		get_tree().paused = true
 		$CanvasLayer/Rabbit.setActive(false)
 		if gameIndex == 2:
 			$CanvasLayer/Rabbit.makeInvisible()
+			# Hide the ground and rabbit when pausing
+			$CanvasLayer/Ground.hide()
+			$CanvasLayer/Rabbit.hide()
+	
 	paused = !paused
