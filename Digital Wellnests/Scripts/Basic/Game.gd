@@ -362,6 +362,7 @@ func losePoints(body):
 			body.visible = true
 			await get_tree().create_timer(0.1).timeout
 		audio.stream = load("res://Audio/Effects/aWrong.wav")
+		audio.volume_db = -3.0
 		audio.play()
 		$CanvasLayer/Rabbit.stopJumpingSound()
 		$CanvasLayer/Rabbit.makeInvisible()
