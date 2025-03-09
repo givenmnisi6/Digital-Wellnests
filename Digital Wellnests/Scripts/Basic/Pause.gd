@@ -2,7 +2,7 @@ extends Control
 
 # NB! Make sure that in the Inspector, under Node the Mode is Always
 
-# References the game node - two levels up
+# References the game node (parent of parent)
 @onready var game = $"../../"
 
 # Checks if the esc button is pressed
@@ -20,9 +20,6 @@ func pauseGame():
 func pauseAnimation():
 	%AnimationPlayer.play("PopOut")
 
-#func resumeAnimation():
-	#%AnimationPlayer.play_backwards("PopOut")
-
 # Quits the game
 func quitGame():
 	get_tree().quit()
@@ -34,44 +31,45 @@ func escapeButton():
 	elif Input.is_action_just_pressed("pause") and get_tree().paused:
 		resumeGame()
 
-# Calls the Pause Menu's function in the game scene
+# Handle the resume button press
 func _on_resume_button_pressed() -> void:
 	Music.clickSfx()
 	game.pauseMenus()
 
+# Handle the menu button press - return to main menu
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
 	
-	# Get the parent scene, the Main scene and return to it and free the game instance
+	# Get the parent scene (Main scene) and return to it
 	var mainScene = game.get_parent()
-	#mainScene.ControlRect.show
 	mainScene.returnToMain()
 	game.queue_free()
 
+# Handle restart button press
 func _on_restart_button_pressed() -> void:
 	# Unpause the game
 	get_tree().paused = false
 	restartGame()
 
+# Restart the current game
 func restartGame():
 	# Unpause the game
 	get_tree().paused = false
 	
 	# Get the parent (Main scene)
-	var main_scene = game.get_parent()
+	var mainScene = game.get_parent()
 	
-	# Store the current game index (make sure to use the correct property)
+	# Store the current game index
 	var current_game_index = game.gameIndex
 	
 	# Remove the old game instance
 	game.queue_free()
 	
-	# Set the story index on the main scene
-	main_scene.iStory = current_game_index
-	
-	# Start a new game with the same story
-	main_scene.startGame()
+	# Set the story index on the main scene and start a new game
+	mainScene.iStory = current_game_index
+	mainScene.startGame()
 
+# Show the instructions panel with game-specific content
 func _on_how_to_button_pressed() -> void:
 	$Instructions.show()
 	Music.clickSfx()
@@ -79,6 +77,7 @@ func _on_how_to_button_pressed() -> void:
 	$Instructions/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(game.gameIndex) + ".png")
 	$Panel.hide()
 
+# Handle back button in instructions panel
 func _on_back_button_pressed() -> void:
 	$Instructions.hide()
 	Music.clickSfx()

@@ -79,13 +79,6 @@ func swap():
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39,0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.45,0.45), 0.3)
 		
-		# Play and stop animations accordingly
-		#snail.play()
-		#wolf.stop()
-		#hippo.stop()
-		#cat.stop()
-		#fish.stop()
-		#elephant.stop()
 		snail.play()
 		wolf.play()
 		hippo.play()
@@ -112,13 +105,6 @@ func swap():
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.94, 0.94), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.42, 0.42), 0.3)
 		
-		# Play and stop animations accordingly
-		#snail.stop()
-		#wolf.stop()
-		#hippo.stop()
-		#cat.stop()
-		#fish.play()
-		#elephant.stop()
 		snail.play()
 		wolf.play()
 		hippo.play()
@@ -144,14 +130,7 @@ func swap():
 		scTween.tween_property(cat, "scale", Vector2(0.37, 0.37), 0.3)
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.35, 0.35), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(1.09, 1.09), 0.3)
-		
-		# Play and stop animations accordingly
-		#snail.stop()
-		#wolf.stop()
-		#hippo.stop()
-		#cat.stop()
-		#fish.stop()
-		#elephant.play()
+
 		snail.play()
 		wolf.play()
 		hippo.play()
@@ -178,12 +157,6 @@ func swap():
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.4, 0.4), 0.3)
 
-		#snail.stop()
-		#wolf.play()
-		#hippo.stop()
-		#cat.stop()
-		#fish.stop()
-		#elephant.stop()
 		snail.play()
 		wolf.play()
 		hippo.play()
@@ -210,12 +183,6 @@ func swap():
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.4, 0.4), 0.3)
 
-		#snail.stop()
-		#wolf.stop()
-		#hippo.play()
-		#cat.stop()
-		#fish.stop()
-		#elephant.stop()
 		snail.play()
 		wolf.play()
 		hippo.play()
@@ -242,12 +209,6 @@ func swap():
 		sfTween.parallel().tween_property(fish, "scale", Vector2(0.39, 0.39), 0.3)
 		seTween.tween_property(elephant, "scale", Vector2(0.4, 0.4), 0.3)
 
-		#snail.stop()
-		#wolf.stop()
-		#hippo.stop()
-		#cat.play()
-		#fish.stop()
-		#elephant.stop()
 		snail.play()
 		wolf.play()
 		hippo.play()
@@ -515,6 +476,7 @@ func _on_settings_pressed():
 func _on_exit_pressed():
 	# Play the click sound effect
 	Music.clickSfx()
+	$Effects.stop()
 	
 	var exitInstance = Exit.instantiate()
 	add_child(exitInstance)

@@ -61,7 +61,7 @@ var groundHeight: int
 var rabbitSpeed : float
 
 # List of possible obstacle scenes, more can be added
-var obstaclesType := [cactusScene, cactiScene, thornScene, ballScene, coinScene] 
+var obstaclesType := [cactusScene, cactiScene, thornScene, ballScene, coinScene]
 # Array for storing instantiated obstacles
 var obstacles: Array
 
@@ -77,23 +77,23 @@ func _ready():
 	# Playing the voices for each game
 	$Effects.stream = ResourceLoader.load("res://Audio/Voice/GameEx" + str(gameIndex) + ".wav")
 	$Effects.play()
-	bpaused = false 
+	bpaused = false
 
 	# Loading the how to play instructions of each game
 	$StartGame/HowTo.texture = ResourceLoader.load("res://Images/GameEx" + str(gameIndex) + ".png")
-	
-	# Ensures that the game window responds to player inputs 
+
+	# Ensures that the game window responds to player inputs
 	grab_click_focus()
-	
+
 	# Enable viewport for the camera to follow the screen, can be done in the Inspector node
 	$CanvasLayer.follow_viewport_enabled = true
-	
+
 	# Screensize of the window, this is used for resising elements based on the screen resolution
 	screen_size = get_window().size
-	
+
 	# Get the height of the ground sprite, this is used for positioning objects in the game
 	groundHeight = $CanvasLayer/Ground.get_node("Sprite2D").texture.get_height()
-	
+
 	# If gameIndex == 2, which is Elephant and his shoe, disable the already existing collision shape
 	# So that it does not intefer with other games
 	if gameIndex == 2:
@@ -109,29 +109,29 @@ func _process(delta: float) -> void:
 	# Check if the game is paused
 	if bpaused:
 		return
-	
+
 	generateObstacles()
-	
+
 	# Move the character2d and camera
 	$CanvasLayer/Rabbit.position.x += rabbitSpeed
 	$CanvasLayer/Camera2D.position.x += rabbitSpeed
 
 	# Update score based on the distance
 	rabbitScore += rabbitSpeed
-	
+
 	# Update the ground position when the ground position ends
 	if $CanvasLayer/Camera2D.position.x - $CanvasLayer/Ground.position.x > screen_size.x * 1.5:
 		$CanvasLayer/Ground.position.x += screen_size.x
-	
+
 	# Remove obstacles that already have passed
 	# Create a temporary array for obstacles to remove
 	var obstaclesToRemove = []
-	
+
 	for obs in obstacles:
 		# Check if the obstacle is valid and has moved out of the screen's view
 		if is_instance_valid(obs) and obs.position.x < ($CanvasLayer/Camera2D.position.x - screen_size.x):
 			obstaclesToRemove.append(obs)
-	
+
 	# Remove obstacles after the loop
 	for obs in obstaclesToRemove:
 		removeObstacle(obs)
@@ -142,7 +142,7 @@ func _on_play_button_pressed():
 	$Hud/Score.show()
 	$PauseGame/Pause.show()
 	Music.clickSfx()
-	
+
 	# Remove the instructions
 	$StartGame.scale = Vector2(0, 0)
 	$CanvasLayer/Rabbit.setActive(true)
@@ -156,7 +156,7 @@ func startGame():
 	# Initially it is 0
 	goal = 20
 	lives = 3
-	score = 0 
+	score = 0
 	gameOver = false
 
 	# Safety Snail game
@@ -165,15 +165,15 @@ func startGame():
 	if gameIndex == 0:
 		#Displaying the 3 hearts
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
-		
+
 		# Calculate the conveyor size based on the level
 		var conSize: int = (level + 1) / 2 + 5
-		calcConveyor(conSize) 
-		
+		calcConveyor(conSize)
+
 		# Calculate the conveyor size based on the level
 		speed = level * 0.2 + 1             # Calculate the speed based on the level
 		_screenSize = Vector2(720, 480)     # Set the screen size
-		
+
 		# Initialize variables for looping through the layout (lay)
 		var items: int = lay.size()
 		var posCount: int = 0
@@ -181,7 +181,7 @@ func startGame():
 
 		for j in range (items):
 			num += lay[j]
-			
+
 		unitSize = _screenSize.x / num
 
 		# Loop through the layout and create conveyors
@@ -191,7 +191,7 @@ func startGame():
 
 		$EnvelopeTimer.wait_time = (10 / 1) / 10 + 1
 		$EnvelopeTimer.start()
-		
+
 	elif gameIndex == 1:
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
 		$MailTimer.start()
@@ -211,19 +211,19 @@ func startGame():
 		rabbitSpeed = START_SPEED #+ ((level - 1) / float($StartGame/HSlider.max_value - 1)) * (MAX_SPEED - START_SPEED) * 0.25
 		#if level >= 6:
 			#rabbitSpeed = START_SPEED * 1.5
-		
+
 		# Limit the speed to the max speed allowed
 		if rabbitSpeed > MAX_SPEED:
 			rabbitSpeed = MAX_SPEED
 
 		bpaused = false
-		
+
 	# Wolf, Hyena and Fox game
 	elif gameIndex == 3:
 		$Hud/Score.hide()
 		var x: int = 3
 		var y: int = 2
-		
+
 		# Checks whether x is odd or is equals to y
 		for i in range (1, (level + 1)/2):
 			if x % 2 == 1 or x == y:
@@ -236,14 +236,14 @@ func startGame():
 			for j in range(y):
 				row.append(0)
 			grid.append(row)
-		
+
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
 		$PauseGame/Pause.hide()
 
 	# Happy Hippo game
 	elif gameIndex == 4:
-		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
 
 		$BullyTimer.wait_time = (18 - level) * 0.06
 		$BullyTimer.start()
@@ -251,7 +251,7 @@ func startGame():
 
 	# Cyber Cat game
 	elif gameIndex == 5:
-		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png") 
+		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
 		$CatTimer.start()
 		$ActivitiesTimer.start()
 
@@ -262,16 +262,16 @@ func startRunning():
 	$CanvasLayer/Rabbit.velocity = Vector2i(0, 0)
 	$CanvasLayer/Camera2D.position = CAM_START_POS
 	$CanvasLayer/Ground.position = Vector2i(0, 0)
-	
+
 	bpaused = true
 
 func generateObstacles():
-	# If its game over 
+	# If its game over
 	if gameOver:
 		return
 
 	# If the obstacles array/list is empty
-	# Or if the last obstacle is far from the Rabbit's current score 
+	# Or if the last obstacle is far from the Rabbit's current score
 	if obstacles.is_empty() or !is_instance_valid(lastObs) or lastObs.position.x < rabbitScore + randi_range(100, 150):
 		# Maximum number of obstacles
 		var maxObstacles = 1
@@ -283,25 +283,25 @@ func generateObstacles():
 			maxObstacles = 2
 		if level > 7:
 			maxObstacles = 3
-			
+
 		# Generate the specified number of obstacles
 		for i in range(maxObstacles):
 			# Pick a different obstacle type each iteration
 			var obsType = obstaclesType[randi() % obstaclesType.size()]
 			var obs = obsType.instantiate()
-			
+
 			# Get height and scale information
 			var obsHeight = obs.get_node("Sprite2D").texture.get_height()
 			var obsScale = obs.get_node("Sprite2D").scale
 
 			var obs_x: int = screen_size.x + rabbitScore + 100 + (i * 100)
-			
+
 			# Set position of each obstacle
 			if level >= 6:
 				obs_x = screen_size.x + rabbitScore + 100 + (i * 250)
-			
+
 			var obs_y: int = screen_size.y - groundHeight - (obsHeight * obsScale.y / 2) + 168
-			
+
 			# Increase the y-axis of the ball to be a bit higher
 			if obsType == ballScene:
 				obs_y -= 19
@@ -309,17 +309,17 @@ func generateObstacles():
 				# Position coinScene in the middle to top of the screen
 				obs_y = randi_range(int(screen_size.y * 0.3), int(screen_size.y * 0.7))
 			obs.position = Vector2(obs_x, obs_y)
-			
+
 			# Update lastObs and add obstacle to the scene
 			lastObs = obs
 			#print("Last Obstacle: ", obs_x)
 			addObstacles(obs, obs_x, obs_y,obsType)
-			
-		if level > 4: 
+
+		if level > 4:
 			if(randi() % 2) == 0:
 				# Generate a bird obstacle
 				var birdObs = birdScene.instantiate()
-				var obs_x: int = screen_size.x + rabbitScore + 100 
+				var obs_x: int = screen_size.x + rabbitScore + 100
 				var obs_y : int = birdHeight[randi() % birdHeight.size()] - 130
 				#print("obs_y: ", obs_y)
 				addObstacles(birdObs, obs_x, obs_y, birdScene)
@@ -354,7 +354,7 @@ func losePoints(body):
 	# Check if the colliding body is the Rabbit
 	if body.name == "Rabbit":
 		var audio = $Effects
-		
+
 		# Make the player blink twice when it collides with harmful obstacles
 		for i in range(2):
 			body.visible = false
@@ -426,30 +426,30 @@ func addObstacles(obs, x, y, obsType):
 		#obs.set_z_as_relative(false)
 	#print("Obstacle z_index: ", obs.z_index)
 	#print("Rabbit z_index: ", $CanvasLayer/Rabbit.z_index)
-	
+
 	# Adding the obstacles to the scene tree, otherwise, add directly to the current node
 	if true:
 		get_parent().add_child(obs)
 	else:
 		add_child(obs)
 	# Keep adding obstacles in the obstacles array
-	obstacles.append(obs) 
+	obstacles.append(obs)
 
 func removeObstacle(obs):
 	# Remove the obstacle from the obstacles array first
 	if obstacles.has(obs):
 		obstacles.erase(obs)
-	
+
 	# Then remove it from the scene
 	obs.queue_free()
 
-# Generate tiles 
+# Generate tiles
 func spawnTiles(maxx: int, maxy:int):
 	var uneven: bool = false
 	var imageA: int = 2
 	var numImages: int =  maxx * maxy / 2
 	var rand = RandomNumberGenerator.new()
-	
+
 	var tiles: Array = []
 	for i in range(numImages):
 		tiles.append([0,0])
@@ -471,19 +471,19 @@ func spawnTiles(maxx: int, maxy:int):
 			tiles[i][1] = 2
 		else:
 			tiles[i][1] = imageA
-	
+
 	var val: int
 	var scale = 4.5 / maxy
 	var offy = int((480 - 100 * scale * maxy) / 2)
 	var offx = int((720 - 100 * scale * maxx) / 2)
-	
+
 	if offx < 0:
 		scale = 7.0 / maxx
 		offx = int((720 - 100 * scale * maxx) / 2)
 		offy = int((480 - 100 * scale * maxy) / 2)
-	
+
 	matches = maxx * maxy / 2
-	
+
 	for y in range (maxy):
 		for x in range (maxx):
 			var tileInstance = Tile.instantiate()
@@ -493,10 +493,10 @@ func spawnTiles(maxx: int, maxy:int):
 			index = randi() % numImages
 			while tiles[index][1] <= 0:
 				index = randi() % numImages
-			
+
 			tiles[index][1] -= 1
 			val = tiles[index][0]
-			
+
 			grid[x][y] = val
 			tileInstance.set("value", val)
 			tileInstance.position = Vector2(x * 100 * scale + offx, y * 100 * scale + offy)
@@ -542,10 +542,10 @@ func calcConveyor(conveyorSize: int):
 		conCount += 1                # Ensure there is at least one conveyor belt object
 
 	# Calculate size of each conveyor belt object
-	var size: float = (conveyorSize) / conCount           
-	var random = RandomNumberGenerator.new()             
+	var size: float = (conveyorSize) / conCount
+	var random = RandomNumberGenerator.new()
 	var containsAll: bool
-	
+
 	# Set the number of columns based on the current level
 	if level <= 3:
 		colCount = 2
@@ -563,7 +563,7 @@ func calcConveyor(conveyorSize: int):
 			group[1] = (group[1] + 1) % colCount
 
 	# In level 2, there will be three conveyor sections with sizes 2, 3, and 2 respectively, the column count will be 3
-	elif level == 2: 
+	elif level == 2:
 		lay = [2, 3, 2]
 		group = [1, 0, 1]
 		group = customShuffle(group)
@@ -571,12 +571,12 @@ func calcConveyor(conveyorSize: int):
 		# Min and Max sizes for determining the sizes of conveyor sections
 		var minimum = 1
 		var maximum = 3
-		# For keeping track of the index when populating the tmp array	
+		# For keeping track of the index when populating the tmp array
 		var k = 0
 		# Determine the total number of conveyor sections
 		conCount = 0
 		# Total size of conveyor sections generated
-		var tot = 0 
+		var tot = 0
 
 		# Generate the sizes of the conveyor belt objects with a size that is in between 1 and 3.
 		# While the total size is less than the conveyor size
@@ -615,8 +615,8 @@ func calcConveyor(conveyorSize: int):
 			containsAll = true
 			group.clear()
 			# Array to store unique colors
-			var uniqueColors: Array = [] 
-			
+			var uniqueColors: Array = []
+
 			for i in range(conCount):
 				var rnd: int
 				rnd = randi() % colCount
@@ -624,7 +624,7 @@ func calcConveyor(conveyorSize: int):
 					rnd = randi() % colCount
 				prev = rnd
 				group.append(rnd)
-			
+
 			for colorIndex in range(colCount):
 				var foundColor = false
 				for j in range(conCount):
@@ -638,20 +638,20 @@ func calcConveyor(conveyorSize: int):
 func createConveyor(pos: Vector2, size: int, i:int):
 	var convInstance = Conveyor.instantiate()
 	$BG/inGame.add_child(convInstance)
-	
+
 	var random = RandomNumberGenerator.new()
 	convInstance.position = pos
-	
+
 	convInstance.frame = random.randi_range(0, 119)
 	convInstance.speed_scale = 3.1 * speed
 	convInstance.animation = "Move" + str(size)
-	
+
 	convInstance.scale = Vector2(unitSize / 100 * 1, convInstance.scale.y)
 
 	if i < group.size():
 		if group[i] == 0:
 			# Pinkish
-			convInstance.modulate = Color(1.0, 1.0, 1.0, 1) 
+			convInstance.modulate = Color(1.0, 1.0, 1.0, 1)
 			# Greyish
 		elif group[i] == 1:
 			convInstance.modulate = Color(0.15, 0.15, 0.15, 1)
@@ -674,13 +674,13 @@ func spawnEnvelope(type: int, lane: int):
 		envInstance.set("Speed", 1.1 * speed)
 		envInstance.set("lane", lane)
 		envInstance.set("type", type)
-		
+
 		# Scale the envelope in level 1
 		if level == 1:
 			envInstance.scale *= Vector2(0.7, 0.7)
 
 		if type == 0:
-			envInstance.modulate = Color(1.0, 1.0, 1.0, 1) 
+			envInstance.modulate = Color(1.0, 1.0, 1.0, 1)
 		elif type == 1:
 			envInstance.modulate = Color(0.15, 0.15, 0.15, 1)
 		elif type == 2:
@@ -711,7 +711,7 @@ func _on_envelope_stop_area_entered(area):
 	if gameIndex == 0:
 		# Total of conveyor sizes, it is initialised with the size of the first conveyor
 		var tot = lay[0]
-		# Holds the temporary lane of the current envelope 
+		# Holds the temporary lane of the current envelope
 		var temp: int = area.get("lane")
 		# Keeps track of the conveyor being checked at the moment
 		var convIndex: int = 0
@@ -719,7 +719,7 @@ func _on_envelope_stop_area_entered(area):
 		while temp >= tot:
 			tot += lay[convIndex+1]
 			convIndex += 1
-		
+
 		var ap = $Effects
 		# Check if the entered area's type matches the conveyor's group
 		if int(area.type) == group[convIndex]:
@@ -738,8 +738,8 @@ func gameEnd(win: bool):
 	var mailInstance = Mails.instantiate()
 	speed = -10.0
 	mailInstance.setSpeed(speed)
-	
-	$MailTimer.stop() 
+
+	$MailTimer.stop()
 	$CatTimer.stop()
 	$BullyTimer.stop()
 	$ActivitiesTimer.stop()
@@ -748,19 +748,19 @@ func gameEnd(win: bool):
 		# Checks if camera2D exists in canvaslayer
 		if $CanvasLayer/Camera2D:
 			# Ensures this camera is active
-			$CanvasLayer/Camera2D.make_current()  
+			$CanvasLayer/Camera2D.make_current()
 			# Stop any processing in Camera2D,
 			$CanvasLayer/Camera2D.set_process(false)
-		# Disable Camera2D to stop it from following 
+		# Disable Camera2D to stop it from following
 		$CanvasLayer/Camera2D.enabled = false
-	
+
 	# gameIndex == 3
-	# Stop generating new obstacles and clear the list 
+	# Stop generating new obstacles and clear the list
 		var valid_obstacles = obstacles.filter(func(obs): return is_instance_valid(obs))
 		for obs in valid_obstacles:
 			obs.queue_free()
 		obstacles.clear()
-			
+
 		$CanvasLayer.follow_viewport_enabled = false
 	#if gameIndex == 1:
 		$".".scale = Vector2(1,1)
@@ -782,7 +782,7 @@ func gameEnd(win: bool):
 		$Hud/EndAnim.animation = "Defeat" + str(gameIndex)
 	$PauseGame/Pause.hide()
 	ap.play()
-	
+
 	$Hud/EndAnim.visible = true
 	$Hud/EndAnim.play()
 	$Hud/Message.visible = true
@@ -795,7 +795,7 @@ func _on_b_level_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
 	Music.clickSfx()
-	
+
 	get_parent().call("startGame")
 	queue_free()
 
@@ -817,26 +817,26 @@ func _on_envelope_timer_timeout():
 
 func _on_bully_timer_timeout():
 	var targetInstance = Target.instantiate()
-	
+
 	add_child(targetInstance)
 	var scale = 0.04 * (20 - level)
 
 	targetInstance.scale = Vector2(scale, scale)
-	
+
 	var rand = RandomNumberGenerator.new()
-	
+
 	targetInstance.get_node("DispTimer").wait_time = (16 - level) / 4
 	targetInstance.get_node("DispTimer").start()
-	
+
 	var x: int
 	var y: int
 	var uni: bool
-	
+
 	while true:
 		uni = true
 		x = randi() % (720 - int(scale * 400)) + int(scale * 200)
 		y = randi() % (480 - int(scale * 300)) + int(scale * 150)
-		
+
 		for i in range(2):
 			if (pow(x - prev[i][0], 2) + pow(y - prev[i][1], 2) < pow(200, 2)):
 				uni = false
@@ -845,13 +845,13 @@ func _on_bully_timer_timeout():
 
 	prev[1][0] = prev[0][0]
 	prev[1][1] = prev[0][1]
-	
+
 	prev[0][0] = x
 	prev[0][1] = y
 
 	var pos = Vector2(x, y)
 	targetInstance.position = pos
-	
+
 	if randi() % 4 == 3:
 		targetInstance.set("bully", false)
 		targetInstance.get_node("TargetFace").animation = "Victim"
@@ -864,14 +864,14 @@ func calcHit(bully: bool):
 
 func pauseGame():
 	bpaused = true
-	var ig = $inGame 
+	var ig = $inGame
 
 	if gameIndex == 0:
 		get_tree().root.content_scale_size
 		$EnvelopeTimer.paused = true
 		for env in ig.get_children():
 			# Check if the child node is of type Envelope
-			if env.name == "Envelope":  
+			if env.name == "Envelope":
 				env.Speed = 0.0
 				env.hit = true
 			elif env == AnimatedSprite2D:
@@ -886,6 +886,7 @@ func pauseGame():
 			if tar == Target:
 				tar.get_node("TargetTimer").paused = true
 				tar.get_node("DispTimer").paused = true
+
 	elif gameIndex == 5:
 		$ActivitiesTimer.paused = true
 		GD.isNotAllowed = false
@@ -897,7 +898,7 @@ func playGame():
 	# Play the game, unpause it
 	bpaused = false
 	var ig = $inGame
-	
+
 	# Play Safety Snail's Email game
 	if gameIndex == 0:
 		# Pause the envelope timer initially
@@ -906,7 +907,7 @@ func playGame():
 		# Iterate through all child nodes of the in-game node
 		for env in ig.get_children():
 			# Check if the child node is an envelope
-			if env.name == "Envelope": 
+			if env.name == "Envelope":
 				# Set the speed of the envelope based on the game speed
 				env.Speed = 1.1 * speed
 				# Reset the hit status of the envelope
@@ -978,33 +979,25 @@ func _on_cat_timer_timeout():
 func _on_pause_pressed() -> void:
 	# Pause Mechanisms
 	pauseMenu.pauseAnimation()
-	if gameIndex == 0:
+	# Only handle pause for specific game types (0,1,2,4,5)
+	if gameIndex != 3:
 		pauseMenus()
-	if gameIndex == 1:
-		pauseMenus()
-	if gameIndex == 2:
-		pauseMenus()
-	if gameIndex == 4:
-		pauseMenus()
-	if gameIndex == 5:
-		pauseMenus()
-	
 
 # Spawning the Mails randomly
 func spawnMails():
 	if gameIndex == 1:
 		var mailInstance = Mails.instantiate()
-		
+
 		# Random value for the mails to spawn  on Path2D
 		var mailLocation = %PathFollow2D
 		mailLocation.progress_ratio = randf_range(0, 0.3)
-		
+
 		# Position to move the mails
 		mailInstance.position = mailLocation.position
-		
+
 		add_child(mailInstance)
 		if level == 1:
-			speed = randf_range(150.0, 200.0) 
+			speed = randf_range(150.0, 200.0)
 			mailInstance.get_node("ItemsAnim").scale = Vector2(1,1)
 			if randi() % 2 == 0:
 				mailInstance.set("spamEmail", false)
@@ -1015,8 +1008,7 @@ func spawnMails():
 				mailInstance.get_node("ItemsAnim").animation = "safeEmail"
 				mailInstance.get_node("ItemsAnim").scale = Vector2(0.2,0.2)
 		elif level == 2:
-			speed = randf_range(200.0, 250.0) 
-			#speed = randf_range(230.0, 280.0)
+			speed = randf_range(200.0, 250.0)
 			if randi() % 3 == 0:
 				mailInstance.set("spamEmail", false)
 				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
@@ -1031,7 +1023,6 @@ func spawnMails():
 				mailInstance.get_node("ItemsAnim").scale = Vector2(0.19,0.19)
 		elif level == 3:
 			speed = randf_range(230.0, 280.0)
-			#speed = randf_range(260.0, 310.0)
 			if randi() % 3 == 0:
 				mailInstance.set("spamEmail", false)
 				mailInstance.get_node("ItemsAnim").animation = "spamEmail"
@@ -1045,7 +1036,6 @@ func spawnMails():
 				mailInstance.get_node("ItemsAnim").animation = "spamLink"
 				mailInstance.get_node("ItemsAnim").scale = Vector2(0.18,0.18)
 		elif level >= 4:
-			#speed = randf_range(290.0, 430.0)
 			speed = randf_range(260.0, 310.0)
 			if randi() % 4 == 0:
 				mailInstance.set("spamEmail", false)
@@ -1069,19 +1059,17 @@ func _on_mail_timer_timeout():
 	spawnMails()
 
 func pauseMenus():
+	# If the game is currently paused, unpause it
 	if paused:
 		pauseMenu.hide()
-		#Engine.time_scale = 1
 		get_tree().paused = false
 		$CanvasLayer/Rabbit.setActive(true)
 		if gameIndex == 2:
 			$CanvasLayer/Rabbit.makeVisible()
 	else:
 		pauseMenu.show()
-		#Engine.time_scale = 0
 		get_tree().paused = true
 		$CanvasLayer/Rabbit.setActive(false)
 		if gameIndex == 2:
 			$CanvasLayer/Rabbit.makeInvisible()
-		#$CanvasLayer/Rabbit.reset_velocity()
 	paused = !paused
