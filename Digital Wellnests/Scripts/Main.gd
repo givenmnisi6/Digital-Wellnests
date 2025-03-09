@@ -515,6 +515,7 @@ func _on_settings_pressed():
 func _on_exit_pressed():
 	# Play the click sound effect
 	Music.clickSfx()
+	$Effects.stop()
 	
 	var exitInstance = Exit.instantiate()
 	add_child(exitInstance)
