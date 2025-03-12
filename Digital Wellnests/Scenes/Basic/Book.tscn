@@ -387,6 +387,7 @@ offset_top = 70.67
 offset_right = 345.066
 offset_bottom = 86.67
 color = Color(0.0509804, 0.282353, 0.505882, 1)
+metadata/_edit_lock_ = true
 
 [node name="AnimationShadow" parent="Pages" instance=ExtResource("4_8cats")]
 visible = false
@@ -471,6 +472,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_llph1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8ucqq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2lph2")
 text = "Menu"
+metadata/_edit_lock_ = true
 
 [node name="Continue" type="Button" parent="Pages"]
 modulate = Color(0, 1, 0, 1)
@@ -485,6 +487,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_5amjj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8x253")
 theme_override_styles/normal = SubResource("StyleBoxFlat_32rjy")
 text = "Continue"
+metadata/_edit_lock_ = true
 
 [node name="WaitTimer" type="Timer" parent="Pages"]
 wait_time = 3.0
@@ -506,6 +509,7 @@ toggle_mode = true
 texture_normal = ExtResource("56_1idlk")
 ignore_texture_size = true
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
