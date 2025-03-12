@@ -3059,6 +3059,8 @@ position = Vector2(304.5, 210)
 scale = Vector2(0.997915, 0.978448)
 sprite_frames = SubResource("SpriteFrames_u01sg")
 animation = &"New Anim"
+frame = 48
+frame_progress = 0.648661
 speed_scale = 5.0
 metadata/_edit_lock_ = true
 
