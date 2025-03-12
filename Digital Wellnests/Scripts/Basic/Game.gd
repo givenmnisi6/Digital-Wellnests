@@ -809,7 +809,10 @@ func _on_b_menu_button_down():
 	queue_free()
 
 func _on_h_slider_value_changed(value):
-	$StartGame/LevelIndicator.text = "Level " + str(value)
+	var level = int(value)
+	$StartGame/LevelIndicator.text = "Level " + str(level)
+	
+
 func _on_envelope_timer_timeout():
 	var random = RandomNumberGenerator.new()
 	var tp = random.randi_range(0, colCount - 1)

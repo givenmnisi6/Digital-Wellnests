@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://djnw1bayii00g"]
 
 [ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="1_ek7kq"]
-[ext_resource type="Script" path="res://Scripts/Basic/Quiz.gd" id="2_bu452"]
+[ext_resource type="Script" uid="uid://dpux7q7u517uy" path="res://Scripts/Basic/Quiz.gd" id="2_bu452"]
 [ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="3_e2d6s"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="4_xhj3h"]
 
@@ -182,8 +182,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i2ut2"]
 _data = {
-"PopOut": SubResource("Animation_hp8i0"),
-"RESET": SubResource("Animation_lhmb1")
+&"PopOut": SubResource("Animation_hp8i0"),
+&"RESET": SubResource("Animation_lhmb1")
 }
 
 [node name="Quiz" type="TextureRect"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://1quej1xdpdtc"]
 
-[ext_resource type="Script" path="res://Scripts/Poems/Elephant/Bird.gd" id="1_v5g2d"]
+[ext_resource type="Script" uid="uid://ddpny07q4urfq" path="res://Scripts/Poems/Elephant/Bird.gd" id="1_v5g2d"]
 [ext_resource type="Texture2D" uid="uid://barciwfllhli" path="res://Images/Elephant assets/Bird/fly/frame-1.png" id="2_877ci"]
 [ext_resource type="Texture2D" uid="uid://8627vswcftkk" path="res://Images/Elephant assets/Bird/fly/frame-2.png" id="3_sm5el"]
 [ext_resource type="Texture2D" uid="uid://dd0kiqfn1nrcf" path="res://Images/Elephant assets/Bird/got hit/frame-1.png" id="4_jhax8"]

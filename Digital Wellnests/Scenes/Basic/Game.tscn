@@ -1,7 +1,7 @@
 [gd_scene load_steps=1483 format=3 uid="uid://cugtttre47j1d"]
 
 [ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="1_klf3e"]
-[ext_resource type="Script" path="res://Scripts/Basic/Game.gd" id="1_qykey"]
+[ext_resource type="Script" uid="uid://dmc7ksynq0phf" path="res://Scripts/Basic/Game.gd" id="1_qykey"]
 [ext_resource type="Texture2D" uid="uid://c11v1s3jp1hat" path="res://Animations/Slak2/Slak1Animation2.0000.png" id="2_acfc5"]
 [ext_resource type="Texture2D" uid="uid://di0rv5r0ajr22" path="res://Animations/Slak2/Slak1Animation2.0001.png" id="3_k573c"]
 [ext_resource type="PackedScene" uid="uid://ci06a0bs5c7q8" path="res://Scenes/Poems/Snail/Conveyor.tscn" id="3_y5ogc"]
@@ -6252,7 +6252,6 @@ volume_db = 10.0
 pitch_scale = 1.1
 
 [connection signal="value_changed" from="StartGame/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="value_changed" from="StartGame/HSlider" to="BG" method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="StartGame/playButton" to="." method="_on_play_button_pressed"]
 [connection signal="area_entered" from="EnvelopeStop" to="." method="_on_envelope_stop_area_entered"]
 [connection signal="timeout" from="ActivitiesTimer" to="." method="_on_activities_timer_timeout"]
