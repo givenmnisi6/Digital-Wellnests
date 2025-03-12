@@ -29,8 +29,6 @@ func _ready():
 	story = ["Snail", "Fish", "Elephant", "Wolf", "Hippo", "Cat"]
 	
 	# Start the story function
-	
-	#showInstruction()
 	storyStart()
 
 

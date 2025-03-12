@@ -1,10 +1,8 @@
 extends CharacterBody2D
 
-# Gravity constant - controls downward acceleration
-const GRAVITY: int = 4200
-
-# Jump speed constant - determines the initial upward velocity when jumping
-const JUMP_SPEED: int = -1370
+# Constants
+const GRAVITY: int = 4200  # Gravity constant - controls downward acceleration
+const JUMP_SPEED: int = -1370  # Jump speed constant - determines the initial upward velocity when jumping
 
 # Game state variables
 var isActive = false  # Controls whether the game (specifically jumping) is active
