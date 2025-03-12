@@ -357,6 +357,10 @@ func startBook():
 	# Add the book instance as a child node
 	add_child(bookInstance)
 
+	# Creating a fading effect
+	var fTween = create_tween()
+	fTween.tween_property(bookInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
+
 func startQuiz():
 	# Instantiate the quiz scene
 	var quizInstance = Quiz.instantiate()
@@ -376,6 +380,10 @@ func startQuiz():
 
 	# Add the quiz instance as a child node
 	add_child(quizInstance)
+	
+	# Creating a fading effect
+	var fTween = create_tween()
+	fTween.tween_property(quizInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
 
 func startGame():
 	# Instantiate the game scene
@@ -396,6 +404,10 @@ func startGame():
 	
 	# Add the game instance as a child node
 	add_child(gameInstance)
+
+	# Creating a fading effect
+	var fTween = create_tween()
+	fTween.tween_property(gameInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
 
 func returnToMain() -> void:
 	# Scale up the Control node
