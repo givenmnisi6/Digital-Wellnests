@@ -121,8 +121,8 @@
 [ext_resource type="Texture2D" uid="uid://ncamonfv2q5l" path="res://Animations/Slider1/Synfig Animation 1.0118.png" id="119_wg1c6"]
 [ext_resource type="Texture2D" uid="uid://cocpedljqymff" path="res://Animations/Slider1/Synfig Animation 1.0119.png" id="120_y1fj7"]
 [ext_resource type="Texture2D" uid="uid://1ydbqfeahkph" path="res://Animations/Slider1/Synfig Animation 1.0120.png" id="121_v3g7y"]
-[ext_resource type="Texture2D" uid="uid://c3pt4yt1j0qir" path="res://Images/Slider2.png" id="147_0ip61"]
-[ext_resource type="Texture2D" uid="uid://db8noaj8bplky" path="res://Images/Slider3.png" id="172_f3iib"]
+[ext_resource type="Texture2D" uid="uid://b04acib8ui6wv" path="res://Images/Slider2.png" id="147_0ip61"]
+[ext_resource type="Texture2D" uid="uid://b7d1fvqbs107p" path="res://Images/Slider3.png" id="172_f3iib"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0vv48"]
 animations = [{

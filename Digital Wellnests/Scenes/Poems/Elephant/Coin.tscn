@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7adnmbic5og6"]
 
-[ext_resource type="Script" path="res://Scripts/Poems/Elephant/Coin.gd" id="1_bdhws"]
+[ext_resource type="Script" uid="uid://u8vgrt70d601" path="res://Scripts/Poems/Elephant/Coin.gd" id="1_bdhws"]
 [ext_resource type="Texture2D" uid="uid://7fffhg1qv40r" path="res://Animations/Activities/gold_1.png" id="1_wsfrx"]
 [ext_resource type="Texture2D" uid="uid://cpwodypvahsl2" path="res://Animations/Activities/gold_2.png" id="2_b3hbe"]
 [ext_resource type="Texture2D" uid="uid://dnv4jynaepkp" path="res://Animations/Activities/gold_3.png" id="3_wmvbk"]

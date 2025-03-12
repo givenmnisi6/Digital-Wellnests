@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciuq2h10egxjb"]
 
 [ext_resource type="Texture2D" uid="uid://cxff1s31e11x8" path="res://Images/Elephant assets/Obstacles/football.png" id="1_ah5ji"]
-[ext_resource type="Script" path="res://Scripts/Poems/Elephant/Ball.gd" id="1_h7hfb"]
+[ext_resource type="Script" uid="uid://b6nar5spnm2t1" path="res://Scripts/Poems/Elephant/Ball.gd" id="1_h7hfb"]
 
 [node name="Ball" type="Area2D"]
 script = ExtResource("1_h7hfb")

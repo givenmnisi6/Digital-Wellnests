@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://cydy5wvvioivi"]
 
 [ext_resource type="Texture2D" uid="uid://dilph5mebhish" path="res://Images/GameBG.jpg" id="1_8nj2d"]
-[ext_resource type="Script" path="res://Scripts/Basic/Pause.gd" id="1_xwjqh"]
+[ext_resource type="Script" uid="uid://cfy3xatarpwoi" path="res://Scripts/Basic/Pause.gd" id="1_xwjqh"]
 [ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="2_5ka2x"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="4_72bda"]
 [ext_resource type="Texture2D" uid="uid://dwnnlial0w88q" path="res://Images/GameEx0.png" id="5_ryv57"]
@@ -190,8 +190,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yb21l"]
 _data = {
-"PopOut": SubResource("Animation_5dui4"),
-"RESET": SubResource("Animation_ab6qr")
+&"PopOut": SubResource("Animation_5dui4"),
+&"RESET": SubResource("Animation_ab6qr")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyobq"]
@@ -259,8 +259,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a1q45"]
 _data = {
-"PopUp": SubResource("Animation_g17wd"),
-"RESET": SubResource("Animation_dxw7j")
+&"PopUp": SubResource("Animation_g17wd"),
+&"RESET": SubResource("Animation_dxw7j")
 }
 
 [node name="Pause" type="Control"]

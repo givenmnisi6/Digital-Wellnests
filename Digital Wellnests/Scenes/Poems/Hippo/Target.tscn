@@ -1,6 +1,6 @@
 [gd_scene load_steps=102 format=3 uid="uid://celr1t2vxkewx"]
 
-[ext_resource type="Script" path="res://Scripts/Poems/Hippo/Target.gd" id="1_3lg0m"]
+[ext_resource type="Script" uid="uid://bbace2tit2qbj" path="res://Scripts/Poems/Hippo/Target.gd" id="1_3lg0m"]
 [ext_resource type="Texture2D" uid="uid://0k5jt5oo42c3" path="res://Animations/Buffy/Bully0.0000.png" id="1_7lese"]
 [ext_resource type="Texture2D" uid="uid://cj40xb5praged" path="res://Animations/Buffy/Bully0.0001.png" id="2_2b6w8"]
 [ext_resource type="Texture2D" uid="uid://d2xhceekd0djf" path="res://Animations/Buffy/Bully0.0002.png" id="3_2l11a"]

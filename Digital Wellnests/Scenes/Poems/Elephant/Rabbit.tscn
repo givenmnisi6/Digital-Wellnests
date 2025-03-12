@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c67yvm48yyejt"]
 
-[ext_resource type="Script" path="res://Scripts/Poems/Elephant/Rabbit.gd" id="1_jqans"]
+[ext_resource type="Script" uid="uid://dexenawp5xbjy" path="res://Scripts/Poems/Elephant/Rabbit.gd" id="1_jqans"]
 [ext_resource type="Texture2D" uid="uid://jdnnsdjvfrqd" path="res://Images/Elephant assets/Rabbit/Jump/Jump00.png" id="26_mqd23"]
 [ext_resource type="Texture2D" uid="uid://c2h78kw3dpqfs" path="res://Images/Elephant assets/Rabbit/Jump/Jump01.png" id="27_b6yqn"]
 [ext_resource type="Texture2D" uid="uid://bc4nkfc1gsffd" path="res://Images/Elephant assets/Rabbit/Jump/Jump02.png" id="28_18p6m"]
