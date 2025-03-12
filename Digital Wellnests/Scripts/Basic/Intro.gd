@@ -53,10 +53,10 @@ func _on_intro_timer_timeout():
 		$IntroTimer.start()
 		
 		# Create a tween to fade out the IntroRect over 0.5 seconds
-		var intro_rectS = get_node("IntroRect")
+		var introRect = get_node("IntroRect")
 		var tween = get_tree().create_tween()
 		# Fade to transparent instead of opaque
-		tween.tween_property(intro_rectS, "modulate", Color(1, 1, 1, 0), 0.5)
+		tween.tween_property(introRect, "modulate", Color(1, 1, 1, 0), 0.5)
 		
 		# Pre-load main scene with a brief delay to ensure no blank frame
 		# This starts the fade-in slightly before the fade-out completes
