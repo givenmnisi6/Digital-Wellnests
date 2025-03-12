@@ -2999,6 +2999,7 @@ Game = ExtResource("3_1kgnl")
 Quiz = ExtResource("4_tlpos")
 Settings = ExtResource("5_u1u5g")
 Exit = ExtResource("6_ilwlu")
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -3085,6 +3086,7 @@ sprite_frames = SubResource("SpriteFrames_8nex8")
 animation = &"New Anim"
 frame_progress = 0.721473
 speed_scale = 5.0
+metadata/_edit_lock_ = true
 
 [node name="hArea" type="Area2D" parent="Control/Hippo"]
 metadata/_edit_lock_ = true
@@ -3111,6 +3113,7 @@ speed_scale = 5.0
 metadata/_edit_lock_ = true
 
 [node name="wArea" type="Area2D" parent="Control/Wolf"]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Wolf/wArea"]
 visible = false
