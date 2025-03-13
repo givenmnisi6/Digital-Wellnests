@@ -146,8 +146,6 @@ func _on_play_button_pressed():
 	# Remove the instructions
 	$StartGame.scale = Vector2(0, 0)
 	$CanvasLayer/Rabbit.setActive(true)
-	#$Game/StartGame.scale = Vector2(0, 0)
-	#$Game/StartGame.visible = true
 	$Effects.stop()
 	startGame()
 
@@ -324,32 +322,6 @@ func generateObstacles():
 				#print("obs_y: ", obs_y)
 				addObstacles(birdObs, obs_x, obs_y, birdScene)
 
-#var isCollidingBall = false
-#var isCollidingCoin = false
-#var isCollidingBird = false
-
-#func losePoints(body):
-	#if body.name == "Rabbit" and not isCollidingBird:
-		#isCollidingBird = true
-		#var audio = $Effects
-		#
-		## Make the player blink twice when it collides with harmful obstacles
-		#for i in range(2):
-			#body.visible = false
-			#await get_tree().create_timer(0.1).timeout
-			#body.visible = true
-			#await get_tree().create_timer(0.1).timeout
-			#
-		#audio.stream = load("res://Audio/Effects/aWrong.wav")
-		#audio.play()
-		#$CanvasLayer/Rabbit.stopJumpingSound()
-		#$CanvasLayer/Rabbit.makeInvisible()
-			#
-		#updateScore(false)
-		#
-		#await get_tree().create_timer(0.5).timeout
-		#isCollidingBird = false
-
 func losePoints(body):
 	# Check if the colliding body is the Rabbit
 	if body.name == "Rabbit":
@@ -367,36 +339,6 @@ func losePoints(body):
 		$CanvasLayer/Rabbit.stopJumpingSound()
 		$CanvasLayer/Rabbit.makeInvisible()
 		updateScore(false)
-
-#func gainPoints(body):
-	#if body.name != "Rabbit":
-		#return
-		#
-	#var obstacle = get_parent()
-	#var isColliding = false
-	#
-	#if obstacle.is_in_group("ball"):
-		#if isCollidingBall:
-			#return
-		#isCollidingBall = true
-	#elif obstacle.is_in_group("coin"):
-		#if isCollidingCoin:
-			#return
-		#isCollidingCoin = true
-		#call_deferred("removeObstacle", obstacle)
-#
-	#var audio = $Effects
-	#audio.stream = load("res://Audio/Effects/aRight2.wav")
-	#audio.play()
-	#$CanvasLayer/Rabbit.stopJumpingSound()
-	#$CanvasLayer/Rabbit.makeInvisible()
-	#updateScore(true)
-	#
-	#await get_tree().create_timer(0.5).timeout
-	#if obstacle.is_in_group("ball"):
-		#isCollidingBall = false
-	#elif obstacle.is_in_group("coin"):
-		#isCollidingCoin = false
 
 func gainPoints(body):
 	# Check if the colliding body is the Rabbit

@@ -344,7 +344,7 @@ pitch_scale = 1.1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_i2ut2")
+&"": SubResource("AnimationLibrary_i2ut2")
 }
 
 [connection signal="button_down" from="qPlay/bYes" to="." method="_on_b_yes_button_down"]

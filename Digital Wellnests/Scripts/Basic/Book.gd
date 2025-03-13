@@ -94,6 +94,14 @@ func _on_continue_pressed() -> void:
 		Music.clickSfx()
 		# If the paragraphs are less than 3
 		if currentVerse < 3:
+			if iStory == 2 and currentVerse == 2 and totalVerse <= 3:
+				# Skip directly to quiz instead of showing the last verse
+				$AudioStreamPlayer.stop()
+				get_parent().get_node("Effects").stream = ResourceLoader.load("res://Audio/Effects/pageflip.wav")
+				get_parent().get_node("Effects").play()
+				get_parent().call("startQuiz")
+				queue_free()
+				return
 			# Increment the current verse and total count
 			currentVerse += 1
 			totCount += 1
@@ -252,7 +260,6 @@ func _on_page_turn_animation_finished():
 	pageLock = false
 	# Enabling the continue button when page turn animation is complete
 	setContinue(true)
-
 
 func loadStory(num: int):
 	var poemTitle = $Pages/Title
