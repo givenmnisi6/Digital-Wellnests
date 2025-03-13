@@ -382,8 +382,8 @@ func startQuiz():
 	add_child(quizInstance)
 	
 	# Creating a fading effect
-	var fTween = create_tween()
-	fTween.tween_property(quizInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
+	#var fTween = create_tween()
+	#fTween.tween_property(quizInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
 
 func startGame():
 	# Instantiate the game scene
@@ -406,8 +406,8 @@ func startGame():
 	add_child(gameInstance)
 
 	# Creating a fading effect
-	var fTween = create_tween()
-	fTween.tween_property(gameInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
+	#var fTween = create_tween()
+	#fTween.tween_property(gameInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
 
 func returnToMain() -> void:
 	# Scale up the Control node
