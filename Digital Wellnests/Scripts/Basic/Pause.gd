@@ -60,13 +60,13 @@ func restartGame():
 	var mainScene = game.get_parent()
 	
 	# Store the current game index
-	var current_game_index = game.gameIndex
+	var currentGameIndex = game.gameIndex
 	
 	# Remove the old game instance
 	game.queue_free()
 	
 	# Set the story index on the main scene and start a new game
-	mainScene.iStory = current_game_index
+	mainScene.iStory = currentGameIndex
 	mainScene.startGame()
 
 # Show the instructions panel with game-specific content
