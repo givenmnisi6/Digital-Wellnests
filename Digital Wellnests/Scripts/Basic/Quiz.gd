@@ -150,23 +150,45 @@ func _on_rw_timer_timeout():
 		var rnd := RandomNumberGenerator.new()
 
 		# Display appropriate feedback based on score
+		if points == 1:
+			msg.texture = load("res://Images/NT1.png")
+		if points == 2:
+			msg.texture = load("res://Images/NT0.png")
+			$Effects.stream = load("res://Audio/Voice/NT0.wav")
+			$Effects.play()
 		if points > 2:
 			var i = randi() % 6
 			msg.texture = load("res://Images/WD"+ str(i) +".png")
 			$Effects.stream = load("res://Audio/Voice/WD" + str(i) + ".wav")
 			$Effects.play()
-		else:
-			# Low score feedback with try again option
-			var i = rnd.randi_range(0, 1)
-			msg.texture = load("res://Images/NT"+ str(i)+".png")
-			$Effects.stream = load("res://Audio/Voice/NT" + str(i) + ".wav")
-			$Effects.play()
-			var ta: Button = $TryAgain
-			var cnt: Button = $Continue
-			var twn = get_tree().create_tween()
-			twn.tween_property(ta, "scale", Vector2(1, 1), 0.5)
-			twn.tween_property(cnt, "scale", Vector2(1, 1), 0.5)
+		#else:
+			## Low score feedback with try again option
+			#var i = rnd.randi_range(0, 1)
+			#msg.texture = load("res://Images/NT"+ str(i)+".png")
+			#$Effects.stream = load("res://Audio/Voice/NT" + str(i) + ".wav")
+			#$Effects.play()
+		var ta: Button = $TryAgain
+		var cnt: Button = $Continue
+		var btwn = get_tree().create_tween()
+		btwn.tween_property(ta, "scale", Vector2(1, 1), 0.5)
+		btwn.tween_property(cnt, "scale", Vector2(1, 1), 0.5)
 		
+		# Create visual score indicators
+		#for i in range(4):
+			#var imgIns = TextureRect.new()
+			#add_child(imgIns)
+			#@warning_ignore("integer_division")
+			#var sz = (720 - (10 * 5)) / 4
+			#
+			#imgIns.texture = load("res://Images/QuizR" + str(iStory) + ".png")
+			#imgIns.expand = true
+			#imgIns.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			#imgIns.size = Vector2(sz + 10, sz + 10)
+			#imgIns.modulate = Color(0, 0, 0, 1)
+			#imgIns.position = Vector2(i * (sz + 10) + 10, 15)
+#
+		#if points > 0:
+			#spawnRes(0)
 		# Create visual score indicators
 		for i in range(4):
 			var imgIns = TextureRect.new()
@@ -177,29 +199,97 @@ func _on_rw_timer_timeout():
 			imgIns.texture = load("res://Images/QuizR" + str(iStory) + ".png")
 			imgIns.expand = true
 			imgIns.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			imgIns.size = Vector2(sz + 10, sz + 10)
-			imgIns.modulate = Color(0, 0, 0, 1)
-			imgIns.position = Vector2(i * (sz + 10) + 10, 15)
+			
+			# Start with size of zero and fully transparent
+			imgIns.size = Vector2(0, 0)
+			imgIns.modulate = Color(0, 0, 0, 0)
+			
+			# Calculate final position
+			var finalPosX = i * (sz + 10) + 10
+			var finalPosY = 15
+			
+			# Set initial position (centered where it will grow from)
+			imgIns.position = Vector2(finalPosX + (sz + 10)/2, finalPosY + (sz + 10)/2)
+			
+			# Create simple animation
+			var twn = get_tree().create_tween()
+			twn.tween_interval(i * 0.2)  # Delay each indicator slightly
+			
+			# Grow to full size
+			twn.tween_property(imgIns, "size", Vector2(sz + 10, sz + 10), 0.3)
+			twn.parallel().tween_property(imgIns, "modulate", Color(0, 0, 0, 1), 0.3)
+			
+			# Fix final position
+			twn.tween_property(imgIns, "position", Vector2(finalPosX, finalPosY), 0.1)
 
+		# Start showing results after a short delay
+		await get_tree().create_timer(1.0).timeout
 		if points > 0:
 			spawnRes(0)
 
 # Create animated visual indicators for each correct answer
 func spawnRes(i: int) -> void:
-	var twn = get_tree().create_tween()
 	var imgIns: TextureRect = TextureRect.new()
 	add_child(imgIns)
 	var sz: float = (720 - (10 * 5)) / 4
-
+	
+	# Load the correct image - use the same image pattern as in the first code
 	imgIns.texture = load("res://Images/QuizR" + str(iStory) + ".png")
 	imgIns.expand = true
 	imgIns.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-
-	# Animate in the score indicator
+	
+	# Calculate final position first (same as your shadow positions)
+	var finalPosX = i * (sz + 10) + 10
+	var finalPosY = 15
+	
+	# Start small and off-screen (from top)
+	imgIns.size = Vector2(sz/4, sz/4)
+	imgIns.position = Vector2(finalPosX + sz/2, -50)  # Start above the screen but centered horizontally
+	
+	# Create a playful animation sequence
+	var twn = get_tree().create_tween()
+	twn.set_ease(Tween.EASE_OUT)
+	twn.set_trans(Tween.TRANS_BOUNCE)
+	
+	# Animate entry - drop from top with bounce but maintain horizontal alignment
+	twn.tween_property(imgIns, "position", Vector2(finalPosX + sz/2, finalPosY + sz/2), 0.7)
+	
+	# Grow with a bounce effect
+	twn.tween_property(imgIns, "size", Vector2(sz*1.2, sz*1.2), 0.3)
+	twn.tween_property(imgIns, "size", Vector2(sz, sz), 0.3)
+	
+	# Add a fun spin (just a small wiggle)
+	twn.parallel().tween_property(imgIns, "rotation_degrees", 8, 0.1)
+	twn.tween_property(imgIns, "rotation_degrees", -8, 0.1)
+	twn.tween_property(imgIns, "rotation_degrees", 0, 0.1)
+	
+	# Add a little sparkle effect with modulation
+	twn.parallel().tween_property(imgIns, "modulate", Color(1.2, 1.2, 1.2, 1), 0.3)
+	twn.tween_property(imgIns, "modulate", Color(1, 1, 1, 1), 0.3)
+	
+	# Final position adjustment to ensure perfect alignment with shadow icons
+	twn.tween_property(imgIns, "position", Vector2(finalPosX, finalPosY), 0.3)
+	twn.tween_property(imgIns, "size", Vector2(sz, sz), 0.3)
+	
+	# Increment timer count and start timer for next animation
 	timerCount += 1
-	twn.tween_property(imgIns, "size", Vector2(sz,sz), 0.1)
-	twn.tween_property(imgIns, "position", Vector2(i*(sz+4.5)+12.7+(sz/30),15+(sz/45)),0.1)
 	$Timer.start()
+
+# Old Animations
+	#var twn = get_tree().create_tween()
+	#var imgIns: TextureRect = TextureRect.new()
+	#add_child(imgIns)
+	#var sz: float = (720 - (10 * 5)) / 4
+#
+	#imgIns.texture = load("res://Images/QuizR" + str(iStory) + ".png")
+	#imgIns.expand = true
+	#imgIns.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+#
+	## Animate in the score indicator
+	#timerCount += 1
+	#twn.tween_property(imgIns, "size", Vector2(sz,sz), 0.1)
+	#twn.tween_property(imgIns, "position", Vector2(i*(sz+4.5)+12.7+(sz/30),15+(sz/45)),0.1)
+	#$Timer.start()
 
 func _on_timer_timeout():
 	if timerCount < points:
