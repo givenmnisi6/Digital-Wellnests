@@ -448,7 +448,7 @@ text = "[center]Paused[/center]"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_yb21l")
+&"": SubResource("AnimationLibrary_yb21l")
 }
 
 [node name="Instructions" type="Control" parent="."]
@@ -522,7 +522,7 @@ text = "Back"
 [node name="InstructionsAnimationPlayer" type="AnimationPlayer" parent="Instructions"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_a1q45")
+&"": SubResource("AnimationLibrary_a1q45")
 }
 
 [connection signal="pressed" from="Panel/restartButton" to="." method="_on_restart_button_pressed"]

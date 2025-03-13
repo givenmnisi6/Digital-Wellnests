@@ -804,14 +804,17 @@ func _on_b_menu_button_down():
 	$Hud/EndAnim.visible = false
 	$Hud/Message.visible = false
 	Music.clickSfx()
+	
+	# Returning back to Main Menu
+	var mainInstance = get_parent()
+	mainInstance.returnToMain()
 
-	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+	#get_tree().change_scene_to_file("res://Scenes/Main.tscn")
 	queue_free()
 
 func _on_h_slider_value_changed(value):
 	var level = int(value)
 	$StartGame/LevelIndicator.text = "Level " + str(level)
-	
 
 func _on_envelope_timer_timeout():
 	var random = RandomNumberGenerator.new()
