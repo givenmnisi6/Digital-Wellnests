@@ -495,7 +495,7 @@ text = "Back"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SettingsPage"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_p56qm")
+&"": SubResource("AnimationLibrary_p56qm")
 }
 
 [connection signal="tab_clicked" from="SettingsPage/Control/TabContainer" to="." method="_on_tab_container_tab_clicked"]
