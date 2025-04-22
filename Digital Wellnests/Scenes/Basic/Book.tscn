@@ -1,6 +1,6 @@
 [gd_scene load_steps=69 format=3 uid="uid://dgrnrl2t0ubx1"]
 
-[ext_resource type="Script" uid="uid://cgxqdtfe8b5hc" path="res://Scripts/Basic/Book.gd" id="1_pcbcp"]
+[ext_resource type="Script" path="res://Scripts/Basic/Book.gd" id="1_pcbcp"]
 [ext_resource type="Texture2D" uid="uid://58mo68rm5nbc" path="res://Images/OpenPages.png" id="2_4jpuk"]
 [ext_resource type="Texture2D" uid="uid://by481jc6g21eb" path="res://Images/AnimBackground.png" id="3_sc8xq"]
 [ext_resource type="PackedScene" uid="uid://y1ct72dyugt1" path="res://Scenes/Basic/AnimatedSprite.tscn" id="4_8cats"]
@@ -333,8 +333,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utbih"]
 _data = {
-&"PopUp": SubResource("Animation_1nlbm"),
-&"RESET": SubResource("Animation_elgx0")
+"PopUp": SubResource("Animation_1nlbm"),
+"RESET": SubResource("Animation_elgx0")
 }
 
 [node name="Book" type="Control"]
@@ -551,7 +551,7 @@ text = "[center]Click continue to display the paragraph
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
 libraries = {
-&"": SubResource("AnimationLibrary_utbih")
+"": SubResource("AnimationLibrary_utbih")
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
