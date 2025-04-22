@@ -237,7 +237,7 @@ func startGame():
 
 		spawnTiles(x,y)
 		$Hud/Lives.hide()
-		$PauseGame/Pause.hide()
+		$PauseGame/Pause.show()
 
 	# Happy Hippo game
 	elif gameIndex == 4:
@@ -929,8 +929,8 @@ func _on_pause_pressed() -> void:
 	# Pause Mechanisms
 	pauseMenu.pauseAnimation()
 	# Only handle pause for specific game types (0,1,2,4,5)
-	if gameIndex != 3:
-		pauseMenus()
+	#if gameIndex:
+	pauseMenus()
 
 # Spawning the Mails randomly
 func spawnMails():
