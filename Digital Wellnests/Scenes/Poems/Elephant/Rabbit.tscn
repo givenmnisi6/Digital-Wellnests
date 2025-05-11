@@ -28,7 +28,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -57,7 +57,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 10.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ma3yc"]
@@ -71,8 +71,10 @@ script = ExtResource("1_jqans")
 position = Vector2(27.4375, 53.4978)
 scale = Vector2(0.348468, 0.348468)
 sprite_frames = SubResource("SpriteFrames_fh5eg")
-animation = &"jump"
+animation = &"run"
 autoplay = "run"
+frame = 4
+frame_progress = 0.565067
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(28, 16.5)
