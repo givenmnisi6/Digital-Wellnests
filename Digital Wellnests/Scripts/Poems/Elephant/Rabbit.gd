@@ -1,15 +1,21 @@
 extends CharacterBody2D
 
-# Constants
-const GRAVITY: int = 4200  # Gravity constant - controls downward acceleration
-const JUMP_SPEED: int = -1370  # Jump speed constant - determines the initial upward velocity when jumping
+# Gravity constant - controls downward acceleration
+const GRAVITY: int = 4200
 
-# Game state variables
+# Jump speed constant - determines the initial upward velocity when jumping
+const JUMP_SPEED: int = -1370
+
 var isActive = false  # Controls whether the game (specifically jumping) is active
 var touchJump = false  # Tracks if jump is triggered by screen touch
 var canJump = true  # Prevents multiple jumps without releasing
+var debug_timer: float = 0.0  # Timer for periodic debug output
 
-# Handle input events (screen touches)
+#func _ready():
+	# Print out initial physics values
+	#print("DEBUG: Rabbit initialized with GRAVITY=", GRAVITY, " JUMP_SPEED=", JUMP_SPEED)
+
+# Rest of input handling remains the same
 func _input(event: InputEvent) -> void:
 	# Check if game is paused first - if so, ignore all input
 	if get_tree().paused:
@@ -18,9 +24,7 @@ func _input(event: InputEvent) -> void:
 	# Only process input if the game is active
 	if isActive:
 		if event is InputEventScreenTouch:
-			# Ignore touch input if it's in the pause button area
-			# Adjust these values based on your pause button's position and size
-			if event.position.y < 100:  # Assuming pause button is in top 100 pixels
+			if event.position.y < 100:
 				return
 				
 			if event.pressed and canJump:
@@ -52,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Play jumping animation when in air
 		$AnimatedSprite2D.play("jump")
-	
+
 	# Apply movement
 	move_and_slide()
 
