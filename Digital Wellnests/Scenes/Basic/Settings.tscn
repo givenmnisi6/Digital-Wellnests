@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://dn6h20wotd65l"]
 
-[ext_resource type="Script" path="res://Scripts/Basic/Settings.gd" id="1_b4mng"]
+[ext_resource type="Script" uid="uid://bt2pcopah5h6t" path="res://Scripts/Basic/Settings.gd" id="1_b4mng"]
 [ext_resource type="Texture2D" uid="uid://bfp5pnr8gwyx7" path="res://Images/QuizBG2.png" id="1_isqnx"]
 [ext_resource type="Texture2D" uid="uid://dilph5mebhish" path="res://Images/GameBG.jpg" id="2_nxrnt"]
 [ext_resource type="FontFile" uid="uid://cuao14s32x006" path="res://Fonts/Caroni-Regular.otf" id="3_lv2qj"]
@@ -95,8 +95,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p56qm"]
 _data = {
-"PopOut": SubResource("Animation_3orbe"),
-"RESET": SubResource("Animation_klh0g")
+&"PopOut": SubResource("Animation_3orbe"),
+&"RESET": SubResource("Animation_klh0g")
 }
 
 [node name="Settings" type="Control"]
@@ -495,7 +495,7 @@ text = "Back"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SettingsPage"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_p56qm")
+&"": SubResource("AnimationLibrary_p56qm")
 }
 
 [connection signal="tab_clicked" from="SettingsPage/Control/TabContainer" to="." method="_on_tab_container_tab_clicked"]
