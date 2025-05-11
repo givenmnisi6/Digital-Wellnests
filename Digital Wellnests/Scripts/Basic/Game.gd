@@ -10,12 +10,12 @@ extends Control
 @export var Mails:PackedScene
 
 # Preloading the obstacles scene for quick access
-var cactusScene = preload("res://Scenes/Poems/Elephant/Cactus.tscn")
-var cactiScene = preload("res://Scenes/Poems/Elephant/Cacti.tscn")
-var thornScene = preload("res://Scenes/Poems/Elephant/Thorn.tscn")
-var ballScene = preload("res://Scenes/Poems/Elephant/Ball.tscn")
-var birdScene = preload("res://Scenes/Poems/Elephant/Bird.tscn")
-var coinScene = preload("res://Scenes/Poems/Elephant/Coin.tscn")
+@export var Cactus: PackedScene
+@export var Cacti: PackedScene
+@export var Thorn: PackedScene
+@export var Ball: PackedScene
+@export var Bird: PackedScene
+@export var Coin: PackedScene
 
 # Ready variables for nodes and scenes
 @onready var pauseMenu = $PauseGame/PauseG
@@ -61,9 +61,11 @@ var groundHeight: int
 var rabbitSpeed : float
 
 # List of possible obstacle scenes, more can be added
-var obstaclesType := [cactusScene, cactiScene, thornScene, ballScene, coinScene]
+#var obstaclesType := [cactusScene, cactiScene, thornScene, ballScene, coinScene]
+
+var obstaclesType: Array[PackedScene] = []
 # Array for storing instantiated obstacles
-var obstacles: Array
+var obstacles: Array = []
 
 # Last obstacle spawned
 var lastObs
@@ -87,6 +89,8 @@ func _ready():
 
 	# Enable viewport for the camera to follow the screen, can be done in the Inspector node
 	$CanvasLayer.follow_viewport_enabled = true
+	# Initialize the obstacle types array
+	obstaclesType = [Cactus, Cacti, Thorn, Ball, Coin]
 
 	# Screensize of the window, this is used for resising elements based on the screen resolution
 	screen_size = get_window().size
@@ -118,7 +122,7 @@ func _process(delta: float) -> void:
 
 	# Update score based on the distance
 	rabbitScore += rabbitSpeed
-
+	var screen_size = get_viewport().get_visible_rect().size
 	# Update the ground position when the ground position ends
 	if $CanvasLayer/Camera2D.position.x - $CanvasLayer/Ground.position.x > screen_size.x * 1.5:
 		$CanvasLayer/Ground.position.x += screen_size.x
@@ -146,6 +150,8 @@ func _on_play_button_pressed():
 	# Remove the instructions
 	$StartGame.scale = Vector2(0, 0)
 	$CanvasLayer/Rabbit.setActive(true)
+	if gameIndex == 2:
+		bpaused = false
 	$Effects.stop()
 	startGame()
 
@@ -275,13 +281,24 @@ func generateObstacles():
 		var maxObstacles = 1
 		# If the level is greater than 3, start generating a maximum of 2 obstacles
 		# Adding more challenge to the game
+		var obstaclesType := [Cactus, Cacti, Thorn, Ball, Coin]
 		if level < 3:
-			obstaclesType += [ballScene, coinScene]
+			obstaclesType += [Ball, Coin]
 		if level > 5:
 			maxObstacles = 2
 		if level > 7:
 			maxObstacles = 3
-
+		
+		print("Screen size: ", screen_size)
+		
+		# Store already used positions to prevent overlap
+		var usedPositions = []
+		
+		# Minimum spacing between obstacles (horizontal)
+		var minSpacing = 120
+		
+		# Get viewport size for proper positioning
+		var viewport_size = get_viewport().get_visible_rect().size
 		# Generate the specified number of obstacles
 		for i in range(maxObstacles):
 			# Pick a different obstacle type each iteration
@@ -292,20 +309,45 @@ func generateObstacles():
 			var obsHeight = obs.get_node("Sprite2D").texture.get_height()
 			var obsScale = obs.get_node("Sprite2D").scale
 
-			var obs_x: int = screen_size.x + rabbitScore + 100 + (i * 100)
-
+			#var obs_x: int = screen_size.x + rabbitScore + 100 + (i * 100)
+			# Calculate base position with increased spacing between obstacles
+			var obs_x = screen_size.x + rabbitScore + 100 + (i * minSpacing)
 			# Set position of each obstacle
 			if level >= 6:
-				obs_x = screen_size.x + rabbitScore + 100 + (i * 250)
+				#obs_x = screen_size.x + rabbitScore + 100 + (i * 250)
+				obs_x = screen_size.x + rabbitScore + 100 + (i * (minSpacing + 100))
+				
+			obs_x += randi_range(0, 50)	
+			# Calculate ground level position - use viewport height instead of screen_size
+			var viewport_height = get_viewport().get_visible_rect().size.y
+			
+			#var obs_y: int = screen_size.y - groundHeight - (obsHeight * obsScale.y / 2) + 168
 
-			var obs_y: int = screen_size.y - groundHeight - (obsHeight * obsScale.y / 2) + 168
-
+			# Calculate Y position with adjusted values for web
+			var ground_level = viewport_height - 50 # Approximate ground level
+			var obs_y = ground_level - (obsHeight * obsScale.y / 2)
+			
 			# Increase the y-axis of the ball to be a bit higher
-			if obsType == ballScene:
+			if obsType == Ball:
 				obs_y -= 19
-			if obsType == coinScene:
+			if obsType == Coin:
 				# Position coinScene in the middle to top of the screen
-				obs_y = randi_range(int(screen_size.y * 0.3), int(screen_size.y * 0.7))
+				#obs_y = randi_range(int(screen_size.y * 0.3), int(screen_size.y * 0.7))
+				obs_y = randi_range(int(viewport_height * 0.3), int(viewport_height * 0.7))
+
+			# Check if this position is too close to any existing obstacle
+			var validPosition = true
+			for pos in usedPositions:
+				# Check for horizontal and vertical overlap
+				if abs(pos.x - obs_x) < minSpacing and abs(pos.y - obs_y) < 50:
+					validPosition = false
+					break
+			# If position invalid, adjust y position to avoid overlap
+			if not validPosition and obsType != Coin:
+				obs_y -= 50  # Move obstacle up to avoid overlap
+			
+			# Record position and add obstacle
+			usedPositions.append(Vector2(obs_x, obs_y))
 			obs.position = Vector2(obs_x, obs_y)
 
 			# Update lastObs and add obstacle to the scene
@@ -313,14 +355,17 @@ func generateObstacles():
 			#print("Last Obstacle: ", obs_x)
 			addObstacles(obs, obs_x, obs_y,obsType)
 
-		if level > 4:
-			if(randi() % 2) == 0:
-				# Generate a bird obstacle
-				var birdObs = birdScene.instantiate()
-				var obs_x: int = screen_size.x + rabbitScore + 100
-				var obs_y : int = birdHeight[randi() % birdHeight.size()] - 130
-				#print("obs_y: ", obs_y)
-				addObstacles(birdObs, obs_x, obs_y, birdScene)
+		if level > 4 and (randi() % 2) == 0:
+			# Generate a bird obstacle
+			var birdObs = Bird.instantiate()
+			var obs_x: int = screen_size.x + rabbitScore + 100
+				
+			#var obs_y : int = birdHeight[randi() % birdHeight.size()] - 130
+			var viewport_height = get_viewport().get_visible_rect().size.y
+			var bird_height_options = [viewport_height * 0.3, viewport_height * 0.5]
+			var obs_y = bird_height_options[randi() % bird_height_options.size()]
+			#print("obs_y: ", obs_y)
+			addObstacles(birdObs, obs_x, obs_y, Bird)
 
 func losePoints(body):
 	# Check if the colliding body is the Rabbit
@@ -355,9 +400,9 @@ func addObstacles(obs, x, y, obsType):
 	# Position of the obstacles
 	obs.position = Vector2(x, y)
 	# Connect obstacle collision signals based on the type of obstacle
-	if obsType == ballScene:
+	if obsType == Ball:
 		obs.body_entered.connect(gainPoints)
-	elif obsType == coinScene:
+	elif obsType == Coin:
 		obs.body_entered.connect(gainPoints)
 	else:
 		obs.add_to_group("bird")
@@ -375,6 +420,8 @@ func addObstacles(obs, x, y, obsType):
 		get_parent().add_child(obs)
 	else:
 		add_child(obs)
+	print("Added obstacle at position: ", Vector2(x, y))
+	print("Added obstacle: ", obs.name)
 	# Keep adding obstacles in the obstacles array
 	obstacles.append(obs)
 
