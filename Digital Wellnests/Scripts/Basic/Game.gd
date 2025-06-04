@@ -27,8 +27,8 @@ const RABBIT_START_POS = Vector2i(30, 339)
 const CAM_START_POS = Vector2i(360, 240)
 
 # Initial and maxium speed
-const START_SPEED : float = 3.0
-const MAX_SPEED : int = 9
+const START_SPEED : float = 7.0
+const MAX_SPEED : int = 20
 
 var _screenSize: Vector2
 var screen_size : Vector2i
@@ -88,24 +88,29 @@ func _ready():
 	grab_click_focus()
 
 	# Enable viewport for the camera to follow the screen, can be done in the Inspector node
-	$CanvasLayer.follow_viewport_enabled = true
+	#$CanvasLayer.follow_viewport_enabled = true
 	# Initialize the obstacle types array
 	obstaclesType = [Cactus, Cacti, Thorn, Ball, Coin]
 
 	# Screensize of the window, this is used for resising elements based on the screen resolution
-	screen_size = get_window().size
-
-	# Get the height of the ground sprite, this is used for positioning objects in the game
-	groundHeight = $CanvasLayer/Ground.get_node("Sprite2D").texture.get_height()
+	screen_size = get_viewport().get_visible_rect().size
+	#screen_size = get_window().size
 
 	# If gameIndex == 2, which is Elephant and his shoe, disable the already existing collision shape
 	# So that it does not intefer with other games
 	if gameIndex == 2:
-		$CanvasLayer/Ground.get_node("CollisionShape2D").set_disabled(false)
-		$CanvasLayer/Rabbit.get_node("CanvasLayer/TextureButton").visible = true
+		# Get the height of the ground sprite, this is used for positioning objects in the game
+		Engine.max_fps = 60
+		$Hud.follow_viewport_enabled = false
+		groundHeight = $GameNode2D/Ground.get_node("Sprite2D").texture.get_height()
+		$GameNode2D/Ground.get_node("CollisionShape2D").set_disabled(false)
+		$GameNode2D/Rabbit.get_node("CanvasLayer/TextureButton").visible = true
 	else:
-		$CanvasLayer/Ground.get_node("CollisionShape2D").set_disabled(true)
-		$CanvasLayer/Rabbit.get_node("CanvasLayer/TextureButton").visible = false
+		if $GameNode2D and $GameNode2D/Ground:
+			$GameNode2D/Ground.get_node("CollisionShape2D").set_disabled(true)
+		if $GameNode2D and $GameNode2D/Rabbit:
+			$GameNode2D/Rabbit.get_node("CanvasLayer/TextureButton").visible = false
+			groundHeight = 100
 	# Call the running function
 	startRunning()
 
@@ -113,35 +118,40 @@ func _process(delta: float) -> void:
 	# Check if the game is paused
 	if bpaused:
 		return
+		
+	if gameIndex == 2:
+		generateObstacles()
 
-	generateObstacles()
+		# Move the character2d and camera
+		$GameNode2D/Rabbit.position.x += rabbitSpeed
+		$GameNode2D/Camera2D.position.x += rabbitSpeed
 
-	# Move the character2d and camera
-	$CanvasLayer/Rabbit.position.x += rabbitSpeed
-	$CanvasLayer/Camera2D.position.x += rabbitSpeed
+		# Update score based on the distance
+		rabbitScore += rabbitSpeed
+		
+		#var screen_size = get_viewport().size
+		#var groundWidth = $GameNode2D/Ground.get_node("Sprite2D").texture.get_width() * $GameNode2D/Ground.scale.x
+		# Update the ground position when the ground position ends
+		if $GameNode2D/Camera2D.position.x - $GameNode2D/Ground.position.x > screen_size.x * 1.5:
+			$GameNode2D/Ground.position.x += screen_size.x
+		#if $GameNode2D/Camera2D.position.x - $GameNode2D/Ground.position.x > groundWidth:
+			#$GameNode2D/Ground.position.x += groundWidth
+		#print("Is Ground visible?: ", $GameNode2D/Ground.visible)
 
-	# Update score based on the distance
-	rabbitScore += rabbitSpeed
-	var screen_size = get_viewport().get_visible_rect().size
-	# Update the ground position when the ground position ends
-	if $CanvasLayer/Camera2D.position.x - $CanvasLayer/Ground.position.x > screen_size.x * 1.5:
-		$CanvasLayer/Ground.position.x += screen_size.x
+		# Remove obstacles that already have passed
+		# Create a temporary array for obstacles to remove
+		var obstaclesToRemove = []
 
-	# Remove obstacles that already have passed
-	# Create a temporary array for obstacles to remove
-	var obstaclesToRemove = []
+		for obs in obstacles:
+			# Check if the obstacle is valid and has moved out of the screen's view
+			if is_instance_valid(obs) and obs.position.x < ($GameNode2D/Camera2D.position.x - screen_size.x):
+				obstaclesToRemove.append(obs)
 
-	for obs in obstacles:
-		# Check if the obstacle is valid and has moved out of the screen's view
-		if is_instance_valid(obs) and obs.position.x < ($CanvasLayer/Camera2D.position.x - screen_size.x):
-			obstaclesToRemove.append(obs)
-
-	# Remove obstacles after the loop
-	for obs in obstaclesToRemove:
-		removeObstacle(obs)
+		# Remove obstacles after the loop
+		for obs in obstaclesToRemove:
+			removeObstacle(obs)
 
 func _on_play_button_pressed():
-	#level = int($Game/StartGame/HSlider.value)
 	level = int($StartGame/HSlider.value)
 	$Hud/Score.show()
 	$PauseGame/Pause.show()
@@ -149,7 +159,7 @@ func _on_play_button_pressed():
 
 	# Remove the instructions
 	$StartGame.scale = Vector2(0, 0)
-	$CanvasLayer/Rabbit.setActive(true)
+	$GameNode2D/Rabbit.setActive(true)
 	if gameIndex == 2:
 		bpaused = false
 	$Effects.stop()
@@ -201,20 +211,25 @@ func startGame():
 		$MailTimer.start()
 
 	elif gameIndex == 2:
-		$".".scale = Vector2(0,0)
+		#$".".scale = Vector2(1,1)
+		$StartGame.scale = Vector2(1,1)
+		$GameNode2D.scale = Vector2(1,1)
+		$BG.hide()
+		
 		$StartGame.hide()
+		
 		$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart3.png")
-		$CanvasLayer/Background.show()
-		$CanvasLayer/Ground.show()
-		$CanvasLayer/Rabbit.show()
-		$CanvasLayer/Rabbit.setActive(true)
-		$CanvasLayer/Camera2D.make_current()
+		$GameNode2D/Background.show()
+		$GameNode2D/Ground.show()
+		$GameNode2D/Rabbit.show()
+		$GameNode2D/Rabbit.setActive(true)
+		$GameNode2D/Camera2D.make_current()
 
 		# Ajust the speed slowly, based on each level
 		# 5 + ((1-1)/ (10-1) * (15 - 5) * 0.5
-		rabbitSpeed = START_SPEED #+ ((level - 1) / float($StartGame/HSlider.max_value - 1)) * (MAX_SPEED - START_SPEED) * 0.25
-		#if level >= 6:
-			#rabbitSpeed = START_SPEED * 1.5
+		rabbitSpeed = START_SPEED + ((level - 1) / float($StartGame/HSlider.max_value - 1)) * (MAX_SPEED - START_SPEED) * 0.3
+		if level >= 7:
+			rabbitSpeed = START_SPEED * 1.5
 
 		# Limit the speed to the max speed allowed
 		if rabbitSpeed > MAX_SPEED:
@@ -262,10 +277,10 @@ func startGame():
 # Elephant and his shoe game
 func startRunning():
 	rabbitScore = 0
-	$CanvasLayer/Rabbit.position = RABBIT_START_POS
-	$CanvasLayer/Rabbit.velocity = Vector2i(0, 0)
-	$CanvasLayer/Camera2D.position = CAM_START_POS
-	$CanvasLayer/Ground.position = Vector2i(0, 0)
+	$GameNode2D/Rabbit.position = RABBIT_START_POS
+	$GameNode2D/Rabbit.velocity = Vector2i(0, 0)
+	$GameNode2D/Camera2D.position = CAM_START_POS
+	$GameNode2D/Ground.position = Vector2i(0, 0)
 
 	bpaused = true
 
@@ -282,20 +297,20 @@ func generateObstacles():
 		# If the level is greater than 3, start generating a maximum of 2 obstacles
 		# Adding more challenge to the game
 		var obstaclesType := [Cactus, Cacti, Thorn, Ball, Coin]
-		if level < 3:
+		if level > 6:
 			obstaclesType += [Ball, Coin]
-		if level > 5:
-			maxObstacles = 2
-		if level > 7:
-			maxObstacles = 3
+		#if level > 7:
+			#maxObstacles = 2
+		#if level > 7:
+			#maxObstacles = 3
 		
-		print("Screen size: ", screen_size)
+		#print("Screen size: ", screen_size)
 		
 		# Store already used positions to prevent overlap
 		var usedPositions = []
 		
 		# Minimum spacing between obstacles (horizontal)
-		var minSpacing = 120
+		var minSpacing = 300
 		
 		# Get viewport size for proper positioning
 		var viewport_size = get_viewport().get_visible_rect().size
@@ -315,7 +330,7 @@ func generateObstacles():
 			# Set position of each obstacle
 			if level >= 6:
 				#obs_x = screen_size.x + rabbitScore + 100 + (i * 250)
-				obs_x = screen_size.x + rabbitScore + 100 + (i * (minSpacing + 100))
+				obs_x = screen_size.x + rabbitScore + 100 + (i * (minSpacing + 150))
 				
 			obs_x += randi_range(0, 50)	
 			# Calculate ground level position - use viewport height instead of screen_size
@@ -355,14 +370,14 @@ func generateObstacles():
 			#print("Last Obstacle: ", obs_x)
 			addObstacles(obs, obs_x, obs_y,obsType)
 
-		if level > 4 and (randi() % 2) == 0:
+		if level >= 5 and (randi() % 2) == 0:
 			# Generate a bird obstacle
 			var birdObs = Bird.instantiate()
 			var obs_x: int = screen_size.x + rabbitScore + 100
 				
 			#var obs_y : int = birdHeight[randi() % birdHeight.size()] - 130
 			var viewport_height = get_viewport().get_visible_rect().size.y
-			var bird_height_options = [viewport_height * 0.3, viewport_height * 0.5]
+			var bird_height_options = [viewport_height * 0.1, viewport_height * 0.3]
 			var obs_y = bird_height_options[randi() % bird_height_options.size()]
 			#print("obs_y: ", obs_y)
 			addObstacles(birdObs, obs_x, obs_y, Bird)
@@ -381,8 +396,8 @@ func losePoints(body):
 		audio.stream = load("res://Audio/Effects/aWrong.wav")
 		audio.volume_db = -3.0
 		audio.play()
-		$CanvasLayer/Rabbit.stopJumpingSound()
-		$CanvasLayer/Rabbit.makeInvisible()
+		$GameNode2D/Rabbit.stopJumpingSound()
+		$GameNode2D/Rabbit.makeInvisible()
 		updateScore(false)
 
 func gainPoints(body):
@@ -392,8 +407,8 @@ func gainPoints(body):
 		audio.stream = load("res://Audio/Effects/aRight2.wav")
 		audio.play()
 
-		$CanvasLayer/Rabbit.stopJumpingSound()
-		$CanvasLayer/Rabbit.makeInvisible()
+		$GameNode2D/Rabbit.stopJumpingSound()
+		$GameNode2D/Rabbit.makeInvisible()
 		updateScore(true)
 
 func addObstacles(obs, x, y, obsType):
@@ -420,8 +435,8 @@ func addObstacles(obs, x, y, obsType):
 		get_parent().add_child(obs)
 	else:
 		add_child(obs)
-	print("Added obstacle at position: ", Vector2(x, y))
-	print("Added obstacle: ", obs.name)
+	#print("Added obstacle at position: ", Vector2(x, y))
+	#print("Added obstacle: ", obs.name)
 	# Keep adding obstacles in the obstacles array
 	obstacles.append(obs)
 
@@ -592,8 +607,6 @@ func calcConveyor(conveyorSize: int):
 		# Fill in the temporary array with the conveyorCount
 		for i in range(conCount):
 			lay.append(tmp[i])
-		#print("Conveyor Count: ", conCount)
-		#print("Generated Conveyor Sizes:", lay)
 
 		var conveyorIndices: Array = []
 		for i in range(conCount):
@@ -685,13 +698,11 @@ func updateScore(punt: bool):
 	if not gameOver:
 		$Hud/Score.show()
 		if punt:
-			#print("Score++")
 			score += 1
 			$Hud/Score.text = str(score) + " "
 			if score >= goal:
 				gameEnd(true)
 		else:
-			#print("Lives--")
 			lives -= 1
 			$Hud/Lives.texture = ResourceLoader.load("res://Images/Heart" + str(lives) + ".png")
 			if lives <= 0:
@@ -736,13 +747,13 @@ func gameEnd(win: bool):
 
 	if gameIndex == 2:
 		# Checks if camera2D exists in canvaslayer
-		if $CanvasLayer/Camera2D:
+		if $GameNode2D/Camera2D:
 			# Ensures this camera is active
-			$CanvasLayer/Camera2D.make_current()
+			$GameNode2D/Camera2D.make_current()
 			# Stop any processing in Camera2D,
-			$CanvasLayer/Camera2D.set_process(false)
-		# Disable Camera2D to stop it from following
-		$CanvasLayer/Camera2D.enabled = false
+			$GameNode2D/Camera2D.set_process(false)
+			# Disable Camera2D to stop it from following
+			$GameNode2D/Camera2D.enabled = false
 
 	# gameIndex == 3
 	# Stop generating new obstacles and clear the list
@@ -751,7 +762,7 @@ func gameEnd(win: bool):
 			obs.queue_free()
 		obstacles.clear()
 
-		$CanvasLayer.follow_viewport_enabled = false
+		#$CanvasLayer.follow_viewport_enabled = false
 	#if gameIndex == 1:
 		$".".scale = Vector2(1,1)
 		$EndGame.show()
@@ -1059,20 +1070,22 @@ func pauseMenus():
 	if paused:
 		pauseMenu.hide()
 		get_tree().paused = false
-		$CanvasLayer/Rabbit.setActive(true)
+
 		if gameIndex == 2:
-			$CanvasLayer/Rabbit.makeVisible()
+			$GameNode2D/Rabbit.setActive(true)
+			$GameNode2D/Rabbit.makeVisible()
 			# Show the ground and rabbit again when unpausing
-			$CanvasLayer/Ground.show()
-			$CanvasLayer/Rabbit.show()
+			$GameNode2D/Ground.show()
+			$GameNode2D/Rabbit.show()
 	else:
 		pauseMenu.show()
 		get_tree().paused = true
-		$CanvasLayer/Rabbit.setActive(false)
+
 		if gameIndex == 2:
-			$CanvasLayer/Rabbit.makeInvisible()
+			$GameNode2D/Rabbit.setActive(false)
+			$GameNode2D/Rabbit.makeInvisible()
 			# Hide the ground and rabbit when pausing
-			$CanvasLayer/Ground.hide()
-			$CanvasLayer/Rabbit.hide()
-	
+			$GameNode2D/Ground.hide()
+			$GameNode2D/Rabbit.hide()
+
 	paused = !paused
