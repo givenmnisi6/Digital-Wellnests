@@ -31,7 +31,6 @@ func _ready():
 	# Start the story function
 	storyStart()
 
-
 func showInstruction():
 	$Pages.hide()
 	$Panel.show()
@@ -86,7 +85,6 @@ func storyStart():
 
 func closeInstructions():
 	$Panel.hide()
-	#queue_free()
 
 # This code is for displaying the paragraphs when the continue button is button
 func _on_continue_pressed() -> void:
@@ -322,7 +320,6 @@ func _on_page_turn_frame_changed():
 		if $Pages/AnimationShadow.sprite_frames.has_animation(story[iStory] + str(totCount)):
 			$Pages/AnimationShadow.animation = story[iStory] + str(totCount)
 
-
 func _on_back_pressed() -> void:
 	# Return to the parent scene which is the Main Menu one
 	get_parent().returnToMain()
@@ -336,12 +333,10 @@ func _on_okay_button_pressed() -> void:
 	storyStart()
 
 func _on_info_button_mouse_entered() -> void:
-	#$GameInstructions.show()
 	$Panel/AnimationPlayer.play("PopUp")
 	$Panel.show()
 
 func _on_info_button_mouse_exited() -> void:
-	#$GameInstructions.hide()
 	$Panel/AnimationPlayer.play_backwards("PopUp")
 	$Panel.hide()
 

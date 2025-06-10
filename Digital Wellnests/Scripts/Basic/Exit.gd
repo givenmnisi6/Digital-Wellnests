@@ -7,7 +7,6 @@ func _ready() -> void:
 	
 	$Effects.stream = load("res://Audio/Voice/Quit.wav")
 	$Effects.play()
-	
 
 	# Create a tween for animation
 	var twn = get_tree().create_tween()

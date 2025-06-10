@@ -10,15 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Digital Wellnests"
+config/name="Digital wellnests"
 run/main_scene="res://Scenes/Basic/Intro.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.4", "Mobile")
 run/max_fps=144
 boot_splash/bg_color=Color(0.423529, 0.239216, 0.568627, 1)
-boot_splash/image="res://Images/Loading.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://Game icon.png"
+boot_splash/image="res://Images/Loading.png"
+config/icon="uid://ck4ex7wj5vphv"
 boot_splash/minimum_display_time=2000
 run/icon="res://Icon.svg"
 run/name="Digital Wellnests"
@@ -43,6 +43,10 @@ window/stretch/mode="canvas_items"
 [filesystem]
 
 import/blender/enabled=false
+
+[global_group]
+
+ground_manager=""
 
 [input]
 

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://boxd35kcfcdw1"]
+
+[ext_resource type="PackedScene" uid="uid://cydy5wvvioivi" path="res://Scenes/Basic/Pause.tscn" id="1_6te2b"]
+[ext_resource type="Texture2D" uid="uid://f1xch3t6ltfx" path="res://Images/Pause.png" id="2_fhrwx"]
+
+[node name="PauseGame" type="CanvasLayer"]
+
+[node name="PauseG" parent="." instance=ExtResource("1_6te2b")]
+visible = false
+
+[node name="Pause" type="TextureButton" parent="."]
+visible = false
+top_level = true
+offset_left = 351.0
+offset_top = 1.0
+offset_right = 385.0
+offset_bottom = 35.0
+texture_normal = ExtResource("2_fhrwx")
+ignore_texture_size = true
+stretch_mode = 0

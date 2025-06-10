@@ -1,6 +1,6 @@
 [gd_scene load_steps=754 format=3 uid="uid://d28g3wuhntauh"]
 
-[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_y0ppp"]
+[ext_resource type="Script" uid="uid://chufqr1j3f0v5" path="res://Scripts/Main.gd" id="1_y0ppp"]
 [ext_resource type="Texture2D" uid="uid://b7x1xhmjy6pl0" path="res://Images/BackGround.jpg" id="2_3icno"]
 [ext_resource type="PackedScene" uid="uid://dgrnrl2t0ubx1" path="res://Scenes/Basic/Book.tscn" id="2_iqdi2"]
 [ext_resource type="PackedScene" uid="uid://cugtttre47j1d" path="res://Scenes/Basic/Game.tscn" id="3_1kgnl"]
@@ -3265,7 +3265,6 @@ icon = ExtResource("498_y3ox8")
 flat = true
 icon_alignment = 1
 expand_icon = true
-metadata/_edit_lock_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true

@@ -380,10 +380,6 @@ func startQuiz():
 
 	# Add the quiz instance as a child node
 	add_child(quizInstance)
-	
-	# Creating a fading effect
-	#var fTween = create_tween()
-	#fTween.tween_property(quizInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
 
 func startGame():
 	# Instantiate the game scene
@@ -404,10 +400,6 @@ func startGame():
 	
 	# Add the game instance as a child node
 	add_child(gameInstance)
-
-	# Creating a fading effect
-	#var fTween = create_tween()
-	#fTween.tween_property(gameInstance, "modulate", Color(1, 1, 1, 1), 0.5).from(Color(1, 1, 1, 0))
 
 func returnToMain() -> void:
 	# Scale up the Control node
@@ -456,26 +448,6 @@ func _on_sfx_slider_drag_started():
 	# Notify that the SFX slider value has changed
 	Music.valueChangedSfx()
 
-
-func _on_exit_gui_input(event):
-	if (event is InputEventScreenTouch && InputEventMouseButton):
-		# Play the click sound effect
-		Music.clickSfx()
-		
-		# Show the ExitPage node
-		$ExitPage.show()
-		
-		# Create a tween for animation
-		var twn = get_tree().create_tween()
-		
-		# Get the yButton and nButton nodes
-		var y = $ExitPage/Panel/yButton
-		var n = $ExitPage/Panel/nButton
-		
-		# Scale up the yButton and nButton nodes
-		twn.tween_property(y, "scale", Vector2(1,1), 0.4)
-		twn.tween_property(n, "scale", Vector2(1,1), 0.4)
-
 func _on_settings_pressed():
 	# Play the click sound effect
 	Music.clickSfx()
@@ -489,16 +461,16 @@ func _on_exit_pressed():
 	# Play the click sound effect
 	Music.clickSfx()
 	$Effects.stop()
-	
+
 	var exitInstance = Exit.instantiate()
 	add_child(exitInstance)
-	
+
 	exitInstance.show()
 
 func _on_settings_gui_input(event):
 	if (event is InputEventScreenTouch && InputEventMouseButton):
 		# Play the click sound effect
 		Music.clickSfx()
-		
+
 		# Show the SettingsPage node
 		$SettingsPage.show()

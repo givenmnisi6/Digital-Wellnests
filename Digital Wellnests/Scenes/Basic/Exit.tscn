@@ -128,6 +128,7 @@ anchors_preset = 0
 script = ExtResource("1_y0a1r")
 
 [node name="ExitPage" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 1.0
 offset_right = 721.0
 offset_bottom = 480.0
@@ -229,7 +230,7 @@ text = "No"
 [node name="ExitAnimationPlayer" type="AnimationPlayer" parent="ExitPage"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_eiau4")
+&"": SubResource("AnimationLibrary_eiau4")
 }
 
 [node name="Effects" type="AudioStreamPlayer" parent="."]
