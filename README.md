@@ -2,14 +2,16 @@
 
 Based on the book *Digital Wellnests: Let us play in safe nests!* by Rachel Fischer & Sune von Solms.
 
-**Digital Wellnests** is a serious game designed to promote digital well-being and safety for preschool-aged children. Through engaging storytelling, interactive gameplay, and educational mini-games, the game helps young learners develop healthy digital habits in a playful and meaningful way.
+**Digital Wellnests** is a serious game designed to promote digital well-being and safety for preschool-aged children. Through engaging storytelling, interactive gameplay, and educational mini-games, it helps young learners develop healthy digital habits in a playful and meaningful way.
+
+Please note: This game is a proof of concept, not a fully developed commercial product. To play the game, visit https://givenmnisi6.itch.io/digital-wellnests.
 
 ---
 
 ## Technologies Used
 
 - **Game Engine**: [Godot 4.4](https://godotengine.org/)
-- **Programming Language**: GDScript (native to Godot)
+- **Programming Language**: GDScript
 - **Artwork**: Edited using Paint.NET
 - **Animations**: Synfig Studio
 
