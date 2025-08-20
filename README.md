@@ -28,14 +28,15 @@ Here are a few in-game screenshots:
 <p align="center">
 	<img src="Game%20screenshots/1.png" alt="Screenshot 1" width="320" />
 	<img src="Game%20screenshots/2.png" alt="Screenshot 2" width="320" />
-	<img src="Game%20screenshots/3.png" alt="Screenshot 3" width="320" />
 </p>
 <p align="center">
 	<img src="Game%20screenshots/5.png" alt="Screenshot 5" width="320" />
+    <img src="Game%20screenshots/3.png" alt="Screenshot 3" width="320" />
+</p>
+<p align="center">
 	<img src="Game%20screenshots/6.png" alt="Screenshot 6" width="320" />
 	<img src="Game%20screenshots/7.png" alt="Screenshot 6" width="320" />
 </p>
-
 ---
 
 ## License
