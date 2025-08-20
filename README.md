@@ -37,7 +37,6 @@ Here are a few in-game screenshots:
 	<img src="Game%20screenshots/6.png" alt="Screenshot 6" width="320" />
 	<img src="Game%20screenshots/7.png" alt="Screenshot 6" width="320" />
 </p>
----
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
