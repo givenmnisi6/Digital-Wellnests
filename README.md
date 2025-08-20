@@ -1,6 +1,6 @@
 # Digital Wellnests
 
-Based on the book *Digital Wellnests: Let us play in safe nests!* by Rachel Fischer & Sune von Solms.
+Based on the book *Digital Wellnests: Let us play in safe nests!* by Rachel Fischer & Suné von Solms.
 
 **Digital Wellnests** is a serious game designed to promote digital well-being and safety for preschool-aged children. Through engaging storytelling, interactive gameplay, and educational mini-games, it helps young learners develop healthy digital habits in a playful and meaningful way.
 
