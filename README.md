@@ -40,10 +40,22 @@ Here are a few in-game screenshots:
 	<img src="Game%20screenshots/7.png" alt="Screenshot 6" width="320" />
 </p>
 
+---
+
+## Papers
+
+- "Digital Wellness of Preschool Children: The Story of Cyber-cat and the Consequences of Hacking" — Given Mnisi, Günther Drevin, Lynette Drevin, Joshua Esterhuizen & Christo Croucamp. [Springer chapter](https://link.springer.com/chapter/10.1007/978-981-97-3559-4_51)
+- "Lucky the Fish Teaches Children About Phishing" — Given Mnisi, Günther Richard Drevin & Lynette Drevin. [Springer chapter](https://link.springer.com/chapter/10.1007/978-3-031-94924-1_11)
+
+
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
 ---
+
+
+If you want fully formatted citations (APA, IEEE or BibTeX), tell me which style and I will replace these with formatted references including year, editors and page numbers if you provide them.
+
 
 ## Acknowledgments
 
