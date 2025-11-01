@@ -54,9 +54,6 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 
-If you want fully formatted citations (APA, IEEE or BibTeX), tell me which style and I will replace these with formatted references including year, editors and page numbers if you provide them.
-
-
 ## Acknowledgments
 
 - Based on the original work *Digital Wellnests* by Rachel Fischer & Suné von Solms.
